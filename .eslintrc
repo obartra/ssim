@@ -1,0 +1,85 @@
+
+{
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": false,
+    "defaultParams": true,
+    "destructuring": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": false,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "restParams": true,
+    "spread": true,
+    "superInFunctions": true,
+    "templateStrings": true
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "airbnb/base",
+  "rules": {
+    "no-labels": 2,
+    "no-tabs": 0,
+    "no-plusplus": 0,
+    "no-use-before-define": 0,
+    "comma-dangle": [
+      2,
+      "never"
+    ],
+    "no-empty-label": 0,
+    "space-before-keywords": 0,
+    "no-multiple-empty-lines": [
+      2, {
+        "max": 1
+      }
+    ],
+    "eol-last": 2,
+    "indent": [
+      2,
+      "tab"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "max-nested-callbacks": [
+      2,
+      2
+    ],
+    "global-require": [2],
+    "no-underscore-dangle": [2, { "allow": ["_private"] }],
+    "no-restricted-syntax": [2, "WithStatement", "class"],
+    "import/no-extraneous-dependencies": [0],
+    "no-mixed-operators": [0],
+    "no-prototype-builtins": [0],
+    "max-statements": [2, 25],
+    "newline-after-var": [
+      2,
+      "always"
+    ],
+    "newline-per-chained-call": [
+      2, {
+        "ignoreChainWithDepth": 3
+      }
+    ],
+    "no-param-reassign": 0,
+    "one-var": [
+      0,
+      "never"
+    ],
+    "keyword-spacing": [
+        2,
+        {
+            "after": true,
+            "before": true,
+            "overrides": {
+            }
+        }
+    ],
+    "space-after-keywords": 0,
+    "space-return-throw-case": 0
+  }
+}

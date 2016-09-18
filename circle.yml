@@ -1,0 +1,18 @@
+machine:
+  node:
+    version: 6.6.0
+general:
+  artifacts:
+    - "dist"
+test:
+  override:
+    - npm run fixme
+    - npm run lint
+    - npm run docs
+    - npm run codeclimate
+# deployment:
+#   publish:
+#     owner: obartra
+#     branch: master
+#     commands:
+#       - npm publish || exit 0

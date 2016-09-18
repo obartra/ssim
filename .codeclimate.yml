@@ -1,0 +1,18 @@
+engines:
+  eslint:
+    enabled: true
+    checks:
+        keyword-spacing:
+            enabled: false
+        newline-per-chained-call:
+            enabled: false
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+  - "src/*"
+  - "src/**/*"
+  - "spec/*"
+  - "spec/**/*"
+  - "ci/*"

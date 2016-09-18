@@ -1,0 +1,11 @@
+instrumentation:
+    root: .
+    default-excludes: true
+    excludes: [
+        "spec/**",
+    ]
+reporting:
+    print: summary
+    reports:
+        - lcov
+    dir: ./coverage
