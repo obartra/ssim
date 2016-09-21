@@ -1,0 +1,7 @@
+Data from: http://live.ece.utexas.edu/research/Quality/zhou_research_anch/quality_index/demo_goldhill.html
+
+MSE 121 on all images except for:
+- reference (Q1.gif) with MSE of 0
+- Q08290.gif with MSE of 120
+- Q05080.gif with MSE of 122
+- Q04963.gif with MSE of 117

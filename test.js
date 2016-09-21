@@ -1,8 +1,8 @@
 const getSSIM = require('./index.js');
 
-getSSIM('./spec/samples/einstein1.gif', './spec/samples/einstein0840.gif').then(ssim =>
-		process.stdout.write(`SSIM: ${ssim} DSSIM: ${1 - ssim}`)
+getSSIM('./spec/samples/einstein/Q1.gif', './spec/samples/einstein/Q0840.gif').then(mssim =>
+		process.stdout.write(`MSSIM: ${mssim}`)
 	)
 	.catch(err =>
-		process.stdout.write('Error generating SSIM', err)
+		process.stdout.write('Error generating MSSIM', err)
 	);

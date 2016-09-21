@@ -1,7 +1,8 @@
 #!/bin/bash
 
-rm -rf node_modules npm-shrinkwrap.json dist
+rm -rf npm-shrinkwrap.json dist
 ./node_modules/.bin/ncu -au
+rm -rf node_modules
 npm install
 npm prune
 npm run build

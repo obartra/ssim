@@ -1,111 +1,127 @@
 const fs = require('fs');
-const request = require('request');
-const mime = require('mime-types');
-
-const { force } = require('./util');
-const handlePNG = require('./formatreader/png');
-const handleJPEG = require('./formatreader/jpg');
-const handleGIF = require('./formatreader/gif');
+const http = require('https');
+const Canvas = require('canvas');
 
 /**
- * Parses the buffer data based on the given mime type and generates an object containing all pixel
- * and dimensions data
+ * Parses the buffer data and converts it into a 3d matrix
  *
- * @method doParse
- * @param {string} type - The mime type of the image used
- * @param {Buffer} data - The input image buffer data
- * @returns {ndarray} pixels - The image dataset
+ * @method bufferToMatrix
+ * @param {Object} imageData - An image data object (the matrix and dimensions)
+ * @returns {Array.<Array.<Array.<Number>>>} image - A 3d image matrix
  * @private
- * @memberOf readpixels
- * @since 0.0.1
+ * @memberOf bufferToMatrix
+ * @since 0.0.2
  */
-function doParse(type = force('type'), data) {
-	switch (type) {
-	case 'image/png':
-		return handlePNG(data);
-	case 'image/jpg':
-	case 'image/jpeg':
-		return handleJPEG(data);
-	case 'image/gif':
-		return handleGIF(data);
-	default:
-		return Promise.reject(new Error(`Unsupported file type: ${type}`));
+function bufferToMatrix(imageData) {
+	const matrix = [];
+	const d = imageData.data;
+
+	for (let x = 0; x < imageData.width; x++) {
+		matrix[x] = [];
+		for (let y = 0; y < imageData.height; y++) {
+			const index = (x + y * imageData.width) * 4;
+
+			matrix[x][y] = [d[index], d[index + 1], d[index + 2], d[index + 3]];
+		}
 	}
+
+	return matrix;
 }
 
 /**
- * Reads image data from a url and generates an object containing all pixel and dimensions data
+ * Parses the buffer data and returns it
  *
- * @method loadUrl
- * @param {string} url - url to load image data from
- * @param {string} [type] - The mime type to use to override the default
- * @returns {ndarray} pixels - The image dataset
+ * @method parse
+ * @param {Buffer} data - The input image buffer data
+ * @returns {Promise} promise - A promise that resolves in an object containing the image 3d matrix
  * @private
  * @memberOf readpixels
  * @since 0.0.1
  */
-function loadUrl(url, type) {
-	return new Promise((resolve, reject) => {
-		request({ url, encoding: null }, (err, response, body) => {
-			if (err) {
-				return reject(err);
-			} else if (!type) {
-				if (response.getHeader !== undefined) {
-					type = response.getHeader('content-type');
-				} else if (response.headers !== undefined) {
-					type = response.headers['content-type'];
-				}
-			}
+function parse(data) {
+	const img = new Canvas.Image();
 
-			return doParse(type, body).then(resolve).catch(reject);
-		});
+	img.src = data;
+
+	const canvas = new Canvas(img.width, img.height);
+	const ctx = canvas.getContext('2d');
+
+	ctx.drawImage(img, 0, 0, img.width, img.height);
+
+	const imageData = ctx.getImageData(0, 0, img.width, img.height);
+
+	return new Promise((resolve) => {
+		resolve(bufferToMatrix(imageData));
 	});
 }
 
 /**
- * Reads image data from the file system and generates an object containing all pixel and dimensions
- * data
+ * Reads image data from a url and returns it
  *
- * @method loadFs
- * @param {string} path - File path to load image data from
- * @param {string} [type] - The mime type to use to override the default
- * @returns {ndarray} pixels - The image dataset
+ * @method loadUrl
+ * @param {string} url - url to load image data from
+ * @returns {Promise} promise - A promise that resolves with the image 3D matrix
  * @private
  * @memberOf readpixels
  * @since 0.0.1
  */
-function loadFs(path, type) {
+function loadUrl(url) {
+	return new Promise((resolve, reject) => {
+		http
+			.get(url)
+			.on('response', (res) => {
+				const chunks = [];
+
+				res.on('data', data => chunks.push(data));
+				res.on('end', () =>
+					parse(Buffer.concat(chunks))
+						.then(resolve)
+						.catch(reject)
+				);
+			})
+			.on('error', err => reject(err));
+	});
+}
+
+/**
+ * Reads image data from the file system and returns it
+ *
+ * @method loadFs
+ * @param {string} path - File path to load image data from
+ * @returns {Promise} promise - A promise that resolves with the image 3D matrix
+ * @private
+ * @memberOf readpixels
+ * @since 0.0.1
+ */
+function loadFs(path) {
 	return new Promise((resolve, reject) => {
 		fs.readFile(path, (err, data) => {
 			if (err) {
 				return reject(err);
 			}
 
-			type = type || mime.lookup(path);
-			return doParse(type, data).then(resolve).catch(reject);
+			return parse(data).then(resolve).catch(reject);
 		});
 	});
 }
 
 /**
- * Reads image data from the input and generates an object containing all pixel and dimensions data
+ * Reads image data from the input and returns it
  *
  * @method readpixels
  * @param {string|Buffer} url - A url, file path or buffer to use to load the image data
- * @param {string} [type] - The mime type. It is required if url is a buffer but not otherwise. If
- * not needed but these value is passed it will be used to coerce the mime type
- * @returns {ndarray} pixels - The image dataset
+ * @returns {Promise} promise - A promise that resolves with the image 3D matrix
  * @public
  * @memberOf readpixels
  * @since 0.0.1
  */
-function readpixels(url, type) {
+function readpixels(url) {
 	if (Buffer.isBuffer(url)) {
-		return doParse(type, url);
+		return parse(url);
 	} else if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
-		return loadUrl(url, type);
+		return loadUrl(url);
 	}
-	return loadFs(url, type);
+	return loadFs(url);
 }
 
 /**

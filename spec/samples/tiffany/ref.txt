@@ -1,0 +1,3 @@
+Data from: http://live.ece.utexas.edu/research/Quality/zhou_research_anch/quality_index/demo_jpg.html
+
+MSE of 165 for Q03709.gif
