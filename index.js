@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-const window = require('./src/window');
 const { readpixels } = require('./src/readpixels');
-const { getLumaPixel, hasSameDimensions } = require('./src/image');
-const { average } = require('./src/math');
+const { rgb2gray } = require('./src/matlab');
+const { mean2d } = require('./src/math');
 const { ssim } = require('./src/ssim');
 const { force } = require('./src/util');
 const defaults = require('./src/defaults.json');
+const { version } = require('./package.json');
 
 function validateOptions(options) {
 	Object.keys(options).forEach((option) => {
@@ -26,33 +26,38 @@ function getOptions(options) {
 	return Object.assign({}, defaults, options);
 }
 
-function requireSameDimensions(pixels1, pixels2) {
-	if (!hasSameDimensions(pixels1, pixels2)) {
+function validateDimensions([pixels1, pixels2]) {
+	if (pixels1.length !== pixels2.length || pixels1[0].length !== pixels2[0].length) {
 		throw new Error('Image dimensions do not match');
 	}
 
 	return [pixels1, pixels2];
 }
 
-function getWindows(pixels1, pixels2, { windowSize, step }) {
-	const windows1 = window.getWindows(pixels1, getLumaPixel, step, windowSize);
-	const windows2 = window.getWindows(pixels2, getLumaPixel, step, windowSize);
+function toGrayScale([pixels1, pixels2]) {
+	pixels1 = rgb2gray(pixels1);
+	pixels2 = rgb2gray(pixels2);
 
-	return [windows1, windows2];
+	return [pixels1, pixels2];
 }
 
-function getSSIMs(windows1, windows2, options) {
-	return windows1.map((w1, index) => ssim(w1, windows2[index], options));
-}
+function singleSSIM(image1 = force('image1'), image2 = force('image2'), options = {}) {
+	const start = new Date().getTime();
 
-function main(image1 = force('image1'), image2 = force('image2'), options = {}) {
 	options = getOptions(options);
 
 	return Promise.all([readpixels(image1), readpixels(image2)])
-		.then(([pixels1, pixels2]) => requireSameDimensions(pixels1, pixels2))
-		.then(([pixels1, pixels2]) => getWindows(pixels1, pixels2, options))
-		.then(([windows1, windows2]) => getSSIMs(windows1, windows2, options))
-		.then(average);
+		.then(validateDimensions)
+		.then(toGrayScale)
+		.then(([pixels1, pixels2]) => ssim(pixels1, pixels2, options))
+		.then(ssimMap => ({
+			ssim_map: ssimMap,
+			mssim: mean2d(ssimMap),
+			performance: new Date().getTime() - start
+		}));
 }
 
-module.exports = main;
+singleSSIM.ssim = ssim;
+singleSSIM.version = version;
+
+module.exports = singleSSIM;
