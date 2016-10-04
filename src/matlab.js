@@ -209,7 +209,7 @@ function numbers(m, n, num) {
  * @memberOf matlab
  * @since 0.0.2
  */
-function conv2(a, b) {
+function conv2(a, b, shape = 'same') {
 	const ma = a.length;
 	const na = a[0].length;
 	const mb = b.length;
@@ -399,7 +399,7 @@ function concatVertical(a, b) {
  * @param {Number} x - The dividend
  * @param {Numvwe} y - The divisor
  * @returns {Number} M - Returns the signed remainder after division.
- * @public
+ * @private
  * @memberOf matlab
  * @since 0.0.2
  */
@@ -628,6 +628,7 @@ function filter2(h, X, shape = 'same') {
  * @namespace matlab
  */
 module.exports = {
+	conv2,
 	fspecial,
 	filter2,
 	zeros,
