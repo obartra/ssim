@@ -1,10 +1,7 @@
 {
-	"step": 8,
-	"windowSize": 8,
+	"windowSize": 11,
 	"k1": 0.01,
 	"k2": 0.03,
-	"α": 1,
-	"β": 1,
-	"γ": 1,
-	"L": 255
+	"bitDepth": 8,
+	"downsample": true
 }

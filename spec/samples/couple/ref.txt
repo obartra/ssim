@@ -1,0 +1,5 @@
+Data from: http://live.ece.utexas.edu/research/Quality/zhou_research_anch/quality_index/demo_couple.html
+
+MSE 81 on all images except for:
+- reference (Q1.gif) with MSE of 0
+- Q06761.gif with MSE of 82

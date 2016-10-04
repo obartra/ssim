@@ -1,7 +1,7 @@
 {
   "name": "ssim.js",
   "version": "0.0.1",
-  "description": "pure js no canvas ssim computation",
+  "description": "JS MSSIM computation",
   "main": "index.js",
   "scripts": {
     "cover": "node_modules/.bin/istanbul cover blue-tape spec/*.spec.js",
@@ -9,7 +9,8 @@
     "docs": " jsdoc --pedantic -c .jsdoc . --readme README.md",
     "fixme": "ci/fixme.js",
     "lint": "eslint .",
-    "build": "ci/build.sh",
+    "build": "webpack",
+    "watch": "webpack --watch",
     "update": "ci/update.sh",
     "codeclimate": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter"
   },
@@ -32,28 +33,28 @@
   },
   "homepage": "https://github.com/obartra/notes#readme",
   "dependencies": {
-    "jpeg-js": "^0.2.0",
-    "mime-types": "^2.1.11",
-    "ndarray": "^1.0.18",
-    "omggif": "^1.0.8",
-    "pngjs": "^3.0.0",
-    "request": "^2.74.0"
+    "canvas": "1.5.0"
   },
   "devDependencies": {
-    "blue-tape": "^1.0.0",
-    "codeclimate-test-reporter": "^0.3.3",
-    "eslint": "3.5.0",
-    "eslint-config-airbnb": "11.1.0",
-    "eslint-config-standard": "6.0.0",
-    "eslint-plugin-import": "1.15.0",
+    "babel-core": "6.17.0",
+    "babel-loader": "6.2.5",
+    "babel-preset-es2015": "6.16.0",
+    "blue-tape": "1.0.0",
+    "codeclimate-test-reporter": "0.3.3",
+    "eslint": "3.7.0",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-config-standard": "6.2.0",
+    "eslint-plugin-import": "2.0.0",
     "eslint-plugin-jsx-a11y": "2.2.2",
     "eslint-plugin-promise": "2.0.1",
-    "eslint-plugin-react": "6.2.1",
-    "eslint-plugin-standard": "2.0.0",
-    "fixme": "^0.4.0",
-    "istanbul": "^0.4.5",
-    "jsdoc": "^3.4.1",
-    "npm-check-updates": "^2.8.0",
-    "tap-dot": "^1.0.5"
+    "eslint-plugin-react": "6.3.0",
+    "eslint-plugin-standard": "2.0.1",
+    "fixme": "0.4.0",
+    "istanbul": "0.4.5",
+    "jsdoc": "3.4.1",
+    "json-loader": "0.5.4",
+    "npm-check-updates": "2.8.1",
+    "tap-dot": "1.0.5",
+    "webpack": "2.1.0-beta.24"
   }
 }

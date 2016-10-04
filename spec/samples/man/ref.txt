@@ -1,0 +1,3 @@
+Data from: http://live.ece.utexas.edu/research/Quality/zhou_research_anch/quality_index/demo_blur.html
+
+MSE of 200 for Q04123.gif
