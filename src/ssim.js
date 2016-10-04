@@ -1,7 +1,29 @@
 const { multiply2d, add2d, divide2d, square2d, sum2d } = require('./math');
 const { fspecial, filter2, imfilter, skip2d, ones } = require('./matlab');
 
-function ssim(pixels1, pixels2, options) {
+/**
+ * Generates a SSIM map based on two input image matrices. For images greater than 512 pixels, it
+ * will downsample by default (unless `options.downsample` is set to falsy).
+ *
+ * This method is a line-by-line port of `assets/ssim.m`. Some operations are more verbose here
+ * since more logic is needed in JS to manipulate matrices than in Matlab
+ *
+ * Note that setting `options1.k1` and `options.k2` to 0 will generate the UQI (Universal Quality
+ * Index), since it's a special case of SSIM. In general that's undesierable since `k1` and `k2`
+ * contribute to the stabilization coeficients `c1` and `c2`.
+ *
+ * @method ssim
+ * @param {Array.<Array.<Array.<Number>>>} pixels1 - The reference rgb matrix
+ * @param {Array.<Array.<Array.<Number>>>} pixels2 - The second rgb matrix to compare against
+ * the reference one
+ * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
+ * @public
+ * @memberOf ssim
+ * @since 0.0.2
+ */
+function ssim(pixels1, pixels2, options) { // eslint-disable-line max-statements
+	// Exceeding max-statements to preserve the structure of the original Matlab script
+
 	let w = fspecial('gaussian', options.windowSize, 1.5);
 	const L = Math.pow(2, options.bitDepth) - 1;
 	const c1 = Math.pow(options.k1 * L, 2);
@@ -28,12 +50,14 @@ function ssim(pixels1, pixels2, options) {
 	const σ12 = add2d(filter2(w, multiply2d(pixels1, pixels2), 'valid'), minusμ12);
 
 	if (c1 > 0 && c2 > 0) {
-		return standard(c1, c2, μ12, μ1Sq, μ2Sq, σ12, σ1Sq, σ2Sq);
-	}
-	return uiq(μ12, μ1Sq, μ2Sq, σ12, σ1Sq, σ2Sq);
-}
+		const num1 = add2d(multiply2d(μ12, 2), c1);
+		const num2 = add2d(multiply2d(σ12, 2), c2);
+		const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1);
+		const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2);
 
-function uiq(μ12, μ1Sq, μ2Sq, σ12, σ1Sq, σ2Sq) {
+		return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2));
+	}
+
 	const numerator1 = multiply2d(μ12, 2);
 	const numerator2 = multiply2d(σ12, 2);
 	const denominator1 = add2d(μ1Sq, μ2Sq);
@@ -45,15 +69,22 @@ function uiq(μ12, μ1Sq, μ2Sq, σ12, σ1Sq, σ2Sq) {
 	);
 }
 
-function standard(c1, c2, μ12, μ1Sq, μ2Sq, σ12, σ1Sq, σ2Sq) {
-	const num1 = add2d(multiply2d(μ12, 2), c1);
-	const num2 = add2d(multiply2d(σ12, 2), c2);
-	const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1);
-	const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2);
-
-	return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2));
-}
-
+/**
+ * Downsamples images greater than 256 pixels on the smallest direction. If neither image does they
+ * are returned as they are.
+ *
+ * This can modifies the resulting SSIM index but should speed up processing.
+ *
+ * Unfortunately this implementation is so slow that's actual deterimental.
+ *
+ * @method automaticDownsampling
+ * @param {Array.<Array.<Array.<Number>>>} pixels1 - The first rgb matrix to downsample
+ * @param {Array.<Array.<Array.<Number>>>} pixels2 - The second rgb matrix to downsample
+ * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
+ * @private
+ * @memberOf ssim
+ * @since 0.0.2
+ */
 function automaticDownsampling(pixels1, pixels2) {
 	const factor = Math.min(pixels1[0].length, pixels2.length) / 256;
 	const rfactor = Math.round(factor);

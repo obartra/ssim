@@ -291,16 +291,7 @@ function multiply2d(mx, multiplier) {
  * @since 0.0.2
  */
 function square2d(mx) {
-	const out = [];
-
-	for (let x = 0; x < mx.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx[0].length; y++) {
-			out[x][y] = Math.pow(mx[x][y], 2);
-		}
-	}
-
-	return out;
+	return multiply2d(mx, mx);
 }
 
 /**

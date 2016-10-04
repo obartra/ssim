@@ -49,3 +49,7 @@ test('should weight each color based on the ITU spec (rgb2gray)', (t) => {
 
 	t.end();
 });
+
+// test('should create a gaussian low pass filter', (t) => {
+
+// });

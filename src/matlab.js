@@ -22,7 +22,7 @@ function luma([r, g, b]) {
  * Converts a 3d matrix of [row, column, rgb] into a 2d one [row, column] where the value is the
  * grayscale equivalent of the rgb input.
  *
- * This method mimics Matlabs `rgb2gray` method
+ * This method mimics Matlab's `rgb2gray` method
  *
  * @method rgb2gray
  * @param {Array.<Array.<Array.<Number>>>} mx - The input matrix
@@ -43,6 +43,20 @@ function rgb2gray(mx) {
 	return lumaMx;
 }
 
+/**
+ * Creates a matrix of lenght `2 * length + 1` with values being the sum of the square of the
+ * distance for each component from the center. E.g:
+ *
+ * For a length of 5 it results in a matrix size of 11. Looking at [0, 0] (distance: [-5, -5] from
+ * the center), the value at that position becomes `-5^2 + -5^2 = 50`
+ *
+ * @method rangeSquare2d
+ * @param {Number} length - The maxium distance from the matrix center
+ * @returns {Array.<Array.<Number>>} mx - The generated matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function rangeSquare2d(length) {
 	const mx = [];
 
@@ -56,6 +70,17 @@ function rangeSquare2d(length) {
 	return mx;
 }
 
+/**
+ * Applies a gaussian filter of sigma to a given matrix
+ *
+ * @method gaussianFilter2d
+ * @param {Array.<Array.<Number>>} mx - The input matrix
+ * @param {Number} σ - The sigma value
+ * @returns {Array.<Array.<Number>>} out - The matrix with the gaussian filter applied
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function gaussianFilter2d(mx, σ) {
 	const out = [];
 
@@ -76,7 +101,7 @@ function gaussianFilter2d(mx, σ) {
  * parameters particular to the type of filter chosen. If you omit these arguments, fspecial uses
  * default values for the parameters.
  *
- * This method mimics Matlabs `fspecial2` method with `type = 'gaussian'`. `hsize` cannot be a
+ * This method mimics Matlab's `fspecial2` method with `type = 'gaussian'`. `hsize` cannot be a
  * vector (unlike Matlab's implementation), only a Number is accepted
  *
  * `h = fspecial('gaussian', hsize, sigma)` returns a rotationally symmetric Gaussian lowpass filter
@@ -106,7 +131,7 @@ function fspecial(type = 'gaussian', hsize = 3, σ = 1.5) {
 /**
  * Create a matrix of all zeros
  *
- * This method mimics Matlabs `zeros` method
+ * This method mimics Matlab's `zeros` method
  *
  * @method zeros
  * @param {Number} m - The number of rows
@@ -123,7 +148,7 @@ function zeros(m, n = m) {
 /**
  * Create a matrix of all ones
  *
- * This method mimics Matlabs `ones` method
+ * This method mimics Matlab's `ones` method
  *
  * @method ones
  * @param {Number} m - The number of rows
@@ -171,8 +196,8 @@ function numbers(m, n, num) {
  * mc = max([ma+mb-1,ma,mb]) and nc = max([na+nb-1,na,nb]).
  * ```
  *
- * This method mimics Matlabs `conv2` method with `shape = 'same'`. No other options have been
- * implemented and, if set, will be ignored.
+ * This method mimics Matlab's `conv2` method with `shape = 'same'`. No other options have been
+ * implemented and, if set, they will be ignored.
  *
  * @method conv2
  * @param {Array.<Array.<Number>>} a - The first matrix
@@ -214,6 +239,19 @@ function conv2(a, b) {
 	return getWindow(c, mb - 1, ma - mb + 1, nb - 1, na - nb + 1);
 }
 
+/**
+ * Rotates a matrix 180deg. E.g.:
+ *
+ * 1 2 3 4  becomes:  8 7 6 5
+ * 5 6 7 8            4 3 2 1
+ *
+ * @method rotate1802d
+ * @param {Array.<Array.<Number>>} mx - The input matrix
+ * @returns {Array.<Array.<Number>>} out - The rotated matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function rotate1802d(b) {
 	const out = [];
 	const row = b.length;
@@ -229,6 +267,19 @@ function rotate1802d(b) {
 	return out;
 }
 
+/**
+ * Mirrors a matrix horizontally. E.g.:
+ *
+ * 1 2 3 4  becomes:  4 3 2 1
+ * 5 6 7 8            8 7 6 5
+ *
+ * @method mirrorHorizonal
+ * @param {Array.<Array.<Number>>} b - The input matrix
+ * @returns {Array.<Array.<Number>>} out - The rotated matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function mirrorHorizonal(b) {
 	const out = [];
 	const row = b.length;
@@ -244,6 +295,20 @@ function mirrorHorizonal(b) {
 	return out;
 }
 
+/**
+ * Mirrors a matrix vertically. E.g.:
+ *
+ * 1 2 3 4  becomes:  9 0 F E
+ * 5 6 7 8            5 6 7 8
+ * 9 0 F E            1 2 3 4
+ *
+ * @method mirrorVertical
+ * @param {Array.<Array.<Number>>} b - The input matrix
+ * @returns {Array.<Array.<Number>>} out - The rotated matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function mirrorVertical(b) {
 	const out = [];
 	const row = b.length;
@@ -259,6 +324,20 @@ function mirrorVertical(b) {
 	return out;
 }
 
+/**
+ * Concatenates 2 matrices of the same height horizontally. E.g.:
+ *
+ * 1 2   3 4  becomes:  1 2 3 4
+ * 5 6   7 8            5 6 7 8
+ *
+ * @method concatHorizontal
+ * @param {Array.<Array.<Number>>} a - The first matrix
+ * @param {Array.<Array.<Number>>} b - The second matrix
+ * @returns {Array.<Array.<Number>>} out - The combined matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function concatHorizontal(a, b) {
 	const out = [];
 
@@ -274,6 +353,22 @@ function concatHorizontal(a, b) {
 	return out;
 }
 
+/**
+ * Concatenates 2 matrices of the same height vertically. E.g.:
+ *
+ * 1 2   3 4  becomes:  1 2
+ * 5 6   7 8            5 6
+ *                      3 4
+ *                      7 8
+ *
+ * @method concatVertical
+ * @param {Array.<Array.<Number>>} a - The first matrix
+ * @param {Array.<Array.<Number>>} b - The second matrix
+ * @returns {Array.<Array.<Number>>} out - The combined matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function concatVertical(a, b) {
 	const out = zeros(a.length + b.length, a[0].length);
 
@@ -298,7 +393,7 @@ function concatVertical(a, b) {
  * The mod function is useful for congruence relationships: x and y are congruent (mod m) if and
  * only if mod(x,m) == mod(y,m).
  *
- * This method mimics Matlabs `mod` method
+ * This method mimics Matlab's `mod` method
  *
  * @method mod
  * @param {Number} x - The dividend
@@ -312,6 +407,26 @@ function mod(x, y) {
 	return x - (y * Math.floor(x / y));
 }
 
+/**
+ * Adds 2 * `pad` cells to a matrix horizontally. The values used are mirrored from the input
+ * matrix. E.g.:
+ *
+ * with padding 1:
+ * 1 2 3 4   becomes:  1 1 2 3 4 4
+ * 5 6 7 8             5 5 6 7 8 8
+ *
+ * With padding 2:
+ * 1 2 3 4   becomes:  2 1 1 2 3 4 4 3
+ * 5 6 7 8             6 5 5 6 7 8 8 7
+ *
+ * @method padHorizontal
+ * @param {Array.<Array.<Number>>} A - The input matrix
+ * @param {Number} pad - The nummber of cells to add to each side (left / right)
+ * @returns {Array.<Array.<Number>>} out - The padded matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function padHorizontal(A, pad) {
 	const out = [];
 	const mirrored = concatHorizontal(A, mirrorHorizonal(A));
@@ -328,6 +443,31 @@ function padHorizontal(A, pad) {
 	return out;
 }
 
+/**
+ * Adds 2 * `pad` cells to a matrix vertically. The values used are mirrored from the input
+ * matrix. E.g.:
+ *
+ * with padding 1:
+ * 1 2 3 4   becomes:  1 2 3 4
+ * 5 6 7 8             1 2 3 4
+ *                     5 6 7 8
+ *                     5 6 7 8
+ * With padding 2:
+ * 1 2 3 4   becomes:  5 6 7 8
+ * 5 6 7 8             1 2 3 4
+ *                     1 2 3 4
+ *                     5 6 7 8
+ *                     5 6 7 8
+ *                     1 2 3 4
+ *
+ * @method padVertical
+ * @param {Array.<Array.<Number>>} A - The input matrix
+ * @param {Number} pad - The nummber of cells to add to each side (top / bottom)
+ * @returns {Array.<Array.<Number>>} out - The padded matrix
+ * @private
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function padVertical(A, pad) {
 	const out = [];
 	const mirrored = concatVertical(A, mirrorVertical(A));
@@ -343,13 +483,59 @@ function padVertical(A, pad) {
 	return out;
 }
 
-// assumes padval = 'symmetric'
+/**
+ * `B = padarray(A,padsize)` pads array `A`. padsize is a vector of nonnegative integers that
+ * specifies both, the amount of padding to add and the dimension along which to add it. The value
+ * of an element in the vector specifies the amount of padding to add. The order of the element in
+ * the vector specifies the dimension along which to add the padding.
+ *
+ * For example, a padsize value of `[2 3]` means add 2 elements of padding along the first dimension
+ * and 3 elements of padding along the second dimension.
+ *
+ * By default, paddarray adds padding before the first element and after the last element along the
+ * specified dimension.
+ *
+ * `B = padarray(A,padsize,padval)` pads array `A` where `padval` specifies the value to use as the
+ * pad value. `padval` can only be 'symmetric' for this implementation of `padarray` which will pad
+ * the array with mirror reflections of itself.
+ *
+ * This method mimics Matlab's `padarray` method with `padval = 'symmetric'` and
+ * `direction = 'both'`. No other options have been implemented and, if set, they will be ignored.
+ *
+ * @method padarray
+ * @param {Array.<Array.<Number>>} A - The target matrix
+ * @param {Array} padding - An array where the first element is the padding to apply to each side on
+ * each row and the second one is the vertical padding for each side of each column
+ * @param {String} [padval='symmetric'] - The type of padding to apply (coerced to 'symmetric')
+ * @param {String} [direction='both'] - The direction to which apply padding (coerced to 'both')
+ * @returns {Array.<Array.<Number>>} c - An array with padding added on each side.
+ * @public
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function padarray(A, [padRow, padCol]) {
 	return padVertical(padHorizontal(A, padCol), padRow);
 }
 
-// assumes padval = 'symmetric'
-// assumes resSize = 'same'
+/**
+ * `B = imfilter(A,f)` filters a 2-dimensional array `A` with the 2-dimensional filter `f`. The
+ * array `A`. The result `B` has the same size as `A`.
+ *
+ * `imfilter` computes each element of the output, `B`. If `A` is an integer, `imfilter` will not
+ * truncates the output elements that exceed the range, and it will not rounds fractional values.
+ *
+ * This method mimics Matlab's `imfilter` method with `padval = 'symmetric'` and `res_size = 'same'`
+ * and without integer rounding. No other options have been implemented and, if set, they will be
+ * ignored.
+ *
+ * @method imfilter
+ * @param {Array.<Array.<Number>>} A - The target matrix
+ * @param {Array.<Array.<Number>>} f - The filter to apply
+ * @returns {Array.<Array.<Number>>} B - The filtered array
+ * @public
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function imfilter(im, f, pad = 'symmetric', resSize = 'same') {
 	const fcols = f.length;
 	const frows = f[0].length;
@@ -370,7 +556,35 @@ function imfilter(im, f, pad = 'symmetric', resSize = 'same') {
 	return filter2(f, im, resSize);
 }
 
-// limitation, everyCol, everyRow must be >= 1
+/**
+ * Generates a matrix based on input `mx` but excluding items based on their modulo and their
+ * position in the original matrix.
+ *
+ * It's a crude implementation of Matlab's `A(1:f:end,1:f:end)` syntax where the first parameter
+ * is the matrix, the next one is an array describing the rows to skip [start position, every `f`
+ * elements an end position] and the last one follows the same syntax for columns. E.g.:
+ *
+ * ```
+ * img1(1:f:end,1:f:end)
+ *
+ * ```
+ *
+ * becomes:
+ *
+ * ```
+ * skip2d(img1, [0, f, img1.length], [0, f, img1[0].length])
+ * ```
+ *
+ * Note that the start index is 0 since, unlike Matlab's, arrays start at 0. Also, unlike in Matlab,
+ * `f` must be an integer greater than or equal to 1.
+ *
+ * @method skip2d
+ * @param {Array.<Array.<Number>>} h - The FIR filter
+ * @returns {Array.<Array.<Number>>} X - The input matrix
+ * @public
+ * @memberOf matlab
+ * @since 0.0.2
+ */
 function skip2d(mx, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) {
 	const out = [];
 
@@ -389,7 +603,7 @@ function skip2d(mx, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) 
  * degrees to create a convolution kernel. It then calls conv2, the two-dimensional convolution
  * function, to implement the filtering operation.
  *
- * This method mimics Matlabs `filter2` method
+ * This method mimics Matlab's `filter2` method
  *
  * @method filter2
  * @param {Array.<Array.<Number>>} h - The FIR filter
