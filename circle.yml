@@ -1,18 +1,24 @@
 machine:
   node:
-    version: 6.6.0
+    version: 6.7.0
 general:
   artifacts:
     - "dist"
+dependencies:
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
 test:
   override:
+    - npm run build
     - npm run fixme
     - npm run lint
     - npm run docs
     - npm run codeclimate
-# deployment:
-#   publish:
-#     owner: obartra
-#     branch: master
-#     commands:
-#       - npm publish || exit 0
+deployment:
+  publish:
+    owner: obartra
+    branch: master
+    commands:
+      - npm run build
+      - npm publish || exit 0

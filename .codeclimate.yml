@@ -1,11 +1,10 @@
 engines:
   eslint:
     enabled: true
+    channel: "eslint-3"
     checks:
-        keyword-spacing:
-            enabled: false
-        newline-per-chained-call:
-            enabled: false
+      import/no-unresolved:
+        enabled: false
   fixme:
     enabled: true
 ratings:

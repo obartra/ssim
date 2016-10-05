@@ -1,89 +1,98 @@
 const test = require('blue-tape');
 const fs = require('fs');
 const { join } = require('path');
-const ndarray = require('ndarray');
 const { readpixels } = require('../src/readpixels.js');
+const { loadImages } = require('./helpers/sampleloader');
 
-const EXPECTED_IMAGE = ndarray([0, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 255, 255, 0, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 255, 0, 255, 0, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
-	[16, 8, 4], [4, 64, 1]);
-
-function testImage(t, img, tol) {
-	t.equals(img.shape[0], 16);
-	t.equals(img.shape[1], 8);
-
-	for (let i = 0; i < 16; ++i) {
-		for (let j = 0; j < 8; ++j) {
-			for (let k = 0; k < 3; ++k) {
-				if (tol) {
-					t.ok(Math.abs(img.get(i, j, k) - EXPECTED_IMAGE.get(i, j, k)) < tol);
-				} else {
-					t.equals(img.get(i, j, k), EXPECTED_IMAGE.get(i, j, k));
-				}
-			}
-		}
-	}
-}
+// the gradient image is 6px wide, 4px tall RGBA with no transparency
+const gradientData = [
+	[[2, 183, 8, 255], [0, 228, 8, 255], [13, 248, 0, 255], [42, 255, 0, 255]],
+	[[9, 159, 2, 255], [22, 207, 7, 255], [57, 235, 0, 255], [99, 252, 3, 255]],
+	[[29, 120, 0, 255], [64, 173, 4, 255], [113, 212, 0, 255], [165, 237, 5, 255]],
+	[[86, 90, 0, 255], [129, 143, 8, 255], [176, 188, 4, 255], [220, 220, 8, 255]],
+	[[158, 59, 0, 255], [198, 106, 7, 255], [224, 154, 0, 255], [247, 192, 1, 255]],
+	[[206, 36, 0, 255], [242, 76, 2, 255], [253, 122, 0, 255], [255, 164, 0, 255]]
+];
+const baseURL = 'https://raw.githubusercontent.com/obartra/ssim/ssim';
+const paths = {
+	lena: './samples/lena/color.jpg',
+	gradientJPG: './samples/gradient.jpg',
+	gradientPNG: './samples/gradient.png',
+	gradientGIF: './samples/gradient.gif',
+	bit1: './samples/bitdepth/1_bit.png',
+	bit2: './samples/bitdepth/2_bit.png',
+	bit4: './samples/bitdepth/4_bit.png',
+	bit8: './samples/bitdepth/8_bit.png',
+	bit24: './samples/bitdepth/24_bit.png'
+};
+const loaded = loadImages(paths);
 
 test('should read image dimensions correctly', t =>
-	readpixels('./spec/samples/readpixels/lena.png')
-		.then(pixels => t.equals(pixels.shape.join(','), '512,512,4'))
-);
-
-test('should parse png', t =>
-	readpixels('./spec/samples/readpixels/test_pattern.png').then(pixels => testImage(t, pixels))
-);
-
-test('should parse jpg', t =>
-	readpixels('./spec/samples/readpixels/test_pattern.jpg').then(pixels => testImage(t, pixels, 4))
-);
-
-test('should parse gif', t =>
-	readpixels('./spec/samples/readpixels/test_pattern.gif')
-		.then(pixels => testImage(t, pixels.pick(0)))
+	readpixels('./spec/samples/lena/color.jpg')
+		.then((pixels) => {
+			t.equals(pixels[0].length, 512);
+			t.equals(pixels.length, 512);
+		})
 );
 
 test('should be able to read from a buffer', (t) => {
-	const buffer = fs.readFileSync(join(__dirname, './samples/readpixels/test_pattern.png'));
+	const buffer = fs.readFileSync(join(__dirname, './samples/gradient.png'));
 
-	return readpixels(buffer, 'image/png').then(pixels => testImage(t, pixels));
+	return readpixels(buffer).then(img => t.deepEqual(img, gradientData));
+});
+
+test('should be able to retrieve a JPG image from a URL', (t) => {
+	const url = `${baseURL}/spec/samples/gradient.jpg`;
+
+	return readpixels(url).then(img => t.deepEqual(img, gradientData));
 });
 
 test('should be able to retrieve a PNG image from a URL', (t) => {
-	const url = 'https://raw.githubusercontent.com/scijs/get-pixels/master/test/test_pattern.png';
+	const url = `${baseURL}/spec/samples/gradient.png`;
 
-	return readpixels(url)
-		.then(pixels => testImage(t, pixels));
+	return readpixels(url).then(img => t.deepEqual(img, gradientData));
 });
 
 test('should be able to retrieve a GIF image from a URL', (t) => {
-	const url = 'https://raw.githubusercontent.com/scijs/get-pixels/master/test/test_pattern.gif';
+	const url = `${baseURL}/spec/samples/gradient.gif`;
 
-	return readpixels(url)
-		.then(pixels => testImage(t, pixels.pick(0)));
+	return readpixels(url).then(img => t.deepEqual(img, gradientData));
 });
+
+test('should correctly read JPG data', t => loaded.then(pixels =>
+	t.deepEqual(pixels.gradientJPG, gradientData)
+));
+
+test('should correctly read PNG data', t => loaded.then(pixels =>
+	t.deepEqual(pixels.gradientPNG, gradientData)
+));
+
+test('should correctly read GIF data', t => loaded.then(pixels =>
+	t.deepEqual(pixels.gradientGIF, gradientData)
+));
+
+function maxPixel(data) {
+	return data.reduce((accx, currentx) =>
+		Math.max(accx, currentx.reduce((accy, curry) => Math.max(...curry), 0))
+	, 0);
+}
+
+test('should normalize 1bit data to 8', t => loaded.then(pixels =>
+	t.equal(maxPixel(pixels.bit1), 255)
+));
+
+test('should normalize 2bit data to 8', t => loaded.then(pixels =>
+	t.equal(maxPixel(pixels.bit2), 255)
+));
+
+test('should normalize 4bit data to 8', t => loaded.then(pixels =>
+	t.equal(maxPixel(pixels.bit4), 255)
+));
+
+test('should keep 8bit data at 8 bits', t => loaded.then(pixels =>
+	t.equal(maxPixel(pixels.bit8), 255)
+));
+
+test('should normalize 24bit data to 8', t => loaded.then(pixels =>
+	t.equal(maxPixel(pixels.bit24), 255)
+));
