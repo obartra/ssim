@@ -1,6 +1,6 @@
 {
   "name": "ssim.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JS MSSIM computation",
   "main": "dist/ssim.js",
   "scripts": {

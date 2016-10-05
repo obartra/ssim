@@ -13,7 +13,7 @@ const gradientData = [
 	[[158, 59, 0, 255], [198, 106, 7, 255], [224, 154, 0, 255], [247, 192, 1, 255]],
 	[[206, 36, 0, 255], [242, 76, 2, 255], [253, 122, 0, 255], [255, 164, 0, 255]]
 ];
-const baseURL = 'https://raw.githubusercontent.com/obartra/ssim/ssim';
+const baseURL = 'https://raw.githubusercontent.com/obartra/ssim/master';
 const paths = {
 	lena: './samples/lena/color.jpg',
 	gradientJPG: './samples/gradient.jpg',
