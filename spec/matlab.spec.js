@@ -24,7 +24,7 @@ test('should rotate180 images with different dimensions (filter2)', (t) => {
 test('should calculate luminance for RGB (rgb2gray)', (t) => {
 	const luma = matlab.rgb2gray([[[100, 200, 50]]])[0][0];
 
-	t.equal(luma, 167.91);
+	t.equal(luma, 153);
 	t.end();
 });
 
@@ -36,13 +36,13 @@ test('should return the same value if all pixels are the same (rgb2gray)', (t) =
 });
 
 test('should weight each color based on the ITU spec (rgb2gray)', (t) => {
-	const rLuma = matlab.rgb2gray([[[1, 0, 0]]])[0][0];
-	const gLuma = matlab.rgb2gray([[[0, 1, 0]]])[0][0];
-	const bLuma = matlab.rgb2gray([[[0, 0, 1]]])[0][0];
+	const rLuma = matlab.rgb2gray([[[100, 0, 0]]])[0][0];
+	const gLuma = matlab.rgb2gray([[[0, 100, 0]]])[0][0];
+	const bLuma = matlab.rgb2gray([[[0, 0, 100]]])[0][0];
 
-	t.equal(rLuma, 0.2126);
-	t.equal(gLuma, 0.7152);
-	t.equal(bLuma, 0.0722);
+	t.equal(rLuma, 30);
+	t.equal(gLuma, 59);
+	t.equal(bLuma, 11);
 
 	t.end();
 });

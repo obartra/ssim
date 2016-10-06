@@ -19,6 +19,7 @@ const paths = {
 	gradientJPG: './samples/gradient.jpg',
 	gradientPNG: './samples/gradient.png',
 	gradientGIF: './samples/gradient.gif',
+	gradientBMP: './samples/gradient.bmp',
 	bit1: './samples/bitdepth/1_bit.png',
 	bit2: './samples/bitdepth/2_bit.png',
 	bit4: './samples/bitdepth/4_bit.png',
@@ -59,6 +60,18 @@ test('should be able to retrieve a GIF image from a URL', (t) => {
 	return readpixels(url).then(img => t.deepEqual(img, gradientData));
 });
 
+// test('should be able to retrieve a BMP image from a URL', (t) => {
+// 	const url = `${baseURL}/spec/samples/gradient.bmp`;
+
+// 	return readpixels(url).then(img => t.deepEqual(img, gradientData));
+// });
+
+test('should throw if trying to retrieve an invalid URL', t =>
+	readpixels('fakeurl.com/image1.png')
+		.then(() => t.fail('Should have thrown an error'))
+		.catch(t.ok)
+);
+
 test('should correctly read JPG data', t => loaded.then(pixels =>
 	t.deepEqual(pixels.gradientJPG, gradientData)
 ));
@@ -69,6 +82,10 @@ test('should correctly read PNG data', t => loaded.then(pixels =>
 
 test('should correctly read GIF data', t => loaded.then(pixels =>
 	t.deepEqual(pixels.gradientGIF, gradientData)
+));
+
+test('should correctly read BMP data', t => loaded.then(pixels =>
+	t.deepEqual(pixels.gradientBMP, gradientData)
 ));
 
 function maxPixel(data) {

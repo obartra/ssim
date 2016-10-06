@@ -7,9 +7,6 @@ const { version } = require('../package.json');
 
 const samples = {
 	'3x3': join(__dirname, './samples/3x3.jpg'),
-	e1: join(__dirname, './samples/einstein/Q1.gif'),
-	e0913: join(__dirname, './samples/einstein/Q0913.gif'),
-	e0988: join(__dirname, './samples/einstein/Q0988.gif'),
 	lena1: join(__dirname, './samples/lena/Q1.gif'),
 	lena02876: join(__dirname, './samples/lena/Q02876.gif'),
 	lena03461: join(__dirname, './samples/lena/Q03461.gif'),
@@ -18,12 +15,8 @@ const samples = {
 	lena06494: join(__dirname, './samples/lena/Q06494.gif'),
 	lena09372: join(__dirname, './samples/lena/Q09372.gif'),
 	lena09894: join(__dirname, './samples/lena/Q09894.gif'),
-	barba1: join(__dirname, './samples/IVC/barba/barba.bmp'),
-	barbaj2kr1: join(__dirname, './samples/IVC/barba/barba_j2000_r1.bmp'),
-	barbaj2kr2: join(__dirname, './samples/IVC/barba/barba_j2000_r2.bmp'),
-	barbaj2kr3: join(__dirname, './samples/IVC/barba/barba_j2000_r3.bmp'),
-	barbaj2kr4: join(__dirname, './samples/IVC/barba/barba_j2000_r4.bmp'),
-	barbaj2kr5: join(__dirname, './samples/IVC/barba/barba_j2000_r5.bmp')
+	avion: join(__dirname, './samples/IVC_SubQualityDB/color/avion.bmp'),
+	avion_j2000_r1: join(__dirname, './samples/IVC_SubQualityDB/color/avion_j2000_r1.bmp')
 };
 
 test('should be a function', (t) => {
@@ -61,7 +54,7 @@ test('Invalid options', (t) => {
 });
 
 test('Different dimensions', t =>
-	index(samples['3x3'], samples.e1)
+	index(samples['3x3'], samples.lena1)
 		.then(() => t.fail('Should have failed promise for different size images'))
 		.catch(t.ok)
 );
@@ -74,30 +67,35 @@ test('should produce a SSIM of 1 when compared with itself (lena)', t =>
 	index(samples.lena1, samples.lena1).then(({ mssim }) => t.equal(mssim, 1))
 );
 
-test('should produce a SSIM of 0.2876 (lena)', t =>
+test('should produce a SSIM of 0.76269 (lena)', t =>
 	index(samples.lena1, samples.lena02876).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.76269))
 );
 
-test('should produce a SSIM of 0.3461 (lena)', t =>
+test('should produce a SSIM of 0.75429 (lena)', t =>
 	index(samples.lena1, samples.lena03461).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.75429))
 );
 
-test('should produce a SSIM of 0.3891 (lena)', t =>
+test('should produce a SSIM of 0.77107 (lena)', t =>
 	index(samples.lena1, samples.lena03891).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.77107))
 );
 
-test('should produce a SSIM of 0.4408 (lena)', t =>
+test('should produce a SSIM of 0.77647 (lena)', t =>
 	index(samples.lena1, samples.lena04408).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.77647))
 );
 
-test('should produce a SSIM of 0.6494 (lena)', t =>
+test('should produce a SSIM of 0.80795 (lena)', t =>
 	index(samples.lena1, samples.lena06494).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.80795))
 );
 
-test('should produce a SSIM of 0.9372 (lena)', t =>
+test('should produce a SSIM of 0.95390 (lena)', t =>
 	index(samples.lena1, samples.lena09372).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.95390))
 );
 
-test('should produce a SSIM of 0.9894 (lena)', t =>
+test('should produce a SSIM of 0.98972 (lena)', t =>
 	index(samples.lena1, samples.lena09894).then(({ mssim }) => t.equal(roundTo(mssim, 5), 0.98972))
+);
+
+test('should produce the right SSIM for bmp images as well (avion)', t =>
+	index(samples.avion, samples.avion_j2000_r1).then(({ mssim }) =>
+		t.equal(roundTo(mssim, 5), 0.97880))
 );

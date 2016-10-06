@@ -39,7 +39,9 @@
   ],
   "homepage": "https://github.com/obartra/notes#readme",
   "dependencies": {
-    "canvas": "1.5.0"
+    "bmp-js": "0.0.2",
+    "canvas": "1.5.0",
+    "image-type": "2.1.0"
   },
   "devDependencies": {
     "babel-core": "6.17.0",

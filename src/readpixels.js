@@ -1,6 +1,8 @@
 const fs = require('fs');
 const http = require('https');
 const Canvas = require('canvas');
+const imageType = require('image-type');
+const bmp = require('bmp-js');
 
 /**
  * Parses the buffer data and converts it into a 3d matrix
@@ -39,16 +41,23 @@ function bufferToMatrix(imageData) {
  * @since 0.0.1
  */
 function parse(data) {
-	const img = new Canvas.Image();
+	const { ext } = imageType(data);
+	let imageData;
 
-	img.src = data;
+	if (ext === 'bmp') {
+		imageData = bmp.decode(data);
+	} else {
+		const img = new Canvas.Image();
 
-	const canvas = new Canvas(img.width, img.height);
-	const ctx = canvas.getContext('2d');
+		img.src = data;
 
-	ctx.drawImage(img, 0, 0, img.width, img.height);
+		const canvas = new Canvas(img.width, img.height);
+		const ctx = canvas.getContext('2d');
 
-	const imageData = ctx.getImageData(0, 0, img.width, img.height);
+		ctx.drawImage(img, 0, 0, img.width, img.height);
+
+		imageData = ctx.getImageData(0, 0, img.width, img.height);
+	}
 
 	return new Promise((resolve) => {
 		resolve(bufferToMatrix(imageData));
