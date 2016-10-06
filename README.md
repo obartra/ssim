@@ -10,13 +10,28 @@
 
 # SSIM.JS
 
-SSIM.JS is a pure JavaScript implementation of the multiple SSIM algorithms published by [Wang, et al. 2004](/assets/ssim.pdf) on "Image Quality Assessment: From Error Visibility to Structural Similarity".
+SSIM.JS is a JavaScript implementation of the SSIM algorithms published by [Wang, et al. 2004](/assets/ssim.pdf) on "Image Quality Assessment: From Error Visibility to Structural Similarity".
+
+SSIM measures structural similarity of images in a `[0, 1]` index. The closer SSIM is to `1` the more similar both images are. The advantage of SSIM over other measures like [PSNR](https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio) and [MSE](https://en.wikipedia.org/wiki/Mean_squared_error) is that it correlates better with subjective ratings on image quality.
+
+For instance, the following images have a similar MSE rating:
+
+|                                       |                                       |                                       |
+| ------------------------------------  | ------------------------------------- | ------------------------------------- |
+| ![](/spec/samples/einstein/Q1.gif)    | ![](/spec/samples/einstein/Q0988.gif) | ![](/spec/samples/einstein/Q0913.gif) |
+| Original, MSE = 0, SSIM = 1           | MSE = 144, SSIM = 0.988               | MSE = 144, SSIM = 0.913               |
+| ![](/spec/samples/einstein/Q0840.gif) | ![](/spec/samples/einstein/Q0694.gif) | ![](/spec/samples/einstein/Q0662.gif) |
+| MSE = 144, SSIM = 0.840               | MSE = 144, SSIM = 0.694               | MSE = 142, SSIM = 0.662               |
+
+*Table extracted from http://www.cns.nyu.edu/~lcv/ssim/*
 
 For a general overview on SSIM check the Wikipedia article [here](https://en.wikipedia.org/wiki/Structural_similarity).
 
 This code is a line-by-line port of the original Matlab scripts, they are available [here](https://ece.uwaterloo.ca/~z70wang/research/iwssim/) with their datasets.
 
-Validation of results has been done against the results from the Matlab scripts, compared with the javascript implementation and they match the original results with increased resolution (10^-7 instead of 10^-5)
+Validation of results has been done against the results from the Matlab scripts using the [IVC database](http://www2.irccyn.ec-nantes.fr/ivcdb/) compared with the javascript implementation and they match the original results exactly.
+
+Note that the original Matlab scripts published by Wang et al., 2004 generate slightly different results than the ones they published (~1%). I have been unable to find any specific parameters or modifications they used that would account for these differences. This project focuses instead on the exact reproduction of their Matlab scripts.
 
 ## Installation
 
@@ -80,7 +95,6 @@ The goal of this project is to implement a fully-tested, exact reproduction of t
 
 ## Roadmap
 
-- Validation of results based on original [IVC database](http://www2.irccyn.ec-nantes.fr/ivcdb/).
 - Add support for MS-SSIM from [Wang, Simoncelli & Bovik, 2003](/assets/msssim.pdf) on "Multi-Scale Structural Similarity for Image Quality Assessment",
 - Add support for IW-SSIM from [Wang & Qiang, 2011](/assets/iwssim.pdf) on "Information Content Weighting for Perceptual Image Quality Assessment".
 - Potentially adding support 3-SSIM and 3-MS-SSIM for [Li & Bovik, 2008](/assets/3-ssim.pdf) on "Three-Component Weighted Structural Similarity Index"
