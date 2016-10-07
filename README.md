@@ -48,9 +48,20 @@ If you run into any issues during the installation, check the [node-canvas](http
 import ssim from 'ssim.js';
 
 ssim('./img1.jpg', './img2.jpg')
-	.then(out => console.log(`SSIM: ${out}`))
+	.then(out => console.log(`SSIM: ${out.mssim} (generated in: ${out.performance}ms)`))
 	.catch(err => console.error('Error generating SSIM', err));
 ```
+
+You can specify any additional options as a 3rd parameter. Something like:
+
+```javascript
+
+import ssim from 'ssim.js';
+
+ssim('./img1.jpg', './img2.jpg', { downsample: 'fast' })
+```
+
+See the parameters section for a full description of options available.
 
 ## SSIM
 
@@ -61,19 +72,21 @@ The script generates a 2D SSIM map between two windows `x` and `y` as follows:
 where:
 - `μ` is used to indicate the averages
 - `σ` is used to indicate the variance and covariance (of xy)
-- `c1` and `c2` are small constants added to prevent inestability when `μx^2 + μy^2 ≈ 0`
+- `c1` and `c2` are small constants added to prevent instability when `μx^2 + μy^2 ≈ 0`
 
 ### Parameters
 
 You can pass a 3rd parameter containing a plain object and any of the following options:
 
-|  Parameter | Default |
-| ---------- | ------- |
-| windowSize | 11      |
-| k1         | 0.01    |
-| k2         | 0.03    |
-| bitDepth   | 8       |
-| downsample | true    |
+|  Parameter | Default    | Description |
+| ---------- | ---------- | ----------- |
+| windowSize | 11         | Set to a larger size to increase performance. Determines the  |
+| k1         | 0.01       | Set k1 and k2 to 0 to use UQI (Universal Quality Index), UQI is a subset of SSIM, when C1 and C2 are 0 |
+| k2         | 0.03       | Set k1 and k2 to 0 to use UQI (Universal Quality Index), UQI is a subset of SSIM, when C1 and C2 are 0 |
+| bitDepth   | 8          | When using canvas or node-canvas, images will be retrieved as 8 bits/channel. You can use the `bitDepth` parameter to modify how SSIM computes the value but it will have no effect on how the image is read |
+| downsample | 'original' | `false` / `'original'` / `'fast'`. `false` disables downsizing, `'original'` implements the same downsizing than the original Matlab scripts and `fast` relies on the `canvas` to do the downsizing |
+
+All defaults match the implementation of the original Matlab scripts. Any changes may lead to significantly different results.
 
 ### Output
 
@@ -84,14 +97,13 @@ The program returns a SSIM map, a mean SSIM (MSSIM) and a performance metric (ms
 The goal of this project is to implement a fully-tested, exact reproduction of the original Matlab scripts to compute SSIM. It also needs to be easy to use, performant and work in as many environments as reasonably possible:
 
 - Isomorphic build (node / browser)
-- Reproduction of the original Matlab scripts with a resolution of 10^-7 (±0.0000001)
+- Reproduction of the original Matlab scripts results
 - Appropriate testing to ensure correct behavior
 - Validate results against original datasets
 
 ## Caveats
 
 - Because of this projects reliance on [node-canvas](https://www.npmjs.com/package/canvas) you may run into installation difficulties. Make sure you follow the steps for your platform [here](https://github.com/Automattic/node-canvas#installation).
-- When using canvas or node-canvas, images will be retrieved as 8 bits/channel. You can use the `bitDepth` parameter to modify how SSIM computes the value but it will have no effect on how the image is read.
 
 ## Roadmap
 

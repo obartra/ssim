@@ -29,18 +29,46 @@ function bufferToMatrix(imageData) {
 
 	return matrix;
 }
+/**
+ * If `limit` is set, it will generate proportional dimensions to `width` and `height` with the
+ * smallest dimesion limited to `limit`.
+ *
+ * @method getImageDimensions
+ * @param {number} width - The input width size, in pixels
+ * @param {number} height - The input height size, in pixels
+ * @param {number} [limit] - A limit that, if set and both dimensions (width / height) surpass it,
+ * will downsize the image to that size on the smallest dimension.
+ * @returns {Object} dimensions - A key value pair containing the width / height to use, downsized
+ * when appropriate
+ * @memberOf readpixels
+ * @since 0.0.4
+ */
+function getImageDimensions(width, height, limit) {
+	if (limit && width >= limit && height >= limit) {
+		const ratio = width / height;
+
+		if (ratio > 1) {
+			return { height: limit, width: Math.round(limit / ratio) };
+		}
+		return { height: Math.round(limit * ratio), width: limit };
+	}
+	return { width, height };
+}
 
 /**
- * Parses the buffer data and returns it
+ * Parses the buffer data and returns it. If `limit` is set, it will make sure the smallest dimesion
+ * will at most be of size `limit`.
  *
  * @method parse
  * @param {Buffer} data - The input image buffer data
+ * @param {number} [limit] - A limit that, if set and both dimensions (width / height) surpass it,
+ * will downsize the image to that size on the smallest dimension.
  * @returns {Promise} promise - A promise that resolves in an object containing the image 3d matrix
  * @private
  * @memberOf readpixels
  * @since 0.0.1
  */
-function parse(data) {
+function parse(data, limit) {
 	const { ext } = imageType(data);
 	let imageData;
 
@@ -51,12 +79,13 @@ function parse(data) {
 
 		img.src = data;
 
-		const canvas = new Canvas(img.width, img.height);
+		const { width, height } = getImageDimensions(img.width, img.height, limit);
+		const canvas = new Canvas(width, height);
 		const ctx = canvas.getContext('2d');
 
-		ctx.drawImage(img, 0, 0, img.width, img.height);
+		ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
 
-		imageData = ctx.getImageData(0, 0, img.width, img.height);
+		imageData = ctx.getImageData(0, 0, width, height);
 	}
 
 	return new Promise((resolve) => {
@@ -82,11 +111,7 @@ function loadUrl(url) {
 				const chunks = [];
 
 				res.on('data', data => chunks.push(data));
-				res.on('end', () =>
-					parse(Buffer.concat(chunks))
-						.then(resolve)
-						.catch(reject)
-				);
+				res.on('end', () => resolve(Buffer.concat(chunks)));
 			})
 			.on('error', err => reject(err));
 	});
@@ -106,10 +131,11 @@ function loadFs(path) {
 	return new Promise((resolve, reject) => {
 		fs.readFile(path, (err, data) => {
 			if (err) {
-				return reject(err);
+				reject(err);
+				return;
 			}
 
-			return parse(data).then(resolve).catch(reject);
+			resolve(data);
 		});
 	});
 }
@@ -119,18 +145,25 @@ function loadFs(path) {
  *
  * @method readpixels
  * @param {string|Buffer} url - A url, file path or buffer to use to load the image data
+ * @param {number} [limit=0] - A limit that, if set and both dimensions (width / height) surpass it,
+ * will downsize the image to that size on the smallest dimension.
  * @returns {Promise} promise - A promise that resolves with the image 3D matrix
  * @public
  * @memberOf readpixels
  * @since 0.0.1
  */
-function readpixels(url) {
+function readpixels(url, limit = 0) {
+	let bufferPromise;
+
 	if (Buffer.isBuffer(url)) {
-		return parse(url);
+		bufferPromise = Promise.resolve(url);
 	} else if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
-		return loadUrl(url);
+		bufferPromise = loadUrl(url);
+	} else {
+		bufferPromise = loadFs(url);
 	}
-	return loadFs(url);
+	return bufferPromise
+		.then(bufferData => parse(bufferData, limit));
 }
 
 /**

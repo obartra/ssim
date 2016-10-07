@@ -1,8 +1,8 @@
 const test = require('blue-tape');
 const fs = require('fs');
 const { join } = require('path');
-const { readpixels } = require('../src/readpixels.js');
-const { loadImages } = require('./helpers/sampleloader');
+const { readpixels } = require('../../src/readpixels.js');
+const { loadImages } = require('../helpers/sampleloader');
 
 // the gradient image is 6px wide, 4px tall RGBA with no transparency
 const gradientData = [
@@ -36,8 +36,13 @@ test('should read image dimensions correctly', t =>
 		})
 );
 
+test('should downsize images when a limit parameter is specified', t =>
+	readpixels('./spec/samples/lena/color.jpg', 100)
+		.then(pixels => t.equal(Math.min(pixels.length, pixels[0].length), 100))
+);
+
 test('should be able to read from a buffer', (t) => {
-	const buffer = fs.readFileSync(join(__dirname, './samples/gradient.png'));
+	const buffer = fs.readFileSync(join(__dirname, '../samples/gradient.png'));
 
 	return readpixels(buffer).then(img => t.deepEqual(img, gradientData));
 });
@@ -60,11 +65,11 @@ test('should be able to retrieve a GIF image from a URL', (t) => {
 	return readpixels(url).then(img => t.deepEqual(img, gradientData));
 });
 
-// test('should be able to retrieve a BMP image from a URL', (t) => {
-// 	const url = `${baseURL}/spec/samples/gradient.bmp`;
+test('should be able to retrieve a BMP image from a URL', (t) => {
+	const url = `${baseURL}/spec/samples/gradient.bmp`;
 
-// 	return readpixels(url).then(img => t.deepEqual(img, gradientData));
-// });
+	return readpixels(url).then(img => t.deepEqual(img, gradientData));
+});
 
 test('should throw if trying to retrieve an invalid URL', t =>
 	readpixels('fakeurl.com/image1.png')
