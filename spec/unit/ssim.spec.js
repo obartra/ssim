@@ -1,9 +1,9 @@
 const test = require('blue-tape');
-const { ssim } = require('../src/ssim');
-const { mean2d } = require('../src/math');
-const { loadCsv } = require('./helpers/sampleloader');
-const options = require('../src/defaults.json');
-const samples = require('./helpers/imageSamples.json');
+const { ssim } = require('../../src/ssim');
+const { mean2d } = require('../../src/math');
+const options = require('../../src/defaults.json');
+const { loadCsv } = require('../helpers/sampleloader');
+const samples = require('../helpers/imageSamples.json');
 
 const fullSampleOptions = Object.assign({}, options, {
 	downsample: false

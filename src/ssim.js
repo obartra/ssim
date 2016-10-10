@@ -31,8 +31,8 @@ function ssim(pixels1, pixels2, options) { // eslint-disable-line max-statements
 
 	w = divide2d(w, sum2d(w));
 
-	if (options.downsample) {
-		[pixels1, pixels2] = automaticDownsampling(pixels1, pixels2);
+	if (options.downsample === 'original') {
+		[pixels1, pixels2] = automaticDownsampling(pixels1, pixels2, options.maxSize);
 	}
 
 	const μ1 = filter2(w, pixels1, 'valid');
@@ -80,13 +80,14 @@ function ssim(pixels1, pixels2, options) { // eslint-disable-line max-statements
  * @method automaticDownsampling
  * @param {Array.<Array.<Array.<Number>>>} pixels1 - The first rgb matrix to downsample
  * @param {Array.<Array.<Array.<Number>>>} pixels2 - The second rgb matrix to downsample
+ * @param {number} [maxSize=256] - The maximum size on the smallest dimension
  * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
  * @private
  * @memberOf ssim
  * @since 0.0.2
  */
-function automaticDownsampling(pixels1, pixels2) {
-	const factor = Math.min(pixels1[0].length, pixels2.length) / 256;
+function automaticDownsampling(pixels1, pixels2, maxSize = 256) {
+	const factor = Math.min(pixels1[0].length, pixels2.length) / maxSize;
 	const rfactor = Math.round(factor);
 	const f = Math.max(1, rfactor);
 

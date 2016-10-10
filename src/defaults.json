@@ -3,5 +3,6 @@
 	"k1": 0.01,
 	"k2": 0.03,
 	"bitDepth": 8,
-	"downsample": true
+	"downsample": "original",
+	"maxSize": 256
 }

@@ -41,12 +41,19 @@ function toGrayScale([pixels1, pixels2]) {
 	return [pixels1, pixels2];
 }
 
+function readImage(image, options) {
+	if (options.downsample === 'fast') {
+		return readpixels(image, options.maxSize);
+	}
+	return readpixels(image);
+}
+
 function singleSSIM(image1 = force('image1'), image2 = force('image2'), options = {}) {
 	const start = new Date().getTime();
 
 	options = getOptions(options);
 
-	return Promise.all([readpixels(image1), readpixels(image2)])
+	return Promise.all([readImage(image1, options), readImage(image2, options)])
 		.then(validateDimensions)
 		.then(toGrayScale)
 		.then(([pixels1, pixels2]) => ssim(pixels1, pixels2, options))
