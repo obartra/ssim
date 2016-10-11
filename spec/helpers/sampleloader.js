@@ -1,3 +1,7 @@
+require('core-js/modules/es6.object.keys');
+require('core-js/modules/es6.object.assign');
+require('core-js/es6/promise');
+
 const { readFileSync } = require('fs');
 const { join } = require('path');
 const { readpixels } = require('../../src/readpixels');

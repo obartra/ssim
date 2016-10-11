@@ -15,6 +15,7 @@ const { fspecial, filter2, imfilter, skip2d, ones } = require('./matlab');
  * @method ssim
  * @param {Array.<Array.<Array.<Number>>>} pixels1 - The reference rgb matrix
  * @param {Array.<Array.<Array.<Number>>>} pixels2 - The second rgb matrix to compare against
+ * @param {Object} options - The input options parameter
  * the reference one
  * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
  * @public

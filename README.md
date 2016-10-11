@@ -5,7 +5,7 @@
 | Code Quality	| [![Code Climate](https://codeclimate.com/github/obartra/ssim/badges/gpa.svg)](https://codeclimate.com/github/obartra/ssim) [![Issue Count](https://codeclimate.com/github/obartra/ssim/badges/issue_count.svg)](https://codeclimate.com/github/obartra/ssim) |
 | Commit format	| [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) |
 | Dependencies	| [![Known Vulnerabilities](https://snyk.io/test/github/obartra/ssim/badge.svg)](https://snyk.io/test/github/obartra/ssim) [![DavidDM](https://david-dm.org/obartra/ssim.svg)](https://david-dm.org/obartra/ssim) |
-| Environments	| ![](https://img.shields.io/badge/node-0.10-brightgreen.svg) ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-5.12.0-brightgreen.svg) ![](https://img.shields.io/badge/node-6.7-brightgreen.svg) |
+| Environments	| ![](https://img.shields.io/badge/node-0.10-brightgreen.svg) ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-5.7.0-brightgreen.svg) ![](https://img.shields.io/badge/node-6.7-brightgreen.svg) |
 | Documentation	| [![InchCI](https://inch-ci.org/github/obartra/ssim.svg?branch=master)](https://inch-ci.org/github/obartra/ssim) [![API Doc](https://doclets.io/obartra/ssim/master.svg)](https://doclets.io/obartra/ssim/master) |
 
 # SSIM.JS
@@ -62,6 +62,27 @@ ssim('./img1.jpg', './img2.jpg', { downsample: 'fast' })
 ```
 
 See the parameters section for a full description of options available.
+
+### Node < 4.0.0
+
+If you are running an old version of Node without [Promise support](http://node.green/#Promise) you will need to polyfill it. Integration tests use [babel](https://babeljs.io) + [core-js](https://github.com/zloirock/core-js) for that purpose. An example usage could be:
+
+```javascript
+require('core-js/es6/promise');
+var ssim = require('ssim.js');
+
+function successSSIM(out) {
+  console.log('SSIM: ' + out.mssim + ' (generated in: ' + out.performance + 'ms)');
+}
+
+function errorSSIM(msg) {
+  console.error('Error generating SSIM' + err);
+}
+
+ssim('./img1.jpg', './img2.jpg')
+	.then(successSSIM)
+	.catch(errorSSIM);
+```
 
 ## SSIM
 
