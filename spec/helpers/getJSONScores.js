@@ -1,3 +1,6 @@
+require('core-js/modules/es6.object.assign');
+require('core-js/modules/es6.string.ends-with');
+
 const { resolve, sep } = require('path');
 const { readdirSync } = require('fs');
 

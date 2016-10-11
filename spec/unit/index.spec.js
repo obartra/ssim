@@ -64,15 +64,6 @@ test('should produce the right SSIM for bmp images as well (avion)', t =>
 		t.equal(roundTo(mssim, 5), 0.97880))
 );
 
-test('downsizing should be faster using "fast" algorithm over "original"', t =>
-	Promise.all([
-		index(samples.avion, samples.avion_j2000_r1, { downsample: 'fast' }),
-		index(samples.avion, samples.avion_j2000_r1, { downsample: 'original' })
-	]).then(([{ performance: fastPerf }, { performance: origPerf }]) =>
-		t.equal(fastPerf < origPerf, true, 'No point in 2 algorithms if original is faster')
-	)
-);
-
 test('downsizing should produce comparable results between "fast" and "original"', t =>
 	Promise.all([
 		index(samples.avion, samples.avion_j2000_r1, { downsample: 'fast' }),

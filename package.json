@@ -1,6 +1,6 @@
 {
   "name": "ssim.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "JS MSSIM computation",
   "main": "dist/ssim.js",
   "scripts": {
@@ -51,6 +51,7 @@
     "babel-preset-es2015": "6.16.0",
     "blue-tape": "1.0.0",
     "codeclimate-test-reporter": "0.4.0",
+    "core-js": "2.4.1",
     "eslint": "3.7.1",
     "eslint-config-airbnb": "12.0.0",
     "eslint-config-standard": "6.2.0",
