@@ -1,17 +1,17 @@
 {
   "name": "ssim.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "JS MSSIM computation",
   "main": "dist/ssim.js",
   "scripts": {
     "cover": "node_modules/.bin/istanbul cover blue-tape spec/unit/{*,**/*}.spec.js",
     "test": "blue-tape spec/unit/{*,**/*}.spec.js | tap-dot",
-    "test:e2e": "blue-tape spec/e2e/{*,**/*}.spec.js | tap-dot",
+    "test:e2e": "blue-tape spec/e2e_dist/{*,**/*}.spec.js | tap-dot",
     "test:watch": "nodemon node_modules/.bin/blue-tape spec/unit/{*,**/*}.spec.js",
     "docs": " jsdoc --pedantic -c .jsdoc . --readme README.md",
     "fixme": "ci/fixme.js",
     "lint": "eslint .",
-    "build": "webpack",
+    "build": "webpack && babel spec/helpers --out-dir spec/helpers_dist/ && babel spec/e2e --out-dir spec/e2e_dist/",
     "watch": "webpack --watch",
     "update": "ci/update.sh",
     "codeclimate": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter"
@@ -45,6 +45,7 @@
     "image-type": "2.1.0"
   },
   "devDependencies": {
+    "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
     "babel-preset-es2015": "6.16.0",
@@ -56,7 +57,7 @@
     "eslint-plugin-import": "1.16.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-promise": "3.0.0",
-    "eslint-plugin-react": "6.4.0",
+    "eslint-plugin-react": "6.4.1",
     "eslint-plugin-standard": "2.0.1",
     "fixme": "0.4.0",
     "istanbul": "0.4.5",

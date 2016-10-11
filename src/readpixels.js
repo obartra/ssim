@@ -113,7 +113,7 @@ function loadUrl(url) {
 				res.on('data', data => chunks.push(data));
 				res.on('end', () => resolve(Buffer.concat(chunks)));
 			})
-			.on('error', err => reject(err));
+			.on('error', reject);
 	});
 }
 

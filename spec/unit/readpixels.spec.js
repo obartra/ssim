@@ -41,6 +41,15 @@ test('should downsize images when a limit parameter is specified', t =>
 		.then(pixels => t.equal(Math.min(pixels.length, pixels[0].length), 100))
 );
 
+test('should limit size to "limit" on the smallest axis', t =>
+	Promise.all([
+		readpixels('./spec/samples/aspectratio/8.jpg', 10) // wide
+			.then(pixels => t.equal(pixels[0].length, 10)),
+		readpixels('./spec/samples/aspectratio/4.jpg', 10) // tall
+			.then(pixels => t.equal(pixels.length, 10))
+	])
+);
+
 test('should be able to read from a buffer', (t) => {
 	const buffer = fs.readFileSync(join(__dirname, '../samples/gradient.png'));
 

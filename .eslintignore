@@ -1,4 +1,6 @@
 dist/
+spec/e2e_dist/
+spec/helpers_dist/
 coverage/
 node_modules/
 .git/

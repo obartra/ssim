@@ -11,6 +11,7 @@ dependencies:
 test:
   override:
     - npm run build
+    - npm run test:e2e
     - npm run fixme
     - npm run lint
     - npm run docs
@@ -18,13 +19,17 @@ test:
     - cp -R coverage/* $CIRCLE_TEST_REPORTS
     - |
         if [ master == $CIRCLE_BRANCH ]; then
-            npm run test:e2e
+          nvm install 0.10.42 && nvm use 0.10.42 && bash ci/e2e.sh
+          nvm install 0.12.2 && nvm use 0.12.2 && bash ci/e2e.sh
+          nvm install 5.12.0 && nvm use 5.12.0 && bash ci/e2e.sh
         fi
 deployment:
   publish:
     owner: obartra
     branch: master
     commands:
+      - rm -rf node_modules
+      - npm install
       - npm run build
       - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
       - npm publish || exit 0
