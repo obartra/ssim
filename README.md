@@ -5,7 +5,7 @@
 | Code Quality	| [![Code Climate](https://codeclimate.com/github/obartra/ssim/badges/gpa.svg)](https://codeclimate.com/github/obartra/ssim) [![Issue Count](https://codeclimate.com/github/obartra/ssim/badges/issue_count.svg)](https://codeclimate.com/github/obartra/ssim) |
 | Commit format	| [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) |
 | Dependencies	| [![Known Vulnerabilities](https://snyk.io/test/github/obartra/ssim/badge.svg)](https://snyk.io/test/github/obartra/ssim) [![DavidDM](https://david-dm.org/obartra/ssim.svg)](https://david-dm.org/obartra/ssim) |
-| Environments	| ![](https://img.shields.io/badge/node-6.7-brightgreen.svg) |
+| Environments	| ![](https://img.shields.io/badge/node-0.10-brightgreen.svg) ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-5.12.0-brightgreen.svg) ![](https://img.shields.io/badge/node-6.7-brightgreen.svg) |
 | Documentation	| [![InchCI](https://inch-ci.org/github/obartra/ssim.svg?branch=master)](https://inch-ci.org/github/obartra/ssim) [![API Doc](https://doclets.io/obartra/ssim/master.svg)](https://doclets.io/obartra/ssim/master) |
 
 # SSIM.JS

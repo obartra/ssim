@@ -2,8 +2,8 @@ const { resolve } = require('path');
 const test = require('blue-tape');
 const scores = require('../samples/IVC_color.json');
 const ssim = require('../../dist/ssim');
-const { roundTo } = require('../helpers/round');
-const getJSONScores = require('../helpers/getJSONScores');
+const { roundTo } = require('../helpers_dist/round');
+const getJSONScores = require('../helpers_dist/getJSONScores');
 
 const path = resolve(__dirname, '../samples/IVC_SubQualityDB/color');
 

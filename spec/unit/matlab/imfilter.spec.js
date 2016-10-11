@@ -58,3 +58,27 @@ test('should return a matrix of the same dimensions when resSize is "same"', (t)
 
 	t.end();
 });
+
+test('should produce the same output when resSize is "same", "valid" and omitted', (t) => {
+	const mx = [
+		[1, 2, 3, 4],
+		[5, 6, 7, 8],
+		[9, 0, 1, 2],
+		[3, 4, 5, 6]
+	];
+	const f = [
+		[0, 1],
+		[1, 0]
+	];
+	const C = [
+		[2, 3, 5, 7],
+		[6, 7, 9, 11],
+		[14, 15, 7, 9],
+		[12, 3, 5, 7]
+	];
+
+	t.deepEqual(imfilter(mx, f), C);
+	t.deepEqual(imfilter(mx, f, 'same'), C);
+	t.deepEqual(imfilter(mx, f, 'valid'), C);
+	t.end();
+});
