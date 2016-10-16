@@ -6,3 +6,4 @@ npm-debug.log
 dist/
 spec/e2e_dist/
 spec/helpers_dist/
+generate/*.csv

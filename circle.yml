@@ -27,8 +27,8 @@ test:
 
           # Clean up and switch back to current node version
           nvm use $NODE_CURRENT && rm -rf node_modules && npm install --loglevel silent
+          npm run test:e2e || exit 1
         fi
-    - npm run test:e2e
     - npm run fixme
     - npm run lint
     - npm run docs

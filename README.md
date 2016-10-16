@@ -29,10 +29,6 @@ For a general overview on SSIM check the Wikipedia article [here](https://en.wik
 
 This code is a line-by-line port of the original Matlab scripts, they are available [here](https://ece.uwaterloo.ca/~z70wang/research/iwssim/) with their datasets.
 
-Validation of results has been done against the results from the Matlab scripts using the [IVC database](http://www2.irccyn.ec-nantes.fr/ivcdb/) compared with the javascript implementation and they match the original results exactly.
-
-Note that the original Matlab scripts published by Wang et al., 2004 generate slightly different results than the ones they published (~1%). I have been unable to find any specific parameters or modifications they used that would account for these differences. This project focuses instead on the exact reproduction of their Matlab scripts.
-
 ## Installation
 
 ```shell
@@ -113,6 +109,21 @@ All defaults match the implementation of the original Matlab scripts. Any change
 
 The program returns a SSIM map, a mean SSIM (MSSIM) and a performance metric (ms to compute). The MSSIM returned value is computed by averaging all SSIM values from the map.
 
+### Validation
+
+Validation of results has been done against the results from the Matlab scripts using the [IVC database](http://www2.irccyn.ec-nantes.fr/ivcdb/) compared with the javascript implementation and they match the original results exactly.
+
+Note that the original Matlab scripts published by Wang et al., 2004 generate slightly different results than the ones they published (~1%). I have been unable to find any specific parameters or modifications they used that would account for these differences. This project focuses instead on the exact reproduction of their Matlab scripts.
+
+The differences between reported and computed results don't seem significant. The following plots illustrate both cases:
+
+| Reported Results                                     | Computed Results                                     |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| ![](/generate/reported_results.png)                  | ![](/generate/computed_results.png)                  |
+| correlation: 0.82832, root-mean-square-error: 68.752 | correlation: 0.82093, root-mean-square-error: 68.752 |
+
+You can find more information on how these graphs where generated [here](/generate/README.md).
+
 ## Rationale
 
 The goal of this project is to implement a fully-tested, exact reproduction of the original Matlab scripts to compute SSIM. It also needs to be easy to use, performant and work in as many environments as reasonably possible:
@@ -124,7 +135,13 @@ The goal of this project is to implement a fully-tested, exact reproduction of t
 
 ## Caveats
 
-- Because of this projects reliance on [node-canvas](https://www.npmjs.com/package/canvas) you may run into installation difficulties. Make sure you follow the steps for your platform [here](https://github.com/Automattic/node-canvas#installation).
+Because of this projects reliance on [node-canvas](https://www.npmjs.com/package/canvas) you may run into installation difficulties. Make sure you follow the steps for your platform [here](https://github.com/Automattic/node-canvas#installation).
+
+If using Octave to reproduce these results, depending on its installation, it may generate slightly different results. In particular, if you get a warning message saying:
+
+> warning: your version of GraphicsMagick limits images to 16 bits per pixel
+
+You may get slightly different results (smaller than 1*10^-3) but these would already suffice to cause tests to fail.
 
 ## Roadmap
 
