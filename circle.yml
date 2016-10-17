@@ -1,8 +1,8 @@
 machine:
   node:
-    version: 6.7.0
+    version: 6.8.1
   environment:
-    NODE_CURRENT: 6.7.0
+    NODE_CURRENT: 6.8.1
     NODE_5: 5.7.0
     NODE_012: 0.12.9
     NODE_010: 0.10.42
