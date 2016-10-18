@@ -5,7 +5,7 @@
 | Code Quality	| [![Code Climate](https://codeclimate.com/github/obartra/ssim/badges/gpa.svg)](https://codeclimate.com/github/obartra/ssim) [![Issue Count](https://codeclimate.com/github/obartra/ssim/badges/issue_count.svg)](https://codeclimate.com/github/obartra/ssim) |
 | Commit format	| [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) |
 | Dependencies	| [![Known Vulnerabilities](https://snyk.io/test/github/obartra/ssim/badge.svg)](https://snyk.io/test/github/obartra/ssim) [![DavidDM](https://david-dm.org/obartra/ssim.svg)](https://david-dm.org/obartra/ssim) |
-| Environments	| ![](https://img.shields.io/badge/node-0.10-brightgreen.svg) ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-5.7.0-brightgreen.svg) ![](https://img.shields.io/badge/node-6.7-brightgreen.svg) |
+| Environments	| ![](https://img.shields.io/badge/node-0.10-brightgreen.svg) ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-5.7.0-brightgreen.svg) ![](https://img.shields.io/badge/node-6.8-brightgreen.svg) |
 | Documentation	| [![InchCI](https://inch-ci.org/github/obartra/ssim.svg?branch=master)](https://inch-ci.org/github/obartra/ssim) [![API Doc](https://doclets.io/obartra/ssim/master.svg)](https://doclets.io/obartra/ssim/master) |
 
 # SSIM.JS
@@ -59,27 +59,6 @@ ssim('./img1.jpg', './img2.jpg', { downsample: 'fast' })
 
 See the parameters section for a full description of options available.
 
-### Node < 4.0.0
-
-If you are running an old version of Node without [Promise support](http://node.green/#Promise) you will need to polyfill it. Integration tests use [babel](https://babeljs.io) + [core-js](https://github.com/zloirock/core-js) for that purpose. An example usage could be:
-
-```javascript
-require('core-js/es6/promise');
-var ssim = require('ssim.js');
-
-function successSSIM(out) {
-  console.log('SSIM: ' + out.mssim + ' (generated in: ' + out.performance + 'ms)');
-}
-
-function errorSSIM(msg) {
-  console.error('Error generating SSIM' + err);
-}
-
-ssim('./img1.jpg', './img2.jpg')
-	.then(successSSIM)
-	.catch(errorSSIM);
-```
-
 ## SSIM
 
 The script generates a 2D SSIM map between two windows `x` and `y` as follows:
@@ -107,49 +86,4 @@ All defaults match the implementation of the original Matlab scripts. Any change
 
 ### Output
 
-The program returns a SSIM map, a mean SSIM (MSSIM) and a performance metric (ms to compute). The MSSIM returned value is computed by averaging all SSIM values from the map.
-
-### Validation
-
-Validation of results has been done against the results from the Matlab scripts using the [IVC database](http://www2.irccyn.ec-nantes.fr/ivcdb/) compared with the javascript implementation and they match the original results exactly.
-
-Note that the original Matlab scripts published by Wang et al., 2004 generate slightly different results than the ones they published (~1%). I have been unable to find any specific parameters or modifications they used that would account for these differences. This project focuses instead on the exact reproduction of their Matlab scripts.
-
-The differences between reported and computed results don't seem significant. The following plots illustrate both cases:
-
-| Reported Results                                     | Computed Results                                     |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| ![](/generate/reported_results.png)                  | ![](/generate/computed_results.png)                  |
-| correlation: 0.82832, root-mean-square-error: 68.752 | correlation: 0.82093, root-mean-square-error: 68.752 |
-
-You can find more information on how these graphs where generated [here](/generate/README.md).
-
-## Rationale
-
-The goal of this project is to implement a fully-tested, exact reproduction of the original Matlab scripts to compute SSIM. It also needs to be easy to use, performant and work in as many environments as reasonably possible:
-
-- Isomorphic build (node / browser)
-- Reproduction of the original Matlab scripts results
-- Appropriate testing to ensure correct behavior
-- Validate results against original datasets
-
-## Caveats
-
-Because of this projects reliance on [node-canvas](https://www.npmjs.com/package/canvas) you may run into installation difficulties. Make sure you follow the steps for your platform [here](https://github.com/Automattic/node-canvas#installation).
-
-If using Octave to reproduce these results, depending on its installation, it may generate slightly different results. In particular, if you get a warning message saying:
-
-> warning: your version of GraphicsMagick limits images to 16 bits per pixel
-
-You may get slightly different results (smaller than 1*10^-3) but these would already suffice to cause tests to fail.
-
-## Roadmap
-
-- Add support for MS-SSIM from [Wang, Simoncelli & Bovik, 2003](/assets/msssim.pdf) on "Multi-Scale Structural Similarity for Image Quality Assessment",
-- Add support for IW-SSIM from [Wang & Qiang, 2011](/assets/iwssim.pdf) on "Information Content Weighting for Perceptual Image Quality Assessment".
-- Potentially adding support 3-SSIM and 3-MS-SSIM for [Li & Bovik, 2008](/assets/3-ssim.pdf) on "Three-Component Weighted Structural Similarity Index"
-- Multiple builds, something like:
-  - `mx` as an isomorphic build (works on node and on the browser) with no external dependencies that takes 3D matrices as input representing the images.
-  - `node` as a node-specific build that uses `node-canvas` to retrieve the 3D pixel matrix from each image and accepts `Buffer`, URLs or a file system path as inputs.
-  - `web` as a browser-specific build that relies on the [canvas element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to retrieve the pixel matrices. It accepts URLs but it's subject to [CORS restrictions](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image).
-- `α`, `β` and `γ` are currently excluded (default to 1). Parametrize.
+The program returns a SSIM map, a mean SSIM (MSSIM) and a performance metric (ms to compute). The MSSIM returned value is computed by averaging all SSIM values from the map. To view the steps taken to validate the results, check the wiki page [here](https://github.com/obartra/ssim/wiki/Results-Validation).
