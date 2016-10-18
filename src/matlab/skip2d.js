@@ -4,8 +4,9 @@
  *
  * It's a crude implementation of Matlab's `A(1:f:end,1:f:end)` syntax where the first parameter
  * is the matrix, the next one is an array describing the rows to skip [start position, every `f`
- * elements an end position] and the last one follows the same syntax for columns. E.g.:
+ * elements an end position] and the last one follows the same syntax for columns.
  *
+ * @example
  * ```
  * img1(1:f:end,1:f:end)
  *

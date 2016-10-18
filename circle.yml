@@ -1,8 +1,8 @@
 machine:
   node:
-    version: 6.8.1
+    version: 6.9.0
   environment:
-    NODE_CURRENT: 6.8.1
+    NODE_CURRENT: 6.9.0
     NODE_5: 5.7.0
     NODE_012: 0.12.9
     NODE_010: 0.10.42
@@ -12,27 +12,35 @@ general:
 dependencies:
   pre:
     - sudo apt-get update
-    - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+    - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++ libgnome-keyring-dev
+database:
+  override:
+    - echo "Skipping DB section"
 test:
   override:
+    - ci/getVersion.sh # Determine the version semantic-release will use, so we can include it in the build
     - npm run build
     - |
         # only on master, run integration tests on multiple node versions
         if [ master == $CIRCLE_BRANCH ]; then
 
           # `canvas` needs a different install depending on the node version in use.
-          nvm install $NODE_010 && rm -rf node_modules && npm install --loglevel silent && npm run test:e2e || exit 1
-          nvm use $NODE_012 && rm -rf node_modules && npm install --loglevel silent && npm run test:e2e || exit 1
-          nvm use $NODE_5 && rm -rf node_modules && npm install --loglevel silent && npm run test:e2e || exit 1
+          nvm install $NODE_010 && rm -rf node_modules && npm install --loglevel silent && ./node_modules/.bin/blue-tape spec/e2e_dist/ivc.spec.js || exit 1
+          nvm use $NODE_012 && rm -rf node_modules && npm install --loglevel silent && ./node_modules/.bin/blue-tape spec/e2e_dist/ivc.spec.js || exit 1
+          nvm use $NODE_5 && rm -rf node_modules && npm install --loglevel silent && ./node_modules/.bin/blue-tape spec/e2e_dist/ivc.spec.js || exit 1
 
           # Clean up and switch back to current node version
           nvm use $NODE_CURRENT && rm -rf node_modules && npm install --loglevel silent
           npm run test:e2e || exit 1
         fi
-    - npm run fixme
-    - npm run lint
-    - npm run docs
-    - npm run codeclimate
+    - |
+        ./node_modules/.bin/npm-run-all --parallel
+        npm run fixme      # Make sure there are no lingering TODOs
+        npm run lint       # Ensure all code adheres to the styleguide
+        npm run docs:check # Validate documentation using inchjs
+        npm run cover      # Report test coverage locally
+    - npm run cover:check  # Fail if coverage drops below 100%
+    - npm run codeclimate  # Send coverage to code climate
     - cp -R coverage/* $CIRCLE_TEST_REPORTS
 deployment:
   publish:
@@ -41,4 +49,4 @@ deployment:
     commands:
       - npm run build
       - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-      - npm publish || exit 0
+      - npm run semantic-release

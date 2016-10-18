@@ -5,7 +5,7 @@ const { mean2d } = require('./src/math');
 const { ssim } = require('./src/ssim');
 const { force } = require('./src/util');
 const defaults = require('./src/defaults.json');
-const { version } = require('./package.json');
+const { version } = require('./version.js');
 
 function validateOptions(options) {
 	Object.keys(options).forEach((option) => {

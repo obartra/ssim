@@ -2,8 +2,9 @@ const { zeros } = require('./zeros');
 const { mod } = require('./mod');
 
 /**
- * Mirrors a matrix horizontally. E.g.:
+ * Mirrors a matrix horizontally.
  *
+ * @example
  * 1 2 3 4  becomes:  4 3 2 1
  * 5 6 7 8            8 7 6 5
  *
@@ -30,8 +31,9 @@ function mirrorHorizonal(b) {
 }
 
 /**
- * Mirrors a matrix vertically. E.g.:
+ * Mirrors a matrix vertically.
  *
+ * @example
  * 1 2 3 4  becomes:  9 0 F E
  * 5 6 7 8            5 6 7 8
  * 9 0 F E            1 2 3 4
@@ -59,8 +61,9 @@ function mirrorVertical(b) {
 }
 
 /**
- * Concatenates 2 matrices of the same height horizontally. E.g.:
+ * Concatenates 2 matrices of the same height horizontally.
  *
+ * @example
  * 1 2   3 4  becomes:  1 2 3 4
  * 5 6   7 8            5 6 7 8
  *
@@ -88,8 +91,9 @@ function concatHorizontal(a, b) {
 }
 
 /**
- * Concatenates 2 matrices of the same height vertically. E.g.:
+ * Concatenates 2 matrices of the same height vertically.
  *
+ * @example
  * 1 2   3 4  becomes:  1 2
  * 5 6   7 8            5 6
  *                      3 4
@@ -119,8 +123,9 @@ function concatVertical(a, b) {
 
 /**
  * Adds 2 * `pad` cells to a matrix horizontally. The values used are mirrored from the input
- * matrix. E.g.:
+ * matrix.
  *
+ * @example
  * with padding 1:
  * 1 2 3 4   becomes:  1 1 2 3 4 4
  * 5 6 7 8             5 5 6 7 8 8
@@ -155,8 +160,9 @@ function padHorizontal(A, pad) {
 
 /**
  * Adds 2 * `pad` cells to a matrix vertically. The values used are mirrored from the input
- * matrix. E.g.:
+ * matrix.
  *
+ * @example
  * with padding 1:
  * 1 2 3 4   becomes:  1 2 3 4
  * 5 6 7 8             1 2 3 4

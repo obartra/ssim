@@ -78,8 +78,9 @@ test('should produce the same output when resSize is "same", "valid" and omitted
 	];
 
 	t.deepEqual(imfilter(mx, f), C);
-	t.deepEqual(imfilter(mx, f, 'same'), C);
-	t.deepEqual(imfilter(mx, f, 'valid'), C);
+	t.deepEqual(imfilter(mx, f, 'symmetric'), C);
+	t.deepEqual(imfilter(mx, f, 'symmetric', 'same'), C);
+	t.deepEqual(imfilter(mx, f, 'symmetric', 'valid'), C);
 	t.end();
 });
 
@@ -101,7 +102,7 @@ test('should produce different resSize is "same" from when it is "full"', (t) =>
 		[12, 3, 5, 7]
 	];
 
-	t.deepEqual(imfilter(mx, f, 'same'), C);
-	t.deepEqual(imfilter(mx, f, 'full'), C);
+	t.deepEqual(imfilter(mx, f, 'symmetric', 'same'), C);
+	t.notDeepEqual(imfilter(mx, f, 'symmetric', 'full'), imfilter(mx, f, 'symmetric', 'same'));
 	t.end();
 });
