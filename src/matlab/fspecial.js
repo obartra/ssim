@@ -58,11 +58,20 @@ function gaussianFilter2d(mx, σ) {
  * default values for the parameters.
  *
  * This method mimics Matlab's `fspecial2` method with `type = 'gaussian'`. `hsize` cannot be a
- * vector (unlike Matlab's implementation), only a Number is accepted
+ * vector (unlike Matlab's implementation), only a Number is accepted.
  *
  * `h = fspecial('gaussian', hsize, sigma)` returns a rotationally symmetric Gaussian lowpass filter
- * of size `hsize` with standard deviation sigma (positive). `hsize` can be a scalar, in which case
- * `h` is a square matrix.
+ * of size `hsize` with standard deviation sigma (positive). In this implementation `hsize` will
+ * always be a scalar, which will result in `h` being a square matrix.
+ *
+ * The gaussian logic follows: hg(hsize) = e^(-2*hsize^2 / 2σ^2)
+ *
+ * @example
+ *   fspecial('gaussian', 3, 1.5) === [
+ *     [0.094742, 0.118318, 0.094742],
+ *     [0.118318, 0.147761, 0.118318],
+ *     [0.094742, 0.118318, 0.094742]
+ *   ];
  *
  * @method fspecial
  * @param {String} [type='gaussian'] - The type of 2D filter to create (coerced to 'gaussian')

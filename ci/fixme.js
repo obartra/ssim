@@ -10,7 +10,8 @@ const eslintIgnores = readFileSync(join(__dirname, '../.eslintignore'), 'utf8').
 const ignored_directories = _(eslintIgnores)
 	.compact()
 	.map(str => str.replace(/\/$/, '/**'))
-	.value();
+	.value()
+	.concat(['dist/**/*', 'node_modules/**/*']);
 
 fixme({
 	path: join(__dirname, '../'),

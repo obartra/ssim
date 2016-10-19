@@ -1,8 +1,9 @@
 const { conv2 } = require('./conv2');
 
 /**
- * Rotates a matrix 180deg. E.g.:
+ * Rotates a matrix 180deg.
  *
+ * @example
  * 1 2 3 4  becomes:  8 7 6 5
  * 5 6 7 8            4 3 2 1
  *

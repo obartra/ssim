@@ -1,24 +1,30 @@
 {
   "name": "ssim.js",
-  "version": "0.0.6",
   "description": "JS MSSIM computation",
   "main": "dist/ssim.js",
+  "version": "0.0.0-semantically-released",
   "scripts": {
-    "cover": "node_modules/.bin/istanbul cover blue-tape spec/unit/{*,**/*}.spec.js",
+    "commit": "git-cz",
+    "cover": "istanbul cover blue-tape spec/unit/{*,**/*}.spec.js",
+    "cover:check": "istanbul check",
     "test": "blue-tape spec/unit/{*,**/*}.spec.js | tap-dot",
-    "test:e2e": "blue-tape spec/e2e_dist/{*,**/*}.spec.js | tap-dot",
+    "e2e": "npm-run-all --parallel e2e:*",
+    "e2e:live": "blue-tape spec/e2e_dist/live.spec.js | tap-dot",
+    "e2e:ivc": "blue-tape spec/e2e_dist/ivc.spec.js | tap-dot",
     "test:watch": "nodemon node_modules/.bin/blue-tape spec/unit/{*,**/*}.spec.js",
-    "docs": " jsdoc --pedantic -c .jsdoc . --readme README.md",
+    "docs": "jsdoc --pedantic -c .jsdoc . --readme README.md",
+    "docs:check": "./ci/doc.sh",
     "fixme": "ci/fixme.js",
     "lint": "eslint .",
     "build": "webpack && babel spec/helpers --out-dir spec/helpers_dist/ && babel spec/e2e --out-dir spec/e2e_dist/",
     "watch": "webpack --watch",
     "update": "ci/update.sh",
-    "codeclimate": "npm run cover && cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter"
+    "codeclimate": "cat ./coverage/lcov.info | codeclimate-test-reporter",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/obartra/notes.git"
+    "url": "https://github.com/obartra/ssim.git"
   },
   "keywords": [
     "ssim",
@@ -31,18 +37,20 @@
   "author": "Oscar Bartra",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/obartra/notes/issues"
+    "url": "https://github.com/obartra/ssim/issues"
   },
   "files": [
     "README.md",
+    "LICENSE",
+    "src",
     "dist/ssim.js",
     "dist/ssim.js.map"
   ],
-  "homepage": "https://github.com/obartra/notes#readme",
+  "homepage": "https://github.com/obartra/ssim#readme",
   "dependencies": {
-    "bmp-js": "0.0.2",
-    "canvas": "1.6.0",
-    "image-type": "2.1.0"
+    "bmp-js": "^0.0.2",
+    "canvas": "^1.6.0",
+    "image-type": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
@@ -51,22 +59,37 @@
     "babel-preset-es2015": "6.16.0",
     "blue-tape": "1.0.0",
     "codeclimate-test-reporter": "0.4.0",
+    "commitizen": "2.8.6",
+    "condition-circle": "1.5.0",
     "core-js": "2.4.1",
-    "eslint": "3.8.0",
+    "cz-conventional-changelog": "1.2.0",
+    "eslint": "3.8.1",
     "eslint-config-airbnb": "12.0.0",
     "eslint-config-standard": "6.2.0",
     "eslint-plugin-import": "1.16.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-promise": "3.0.0",
+    "eslint-plugin-promise": "3.3.0",
     "eslint-plugin-react": "6.4.1",
     "eslint-plugin-standard": "2.0.1",
     "fixme": "0.4.0",
+    "inchjs": "0.4.1",
     "istanbul": "0.4.5",
     "jsdoc": "3.4.2",
     "json-loader": "0.5.4",
     "nodemon": "1.11.0",
     "npm-check-updates": "2.8.5",
+    "npm-run-all": "3.1.1",
+    "semantic-release": "4.3.5",
+    "semantic-release-cli": "1.4.1",
     "tap-dot": "1.0.5",
     "webpack": "2.1.0-beta.24"
+  },
+  "release": {
+    "verifyConditions": "condition-circle"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
