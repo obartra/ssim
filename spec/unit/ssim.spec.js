@@ -1,9 +1,11 @@
 const test = require('blue-tape');
-const { ssim } = require('../../src/ssim');
+const { ssim: fastSsim } = require('../../src/ssim');
+const { originalSsim } = require('../../src/originalSsim');
 const { mean2d } = require('../../src/math');
 const options = require('../../src/defaults.json');
 const { loadCsv } = require('../helpers/sampleloader');
 const samples = require('../helpers/imageSamples.json');
+const { roundTo } = require('../helpers/round');
 
 const fullSampleOptions = Object.assign({}, options, {
 	downsample: false
@@ -17,66 +19,64 @@ const sampleCsv = loadCsv({
 	lena02876: './samples/lena/q02876.csv'
 });
 
-function round(num) {
-	return Math.round(num * 100000) / 100000;
-}
-
 function compareto1(ref) {
 	this.equal(ref, 1);
 }
 
-test('should return 1 for equal data', (t) => {
-	const A = samples['24x18'].gray;
-	const ssimMap = ssim(A, A, options);
+[fastSsim, originalSsim].forEach((ssim) => {
+	test('should return 1 for equal data', (t) => {
+		const A = samples['24x18'].gray;
+		const ssimMap = ssim(A, A, options);
 
-	ssimMap.forEach(col => col.forEach(compareto1.bind(t)));
-	t.end();
-});
+		ssimMap.forEach(col => col.forEach(compareto1.bind(t)));
+		t.end();
+	});
 
-test('should also return one when k1 and k2 are 0', (t) => {
-	const A = samples['24x18'].gray;
-	const ssimMap = ssim(A, A, k0Options);
+	test('should also return one when k1 and k2 are 0', (t) => {
+		const A = samples['24x18'].gray;
+		const ssimMap = ssim(A, A, k0Options);
 
-	ssimMap.forEach(col => col.forEach(compareto1.bind(t)));
-	t.end();
-});
+		ssimMap.forEach(col => col.forEach(compareto1.bind(t)));
+		t.end();
+	});
 
-test('should return same results than original script', (t) => {
-	const A = samples['24x18'].gray;
-	const B = samples['24x18-degraded'].gray;
-	const ssimMap = ssim(A, B, options);
+	test('should return same results than original script', (t) => {
+		const A = samples['24x18'].gray;
+		const B = samples['24x18-degraded'].gray;
+		const ssimMap = ssim(A, B, options);
 
-	t.equal(round(mean2d(ssimMap)), 0.46275);
-	t.end();
-});
+		t.equal(roundTo(mean2d(ssimMap), 5), 0.46275);
+		t.end();
+	});
 
-test('should return same results than original when k1 and k2 are 0', (t) => {
-	const A = samples['24x18'].gray;
-	const B = samples['24x18-degraded'].gray;
-	const ssimMap = ssim(A, B, k0Options);
+	test('should return same results than original when k1 and k2 are 0', (t) => {
+		const A = samples['24x18'].gray;
+		const B = samples['24x18-degraded'].gray;
+		const ssimMap = ssim(A, B, k0Options);
 
-	t.equal(round(mean2d(ssimMap)), 0.45166);
-	t.end();
-});
+		t.equal(roundTo(mean2d(ssimMap), 5), 0.45166);
+		t.end();
+	});
 
-test('should downsample images and produce somewhat similar results', (t) => {
-	const ssimMap = ssim(sampleCsv.lena, sampleCsv.lena02876, options);
-	const fullSsimMap = ssim(sampleCsv.lena, sampleCsv.lena02876, fullSampleOptions);
+	test('should downsample images and produce somewhat similar results', (t) => {
+		const ssimMap = ssim(sampleCsv.lena, sampleCsv.lena02876, options);
+		const fullSsimMap = ssim(sampleCsv.lena, sampleCsv.lena02876, fullSampleOptions);
 
-	const out = round(mean2d(ssimMap));
-	const fullOut = round(mean2d(fullSsimMap));
+		const out = roundTo(mean2d(ssimMap), 5);
+		const fullOut = roundTo(mean2d(fullSsimMap), 5);
 
-	t.equal(out, 0.76269);
-	t.equal(fullOut, 0.67094);
+		t.equal(out, 0.76269);
+		t.equal(fullOut, 0.67094);
 
-	t.end();
-});
+		t.end();
+	});
 
-test('UQI should match script results', (t) => {
-	const uqiMap = ssim(sampleCsv.lena, sampleCsv.lena02876, k0Options);
+	test('UQI should match script results', (t) => {
+		const uqiMap = ssim(sampleCsv.lena, sampleCsv.lena02876, k0Options);
 
-	const uqiOut = round(mean2d(uqiMap));
+		const uqiOut = roundTo(mean2d(uqiMap), 5);
 
-	t.equal(uqiOut, 0.46544);
-	t.end();
+		t.equal(uqiOut, 0.46544);
+		t.end();
+	});
 });

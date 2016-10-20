@@ -212,6 +212,26 @@ function divide2d(mx, divisor) {
 }
 
 /**
+ * Divides values of two vectors of the same size or between a vector and a constant
+ *
+ * @example divide([2, 4, 6], 2) => [1, 2, 3]
+ * @example divide([2, 4, 6], [2, 4, 6]) => [1, 1, 1]
+ * @method divide
+ * @param {Array.<Number>} mx1 - The first input matrix
+ * @param {Array.<Number>|Number} divisor - The second input matrix or the constant value
+ * @returns {Array.<Number>} division - A vector with each element division of the first and second
+ * parameters
+ * @public
+ * @memberOf math
+ */
+function divide(vec, divisor) {
+	if (typeof divisor === 'number') {
+		return divide2d([vec], divisor)[0];
+	}
+	return divide2d([vec], [divisor])[0];
+}
+
+/**
  * Multiplies each matrix cell by a constant value
  *
  * @method multiply2dScalar
@@ -318,12 +338,14 @@ function mean2d(mx) {
  * @namespace math
  */
 module.exports = {
-	average,
-	sum2d,
 	add2d,
+	average,
+	divide,
 	divide2d,
+	floor,
+	mean2d,
 	multiply2d,
 	square2d,
-	mean2d,
-	floor
+	sum,
+	sum2d
 };

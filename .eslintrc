@@ -47,7 +47,7 @@
     ],
     "max-nested-callbacks": [
       2,
-      2
+      3
     ],
     "global-require": [2],
     "no-underscore-dangle": [2, { "allow": ["_private"] }],
