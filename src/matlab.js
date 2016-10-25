@@ -1,12 +1,14 @@
 const { conv2 } = require('./matlab/conv2');
-const { rgb2gray } = require('./matlab/rgb2gray');
-const { ones } = require('./matlab/ones');
-const { zeros } = require('./matlab/zeros');
-const { padarray } = require('./matlab/padarray');
 const { filter2 } = require('./matlab/filter2');
 const { fspecial } = require('./matlab/fspecial');
-const { imfilter } = require('./matlab/imfilter');
+const { imfilter, dimfilter } = require('./matlab/imfilter');
+const { normpdf } = require('./matlab/normpdf');
+const { ones } = require('./matlab/ones');
+const { padarray } = require('./matlab/padarray');
+const { rgb2gray } = require('./matlab/rgb2gray');
 const { skip2d } = require('./matlab/skip2d');
+const { transpose } = require('./matlab/transpose');
+const { zeros } = require('./matlab/zeros');
 
 /**
  * Implements Matlab functions or functionality.
@@ -21,12 +23,15 @@ const { skip2d } = require('./matlab/skip2d');
  */
 module.exports = {
 	conv2,
-	fspecial,
+	dimfilter,
 	filter2,
-	zeros,
+	fspecial,
+	imfilter,
+	normpdf,
 	ones,
 	padarray,
-	imfilter,
+	rgb2gray,
 	skip2d,
-	rgb2gray
+	transpose,
+	zeros
 };

@@ -1,6 +1,6 @@
 {
   "name": "ssim.js",
-  "description": "JS MSSIM computation",
+  "description": "JavaScript implementation of the SSIM algorithm",
   "main": "dist/ssim.js",
   "version": "0.0.0-semantically-released",
   "scripts": {
@@ -27,10 +27,12 @@
   },
   "keywords": [
     "ssim",
+    "mssim",
+    "ssim_map",
     "image",
+    "compare",
     "structural",
     "similarity",
-    "image",
     "processing"
   ],
   "author": "Oscar Bartra",

@@ -13,5 +13,7 @@ done
 if test $err -eq 0; then
   exit 0;
 else
+  echo "Documentation should be improved before it is mergeable. Only A ratings allowed:"
+  ./node_modules/.bin/inchjs
   exit 1;
 fi

@@ -3,6 +3,7 @@ const { readpixels } = require('./src/readpixels');
 const { rgb2gray } = require('./src/matlab');
 const { mean2d } = require('./src/math');
 const { ssim } = require('./src/ssim');
+const { originalSsim } = require('./src/originalSsim');
 const { force } = require('./src/util');
 const defaults = require('./src/defaults.json');
 const { version } = require('./version.js');
@@ -53,10 +54,12 @@ function singleSSIM(image1 = force('image1'), image2 = force('image2'), options 
 
 	options = getOptions(options);
 
+	const ssimImpl = options.ssim === 'fast' ? ssim : originalSsim;
+
 	return Promise.all([readImage(image1, options), readImage(image2, options)])
 		.then(validateDimensions)
 		.then(toGrayScale)
-		.then(([pixels1, pixels2]) => ssim(pixels1, pixels2, options))
+		.then(([pixels1, pixels2]) => ssimImpl(pixels1, pixels2, options))
 		.then(ssimMap => ({
 			ssim_map: ssimMap,
 			mssim: mean2d(ssimMap),

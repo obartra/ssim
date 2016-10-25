@@ -1,5 +1,6 @@
 const test = require('blue-tape');
-const { imfilter } = require('../../../src/matlab/imfilter');
+const { imfilter, dimfilter } = require('../../../src/matlab/imfilter');
+const { transpose } = require('../../../src/matlab/transpose');
 
 test('should match Matlab symmetric, same imfilter', (t) => {
 	const mx = [
@@ -104,5 +105,32 @@ test('should produce different resSize is "same" from when it is "full"', (t) =>
 
 	t.deepEqual(imfilter(mx, f, 'symmetric', 'same'), C);
 	t.notDeepEqual(imfilter(mx, f, 'symmetric', 'full'), imfilter(mx, f, 'symmetric', 'same'));
+	t.end();
+});
+
+test('should match results between a filter and its decomposed counterparts', (t) => {
+	const mx = [
+		[1, 2, 3, 4],
+		[5, 6, 7, 8],
+		[9, 0, 1, 2],
+		[3, 4, 5, 6]
+	];
+	const f = [
+		[1, 1],
+		[1, 1]
+	];
+	// since:
+	//   rank(f) === 1
+	// then:
+	//   [U, S, V] = svd(f)
+	//   v = U(:,1) * sqrt(S(1,1))
+	//   h = V(:,1)' * sqrt(S(1,1))
+	const v = transpose([-1, -1]);
+	const h = [-1, -1];
+
+	const out = imfilter(mx, f, 'symmetric', 'same');
+	const vhOut = dimfilter(mx, v, h, 'symmetric', 'same');
+
+	t.deepEqual(out, vhOut);
 	t.end();
 });

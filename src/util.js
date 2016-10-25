@@ -7,7 +7,7 @@
  * }
  * ```
  *
- * That will log `reqgetwindowuiredParam` if called like `test('blah')` but, if the parameter is not
+ * That will log `requiredParam` if called like `test('blah')` but, if the parameter is not
  * set, it will throw with a message indicating that `requireParam` is needed
  *
  * @method force

@@ -78,7 +78,16 @@ test('downsizing should be faster than not downsizing', t =>
 		index(samples.avion, samples.avion_j2000_r1, { downsample: 'fast' }),
 		index(samples.avion, samples.avion_j2000_r1, { downsample: false })
 	]).then(([{ performance: origPerf }, { performance: noPerf }]) =>
-		t.equal(origPerf < noPerf, true, 'No point in downsizing if it is faster not doing it')
+		t.equal(origPerf < noPerf, true, 'Downsizing must be faster than not downsizing')
+	)
+);
+
+test('ssim should be faster than originalSsim', t =>
+	Promise.all([
+		index(samples.avion, samples.avion_j2000_r1, { ssim: 'fast' }),
+		index(samples.avion, samples.avion_j2000_r1, { ssim: 'original' })
+	]).then(([{ performance: fast }, { performance: original }]) =>
+		t.equal(fast < original, true, 'fast SSIM implementation must be faster than original')
 	)
 );
 

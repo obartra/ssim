@@ -52,6 +52,20 @@ test('should divide 2 matrices of the same size (divide2d)', (t) => {
 	t.end();
 });
 
+test('should divide by a constant value each vector element (divide)', (t) => {
+	const divide = math.divide([10, 20], 10);
+
+	t.deepEqual(divide, [1, 2]);
+	t.end();
+});
+
+test('should divide 2 vectors of the same size (divide)', (t) => {
+	const divide = math.divide([10, 20], [1, 2]);
+
+	t.deepEqual(divide, [10, 10]);
+	t.end();
+});
+
 test('should multiply by a constant value each matrix element (multiply2d)', (t) => {
 	const multiply = math.multiply2d([[10, 20], [30, 40]], 10);
 

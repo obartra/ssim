@@ -8,6 +8,7 @@ machine:
 general:
   artifacts:
     - "dist"
+    - "coverage"
 dependencies:
   pre:
     - sudo apt-get update
@@ -43,4 +44,4 @@ deployment:
     commands:
       - npm run build
       - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-      - npm run semantic-release
+      - npm run semantic-release || exit 0
