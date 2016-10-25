@@ -57,7 +57,7 @@
     "babel-cli": "6.18.0",
     "babel-core": "6.18.0",
     "babel-loader": "6.2.5",
-    "babel-preset-es2015": "6.16.0",
+    "babel-preset-es2015": "6.18.0",
     "blue-tape": "1.0.0",
     "codeclimate-test-reporter": "0.4.0",
     "commitizen": "2.8.6",
