@@ -50,40 +50,40 @@
   "homepage": "https://github.com/obartra/ssim#readme",
   "dependencies": {
     "bmp-js": "^0.0.2",
-    "canvas": "^1.6.0",
+    "canvas": "^1.6.1",
     "image-type": "^2.1.0"
   },
   "devDependencies": {
-    "babel-cli": "6.18.0",
-    "babel-core": "6.18.0",
-    "babel-loader": "6.2.5",
-    "babel-preset-es2015": "6.18.0",
-    "blue-tape": "1.0.0",
-    "codeclimate-test-reporter": "0.4.0",
-    "commitizen": "2.8.6",
-    "condition-circle": "1.5.0",
-    "core-js": "2.4.1",
-    "cz-conventional-changelog": "1.2.0",
-    "eslint": "3.8.1",
-    "eslint-config-airbnb": "12.0.0",
-    "eslint-config-standard": "6.2.0",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.18.0",
+    "blue-tape": "^1.0.0",
+    "codeclimate-test-reporter": "^0.4.0",
+    "commitizen": "^2.8.6",
+    "condition-circle": "^1.5.0",
+    "core-js": "^2.4.1",
+    "cz-conventional-changelog": "^1.2.0",
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-config-standard": "^6.2.1",
     "eslint-plugin-import": "1.16.0",
-    "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-promise": "3.3.0",
-    "eslint-plugin-react": "6.4.1",
-    "eslint-plugin-standard": "2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-react": "^6.4.1",
+    "eslint-plugin-standard": "^2.0.1",
     "fixme": "0.4.0",
-    "inchjs": "0.4.1",
-    "istanbul": "0.4.5",
-    "jsdoc": "3.4.2",
-    "json-loader": "0.5.4",
-    "nodemon": "1.11.0",
-    "npm-check-updates": "2.8.6",
-    "npm-run-all": "3.1.1",
-    "semantic-release": "4.3.5",
-    "semantic-release-cli": "1.4.1",
-    "tap-dot": "1.0.5",
-    "webpack": "2.1.0-beta.24"
+    "inchjs": "^0.4.1",
+    "istanbul": "^0.4.5",
+    "jsdoc": "^3.4.2",
+    "json-loader": "^0.5.4",
+    "nodemon": "^1.11.0",
+    "npm-check-updates": "^2.8.6",
+    "npm-run-all": "^3.1.1",
+    "semantic-release": "^4.3.5",
+    "semantic-release-cli": "^1.4.1",
+    "tap-dot": "^1.0.5",
+    "webpack": "^2.1.0-beta.24"
   },
   "release": {
     "verifyConditions": "condition-circle"
@@ -94,6 +94,6 @@
     }
   },
   "greenkeeper": {
-    "ignore": ["eslint-plugin-import"]
+    "ignore": ["eslint-plugin-import", "fixme"]
   }
 }
