@@ -50,7 +50,7 @@
   "homepage": "https://github.com/obartra/ssim#readme",
   "dependencies": {
     "bmp-js": "^0.0.2",
-    "canvas": "^1.6.1",
+    "canvas": "^1.6.2",
     "image-type": "^2.1.0"
   },
   "devDependencies": {
