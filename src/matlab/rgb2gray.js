@@ -21,25 +21,27 @@ function luma([r, g, b]) {
 }
 
 /**
- * Converts a 3d matrix of [row, column, rgb] into a 2d one [row, column] where the value is the
- * grayscale equivalent of the rgb input.
+ * Converts an imageData object of { width, height, data } into a 2d matrix [row, column]
+ * where the value is the grayscale equivalent of the rgb input.
  *
  * This method mimics Matlab's `rgb2gray` method
  *
  * @method rgb2gray
- * @param {Array.<Array.<Array.<Number>>>} mx - The input matrix
+ * @param {ImageData} imageData - The input imageData
  * @returns {Array.<Array.<Number>>} grayscale - A 2d grayscale representation of the input image
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function rgb2gray(mx) {
+function rgb2gray({ data: d, width, height }) {
 	const lumaMx = [];
 
-	for (let x = 0; x < mx.length; x++) {
+	for (let x = 0; x < width; x++) {
 		lumaMx[x] = [];
-		for (let y = 0; y < mx[x].length; y++) {
-			lumaMx[x][y] = luma(mx[x][y]);
+		for (let y = 0; y < height; y++) {
+			const index = (x + y * width) * 4;
+
+			lumaMx[x][y] = luma([d[index], d[index + 1], d[index + 2], d[index + 3]]);
 		}
 	}
 	return lumaMx;

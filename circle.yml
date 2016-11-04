@@ -1,8 +1,9 @@
 machine:
   node:
-    version: 6.9.1
+    version: 7.0.0
   environment:
-    NODE_CURRENT: 6.9.1
+    NODE_CURRENT: 7.0.0
+    NODE_6: 6.9.1
     NODE_5: 5.7.0
     NODE_012: 0.12.9
 general:
@@ -25,12 +26,12 @@ test:
           # `canvas` needs a different install depending on the node version in use.
           nvm use $NODE_012 && rm -rf node_modules && npm i && npm run e2e:ivc || exit 1
           nvm use $NODE_5 && rm -rf node_modules && npm i && npm run e2e:ivc || exit 1
+          nvm use $NODE_6 && rm -rf node_modules && npm i && npm run e2e:ivc || exit 1
 
           # Clean up and switch back to current node version
           nvm use $NODE_CURRENT && rm -rf node_modules && npm i
           npm run e2e || exit 1
         fi
-    - npm run fixme        # Make sure there are no lingering TODOs
     - npm run lint         # Ensure all code adheres to the styleguide
     - npm run docs:check   # Validate documentation using inchjs
     - npm run cover        # Report test coverage locally

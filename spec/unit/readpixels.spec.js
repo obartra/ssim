@@ -3,6 +3,7 @@ const fs = require('fs');
 const { join } = require('path');
 const { readpixels } = require('../../src/readpixels.js');
 const { loadImages } = require('../helpers/sampleloader');
+const { imageDataToMx } = require('../helpers/util');
 
 // the gradient image is 6px wide, 4px tall RGBA with no transparency
 const gradientData = [
@@ -31,53 +32,63 @@ const loaded = loadImages(paths);
 test('should read image dimensions correctly', t =>
 	readpixels('./spec/samples/lena/color.jpg')
 		.then((pixels) => {
-			t.equals(pixels[0].length, 512);
-			t.equals(pixels.length, 512);
+			t.equals(pixels.width, 512);
+			t.equals(pixels.height, 512);
 		})
 );
 
 test('should downsize images when a limit parameter is specified', t =>
 	readpixels('./spec/samples/lena/color.jpg', 100)
-		.then(pixels => t.equal(Math.min(pixels.length, pixels[0].length), 100))
+		.then(pixels => t.equal(Math.min(pixels.width, pixels.height), 100))
 );
 
 test('should limit size to "limit" on the smallest axis', t =>
 	Promise.all([
 		readpixels('./spec/samples/aspectratio/8.jpg', 10) // wide
-			.then(pixels => t.equal(pixels[0].length, 10)),
+			.then(pixels => t.equal(pixels.height, 10)),
 		readpixels('./spec/samples/aspectratio/4.jpg', 10) // tall
-			.then(pixels => t.equal(pixels.length, 10))
+			.then(pixels => t.equal(pixels.width, 10))
 	])
 );
 
 test('should be able to read from a buffer', (t) => {
 	const buffer = fs.readFileSync(join(__dirname, '../samples/gradient.png'));
 
-	return readpixels(buffer).then(img => t.deepEqual(img, gradientData));
+	return readpixels(buffer)
+		.then(imageDataToMx)
+		.then(img => t.deepEqual(img, gradientData));
 });
 
 test('should be able to retrieve a JPG image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.jpg`;
 
-	return readpixels(url).then(img => t.deepEqual(img, gradientData));
+	return readpixels(url)
+		.then(imageDataToMx)
+		.then(img => t.deepEqual(img, gradientData));
 });
 
 test('should be able to retrieve a PNG image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.png`;
 
-	return readpixels(url).then(img => t.deepEqual(img, gradientData));
+	return readpixels(url)
+		.then(imageDataToMx)
+		.then(img => t.deepEqual(img, gradientData));
 });
 
 test('should be able to retrieve a GIF image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.gif`;
 
-	return readpixels(url).then(img => t.deepEqual(img, gradientData));
+	return readpixels(url)
+		.then(imageDataToMx)
+		.then(img => t.deepEqual(img, gradientData));
 });
 
 test('should be able to retrieve a BMP image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.bmp`;
 
-	return readpixels(url).then(img => t.deepEqual(img, gradientData));
+	return readpixels(url)
+		.then(imageDataToMx)
+		.then(img => t.deepEqual(img, gradientData));
 });
 
 test('should throw if trying to retrieve an invalid URL', t =>

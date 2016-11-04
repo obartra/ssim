@@ -14,7 +14,6 @@
     "test:watch": "nodemon node_modules/.bin/blue-tape spec/unit/{*,**/*}.spec.js",
     "docs": "jsdoc --pedantic -c .jsdoc . --readme README.md",
     "docs:check": "./ci/doc.sh",
-    "fixme": "ci/fixme.js",
     "lint": "eslint .",
     "build": "webpack && babel spec/helpers --out-dir spec/helpers_dist/ && babel spec/e2e --out-dir spec/e2e_dist/",
     "watch": "webpack --watch",
@@ -55,7 +54,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.0",
+    "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
     "babel-preset-es2015": "^6.18.0",
     "blue-tape": "^1.0.0",
@@ -64,21 +63,19 @@
     "condition-circle": "^1.5.0",
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^1.2.0",
-    "eslint": "^3.8.1",
+    "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-import": "2.1.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^6.5.0",
     "eslint-plugin-standard": "^2.0.1",
-    "fixme": "0.4.0",
     "inchjs": "^0.4.1",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.2",
     "json-loader": "^0.5.4",
     "nodemon": "^1.11.0",
-    "npm-check-updates": "^2.8.6",
     "npm-run-all": "^3.1.1",
     "semantic-release": "^4.3.5",
     "semantic-release-cli": "^1.4.1",
@@ -94,6 +91,6 @@
     }
   },
   "greenkeeper": {
-    "ignore": ["eslint-plugin-import", "fixme"]
+    "ignore": []
   }
 }
