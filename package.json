@@ -21,8 +21,8 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/obartra/ssim.git"
+    "url": "https://github.com/obartra/ssim.git",
+    "type": "git"
   },
   "keywords": [
     "ssim",
@@ -66,7 +66,7 @@
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-import": "2.1.0",
+    "eslint-plugin-import": "1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^6.5.0",
@@ -91,6 +91,8 @@
     }
   },
   "greenkeeper": {
-    "ignore": []
+    "ignore": [
+      "eslint-plugin-import"
+    ]
   }
 }

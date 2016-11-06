@@ -1,11 +1,12 @@
-const test = require('blue-tape');
-const { ssim: fastSsim } = require('../../src/ssim');
-const { originalSsim } = require('../../src/originalSsim');
-const { mean2d } = require('../../src/math');
 const options = require('../../src/defaults.json');
+const test = require('blue-tape');
+const { flatMxToData } = require('../helpers/util');
 const { loadCsv } = require('../helpers/sampleloader');
-const samples = require('../helpers/imageSamples.json');
+const { mean2d } = require('../../src/math');
+const { originalSsim } = require('../../src/originalSsim');
 const { roundTo } = require('../helpers/round');
+const { ssim: fastSsim } = require('../../src/ssim');
+let samples = require('../helpers/imageSamples.json');
 
 const fullSampleOptions = Object.assign({}, options, {
 	downsample: false
@@ -23,12 +24,23 @@ function compareto1(ref) {
 	this.equal(ref, 1);
 }
 
+samples = JSON.parse(JSON.stringify(samples));
+
+Object.keys(samples).forEach((key) => {
+	Object.keys(samples[key]).forEach((skey) => {
+		samples[key][skey] = flatMxToData(samples[key][skey]);
+	});
+});
+Object.keys(sampleCsv).forEach((key) => {
+	sampleCsv[key] = flatMxToData(sampleCsv[key]);
+});
+
 [fastSsim, originalSsim].forEach((ssim) => {
 	test('should return 1 for equal data', (t) => {
 		const A = samples['24x18'].gray;
 		const ssimMap = ssim(A, A, options);
 
-		ssimMap.forEach(col => col.forEach(compareto1.bind(t)));
+		ssimMap.data.forEach(compareto1.bind(t));
 		t.end();
 	});
 
@@ -36,7 +48,7 @@ function compareto1(ref) {
 		const A = samples['24x18'].gray;
 		const ssimMap = ssim(A, A, k0Options);
 
-		ssimMap.forEach(col => col.forEach(compareto1.bind(t)));
+		ssimMap.data.forEach(compareto1.bind(t));
 		t.end();
 	});
 
@@ -73,7 +85,6 @@ function compareto1(ref) {
 
 	test('UQI should match script results', (t) => {
 		const uqiMap = ssim(sampleCsv.lena, sampleCsv.lena02876, k0Options);
-
 		const uqiOut = roundTo(mean2d(uqiMap), 5);
 
 		t.equal(uqiOut, 0.46544);

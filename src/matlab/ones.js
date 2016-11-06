@@ -6,15 +6,15 @@ const { numbers } = require('./internal/numbers');
  * This method mimics Matlab's `ones` method
  *
  * @method ones
- * @param {Number} m - The number of rows
- * @param {Number} [n=m] - The number of columns
+ * @param {Number} height - The height of the matrix (rows)
+ * @param {Number} [width=height] - The width of the matrix (columns)
  * @returns {Array.<Array.<Number>>} B - An n-by-m matrix of ones
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function ones(m, n = m) {
-	return numbers(m, n, 1);
+function ones(height, width = height) {
+	return numbers(height, width, 1);
 }
 
 module.exports = {

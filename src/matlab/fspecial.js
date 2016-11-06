@@ -9,46 +9,51 @@ const { sum2d, divide2d } = require('../math');
  *
  * @method rangeSquare2d
  * @param {Number} length - The maxium distance from the matrix center
- * @returns {Array.<Array.<Number>>} mx - The generated matrix
+ * @returns {Object} mx - The generated matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
 function rangeSquare2d(length) {
-	const mx = [];
+	const data = [];
+	const size = length * 2 + 1;
 
-	for (let x = 0; x <= length * 2; x++) {
-		mx[x] = [];
-		for (let y = 0; y <= length * 2; y++) {
-			mx[x][y] = Math.pow(x - length, 2) + Math.pow(y - length, 2);
+	for (let x = 0; x < size; x++) {
+		for (let y = 0; y < size; y++) {
+			data[x * size + y] = Math.pow(x - length, 2) + Math.pow(y - length, 2);
 		}
 	}
 
-	return mx;
+	return {
+		data,
+		width: size,
+		height: size
+	};
 }
 
 /**
  * Applies a gaussian filter of sigma to a given matrix
  *
  * @method gaussianFilter2d
- * @param {Array.<Array.<Number>>} mx - The input matrix
+ * @param {Object} A - The input matrix
  * @param {Number} σ - The sigma value
- * @returns {Array.<Array.<Number>>} out - The matrix with the gaussian filter applied
+ * @returns {Object} B - The matrix with the gaussian filter applied
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
-function gaussianFilter2d(mx, σ) {
-	const out = [];
+function gaussianFilter2d({ data: ref, width, height }, σ) {
+	const data = [];
 
-	for (let x = 0; x < mx.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx[x].length; y++) {
-			out[x][y] = Math.exp(-mx[x][y] / (2 * Math.pow(σ, 2)));
-		}
+	for (let x = 0; x < ref.length; x++) {
+		data[x] = Math.exp(-ref[x] / (2 * Math.pow(σ, 2)));
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 /**
  * Create predefined 2-D filter
@@ -67,17 +72,21 @@ function gaussianFilter2d(mx, σ) {
  * The gaussian logic follows: hg(hsize) = e^(-2*hsize^2 / 2σ^2)
  *
  * @example
- *   fspecial('gaussian', 3, 1.5) === [
- *     [0.094742, 0.118318, 0.094742],
- *     [0.118318, 0.147761, 0.118318],
- *     [0.094742, 0.118318, 0.094742]
- *   ];
+ *   fspecial('gaussian', 3, 1.5) === {
+ *     data: [
+ *       0.094742, 0.118318, 0.094742,
+ *       0.118318, 0.147761, 0.118318,
+ *       0.094742, 0.118318, 0.094742
+ *     ],
+ *     width: 3,
+ *     height: 3
+ *   };
  *
  * @method fspecial
  * @param {String} [type='gaussian'] - The type of 2D filter to create (coerced to 'gaussian')
  * @param {Number} [hsize=3] - The length of the filter
  * @param {Number} [σ=1.5] - The filter sigma value
- * @returns {Array.<Array.<Number>>} c - Returns the central part of the convolution of the same
+ * @returns {Object} c - Returns the central part of the convolution of the same
  * size as `a`.
  * @public
  * @memberOf matlab

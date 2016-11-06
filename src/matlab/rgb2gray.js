@@ -28,23 +28,27 @@ function luma([r, g, b]) {
  *
  * @method rgb2gray
  * @param {ImageData} imageData - The input imageData
- * @returns {Array.<Array.<Number>>} grayscale - A 2d grayscale representation of the input image
+ * @returns {Object} grayscale - A grayscale representation of the input image
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
 function rgb2gray({ data: d, width, height }) {
-	const lumaMx = [];
+	const data = [];
 
-	for (let x = 0; x < width; x++) {
-		lumaMx[x] = [];
-		for (let y = 0; y < height; y++) {
-			const index = (x + y * width) * 4;
+	for (let i = 0; i < width; i++) {
+		for (let j = 0; j < height; j++) {
+			const grayIndex = i + j * width;
+			const imgIndex = grayIndex * 4;
 
-			lumaMx[x][y] = luma([d[index], d[index + 1], d[index + 2], d[index + 3]]);
+			data[grayIndex] = luma([d[imgIndex], d[imgIndex + 1], d[imgIndex + 2], d[imgIndex + 3]]);
 		}
 	}
-	return lumaMx;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 module.exports = {

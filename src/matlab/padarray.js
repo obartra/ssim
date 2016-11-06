@@ -1,4 +1,3 @@
-const { zeros } = require('./zeros');
 const { mod } = require('./mod');
 
 /**
@@ -9,25 +8,26 @@ const { mod } = require('./mod');
  * 5 6 7 8            8 7 6 5
  *
  * @method mirrorHorizonal
- * @param {Array.<Array.<Number>>} b - The input matrix
- * @returns {Array.<Array.<Number>>} out - The rotated matrix
+ * @param {Object} A - The input matrix
+ * @returns {Object} B - The rotated matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
-function mirrorHorizonal(b) {
-	const out = [];
-	const row = b.length;
-	const col = b[0].length;
+function mirrorHorizonal({ data: ref, width, height }) {
+	const data = [];
 
-	for (let x = 0; x < row; x++) {
-		out[x] = [];
-		for (let y = 0; y < col; y++) {
-			out[x][y] = b[x][col - 1 - y];
+	for (let x = 0; x < height; x++) {
+		for (let y = 0; y < width; y++) {
+			data[x * width + y] = ref[x * width + width - 1 - y];
 		}
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
@@ -39,25 +39,26 @@ function mirrorHorizonal(b) {
  * 9 0 F E            1 2 3 4
  *
  * @method mirrorVertical
- * @param {Array.<Array.<Number>>} b - The input matrix
- * @returns {Array.<Array.<Number>>} out - The rotated matrix
+ * @param {Object} A - The input matrix
+ * @returns {Object} B - The rotated matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
-function mirrorVertical(b) {
-	const out = [];
-	const row = b.length;
-	const col = b[0].length;
+function mirrorVertical({ data: ref, width, height }) {
+	const data = [];
 
-	for (let x = 0; x < row; x++) {
-		out[x] = [];
-		for (let y = 0; y < col; y++) {
-			out[x][y] = b[row - 1 - x][y];
+	for (let x = 0; x < height; x++) {
+		for (let y = 0; y < width; y++) {
+			data[x * width + y] = ref[(height - 1 - x) * width + y];
 		}
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
@@ -68,26 +69,31 @@ function mirrorVertical(b) {
  * 5 6   7 8            5 6 7 8
  *
  * @method concatHorizontal
- * @param {Array.<Array.<Number>>} a - The first matrix
- * @param {Array.<Array.<Number>>} b - The second matrix
- * @returns {Array.<Array.<Number>>} out - The combined matrix
+ * @param {Object} A - The first matrix
+ * @param {Object} B - The second matrix
+ * @returns {Object} out - The combined matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
-function concatHorizontal(a, b) {
-	const out = [];
+function concatHorizontal(A, B) {
+	const data = [];
+	const width = A.width + B.width;
 
-	for (let x = 0; x < a.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < a[0].length; y++) {
-			out[x][y] = a[x][y];
+	for (let x = 0; x < A.height; x++) {
+		for (let y = 0; y < A.width; y++) {
+			data[x * width + y] = A.data[x * A.width + y];
 		}
-		for (let y = 0; y < b[0].length; y++) {
-			out[x][y + a[0].length] = b[x][y];
+		for (let y = 0; y < B.width; y++) {
+			data[x * width + y + A.width] = B.data[x * B.width + y];
 		}
 	}
-	return out;
+
+	return {
+		data,
+		width,
+		height: A.height
+	};
 }
 
 /**
@@ -100,25 +106,19 @@ function concatHorizontal(a, b) {
  *                      7 8
  *
  * @method concatVertical
- * @param {Array.<Array.<Number>>} a - The first matrix
- * @param {Array.<Array.<Number>>} b - The second matrix
- * @returns {Array.<Array.<Number>>} out - The combined matrix
+ * @param {Object} A - The first matrix
+ * @param {Object} B - The second matrix
+ * @returns {Object} out - The combined matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
-function concatVertical(a, b) {
-	const out = zeros(a.length + b.length, a[0].length);
-
-	for (let y = 0; y < a[0].length; y++) {
-		for (let x = 0; x < a.length; x++) {
-			out[x][y] = a[x][y];
-		}
-		for (let x = 0; x < b.length; x++) {
-			out[x + a.length][y] = b[x][y];
-		}
-	}
-	return out;
+function concatVertical(A, B) {
+	return {
+		data: A.data.concat(B.data),
+		height: A.height + B.height,
+		width: A.width
+	};
 }
 
 /**
@@ -135,27 +135,29 @@ function concatVertical(a, b) {
  * 5 6 7 8             6 5 5 6 7 8 8 7
  *
  * @method padHorizontal
- * @param {Array.<Array.<Number>>} A - The input matrix
+ * @param {Object} A - The input matrix
  * @param {Number} pad - The nummber of cells to add to each side (left / right)
- * @returns {Array.<Array.<Number>>} out - The padded matrix
+ * @returns {Object} B - The padded matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
 function padHorizontal(A, pad) {
-	const out = [];
+	const data = [];
+	const width = A.width + 2 * pad;
 	const mirrored = concatHorizontal(A, mirrorHorizonal(A));
-	const mirrorCol = mirrored[0].length;
-	const col = A[0].length;
 
-	for (let x = 0; x < A.length; x++) {
-		out[x] = [];
-		for (let y = -pad; y < col + pad; y++) {
-			out[x][y + pad] = mirrored[x][mod(y, mirrorCol)];
+	for (let x = 0; x < A.height; x++) {
+		for (let y = -pad; y < A.width + pad; y++) {
+			data[x * width + y + pad] = mirrored.data[x * mirrored.width + mod(y, mirrored.width)];
 		}
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height: A.height
+	};
 }
 
 /**
@@ -177,35 +179,37 @@ function padHorizontal(A, pad) {
  *                     1 2 3 4
  *
  * @method padVertical
- * @param {Array.<Array.<Number>>} A - The input matrix
+ * @param {Object} A - The input matrix
  * @param {Number} pad - The nummber of cells to add to each side (top / bottom)
- * @returns {Array.<Array.<Number>>} out - The padded matrix
+ * @returns {Object} B - The padded matrix
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
 function padVertical(A, pad) {
-	const out = [];
+	const data = [];
 	const mirrored = concatVertical(A, mirrorVertical(A));
-	const mirrorRow = mirrored.length;
-	const row = A.length;
 
-	for (let x = -pad; x < row + pad; x++) {
-		out[x + pad] = [];
-		for (let y = 0; y < A[0].length; y++) {
-			out[x + pad][y] = mirrored[mod(x, mirrorRow)][y];
+	for (let x = -pad; x < A.height + pad; x++) {
+		for (let y = 0; y < A.width; y++) {
+			data[(x + pad) * A.width + y] = mirrored.data[mod(x, mirrored.height) * A.width + y];
 		}
 	}
-	return out;
+
+	return {
+		data,
+		width: A.width,
+		height: A.height + pad * 2
+	};
 }
 
 /**
  * Implements `padarray` matching Matlab only for the case where:
  *
- * `padRow <= A.length && padCol <= A[0].length`
+ * `padHeight <= A.height && padWidth <= A.width`
  *
- * For an input Matrix `E`, we add padding A, B, C, D, F, G, H and I of size `padRow` and `padCol`
- * where appropriate. For instance, given E:
+ * For an input Matrix `E`, we add padding A, B, C, D, F, G, H and I of size `padHeight` and
+ * `padWidth` where appropriate. For instance, given E:
  *
  * 1 2 3
  * 4 5 6
@@ -239,60 +243,105 @@ function padVertical(A, pad) {
  * | 3 2 1 | 1 2 3 | 3 2 1 |
  *
  * @method fastPadding
- * @param {Array.<Array.<Number>>} out - The initialized, but empty, output padded matrix
- * @param {Array.<Array.<Number>>} A - The input matrix
- * @param {Number} pad - The nummber of cells to add to each side (top / bottom)
+ * @param {Object} A - The input matrix
  * @param {Array} padding - An array where the first element is the padding to apply to each side on
  * each row and the second one is the vertical padding for each side of each column
- * @returns {Array.<Array.<Number>>} out - An array with padding added on each side.
+ * @returns {Object} B - The padded matrix
  * @private
  * @memberOf matlab
  * @since 0.0.4
  */
-function fastPadding(out, A, [padRow, padCol]) {
-	for (let x = -padRow; x < 0; x++) {
+function fastPadding(A, [padHeight, padWidth]) {
+	const data = [];
+	const width = A.width + padWidth * 2;
+	const height = A.height + padHeight * 2;
+
+	for (let x = -padHeight; x < 0; x++) {
 		// A
-		for (let y = -padCol; y < 0; y++) {
-			out[x + padRow][y + padCol] = A[Math.abs(x) - 1][Math.abs(y) - 1];
+		for (let y = -padWidth; y < 0; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				(Math.abs(x) - 1) * A.width + Math.abs(y) - 1
+			];
 		}
 		// B
-		for (let y = 0; y < A[0].length; y++) {
-			out[x + padRow][y + padCol] = A[Math.abs(x) - 1][y];
+		for (let y = 0; y < A.width; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				(Math.abs(x) - 1) * A.width + y
+			];
 		}
 		// C
-		for (let y = A[0].length; y < A[0].length + padCol; y++) {
-			out[x + padRow][y + padCol] = A[Math.abs(x) - 1][2 * A[0].length - y - 1];
+		for (let y = A.width; y < A.width + padWidth; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				(Math.abs(x) - 1) * A.width + 2 * A.width - y - 1
+			];
 		}
 	}
-	for (let x = 0; x < A.length; x++) {
+
+	for (let x = 0; x < A.height; x++) {
 		// D
-		for (let y = -padCol; y < 0; y++) {
-			out[x + padRow][y + padCol] = A[x][Math.abs(y) - 1];
+		for (let y = -padWidth; y < 0; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				x * A.width + Math.abs(y) - 1
+			];
 		}
 		// E
-		for (let y = 0; y < A[0].length; y++) {
-			out[x + padRow][y + padCol] = A[x][y];
+		for (let y = 0; y < A.width; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				x * A.width + y
+			];
 		}
 		// F
-		for (let y = A[0].length; y < A[0].length + padCol; y++) {
-			out[x + padRow][y + padCol] = A[x][2 * A[0].length - y - 1];
+		for (let y = A.width; y < A.width + padWidth; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				x * A.width + 2 * A.width - y - 1
+			];
 		}
 	}
-	for (let x = A.length; x < A.length + padRow; x++) {
+
+	for (let x = A.height; x < A.height + padHeight; x++) {
 		// G
-		for (let y = -padCol; y < 0; y++) {
-			out[x + padRow][y + padCol] = A[2 * A.length - x - 1][Math.abs(y) - 1];
+		for (let y = -padWidth; y < 0; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				(2 * A.height - x - 1) * A.width + Math.abs(y) - 1
+			];
 		}
 		// H
-		for (let y = 0; y < A[0].length; y++) {
-			out[x + padRow][y + padCol] = A[2 * A.length - x - 1][y];
+		for (let y = 0; y < A.width; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				(2 * A.height - x - 1) * A.width + y
+			];
 		}
 		// I
-		for (let y = A[0].length; y < A[0].length + padCol; y++) {
-			out[x + padRow][y + padCol] = A[2 * A.length - x - 1][2 * A[0].length - y - 1];
+		for (let y = A.width; y < A.width + padWidth; y++) {
+			data[
+				(x + padHeight) * width + y + padWidth
+			] = A.data[
+				(2 * A.height - x - 1) * A.width + 2 * A.width - y - 1
+			];
 		}
 	}
-	return out;
+
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
@@ -318,29 +367,25 @@ function fastPadding(out, A, [padRow, padCol]) {
  * suffers.
  *
  * @method padarray
- * @param {Array.<Array.<Number>>} A - The target matrix
+ * @param {Object} A - The target matrix
  * @param {Array} padding - An array where the first element is the padding to apply to each side on
  * each row and the second one is the vertical padding for each side of each column
  * @param {String} [padval='symmetric'] - The type of padding to apply (coerced to 'symmetric')
  * @param {String} [direction='both'] - The direction to which apply padding (coerced to 'both')
- * @returns {Array.<Array.<Number>>} c - An array with padding added on each side.
+ * @returns {Object} c - An array with padding added on each side.
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function padarray(A, [padRow, padCol]) {
+function padarray(A, [padHeight, padWidth]) {
 	// If the padding to mirror is not greater than `A` dimensions, we can use `fastPadding`,
 	// otherwise we fall back to a slower implementation that mimics Matlab behavior for longer
 	// matrices
-	if (A.length >= padRow && A[0].length >= padCol) {
-		const c = [];
-
-		for (let x = 0; x < A.length + padRow * 2; x++) {
-			c[x] = [];
-		}
-		return fastPadding(c, A, [padRow, padCol]);
+	if (A.height >= padHeight && A.width >= padWidth) {
+		return fastPadding(A, [padHeight, padWidth]);
 	}
-	return padVertical(padHorizontal(A, padCol), padRow);
+
+	return padVertical(padHorizontal(A, padWidth), padHeight);
 }
 
 module.exports = {

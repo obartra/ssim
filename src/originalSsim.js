@@ -1,5 +1,17 @@
-const { multiply2d, add2d, divide2d, square2d, sum2d } = require('./math');
-const { fspecial, filter2, imfilter, skip2d, ones } = require('./matlab');
+const {
+	add2d,
+	divide2d,
+	multiply2d,
+	square2d,
+	sum2d
+} = require('./math');
+const {
+	filter2,
+	fspecial,
+	imfilter,
+	ones,
+	skip2d
+} = require('./matlab');
 
 /**
  * Generates a SSIM map based on two input image matrices. For images greater than 512 pixels, it
@@ -36,7 +48,7 @@ function originalSsim(pixels1, pixels2, options) { // eslint-disable-line max-st
 	w = divide2d(w, sum2d(w));
 
 	if (options.downsample === 'original') {
-		const factor = Math.min(pixels1[0].length, pixels2.length) / options.maxSize;
+		const factor = Math.min(pixels1.width, pixels1.height) / options.maxSize;
 		const rfactor = Math.round(factor);
 		const f = Math.max(1, rfactor);
 
@@ -46,11 +58,9 @@ function originalSsim(pixels1, pixels2, options) { // eslint-disable-line max-st
 			lpf = divide2d(lpf, sum2d(lpf));
 			pixels1 = imfilter(pixels1, lpf, 'symmetric', 'same');
 			pixels2 = imfilter(pixels2, lpf, 'symmetric', 'same');
-			const rowLength = pixels1.length;
-			const colLength = pixels1[0].length;
 
-			pixels1 = skip2d(pixels1, [0, f, rowLength], [0, f, colLength]);
-			pixels2 = skip2d(pixels2, [0, f, rowLength], [0, f, colLength]);
+			pixels1 = skip2d(pixels1, [0, f, pixels1.height], [0, f, pixels1.width]);
+			pixels2 = skip2d(pixels2, [0, f, pixels2.height], [0, f, pixels2.width]);
 		}
 	}
 

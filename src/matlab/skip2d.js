@@ -22,23 +22,31 @@
  * `f` must be an integer greater than or equal to 1.
  *
  * @method skip2d
- * @param {Array.<Array.<Number>>} h - The FIR filter
- * @returns {Array.<Array.<Number>>} X - The input matrix
+ * @param {Object} A - The input matrix
+ * @returns {Object} B - The downsized matrix
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function skip2d(mx, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) {
-	const out = [];
+function skip2d(A, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) {
+	const data = [];
+	const width = Math.ceil((endCol - startCol) / everyCol);
+	const height = Math.ceil((endRow - startRow) / everyRow);
 
-	for (let x = 0; x < (endRow - startRow) / everyRow; x++) {
-		out[x] = [];
-		for (let y = 0; y < (endCol - startCol) / everyCol; y++) {
-			out[x][y] = mx[startRow + x * everyRow][startCol + y * everyCol];
+	for (let i = 0; i < height; i++) {
+		for (let j = 0; j < width; j++) {
+			const Ai = startRow + i * everyRow;
+			const Aj = startCol + j * everyCol;
+
+			data[i * width + j] = A.data[Ai * A.width + Aj];
 		}
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 module.exports = {

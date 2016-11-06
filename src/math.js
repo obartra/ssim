@@ -58,19 +58,17 @@ function floor(xn) {
  * Computes the sum of all elements within a matrix
  *
  * @method sum2d
- * @param {Array.<Array.<Number>>} mx - The input matrix
+ * @param {Object} A - The input matrix
  * @returns {Number} sum - The total value of adding each cell
  * @public
  * @memberOf math
  * @since 0.0.2
  */
-function sum2d(mx) {
+function sum2d({ data }) {
 	let out = 0;
 
-	for (let x = 0; x < mx.length; x++) {
-		for (let y = 0; y < mx[0].length; y++) {
-			out += mx[x][y];
-		}
+	for (let x = 0; x < data.length; x++) {
+		out += data[x];
 	}
 
 	return out;
@@ -80,252 +78,237 @@ function sum2d(mx) {
  * Adds values of two matrices of the same size
  *
  * @method add2dMx
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
- * @param {Array.<Array.<Number>>} mx2 - The second input matrix
- * @returns {Array.<Array.<Number>>} sumMx - A matrix with a cell-by-cell sum of `mx1` and `mx2`
+ * @param {Object} A - The first input matrix
+ * @param {Object} B - The second input matrix
+ * @returns {Object} out - A matrix with a cell-by-cell sum of `A` and `B`
  * @private
  * @memberOf math
  * @since 0.0.2
  */
-function add2dMx(mx1, mx2) {
-	const out = [];
+function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
+	const data = [];
 
-	for (let x = 0; x < mx1.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx1[0].length; y++) {
-			out[x][y] = mx1[x][y] + mx2[x][y];
+	for (let x = 0; x < height; x++) {
+		const offset = x * width;
+
+		for (let y = 0; y < width; y++) {
+			data[offset + y] = ref1[offset + y] + ref2[offset + y];
 		}
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
  * Adds a constant value two each matrix cell
  *
  * @method add2dScalar
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
+ * @param {Object} A - The first input matrix
  * @param {Number} increase - The value to add
- * @returns {Array.<Array.<Number>>} sumMx - The cell-by-cell matrix sum of `mx1` and `increase`
+ * @returns {Object} B - The cell-by-cell matrix sum of `A` and `increase`
  * @private
  * @memberOf math
  * @since 0.0.2
  */
-function add2dScalar(mx, increase) {
-	const out = [];
+function add2dScalar({ data: ref, width, height }, increase) {
+	const data = [];
 
-	for (let x = 0; x < mx.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx[0].length; y++) {
-			out[x][y] = mx[x][y] + increase;
-		}
+	for (let x = 0; x < ref.length; x++) {
+		data[x] = ref[x] + increase;
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
  * Adds values of two matrices of the same size or a matrix and a constant
  *
  * @method add2d
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
- * @param {Array.<Array.<Number>>|Number} increase - The second input matrix or the constant value
- * @returns {Array.<Array.<Number>>} sumMx - A matrix with a cell-by-cell sum of the first and
- * second parameters
+ * @param {Object} A - The first input matrix
+ * @param {Object|Number} increase - The second input matrix or the constant value
+ * @returns {Object} B - A matrix with a cell-by-cell sum of the first and second parameters
  * @public
  * @memberOf math
  * @since 0.0.2
  */
-function add2d(mx, increase) {
+function add2d(A, increase) {
 	if (typeof increase === 'number') {
-		return add2dScalar(mx, increase);
+		return add2dScalar(A, increase);
 	}
-	return add2dMx(mx, increase);
+	return add2dMx(A, increase);
 }
 
 /**
  * Divides each matrix cell by a constant value
  *
  * @method divide2dScalar
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
+ * @param {Object} A - The first input matrix
  * @param {Number} divisor - The value to divide by
- * @returns {Array.<Array.<Number>>} dividedMx - The cell-by-cell matrix divison of `mx1` and
- * `divisor`
+ * @returns {Object} B - The cell-by-cell matrix divison of `A` and `divisor`
  * @private
  * @memberOf math
  * @since 0.0.2
  */
-function divide2dScalar(mx, divisor) {
-	const out = [];
+function divide2dScalar({ data: ref, width, height }, divisor) {
+	const data = [];
 
-	for (let x = 0; x < mx.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx[0].length; y++) {
-			out[x][y] = mx[x][y] / divisor;
-		}
+	for (let x = 0; x < ref.length; x++) {
+		data[x] = ref[x] / divisor;
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
  * Divides, cell-by-cell, values of two matrices of the same size
  *
  * @method divide2dMx
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
- * @param {Array.<Array.<Number>>} mx2 - The second input matrix
- * @returns {Array.<Array.<Number>>} divideMx - A matrix with a cell-by-cell division of `mx1`/`mx2`
+ * @param {Object} A - The first input matrix
+ * @param {Object} B - The second input matrix
+ * @returns {Object} out - A matrix with a cell-by-cell division of `A`/`B`
  * @private
  * @memberOf math
  * @since 0.0.2
  */
-function divide2dMx(mx1, mx2) {
-	const out = [];
+function divide2dMx({ data: ref1, width, height }, { data: ref2 }) {
+	const data = [];
 
-	for (let x = 0; x < mx1.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx1[0].length; y++) {
-			out[x][y] = mx1[x][y] / mx2[x][y];
-		}
+	for (let x = 0; x < ref1.length; x++) {
+		data[x] = ref1[x] / ref2[x];
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
  * Divides values of two matrices of the same size or between a matrix and a constant
  *
  * @method divide2d
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
- * @param {Array.<Array.<Number>>|Number} divisor - The second input matrix or the constant value
- * @returns {Array.<Array.<Number>>} divideMx - A matrix with the cell-by-cell division of the first
- * and second parameters
+ * @param {Object} A - The first input matrix
+ * @param {Object|Number} divisor - The second input matrix or the constant value
+ * @returns {Object} B - A matrix with the cell-by-cell division of the first and second parameters
  * @public
  * @memberOf math
  * @since 0.0.2
  */
-function divide2d(mx, divisor) {
+function divide2d(A, divisor) {
 	if (typeof divisor === 'number') {
-		return divide2dScalar(mx, divisor);
+		return divide2dScalar(A, divisor);
 	}
-	return divide2dMx(mx, divisor);
-}
-
-/**
- * Divides values of two vectors of the same size or between a vector and a constant
- *
- * @example divide([2, 4, 6], 2) => [1, 2, 3]
- * @example divide([2, 4, 6], [2, 4, 6]) => [1, 1, 1]
- * @method divide
- * @param {Array.<Number>} mx1 - The first input matrix
- * @param {Array.<Number>|Number} divisor - The second input matrix or the constant value
- * @returns {Array.<Number>} division - A vector with each element division of the first and second
- * parameters
- * @public
- * @memberOf math
- */
-function divide(vec, divisor) {
-	if (typeof divisor === 'number') {
-		return divide2d([vec], divisor)[0];
-	}
-	return divide2d([vec], [divisor])[0];
+	return divide2dMx(A, divisor);
 }
 
 /**
  * Multiplies each matrix cell by a constant value
  *
  * @method multiply2dScalar
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
+ * @param {Object} A - The first input matrix
  * @param {Number} multiplier - The value to multiply each cell with
- * @returns {Array.<Array.<Number>>} multMx - The cell-by-cell matrix multiplication of `mx1`
- * and `multiplier`
+ * @returns {Object} B - The cell-by-cell matrix multiplication of `A` and `multiplier`
  * @private
  * @memberOf math
  * @since 0.0.2
  */
-function multiply2dScalar(mx, multiplier) {
-	const out = [];
+function multiply2dScalar({ data: ref, width, height }, multiplier) {
+	const data = [];
 
-	for (let x = 0; x < mx.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx[0].length; y++) {
-			out[x][y] = mx[x][y] * multiplier;
-		}
+	for (let x = 0; x < ref.length; x++) {
+		data[x] = ref[x] * multiplier;
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
  * Multiplies, cell-by-cell, values of two matrices of the same size
  *
  * @method multiply2dMx
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
- * @param {Array.<Array.<Number>>} mx2 - The second input matrix
- * @returns {Array.<Array.<Number>>} multMx - A matrix with a cell-by-cell multiplication of
- * `mx1` * `mx2`
+ * @param {Object} A - The first input matrix
+ * @param {Object} B - The second input matrix
+ * @returns {Object} out - A matrix with a cell-by-cell multiplication of `A` * `B`
  * @private
  * @memberOf math
  * @since 0.0.2
  */
-function multiply2dMx(mx1, mx2) {
-	const out = [];
+function multiply2dMx({ data: ref1, width, height }, { data: ref2 }) {
+	const data = [];
 
-	for (let x = 0; x < mx1.length; x++) {
-		out[x] = [];
-		for (let y = 0; y < mx1[0].length; y++) {
-			out[x][y] = mx1[x][y] * mx2[x][y];
-		}
+	for (let x = 0; x < ref1.length; x++) {
+		data[x] = ref1[x] * ref2[x];
 	}
 
-	return out;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 /**
  * Multiplies values of two matrices of the same size or between a matrix and a constant
  *
  * @method multiply2d
- * @param {Array.<Array.<Number>>} mx1 - The first input matrix
- * @param {Array.<Array.<Number>>|Number} multiplier - The second input matrix or the constant value
- * @returns {Array.<Array.<Number>>} multMx - A matrix with the cell-by-cell multiplication of the
- * first and second parameters
+ * @param {Object} A - The first input matrix
+ * @param {Object|Number} multiplier - The second input matrix or the constant value
+ * @returns {Object} out - A matrix with the cell-by-cell multiplication of the first and second
+ * parameters
  * @public
  * @memberOf math
  * @since 0.0.2
  */
-function multiply2d(mx, multiplier) {
+function multiply2d(A, multiplier) {
 	if (typeof multiplier === 'number') {
-		return multiply2dScalar(mx, multiplier);
+		return multiply2dScalar(A, multiplier);
 	}
-	return multiply2dMx(mx, multiplier);
+	return multiply2dMx(A, multiplier);
 }
 
 /**
  * Generates the cell-by-cell square value of a target matrix
  *
  * @method square2d
- * @param {Array.<Array.<Number>>} mx - The target matrix
- * @returns {Array.<Array.<Number>>} squareMx - A matrix with squared value of each cell
+ * @param {Object} A - The target matrix
+ * @returns {Object} B - A matrix with squared value of each cell
  * @public
  * @memberOf math
  * @since 0.0.2
  */
-function square2d(mx) {
-	return multiply2d(mx, mx);
+function square2d(A) {
+	return multiply2d(A, A);
 }
 
 /**
  * Calculates the total mean value for a given matrix
  *
  * @method mean2d
- * @param {Array.<Array.<Number>>} mx - The target matrix
+ * @param {Array.<Array.<Number>>} A - The target matrix
  * @returns {Number} mean - The total mean of each cell
  * @public
  * @memberOf math
  * @since 0.0.2
  */
-function mean2d(mx) {
-	return sum2d(mx) / (mx.length * mx[0].length);
+function mean2d(A) {
+	return sum2d(A) / A.data.length;
 }
 
 /**
@@ -340,7 +323,6 @@ function mean2d(mx) {
 module.exports = {
 	add2d,
 	average,
-	divide,
 	divide2d,
 	floor,
 	mean2d,
