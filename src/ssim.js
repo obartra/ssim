@@ -1,10 +1,9 @@
 const {
 	add2d,
-	divide,
 	divide2d,
 	multiply2d,
 	square2d,
-	sum
+	sum2d
 } = require('./math');
 const {
 	conv2,
@@ -39,13 +38,13 @@ function ssim(pixels1, pixels2, options) {
 	const c1 = Math.pow(options.k1 * L, 2);
 	const c2 = Math.pow(options.k2 * L, 2);
 
-	w = divide(w, sum(w));
+	w = divide2d(w, sum2d(w));
 	const wt = transpose(w);
 
+// console.log(pixels1);
 	if (options.downsample === 'original') {
 		[pixels1, pixels2] = downsample(pixels1, pixels2, options.maxSize);
 	}
-
 	const μ1 = conv2(pixels1, w, wt, 'valid');
 	const μ2 = conv2(pixels2, w, wt, 'valid');
 	const μ1Sq = square2d(μ1);
@@ -78,13 +77,17 @@ function ssim(pixels1, pixels2, options) {
  */
 function getRange(size) {
 	const offset = Math.floor(size / 2);
-	const out = [];
+	const data = [];
 
 	for (let x = -offset; x <= offset; x++) {
-		out[x + offset] = Math.abs(x);
+		data[x + offset] = Math.abs(x);
 	}
 
-	return out;
+	return {
+		data,
+		width: data.length,
+		height: 1
+	};
 }
 
 /**
@@ -164,7 +167,7 @@ function genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq) {
  * @memberOf ssim
  */
 function downsample(pixels1, pixels2, maxSize = 256) {
-	const factor = Math.min(pixels1[0].length, pixels2.length) / maxSize;
+	const factor = Math.min(pixels1.width, pixels2.height) / maxSize;
 	const f = Math.round(factor);
 
 	if (f > 1) {
@@ -192,10 +195,8 @@ function downsample(pixels1, pixels2, maxSize = 256) {
  */
 function imageDownsample(pixels, filter, filtert, f) {
 	const imdown = dimfilter(pixels, filter, filtert, 'symmetric', 'same');
-	const rowLength = imdown.length;
-	const colLength = imdown[0].length;
 
-	return skip2d(imdown, [0, f, rowLength], [0, f, colLength]);
+	return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width]);
 }
 
 /**
@@ -209,15 +210,23 @@ function imageDownsample(pixels, filter, filtert, f) {
  */
 function getDecomposedBlockFilter(length) {
 	const filterCell = Math.sqrt(1 / (length * length));
-	const filter = [];
+	const data = [];
 
 	for (let i = 0; i < length; i++) {
-		filter[i] = filterCell;
+		data[i] = filterCell;
 	}
 
 	return {
-		filter,
-		filtert: transpose(filter)
+		filter: {
+			data,
+			width: length,
+			height: 1
+		},
+		filtert: {
+			data,
+			width: 1,
+			height: length
+		}
 	};
 }
 

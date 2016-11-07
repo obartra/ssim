@@ -19,30 +19,35 @@
  * `Y = normpdf(X)` uses the standard normal distribution (`µ = 0`, `σ = 1`).
  * `Y = normpdf(X,µ)` uses the normal distribution with unit standard deviation (`σ = 1`).
  *
- * @example normpdf([2, 1, 0, 1, 2], 0, 1.5) => [ 0.10934, 0.21297, 0.26596, 0.21297, 0.10934]
+ * @example normpdf({ data: [2, 1, 0, 1, 2], width: 5, height: 1 }, 0, 1.5) =>
+ *   { data: [ 0.10934, 0.21297, 0.26596, 0.21297, 0.10934], width: 5, height: 1 }
  *
  * @method normpdf
- * @param {Array.<Array.<Number>>} X - The input matrix
+ * @param {Object} X - The input matrix
  * @param {Number} [µ=0] - The length of the filter
  * @param {Number} [σ=1] - The filter sigma value
- * @returns {Array.<Array.<Number>>} Y - Returns the central part of the convolution of the same
+ * @returns {Object} Y - Returns the central part of the convolution of the same
  * size as `a`.
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function normpdf(X, µ = 0, σ = 1) {
-	// Y = ((2 * pi)^(-1 / 2)) * exp(-((x - µ) / σ)^2 / 2) / σ;
+function normpdf({ data: ref, width, height }, µ = 0, σ = 1) {
+	// data = ((2 * pi)^(-1 / 2)) * exp(-((x - µ) / σ)^2 / 2) / σ;
 	const SQ2PI = 2.5066282746310005024157652848110;
-	const Y = [];
+	const data = [];
 
-	for (let i = 0; i < X.length; i++) {
-		const z = (X[i] - µ) / σ;
+	for (let i = 0; i < ref.length; i++) {
+		const z = (ref[i] - µ) / σ;
 
-		Y[i] = Math.exp(-Math.pow(z, 2) / 2) / (σ * SQ2PI);
+		data[i] = Math.exp(-Math.pow(z, 2) / 2) / (σ * SQ2PI);
 	}
 
-	return Y;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 module.exports = {

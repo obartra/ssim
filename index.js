@@ -28,7 +28,7 @@ function getOptions(options) {
 }
 
 function validateDimensions([pixels1, pixels2]) {
-	if (pixels1.length !== pixels2.length || pixels1[0].length !== pixels2[0].length) {
+	if (pixels1.width !== pixels2.width || pixels1.height !== pixels2.height) {
 		throw new Error('Image dimensions do not match');
 	}
 

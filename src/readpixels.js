@@ -5,31 +5,6 @@ const imageType = require('image-type');
 const bmp = require('bmp-js');
 
 /**
- * Parses the buffer data and converts it into a 3d matrix
- *
- * @method bufferToMatrix
- * @param {Object} imageData - An image data object (the matrix and dimensions)
- * @returns {Array.<Array.<Array.<Number>>>} image - A 3d image matrix
- * @private
- * @memberOf bufferToMatrix
- * @since 0.0.2
- */
-function bufferToMatrix(imageData) {
-	const matrix = [];
-	const d = imageData.data;
-
-	for (let x = 0; x < imageData.width; x++) {
-		matrix[x] = [];
-		for (let y = 0; y < imageData.height; y++) {
-			const index = (x + y * imageData.width) * 4;
-
-			matrix[x][y] = [d[index], d[index + 1], d[index + 2], d[index + 3]];
-		}
-	}
-
-	return matrix;
-}
-/**
  * If `limit` is set, it will generate proportional dimensions to `width` and `height` with the
  * smallest dimesion limited to `limit`.
  *
@@ -89,7 +64,7 @@ function parse(data, limit) {
 	}
 
 	return new Promise((resolve) => {
-		resolve(bufferToMatrix(imageData));
+		resolve(imageData);
 	});
 }
 

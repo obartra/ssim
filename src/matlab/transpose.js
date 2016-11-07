@@ -9,30 +9,27 @@ const { zeros } = require('./zeros');
  * for each element.
  *
  * This method does not handle complex or imaginary numbers
- * This method always returns a matrix
  *
  * @method transpose
- * @param {Array.<Array.<Number>>|Array.<Number>} A - The matrix or vector to transpose
- * @returns {Array.<Array.<Number>>} B - The transposed matrix
+ * @param {Object} A - The matrix to transpose
+ * @returns {Object} B - The transposed matrix
  * @public
  * @memberOf matlab
  */
-function transpose(A) {
-	const isVector = typeof A[0] === 'number';
+function transpose({ data: ref, width, height }) {
+	const { data } = zeros(width, height);
 
-	if (isVector) {
-		A = [A];
-	}
-
-	const B = zeros(A[0].length, A.length);
-
-	for (let i = 0; i < A.length; i++) {
-		for (let j = 0; j < A[0].length; j++) {
-			B[j][i] = A[i][j];
+	for (let i = 0; i < height; i++) {
+		for (let j = 0; j < width; j++) {
+			data[j * height + i] = ref[i * width + j];
 		}
 	}
 
-	return B;
+	return {
+		data,
+		height: width,
+		width: height
+	};
 }
 
 module.exports = {

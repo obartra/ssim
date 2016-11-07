@@ -5,6 +5,7 @@ require('core-js/es6/promise');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 const { readpixels } = require('../../src/readpixels');
+const { imageDataToMx } = require('./util');
 
 const testPath = join(__dirname, '../');
 
@@ -24,7 +25,7 @@ function loadImages(samples) {
 	const promises = Object.keys(samples)
 		.map(key =>
 			readpixels(join(testPath, samples[key]))
-				.then(pixels => ({ [key]: pixels })
+				.then(pixels => ({ [key]: imageDataToMx(pixels) })
 			)
 		);
 

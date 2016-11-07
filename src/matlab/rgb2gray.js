@@ -21,28 +21,34 @@ function luma([r, g, b]) {
 }
 
 /**
- * Converts a 3d matrix of [row, column, rgb] into a 2d one [row, column] where the value is the
- * grayscale equivalent of the rgb input.
+ * Converts an imageData object of { width, height, data } into a 2d matrix [row, column]
+ * where the value is the grayscale equivalent of the rgb input.
  *
  * This method mimics Matlab's `rgb2gray` method
  *
  * @method rgb2gray
- * @param {Array.<Array.<Array.<Number>>>} mx - The input matrix
- * @returns {Array.<Array.<Number>>} grayscale - A 2d grayscale representation of the input image
+ * @param {ImageData} imageData - The input imageData
+ * @returns {Object} grayscale - A grayscale representation of the input image
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function rgb2gray(mx) {
-	const lumaMx = [];
+function rgb2gray({ data: d, width, height }) {
+	const data = [];
 
-	for (let x = 0; x < mx.length; x++) {
-		lumaMx[x] = [];
-		for (let y = 0; y < mx[x].length; y++) {
-			lumaMx[x][y] = luma(mx[x][y]);
+	for (let i = 0; i < width; i++) {
+		for (let j = 0; j < height; j++) {
+			const grayIndex = i + j * width;
+			const imgIndex = grayIndex * 4;
+
+			data[grayIndex] = luma([d[imgIndex], d[imgIndex + 1], d[imgIndex + 2], d[imgIndex + 3]]);
 		}
 	}
-	return lumaMx;
+	return {
+		data,
+		width,
+		height
+	};
 }
 
 module.exports = {
