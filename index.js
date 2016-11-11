@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { readpixels } = require('./src/readpixels');
 const { rgb2gray } = require('./src/matlab');
 const { mean2d } = require('./src/math');

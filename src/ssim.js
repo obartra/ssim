@@ -34,14 +34,13 @@ const {
  */
 function ssim(pixels1, pixels2, options) {
 	let w = normpdf(getRange(options.windowSize), 0, 1.5);
-	const L = Math.pow(2, options.bitDepth) - 1;
-	const c1 = Math.pow(options.k1 * L, 2);
-	const c2 = Math.pow(options.k2 * L, 2);
+	const L = (2 ** options.bitDepth) - 1;
+	const c1 = (options.k1 * L) ** 2;
+	const c2 = (options.k2 * L) ** 2;
 
 	w = divide2d(w, sum2d(w));
 	const wt = transpose(w);
 
-// console.log(pixels1);
 	if (options.downsample === 'original') {
 		[pixels1, pixels2] = downsample(pixels1, pixels2, options.maxSize);
 	}

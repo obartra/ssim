@@ -19,3 +19,11 @@ test('should create a gaussian low pass filter of different dimensions', (t) => 
 
 	t.end();
 });
+
+test('should default to "gaussian" with length 3 and sigma of 1.5', (t) => {
+	const fspecialDefault = fspecial();
+	const fspecialGaussian = fspecial('gaussian', 3, 1.5);
+
+	t.deepEqual(fspecialDefault, fspecialGaussian);
+	t.end();
+});

@@ -41,9 +41,9 @@ function originalSsim(pixels1, pixels2, options) { // eslint-disable-line max-st
 	// Exceeding max-statements to preserve the structure of the original Matlab script
 
 	let w = fspecial('gaussian', options.windowSize, 1.5);
-	const L = Math.pow(2, options.bitDepth) - 1;
-	const c1 = Math.pow(options.k1 * L, 2);
-	const c2 = Math.pow(options.k2 * L, 2);
+	const L = (2 ** options.bitDepth) - 1;
+	const c1 = (options.k1 * L) ** 2;
+	const c2 = (options.k2 * L) ** 2;
 
 	w = divide2d(w, sum2d(w));
 

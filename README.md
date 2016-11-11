@@ -43,6 +43,10 @@ Run this code on [runkit](https://runkit.com/obartra/runkit-npm-ssim-js).
 
 For more advanced usage, check the wiki [here](https://github.com/obartra/ssim/wiki/Usage).
 
+## CLI
+
+There's also a small CLI tool that you can call from your npm scripts as `ssim <img1> <img2>`. Run `ssim --help` to see additional options.
+
 ### Output
 
 | Parameter   | Description                                                 |
@@ -66,5 +70,5 @@ The code is fully documented. Documentation is hosted by doclets.io and availabl
 | Code Quality  | [![Code Climate](https://codeclimate.com/github/obartra/ssim/badges/gpa.svg)](https://codeclimate.com/github/obartra/ssim) [![Issue Count](https://codeclimate.com/github/obartra/ssim/badges/issue_count.svg)](https://codeclimate.com/github/obartra/ssim) |
 | Versioning    | [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![npm](https://img.shields.io/npm/v/ssim.js.svg)](https://www.npmjs.com/package/ssim.js) |
 | Dependencies  | [![Known Vulnerabilities](https://snyk.io/test/github/obartra/ssim/badge.svg)](https://snyk.io/test/github/obartra/ssim) [![DavidDM](https://david-dm.org/obartra/ssim.svg)](https://david-dm.org/obartra/ssim) |
-| Environments  | ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-5.7.0-brightgreen.svg) ![](https://img.shields.io/badge/node-6.1-brightgreen.svg) ![](https://img.shields.io/badge/node-7.0-brightgreen.svg) |
+| Environments  | ![](https://img.shields.io/badge/node-0.12-brightgreen.svg) ![](https://img.shields.io/badge/node-7.0-brightgreen.svg) |
 | Documentation | [![InchCI](https://inch-ci.org/github/obartra/ssim.svg?branch=master)](https://inch-ci.org/github/obartra/ssim)  |

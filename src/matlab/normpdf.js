@@ -40,7 +40,7 @@ function normpdf({ data: ref, width, height }, µ = 0, σ = 1) {
 	for (let i = 0; i < ref.length; i++) {
 		const z = (ref[i] - µ) / σ;
 
-		data[i] = Math.exp(-Math.pow(z, 2) / 2) / (σ * SQ2PI);
+		data[i] = Math.exp(-(z ** 2) / 2) / (σ * SQ2PI);
 	}
 
 	return {

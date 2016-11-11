@@ -98,3 +98,29 @@ test('filter2 should match conv2 for symmetric filters', (t) => {
 	t.deepEqual(filterV, convV);
 	t.end();
 });
+
+test('filter2 shape should default to "same"', (t) => {
+	const mx = {
+		data: [
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 0, 1, 2,
+			3, 4, 5, 6
+		],
+		width: 4,
+		height: 4
+	};
+	const f = {
+		data: [
+			0, 1,
+			1, 0
+		],
+		width: 2,
+		height: 2
+	};
+	const filterDefault = filter2(f, mx);
+	const filterSame = filter2(f, mx, 'same');
+
+	t.deepEqual(filterDefault, filterSame);
+	t.end();
+});
