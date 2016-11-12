@@ -236,7 +236,14 @@ test('decomposed convolutions should match the matching matrix if rank is one', 
 	const { data: out } = conv2(A, B, 'valid');
 	const { data: vhOut } = conv2(A, v, h, 'valid');
 
-	t.deepEqual(roundTo(out, 5), roundTo(vhOut, 5));
+	t.equal(out.height, vhOut.height);
+	t.equal(out.width, vhOut.width);
+
+	for (let i = 0; i < out.height; i++) {
+		for (let j = 0; j < out.width; j++) {
+			t.equal(get(out, i, j), get(vhOut, i, j));
+		}
+	}
 	t.end();
 });
 
@@ -303,5 +310,33 @@ test('should convolve 2 1-D kernels', (t) => {
 		}
 	}
 
+	t.end();
+});
+
+test('decomposed convolutions should default to "full"', (t) => {
+	const A = {
+		data: [
+			0.4366211, 0.9054124, 0.5962102,
+			0.6371818, 0.1158246, 0.6470448,
+			0.0063498, 0.2951452, 0.6623801
+		],
+		width: 3,
+		height: 3
+	};
+	const v = {
+		data: [-0.30780, -0.38440, -0.30780],
+		width: 1,
+		height: 3
+	};
+	const h = {
+		data: [-0.30780, -0.38440, -0.30780],
+		width: 3,
+		height: 1
+	};
+
+	const { data: fullOut } = conv2(A, v, h, 'full');
+	const { data: defaultOut } = conv2(A, v, h);
+
+	t.deepEqual(defaultOut, fullOut);
 	t.end();
 });

@@ -36,6 +36,34 @@ Object.keys(sampleCsv).forEach((key) => {
 });
 
 [fastSsim, originalSsim].forEach((ssim) => {
+	test('should honor max size parameter', (t) => {
+		const A = samples['24x18'].gray;
+		const B = samples['24x18-degraded'].gray;
+		const limMaxSize = Object.assign({}, options, {
+			downsample: 'original',
+			maxSize: 13
+		});
+		const ssimMap = ssim(A, B, limMaxSize);
+
+		t.equal(ssimMap.width, 14);
+		t.equal(ssimMap.height, 8);
+		t.end();
+	});
+
+	test('should default max size parameter to 256', (t) => {
+		const limMaxSize = Object.assign({}, options, {
+			downsample: 'original',
+			maxSize: undefined
+		});
+		const A = samples['24x18'].gray;
+		const B = samples['24x18-degraded'].gray;
+		const ssimMap = ssim(A, B, limMaxSize);
+
+		t.equal(ssimMap.width, 14);
+		t.equal(ssimMap.height, 8);
+		t.end();
+	});
+
 	test('should return 1 for equal data', (t) => {
 		const A = samples['24x18'].gray;
 		const ssimMap = ssim(A, A, options);

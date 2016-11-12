@@ -5,8 +5,8 @@
   "version": "0.0.0-semantically-released",
   "scripts": {
     "commit": "git-cz",
-    "cover": "istanbul cover blue-tape spec/unit/{*,**/*}.spec.js",
-    "cover:check": "istanbul check",
+    "cover": "babel-istanbul cover blue-tape spec/unit/{*,**/*}.spec.js",
+    "cover:check": "babel-istanbul check",
     "test": "blue-tape spec/unit/{*,**/*}.spec.js | tap-dot",
     "e2e": "npm-run-all --parallel e2e:*",
     "e2e:live": "blue-tape spec/e2e_dist/live.spec.js | tap-dot",
@@ -39,10 +39,16 @@
   "bugs": {
     "url": "https://github.com/obartra/ssim/issues"
   },
+  "bin": {
+    "ssim": "./cli.js"
+  },
   "files": [
+    "package.json",
     "README.md",
     "LICENSE",
     "src",
+    "version.js",
+    "cli.js",
     "dist/ssim.js",
     "dist/ssim.js.map"
   ],
@@ -50,30 +56,32 @@
   "dependencies": {
     "bmp-js": "^0.0.2",
     "canvas": "^1.6.2",
-    "image-type": "^2.1.0"
+    "image-type": "^2.1.0",
+    "yargs": "^6.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
+    "babel-istanbul": "^0.11.0",
     "babel-loader": "^6.2.7",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2016": "^6.16.0",
     "blue-tape": "^1.0.0",
     "codeclimate-test-reporter": "^0.4.0",
     "commitizen": "^2.8.6",
     "condition-circle": "^1.5.0",
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^1.2.0",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^12.0.0",
+    "eslint": "^3.10.0",
+    "eslint-config-airbnb": "^13.0.0",
     "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-react": "^6.5.0",
+    "eslint-plugin-promise": "^3.3.2",
+    "eslint-plugin-react": "^6.6.0",
     "eslint-plugin-standard": "^2.0.1",
     "inchjs": "^0.4.1",
-    "istanbul": "^0.4.5",
-    "jsdoc": "^3.4.2",
+    "jsdoc": "^3.4.3",
     "json-loader": "^0.5.4",
     "nodemon": "^1.11.0",
     "npm-run-all": "^3.1.1",
@@ -92,7 +100,7 @@
   },
   "greenkeeper": {
     "ignore": [
-      "eslint-plugin-import"
+      "eslint-plugin-jsx-a11y"
     ]
   }
 }

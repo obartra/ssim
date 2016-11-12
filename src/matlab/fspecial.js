@@ -20,7 +20,7 @@ function rangeSquare2d(length) {
 
 	for (let x = 0; x < size; x++) {
 		for (let y = 0; y < size; y++) {
-			data[x * size + y] = Math.pow(x - length, 2) + Math.pow(y - length, 2);
+			data[x * size + y] = ((x - length) ** 2) + ((y - length) ** 2);
 		}
 	}
 
@@ -46,7 +46,7 @@ function gaussianFilter2d({ data: ref, width, height }, σ) {
 	const data = [];
 
 	for (let x = 0; x < ref.length; x++) {
-		data[x] = Math.exp(-ref[x] / (2 * Math.pow(σ, 2)));
+		data[x] = Math.exp(-ref[x] / (2 * (σ ** 2)));
 	}
 
 	return {

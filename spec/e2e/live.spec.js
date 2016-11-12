@@ -7,7 +7,7 @@ const ssim = require('../../dist/ssim');
 const { roundTo } = require('../helpers_dist/round');
 const scores = require('../samples/LIVE.json');
 
-const tol = Math.pow(10, -5); // 0.00001, to account for rounding differences on the 6th decimal
+const tol = 10 ** -5; // 0.00001, to account for rounding differences on the 6th decimal
 const base = 'spec/samples/LIVE';
 
 function createTest({ file, reference, mssim, type }) {
