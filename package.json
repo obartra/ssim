@@ -91,7 +91,8 @@
     "webpack": "^2.1.0-beta.24"
   },
   "release": {
-    "verifyConditions": "condition-circle"
+    "verifyConditions": "condition-circle",
+    "analyzeCommits": "@bubltechnology/customizable-commit-analyzer"
   },
   "config": {
     "commitizen": {
