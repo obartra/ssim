@@ -15,7 +15,7 @@ const { mod } = require('./mod');
  * @since 0.0.2
  */
 function mirrorHorizonal({ data: ref, width, height }) {
-	const data = [];
+	const data = new Array(ref.length);
 
 	for (let x = 0; x < height; x++) {
 		for (let y = 0; y < width; y++) {
@@ -46,7 +46,7 @@ function mirrorHorizonal({ data: ref, width, height }) {
  * @since 0.0.2
  */
 function mirrorVertical({ data: ref, width, height }) {
-	const data = [];
+	const data = new Array(ref.length);
 
 	for (let x = 0; x < height; x++) {
 		for (let y = 0; y < width; y++) {
@@ -77,8 +77,8 @@ function mirrorVertical({ data: ref, width, height }) {
  * @since 0.0.2
  */
 function concatHorizontal(A, B) {
-	const data = [];
 	const width = A.width + B.width;
+	const data = new Array(A.height * width);
 
 	for (let x = 0; x < A.height; x++) {
 		for (let y = 0; y < A.width; y++) {
@@ -143,8 +143,8 @@ function concatVertical(A, B) {
  * @since 0.0.2
  */
 function padHorizontal(A, pad) {
-	const data = [];
 	const width = A.width + 2 * pad;
+	const data = new Array(width * A.height);
 	const mirrored = concatHorizontal(A, mirrorHorizonal(A));
 
 	for (let x = 0; x < A.height; x++) {
@@ -187,8 +187,9 @@ function padHorizontal(A, pad) {
  * @since 0.0.2
  */
 function padVertical(A, pad) {
-	const data = [];
 	const mirrored = concatVertical(A, mirrorVertical(A));
+	const height = A.height + pad * 2;
+	const data = new Array(A.width * height);
 
 	for (let x = -pad; x < A.height + pad; x++) {
 		for (let y = 0; y < A.width; y++) {
@@ -199,7 +200,7 @@ function padVertical(A, pad) {
 	return {
 		data,
 		width: A.width,
-		height: A.height + pad * 2
+		height
 	};
 }
 
@@ -252,9 +253,9 @@ function padVertical(A, pad) {
  * @since 0.0.4
  */
 function fastPadding(A, [padHeight, padWidth]) {
-	const data = [];
 	const width = A.width + padWidth * 2;
 	const height = A.height + padHeight * 2;
+	const data = new Array(width * height);
 
 	for (let x = -padHeight; x < 0; x++) {
 		// A

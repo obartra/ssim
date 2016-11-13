@@ -29,9 +29,9 @@
  * @since 0.0.2
  */
 function skip2d(A, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) {
-	const data = [];
 	const width = Math.ceil((endCol - startCol) / everyCol);
 	const height = Math.ceil((endRow - startRow) / everyRow);
+	const data = new Array(width * height);
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
