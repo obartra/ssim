@@ -45,7 +45,7 @@ function sum(xn) {
  * @since 0.0.1
  */
 function floor(xn) {
-	const out = [];
+	const out = new Array(xn.length);
 
 	for (let x = 0; x < xn.length; x++) {
 		out[x] = Math.floor(xn[x]);
@@ -86,7 +86,7 @@ function sum2d({ data }) {
  * @since 0.0.2
  */
 function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = [];
+	const data = new Array(ref1.length);
 
 	for (let x = 0; x < height; x++) {
 		const offset = x * width;
@@ -115,7 +115,7 @@ function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
  * @since 0.0.2
  */
 function add2dScalar({ data: ref, width, height }, increase) {
-	const data = [];
+	const data = new Array(ref.length);
 
 	for (let x = 0; x < ref.length; x++) {
 		data[x] = ref[x] + increase;
@@ -158,7 +158,7 @@ function add2d(A, increase) {
  * @since 0.0.2
  */
 function divide2dScalar({ data: ref, width, height }, divisor) {
-	const data = [];
+	const data = new Array(ref.length);
 
 	for (let x = 0; x < ref.length; x++) {
 		data[x] = ref[x] / divisor;
@@ -183,7 +183,7 @@ function divide2dScalar({ data: ref, width, height }, divisor) {
  * @since 0.0.2
  */
 function divide2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = [];
+	const data = new Array(ref1.length);
 
 	for (let x = 0; x < ref1.length; x++) {
 		data[x] = ref1[x] / ref2[x];
@@ -226,7 +226,7 @@ function divide2d(A, divisor) {
  * @since 0.0.2
  */
 function multiply2dScalar({ data: ref, width, height }, multiplier) {
-	const data = [];
+	const data = new Array(ref.length);
 
 	for (let x = 0; x < ref.length; x++) {
 		data[x] = ref[x] * multiplier;
@@ -251,7 +251,7 @@ function multiply2dScalar({ data: ref, width, height }, multiplier) {
  * @since 0.0.2
  */
 function multiply2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = [];
+	const data = new Array(ref1.length);
 
 	for (let x = 0; x < ref1.length; x++) {
 		data[x] = ref1[x] * ref2[x];

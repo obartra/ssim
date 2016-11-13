@@ -15,8 +15,8 @@ const { sum2d, divide2d } = require('../math');
  * @since 0.0.2
  */
 function rangeSquare2d(length) {
-	const data = [];
 	const size = length * 2 + 1;
+	const data = new Array(size ** 2);
 
 	for (let x = 0; x < size; x++) {
 		for (let y = 0; y < size; y++) {
@@ -43,7 +43,7 @@ function rangeSquare2d(length) {
  * @since 0.0.2
  */
 function gaussianFilter2d({ data: ref, width, height }, σ) {
-	const data = [];
+	const data = new Array(ref.length);
 
 	for (let x = 0; x < ref.length; x++) {
 		data[x] = Math.exp(-ref[x] / (2 * (σ ** 2)));

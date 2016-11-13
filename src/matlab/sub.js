@@ -14,7 +14,7 @@
  * @since 0.0.2
  */
 function sub({ data: ref, width: refWidth }, x, height, y, width) {
-	const data = [];
+	const data = new Array(width * height);
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {

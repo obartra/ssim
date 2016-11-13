@@ -11,11 +11,13 @@
  * @since 0.0.2
  */
 function numbers(height, width, num) {
-	const data = [];
+	const size = width * height;
+	const data = new Array(size);
 
-	for (let x = 0; x < width * height; x++) {
+	for (let x = 0; x < size; x++) {
 		data[x] = num;
 	}
+
 	return {
 		data,
 		width,

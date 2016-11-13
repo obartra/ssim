@@ -76,7 +76,7 @@ function ssim(pixels1, pixels2, options) {
  */
 function getRange(size) {
 	const offset = Math.floor(size / 2);
-	const data = [];
+	const data = new Array(offset * 2 + 1);
 
 	for (let x = -offset; x <= offset; x++) {
 		data[x + offset] = Math.abs(x);
@@ -209,7 +209,7 @@ function imageDownsample(pixels, filter, filtert, f) {
  */
 function getDecomposedBlockFilter(length) {
 	const filterCell = Math.sqrt(1 / (length * length));
-	const data = [];
+	const data = new Array(length);
 
 	for (let i = 0; i < length; i++) {
 		data[i] = filterCell;

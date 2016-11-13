@@ -34,7 +34,7 @@ function luma([r, g, b]) {
  * @since 0.0.2
  */
 function rgb2gray({ data: d, width, height }) {
-	const data = [];
+	const data = new Array(width * height);
 
 	for (let i = 0; i < width; i++) {
 		for (let j = 0; j < height; j++) {
