@@ -1,5 +1,5 @@
 const test = require('blue-tape');
-const { imfilter, dimfilter } = require('../../../src/matlab/imfilter');
+const { imfilter } = require('../../../src/matlab/imfilter');
 
 test('should match Matlab symmetric, same imfilter', (t) => {
 	const A = {
@@ -157,61 +157,5 @@ test('should produce different resSize is "same" from when it is "full"', (t) =>
 
 	t.deepEqual(imfilter(A, f, 'symmetric', 'same'), C);
 	t.notDeepEqual(imfilter(A, f, 'symmetric', 'full'), imfilter(A, f, 'symmetric', 'same'));
-	t.end();
-});
-
-test('should match results between a filter and its decomposed counterparts', (t) => {
-	const mx = {
-		data: [
-			1, 2, 3, 4,
-			5, 6, 7, 8,
-			9, 0, 1, 2,
-			3, 4, 5, 6
-		],
-		width: 4,
-		height: 4
-	};
-	const f = {
-		data: [
-			1, 1,
-			1, 1
-		],
-		width: 2,
-		height: 2
-	};
-	// since:
-	//   rank(f) === 1
-	// then:
-	//   [U, S, V] = svd(f)
-	//   v = U(:,1) * sqrt(S(1,1))
-	//   h = V(:,1)' * sqrt(S(1,1))
-	const v = { data: [-1, -1], width: 1, height: 2 };
-	const h = { data: [-1, -1], width: 2, height: 1 };
-
-	const out = imfilter(mx, f, 'symmetric', 'same');
-	const vhOut = dimfilter(mx, v, h, 'symmetric', 'same');
-
-	t.deepEqual(out, vhOut);
-	t.end();
-});
-
-test('dimfilter should default to symmetric padding and resize size of "same"', (t) => {
-	const mx = {
-		data: [
-			1, 2, 3, 4,
-			5, 6, 7, 8,
-			9, 0, 1, 2,
-			3, 4, 5, 6
-		],
-		width: 4,
-		height: 4
-	};
-	const v = { data: [-1, -1], width: 1, height: 2 };
-	const h = { data: [-1, -1], width: 2, height: 1 };
-
-	const outDefault = dimfilter(mx, v, h);
-	const out = dimfilter(mx, v, h, 'symmetric', 'same');
-
-	t.deepEqual(out, outDefault);
 	t.end();
 });

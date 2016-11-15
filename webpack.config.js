@@ -12,10 +12,10 @@ module.exports = {
 	module: {
 		loaders: [{
 			test: /.js$/,
-			loader: 'babel'
+			loader: 'babel-loader'
 		}, {
 			test: /.json$/,
-			loader: 'json'
+			loader: 'json-loader'
 		}]
 	},
 	devtool: 'source-map',

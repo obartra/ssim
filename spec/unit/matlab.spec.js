@@ -5,7 +5,6 @@ test('should expose matlab related methods', (t) => {
 	t.equal(typeof matlab, 'object');
 	[
 		'conv2',
-		'dimfilter',
 		'filter2',
 		'fspecial',
 		'imfilter',

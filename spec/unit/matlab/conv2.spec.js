@@ -1,6 +1,7 @@
 const test = require('blue-tape');
 const { transpose } = require('../../../src/matlab/transpose');
 const { conv2 } = require('../../../src/matlab/conv2');
+const { ones } = require('../../../src/matlab/ones');
 const { roundTo, get } = require('../../helpers/round');
 
 test('should generate the same matrix with a kernel of 1', (t) => {
@@ -338,5 +339,92 @@ test('decomposed convolutions should default to "full"', (t) => {
 	const { data: defaultOut } = conv2(A, v, h);
 
 	t.deepEqual(defaultOut, fullOut);
+	t.end();
+});
+
+test('convolutions with box kernels should default to "full"', (t) => {
+	const A = {
+		data: [
+			0.4366211, 0.9054124, 0.5962102,
+			0.6371818, 0.1158246, 0.6470448,
+			0.0063498, 0.2951452, 0.6623801
+		],
+		width: 3,
+		height: 3
+	};
+	const B = ones(3);
+	const { data: fullOut } = conv2(A, B, 'full');
+	const { data: defaultOut } = conv2(A, B);
+
+	t.deepEqual(defaultOut, fullOut);
+	t.end();
+});
+
+test('box kernels should perform better than non box kernels', (t) => {
+	const A = {
+		data: [
+			10, 20, 30, 10, 20, 30, 10, 20, 30,
+			40, 50, 60, 40, 50, 60, 40, 50, 60,
+			70, 80, 90, 70, 80, 90, 70, 80, 90,
+			10, 20, 30, 10, 20, 30, 10, 20, 30,
+			40, 50, 60, 40, 50, 60, 40, 50, 60,
+			70, 80, 90, 70, 80, 90, 70, 80, 90,
+			10, 20, 30, 10, 20, 30, 10, 20, 30,
+			40, 50, 60, 40, 50, 60, 40, 50, 60,
+			70, 80, 90, 70, 80, 90, 70, 80, 90
+		],
+		width: 9,
+		height: 9
+	};
+	const box = {
+		data: [
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9
+		],
+		width: 9,
+		height: 9
+	};
+	const nonBox = {
+		data: [
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9
+		],
+		width: 9,
+		height: 9
+	};
+	const repetitions = 1000;
+
+	let start = new Date().getTime();
+
+	for (let i = 0; i < repetitions; i++) {
+		conv2(A, box, 'full');
+	}
+
+	const boxTime = new Date().getTime() - start;
+
+	start = new Date().getTime();
+
+	for (let i = 0; i < repetitions; i++) {
+		conv2(A, nonBox, 'full');
+	}
+
+	const nonBoxTime = new Date().getTime() - start;
+
+	t.equal(boxTime < nonBoxTime, true,
+		`box kernel (${boxTime}) should be faster than non box kernel (${nonBoxTime})`);
 	t.end();
 });

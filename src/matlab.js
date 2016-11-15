@@ -1,7 +1,7 @@
 const { conv2 } = require('./matlab/conv2');
 const { filter2 } = require('./matlab/filter2');
 const { fspecial } = require('./matlab/fspecial');
-const { imfilter, dimfilter } = require('./matlab/imfilter');
+const { imfilter } = require('./matlab/imfilter');
 const { normpdf } = require('./matlab/normpdf');
 const { ones } = require('./matlab/ones');
 const { padarray } = require('./matlab/padarray');
@@ -23,7 +23,6 @@ const { zeros } = require('./matlab/zeros');
  */
 module.exports = {
 	conv2,
-	dimfilter,
 	filter2,
 	fspecial,
 	imfilter,

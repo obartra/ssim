@@ -1,5 +1,7 @@
 const { sub } = require('./sub');
 const { zeros } = require('./zeros');
+const { ones } = require('./ones');
+const { multiply2d } = require('../math');
 
 /**
  * `C = conv2(a,b)` computes the two-dimensional convolution of matrices `a` and `b`. If one of
@@ -59,6 +61,50 @@ function mxConv2({ data: ref, width: refWidth, height: refHeight }, b, shape = '
 	};
 
 	return reshape(c, shape, refHeight, b.height, refWidth, b.width);
+}
+
+/**
+ * `C = boxConv(a,b)` computes the two-dimensional convolution of a matrix `a` and box kernel `b`.
+ *
+ * The `shape` parameter returns a subsection of the two-dimensional convolution as defined by
+ * mxConv2.
+ *
+ * @method boxConv
+ * @param {Object} a - The first matrix
+ * @param {Object} b - The box kernel
+ * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
+ * @returns {Object} c - Returns the convolution filtered by `shape`
+ * @private
+ * @memberOf matlab
+ */
+function boxConv(a, { data, width, height }, shape = 'full') {
+	const b1 = ones(height, 1);
+	const b2 = ones(1, width);
+	const out = convn(a, b1, b2, shape);
+
+	return multiply2d(out, data[0]);
+}
+
+/**
+ * Determines whether all values in an array are the same so that the kernel can be treated as a box
+ * kernel
+ *
+ * @method isBoxKernel
+ * @param {Object} a - The input matrix
+ * @returns {Boolean} boxKernel - Returns true if all values in the matrix are the same, false
+ * otherwise
+ * @private
+ * @memberOf matlab
+ */
+function isBoxKernel({ data }) {
+	const expected = data[0];
+
+	for (let i = 1; i < data.length; i++) {
+		if (data[i] !== expected) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /**
@@ -196,6 +242,8 @@ function reshape(c, shape, ma, mb, na, nb) {
 function conv2(...args) {
 	if (args[2] && args[2].data) {
 		return convn(...args);
+	} else if (isBoxKernel(args[1])) {
+		return boxConv(...args);
 	}
 	return mxConv2(...args);
 }
