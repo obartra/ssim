@@ -7,8 +7,9 @@ const {
 } = require('./math');
 const {
 	conv2,
-	dimfilter,
+	imfilter,
 	normpdf,
+	ones,
 	skip2d,
 	transpose
 } = require('./matlab');
@@ -170,63 +171,32 @@ function downsample(pixels1, pixels2, maxSize = 256) {
 	const f = Math.round(factor);
 
 	if (f > 1) {
-		const { filter, filtert } = getDecomposedBlockFilter(f);
+		let lpf = ones(f);
 
-		pixels1 = imageDownsample(pixels1, filter, filtert, f);
-		pixels2 = imageDownsample(pixels2, filter, filtert, f);
+		lpf = divide2d(lpf, sum2d(lpf));
+
+		pixels1 = imageDownsample(pixels1, lpf, f);
+		pixels2 = imageDownsample(pixels2, lpf, f);
 	}
 
 	return [pixels1, pixels2];
 }
 
 /**
- * For a given 1D symmetrical filter `filter` and it's decomposed counterpart `filtert`, downsize
- * image `pixels` by a factor of `f`.
+ * For a given 2D filter `filter`, downsize image `pixels` by a factor of `f`.
  *
  * @method imageDownsample
  * @param {Array.<Array.<Number>>} pixels - The matrix to downsample
- * @param {Array.<Number>} filter - The 1D decomposed filter to convolve the image with
- * @param {Array.<Array.<Number>>} filtert - The second component of the decomposed filter
+ * @param {Array.<Number>} filter - The filter to convolve the image with
  * @param {number} f - The downsampling factor (`image size / f`)
  * @returns {Array.<Array.<Number>>} imdown - The downsampled, filtered image
  * @private
  * @memberOf ssim
  */
-function imageDownsample(pixels, filter, filtert, f) {
-	const imdown = dimfilter(pixels, filter, filtert, 'symmetric', 'same');
+function imageDownsample(pixels, filter, f) {
+	const imdown = imfilter(pixels, filter, 'symmetric', 'same');
 
 	return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width]);
-}
-
-/**
- * Decomposes a block filter into 2 1D kernels
- *
- * @method getDecomposedBlockFilter
- * @param {Number} length - The size of the filter
- * @returns {Object} decomposed - The decomposed 1D components, `filter` and `filtert`
- * @private
- * @memberOf ssim
- */
-function getDecomposedBlockFilter(length) {
-	const filterCell = Math.sqrt(1 / (length * length));
-	const data = new Array(length);
-
-	for (let i = 0; i < length; i++) {
-		data[i] = filterCell;
-	}
-
-	return {
-		filter: {
-			data,
-			width: length,
-			height: 1
-		},
-		filtert: {
-			data,
-			width: 1,
-			height: length
-		}
-	};
 }
 
 /**

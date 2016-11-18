@@ -80,7 +80,8 @@ test('ssim should be faster than originalSsim', t =>
 		.then(({ performance: original }) => {
 			t.equal(fast < original, true,
 			`fast SSIM implementation must be faster than original (${fast}ms vs ${original}ms)`);
-		});
+		})
+		.catch(t.fail);
 	})
 );
 
@@ -88,7 +89,8 @@ function compare({ file, mssim, reference }, t) {
 	return index(reference, file)
 		.then(({ mssim: computedMssim }) => {
 			t.equal(roundTo(computedMssim, 5), mssim);
-		});
+		})
+		.catch(t.fail);
 }
 
 const lena = getJSONScores(lenaScores, resolve(__dirname, '../samples/lena'), 'gif');
