@@ -1,5 +1,3 @@
-const { zeros } = require('./zeros');
-
 /**
  * Transposes a vector or a matrix
  *
@@ -17,7 +15,7 @@ const { zeros } = require('./zeros');
  * @memberOf matlab
  */
 function transpose({ data: ref, width, height }) {
-	const { data } = zeros(width, height);
+	const data = new Array(width * height);
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
