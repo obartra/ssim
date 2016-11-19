@@ -73,13 +73,12 @@ test('downsizing should produce comparable results between "fast" and "original"
 	)
 );
 
-test('ssim should be faster than originalSsim', t =>
+test('ssim should produce the same output than originalSsim', t =>
 	index(samples.avion, samples.avion_j2000_r1, { ssim: 'fast' })
-	.then(({ performance: fast }) => {
+	.then(({ mssim: fast }) => {
 		index(samples.avion, samples.avion_j2000_r1, { ssim: 'original' })
-		.then(({ performance: original }) => {
-			t.equal(fast < original, true,
-			`fast SSIM implementation must be faster than original (${fast}ms vs ${original}ms)`);
+		.then(({ mssim: original }) => {
+			t.equal(roundTo(fast, 5), roundTo(original, 5), 'SSIM should produce the same results');
 		})
 		.catch(t.fail);
 	})
