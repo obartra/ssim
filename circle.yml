@@ -28,7 +28,8 @@ test:
     - npm run docs:check   # Validate documentation using inchjs
     - npm run cover        # Report test coverage locally
     - npm run cover:check  # Fail if coverage drops below 100%
-    - npm run codeclimate  # Send coverage to code climate
+    - npm run test:perf    # Run performance tests
+    - npm run codeclimate  # Run tests and send coverage to code climate
     - cp -R coverage/* $CIRCLE_TEST_REPORTS
 deployment:
   publish:

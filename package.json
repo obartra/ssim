@@ -8,6 +8,7 @@
     "cover": "babel-istanbul cover blue-tape spec/unit/{*,**/*}.spec.js",
     "cover:check": "babel-istanbul check",
     "test": "blue-tape spec/unit/{*,**/*}.spec.js | tap-dot",
+    "test:perf": "blue-tape spec/perf/{*,**/*}.spec.js | tap-dot",
     "e2e": "npm-run-all --parallel e2e:*",
     "e2e:live": "blue-tape spec/e2e_dist/live.spec.js | tap-dot",
     "e2e:ivc": "blue-tape spec/e2e_dist/ivc.spec.js | tap-dot",
