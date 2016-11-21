@@ -1,6 +1,3 @@
-require('core-js/es6/promise');
-require('core-js/modules/es6.object.keys');
-
 const { resolve } = require('path');
 const test = require('blue-tape');
 const scores = require('../samples/IVC_color.json');

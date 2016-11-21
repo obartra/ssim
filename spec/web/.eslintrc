@@ -1,0 +1,14 @@
+{
+	"extends": "../../.eslintrc",
+	"env": {
+		"browser": true
+	},
+	"globals": {
+		"ssim": false,
+		"tape": false,
+		"tapeDom": false
+	},
+	"rules": {
+		"no-console": 0
+	}
+}

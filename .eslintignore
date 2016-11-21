@@ -1,6 +1,7 @@
 dist/
-spec/e2e_dist/
 spec/helpers_dist/
+spec/web/live.build.js
+spec/e2e_dist/
 coverage/
 node_modules/
 .git/
