@@ -1,0 +1,43 @@
+#tests {
+	position: absolute;
+	top: 50px;
+	left: 0; right: 0; bottom: 0;
+	overflow: auto;
+	margin-bottom: 0 !important;
+}
+#tests .test {
+	border-top: none;
+	font-weight: normal;
+	background: transparent;
+}
+#tests p.assert {
+	display: inline-block;
+	width: auto;
+	margin-right: 5px;
+}
+
+#tests p.end {
+	border-bottom: none;
+}
+
+#test-results {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300px;
+	padding: 10px;
+	background-color: palegoldenrod;
+}
+
+#test-results.all-good {
+	background-color: palegreen;
+}
+
+#test-results.oh-my {
+	background-color: palevioletred;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}

@@ -1,11 +1,16 @@
 const webpack = require('webpack');
 
 module.exports = {
-	entry: './index.js',
+	entry: [
+		'core-js/es6/promise',
+		'core-js/modules/es6.object.keys',
+		'core-js/modules/es6.object.assign',
+		'./index.js'
+	],
 	output: {
 		path: __dirname,
 		filename: 'dist/ssim.js',
-		library: '[name]',
+		library: 'ssim',
 		libraryTarget: 'umd'
 	},
 	target: 'node',
@@ -18,12 +23,11 @@ module.exports = {
 			loader: 'json-loader'
 		}]
 	},
-	devtool: 'source-map',
 	externals: {
 		canvas: 'canvas'
 	},
 	plugins: [new webpack.optimize.UglifyJsPlugin({
 		minimize: true,
-		sourceMap: true
+		sourceMap: false
 	})]
 };
