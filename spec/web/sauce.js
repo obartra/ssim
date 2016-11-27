@@ -6,8 +6,14 @@ const SauceLabs = require('saucelabs');
 
 let testsCompleted = 0;
 const httpPort = 8080;
-const maxTests = 5;
-const maxTestTime = 60;
+const maxTestTime = Infinity;
+
+const maxRetries = 3;
+const isCIMaster = process.env.CI && process.env.CIRCLE_BRANCH === 'master';
+const tags = [process.env.CIRCLE_BRANCH || 'dev'];
+const build = process.env.CIRCLE_BUILD_NUM || 0;
+const username = isCIMaster ? process.env.SAUCE_USERNAME_MASTER : process.env.SAUCE_USERNAME;
+const password = isCIMaster ? process.env.SAUCE_ACCESS_KEY_MASTER : process.env.SAUCE_ACCESS_KEY;
 const options = {
 	selenium: {
 		install: {},
@@ -17,12 +23,12 @@ const options = {
 		}
 	},
 	saucelabs: {
-		username: process.env.SAUCE_USERNAME,
-		password: process.env.SAUCE_ACCESS_KEY
+		username,
+		password
 	},
 	webdriver: {
-		user: process.env.SAUCE_USERNAME,
-		key: process.env.SAUCE_ACCESS_KEY,
+		user: username,
+		key: password,
 		host: 'ondemand.saucelabs.com',
 		port: 80
 	}
@@ -49,7 +55,7 @@ function startSauceLabs(ops = {}) {
 	return Promise.resolve(new SauceLabs(ops));
 }
 
-function runTests(ops, saucelabs, url, browser) {
+function runTests(ops, saucelabs, url, browser, retries = 0) {
 	const name = browser.name;
 
 	ops.desiredCapabilities = browser;
@@ -57,32 +63,32 @@ function runTests(ops, saucelabs, url, browser) {
 
 	const client = webdriverio.remote(ops);
 
-	client.addCommand('sauceJobStatus', (status, done) =>
-		saucelabs.updateJob(client.requestHandler.sessionID, status, done)
-	);
+	client.addCommand('sauceJobStatus', (passed, done) => {
+		const id = client.requestHandler.sessionID;
+
+		saucelabs.updateJob(id, { passed, tags, build, public: true }, done);
+	});
 
 	return client
 		.init()
 		.url(`${url}/spec/web/index.html`)
-		.waitForVisible('#test-results.complete', maxTests * maxTestTime * 1000)
+		.waitForVisible('#test-results.complete', maxTestTime)
 		.getAttribute('#test-results.complete', 'class')
 		.then(onClassFound)
 		.then((passed) => {
-			client
-				.sauceJobStatus({
-					passed,
-					public: true
-				})
-				.end();
-			return passed;
-		})
-		.then(passed => timeout(passed, 1000))
-		.then(passed => onComplete(passed, `Completed tests for ${name} (${passed ? '✔️' : '❌'})`))
-		.catch(err => onComplete(false, err));
-}
-
-function timeout(pass, delay) {
-	return new Promise(resolve => setTimeout(() => resolve(pass), delay));
+			if (passed || ++retries >= maxRetries) {
+				return client
+					.sauceJobStatus(passed)
+					.end()
+					.then(() =>
+						onComplete(passed, `Completed tests for ${name} (${passed ? '✔️' : '❌'})`)
+					);
+			}
+			console.log(`Starting retry for ${name} (${retries}/${maxRetries})`);
+			return timeout(60 * 1000) // wait for 1 full minute to allow ngrok to cool down
+				.then(() => console.log('Retrying now...'))
+				.then(() => runTests(ops, saucelabs, url, browser, retries));
+		});
 }
 
 function onClassFound(classNames) {
@@ -90,6 +96,10 @@ function onClassFound(classNames) {
 		classNames = classNames.join(' ');
 	}
 	return classNames.split(' ').indexOf('all-good') !== -1;
+}
+
+function timeout(delay, param) {
+	return new Promise(resolve => setTimeout(() => resolve(param), delay));
 }
 
 function onComplete(passed, msg) {
@@ -108,16 +118,31 @@ function onComplete(passed, msg) {
 	}
 }
 
+function getGroups(items, size = 4) {
+	const copy = items.slice(0);
+	const split = [];
+
+	while (copy.length > 0) {
+		split.push(copy.splice(0, size));
+	}
+
+	return split;
+}
+
 Promise.all([
 	startServer(httpPort),
 	startSauceLabs(options.saucelabs)
 ])
-.then(([url, saucelabs]) =>
-	Promise.all(
-		browserList.map(browser =>
-			runTests(options.webdriver, saucelabs, url, browser)
-		)
-	)
-)
+.then(([url, saucelabs]) => {
+	function runTargetTests(target) {
+		return runTests(options.webdriver, saucelabs, url, target);
+	}
+
+	// We split the tests into groups to limit the number of requests, otherwise tests may exceed
+	// the ngrok connection limit
+	return getGroups(browserList).reduce((p, targets) =>
+		p.then(() => Promise.all(targets.map(runTargetTests))
+	), Promise.resolve());
+})
 .catch(err => onComplete(false, err));
 

@@ -17,20 +17,23 @@ dependencies:
   post:
     - ci/getVersion.sh # Determine the version semantic-release will use, so we can include it in the build
 test:
-  override:
+  pre:
     - npm run build        # Create Node, web and test builds
+  override:
     # `canvas` needs a different install depending on the node version in use.
-    - nvm use $NODE_012 && rm -rf node_modules/canvas && npm i && npm run e2e:ivc || exit 1
+    - nvm use $NODE_012 && rm -rf node_modules/canvas && npm i && npm run e2e:ivc
     # Clean up and switch back to current node version
     - nvm use $NODE_CURRENT && rm -rf node_modules/canvas && npm i
-    - npm run e2e || exit 1
-    - npm run lint         # Ensure all code adheres to the styleguide
-    - npm run docs:check   # Validate documentation using inchjs
-    - npm run cover        # Report test coverage locally
-    - npm run cover:check  # Fail if coverage drops below 100%
-    - npm run test:perf    # Run performance tests
-    - npm run test:web     # Run web-based tests
-    - npm run codeclimate  # Run tests and send coverage to code climate
+
+    - npm run e2e         # Run node end to end tests
+    - npm run lint        # Ensure all code adheres to the styleguide
+    - npm run docs:check  # Validate documentation using inchjs
+    - npm run test:perf   # Run performance tests
+    - npm run test:web    # Run web-based tests
+
+    - npm run cover       # Report test coverage locally
+    - npm run cover:check # Fail if coverage drops below 100%
+    - npm run codeclimate # Run tests and send coverage to code climate
     - cp -R coverage/* $CIRCLE_TEST_REPORTS
 deployment:
   publish:
