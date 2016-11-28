@@ -10,3 +10,6 @@ else
   version="{ type: 'test', version: '0.0.0' }";
 fi
 echo "module.exports = $version;" > version.js
+
+# Log the output
+cat version.js
