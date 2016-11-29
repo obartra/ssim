@@ -21,6 +21,9 @@ test:
   override:
     - ci/node$CIRCLE_NODE_INDEX.sh:
         parallel: true
+    - npm run cover:check                   # Fail if coverage drops below 100%
+    - npm run codeclimate                   # Run tests and send coverage to code climate
+    - cp -R coverage/* $CIRCLE_TEST_REPORTS # Copy test coverage reports for CircleCI
     - |
       # `canvas` package needs a different install depending on the node version in use.
       nvm use $NODE_012 && rm -rf node_modules/canvas && npm i
