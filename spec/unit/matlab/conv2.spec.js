@@ -305,12 +305,16 @@ test('should convolve 2 1-D kernels', (t) => {
 	t.equal(out.height, expected.height);
 	t.equal(out.width, expected.width);
 
+	let isMatch = true;
+
 	for (let i = 0; i < out.height; i++) {
 		for (let j = 0; j < out.width; j++) {
-			t.equal(get(out, i, j), get(expected, i, j));
+			if (get(out, i, j) !== get(expected, i, j)) {
+				isMatch = false;
+			}
 		}
 	}
-
+	t.equal(isMatch, true, 'Results do not match');
 	t.end();
 });
 
