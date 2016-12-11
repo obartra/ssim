@@ -36,8 +36,8 @@ function luma([r, g, b]) {
 function rgb2gray({ data: d, width, height }) {
 	const data = new Array(width * height);
 
-	for (let i = 0; i < width; i++) {
-		for (let j = 0; j < height; j++) {
+	for (let j = 0; j < height; j++) {
+		for (let i = 0; i < width; i++) {
 			const grayIndex = i + j * width;
 			const imgIndex = grayIndex * 4;
 

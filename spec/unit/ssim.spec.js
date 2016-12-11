@@ -20,8 +20,8 @@ const sampleCsv = loadCsv({
 	lena02876: './samples/lena/q02876.csv'
 });
 
-function compareto1(ref) {
-	this.equal(ref, 1);
+function areAllOne(data) {
+	return !data.some(datum => datum !== 1);
 }
 
 samples = JSON.parse(JSON.stringify(samples));
@@ -68,7 +68,7 @@ Object.keys(sampleCsv).forEach((key) => {
 		const A = samples['24x18'].gray;
 		const ssimMap = ssim(A, A, options);
 
-		ssimMap.data.forEach(compareto1.bind(t));
+		t.equal(areAllOne(ssimMap.data), true);
 		t.end();
 	});
 
@@ -76,7 +76,7 @@ Object.keys(sampleCsv).forEach((key) => {
 		const A = samples['24x18'].gray;
 		const ssimMap = ssim(A, A, k0Options);
 
-		ssimMap.data.forEach(compareto1.bind(t));
+		t.equal(areAllOne(ssimMap.data), true);
 		t.end();
 	});
 

@@ -1,71 +1,80 @@
 const test = require('blue-tape');
+const Benchmark = require('benchmark');
 const { conv2 } = require('../../../src/matlab/conv2');
 
+const A = {
+	data: [
+		10, 20, 30, 10, 20, 30, 10, 20, 30,
+		40, 50, 60, 40, 50, 60, 40, 50, 60,
+		70, 80, 90, 70, 80, 90, 70, 80, 90,
+		10, 20, 30, 10, 20, 30, 10, 20, 30,
+		40, 50, 60, 40, 50, 60, 40, 50, 60,
+		70, 80, 90, 70, 80, 90, 70, 80, 90,
+		10, 20, 30, 10, 20, 30, 10, 20, 30,
+		40, 50, 60, 40, 50, 60, 40, 50, 60,
+		70, 80, 90, 70, 80, 90, 70, 80, 90
+	],
+	width: 9,
+	height: 9
+};
+const box = {
+	data: [
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9
+	],
+	width: 9,
+	height: 9
+};
+const nonBox = {
+	data: [
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
+		1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9
+	],
+	width: 9,
+	height: 9
+};
+const KERNEL = {
+	BOX: 'Box kernel',
+	NONBOX: 'Non box kernel'
+};
+
 test('box kernels should perform better than non box kernels', (t) => {
-	const A = {
-		data: [
-			10, 20, 30, 10, 20, 30, 10, 20, 30,
-			40, 50, 60, 40, 50, 60, 40, 50, 60,
-			70, 80, 90, 70, 80, 90, 70, 80, 90,
-			10, 20, 30, 10, 20, 30, 10, 20, 30,
-			40, 50, 60, 40, 50, 60, 40, 50, 60,
-			70, 80, 90, 70, 80, 90, 70, 80, 90,
-			10, 20, 30, 10, 20, 30, 10, 20, 30,
-			40, 50, 60, 40, 50, 60, 40, 50, 60,
-			70, 80, 90, 70, 80, 90, 70, 80, 90
-		],
-		width: 9,
-		height: 9
-	};
-	const box = {
-		data: [
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 9
-		],
-		width: 9,
-		height: 9
-	};
-	const nonBox = {
-		data: [
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9,
-			1 / 9, 1 / 9, 1 / 9, 1 / 9, 1 / 8, 1 / 9, 1 / 9, 1 / 9, 1 / 9
-		],
-		width: 9,
-		height: 9
-	};
-	const repetitions = 1000;
+	function onComplete() {
+		const fastest = this.filter('fastest').map('name');
+		const slowest = this.filter('slowest').map('name');
 
-	let start = new Date().getTime();
-
-	for (let i = 0; i < repetitions; i++) {
-		conv2(A, box, 'full');
+		if (fastest.includes(KERNEL.BOX) && slowest.includes(KERNEL.NONBOX)) {
+			t.ok(`${KERNEL.BOX} is significantly faster than ${KERNEL.NONBOX}`);
+		} else {
+			t.fail(`No statistical significance between ${KERNEL.BOX} and ${KERNEL.NONBOX}`);
+		}
+		t.end();
 	}
 
-	const boxTime = new Date().getTime() - start;
-
-	start = new Date().getTime();
-
-	for (let i = 0; i < repetitions; i++) {
-		conv2(A, nonBox, 'full');
+	function onError() {
+		t.fail('Tests failed');
 	}
 
-	const nonBoxTime = new Date().getTime() - start;
+	const suite = new Benchmark.Suite('Convolution kernel comparison', {
+		onError,
+		onComplete
+	});
 
-	t.equal(boxTime < nonBoxTime, true,
-		`box kernel (${boxTime}) should be faster than non box kernel (${nonBoxTime})`);
-	t.end();
+	suite.add(KERNEL.BOX, () => conv2(A, box, 'full'));
+	suite.add(KERNEL.NONBOX, () => conv2(A, nonBox, 'full'));
+	suite.run();
 });
