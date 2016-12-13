@@ -2,6 +2,7 @@
   "name": "ssim.js",
   "description": "JavaScript implementation of the SSIM algorithm",
   "main": "dist/ssim.js",
+  "browser": "dist/ssim.web.js",
   "version": "0.0.0-semantically-released",
   "scripts": {
     "commit": "git-cz",
