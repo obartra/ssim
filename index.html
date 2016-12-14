@@ -19,12 +19,9 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="ssimjs" class="anchor" href="#ssimjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SSIM.JS</h1>
+      <p>SSIM.JS is a JavaScript library that generates a <code>0</code> to <code>1</code> score on how similar two images are. It's sensitive to compression artifacts which make it useful to assess quality degradation.</p>
 
-<p>SSIM.JS is a JavaScript implementation of the SSIM algorithms published by <a href="/assets/ssim.pdf">Wang, et al. 2004</a> on "Image Quality Assessment: From Error Visibility to Structural Similarity".</p>
-
-<p>SSIM measures structural similarity of images in a <code>[0, 1]</code> index. The closer SSIM is to <code>1</code> the more similar both images are. The advantage of SSIM over other measures like <a href="https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">PSNR</a> and <a href="https://en.wikipedia.org/wiki/Mean_squared_error">MSE</a> is that it correlates better with subjective ratings on image quality.</p>
+<p>The closer SSIM is to <code>1</code> the higher the similarity. The advantage of SSIM over other measures like <a href="https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">PSNR</a> and <a href="https://en.wikipedia.org/wiki/Mean_squared_error">MSE</a> is that it correlates better with subjective ratings on image quality.</p>
 
 <p>For instance, the following images have a similar MSE rating:</p>
 
@@ -62,63 +59,85 @@
 
 <p><em>Table extracted from <a href="http://www.cns.nyu.edu/%7Elcv/ssim/">http://www.cns.nyu.edu/~lcv/ssim/</a></em></p>
 
-<p>For a general overview on SSIM check the Wikipedia article <a href="https://en.wikipedia.org/wiki/Structural_similarity">here</a>.</p>
+<p>This project is a direct port of algorithms published by <a href="/assets/ssim.pdf">Wang, et al. 2004</a> on "Image Quality Assessment: From Error Visibility to Structural Similarity". The original Matlab scripts are available <a href="https://ece.uwaterloo.ca/%7Ez70wang/research/iwssim/">here</a> with their datasets. To view the steps taken to validate <code>ssim.js</code> results, check the <a href="https://github.com/obartra/ssim/wiki/Results-Validation">wiki</a>.</p>
 
-<p>This project includes a line-by-line port of the original Matlab scripts, they are available <a href="https://ece.uwaterloo.ca/%7Ez70wang/research/iwssim/">here</a> with their datasets.</p>
+<p>For a general overview on SSIM check the Wikipedia <a href="https://en.wikipedia.org/wiki/Structural_similarity">article</a>.</p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <div class="highlight highlight-source-shell"><pre>npm install ssim.js</pre></div>
 
-<p>If you run into any issues during the installation, check the <a href="https://github.com/Automattic/node-canvas#installation">node-canvas</a> installation steps.</p>
+<p>This will install the node, web and CLI versions.</p>
+
+<p>Installing it globally (<code>npm install -g</code>) will make the <code>ssim</code> CLI tool available on your path.</p>
+
+<p>You can also use the web version directly from <a href="https://unpkg.com">unpkg</a>'s CDN:</p>
+
+<p><code>https://unpkg.com/ssim.js@{{semver}}</code>.</p>
+
+<p>For instance, if you wanted to use the latest <code>2.x</code> version, you would require:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://unpkg.com/ssim.js@^2.0.0<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>For any issues during installation, check the <a href="https://github.com/obartra/ssim/wiki/FAQ">FAQ</a>.</p>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The API is the same on Node and on the browser:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">ssim</span>(img1, img2, options)
+  .<span class="pl-en">then</span>({ mssim, ssim_map, <span class="pl-c1">performance</span> })
+  .<span class="pl-en">catch</span>(error);</pre></div>
+
+<p>There's a playground for the Node and Web versions <a href="https://ssim-comparison.gomix.me/">here</a>.</p>
+
+<p>For more usage information, check the <a href="https://github.com/obartra/ssim/wiki/Usage">wiki</a>.</p>
+
+<h3>
+<a id="node-example" class="anchor" href="#node-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Node Example</h3>
 
 <div class="highlight highlight-source-js"><pre>
 <span class="pl-k">import</span> <span class="pl-smi">ssim</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>ssim.js<span class="pl-pds">'</span></span>;
 
 <span class="pl-en">ssim</span>(<span class="pl-s"><span class="pl-pds">'</span>./img1.jpg<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>./img2.jpg<span class="pl-pds">'</span></span>)
-    .<span class="pl-en">then</span>(<span class="pl-smi">out</span> <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">`</span>SSIM: <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">out</span>.<span class="pl-smi">mssim</span><span class="pl-pse">}</span></span> (generated in: <span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">out</span>.<span class="pl-smi">performance</span><span class="pl-pse">}</span></span>ms)<span class="pl-pds">`</span></span>))
-    .<span class="pl-en">catch</span>(<span class="pl-smi">err</span> <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-s"><span class="pl-pds">'</span>Error generating SSIM<span class="pl-pds">'</span></span>, err));</pre></div>
-
-<p>Run this code on <a href="https://runkit.com/obartra/runkit-npm-ssim-js">runkit</a>.</p>
-
-<p>For more advanced usage, check the wiki <a href="https://github.com/obartra/ssim/wiki/Usage">here</a>.</p>
-
-<h2>
-<a id="cli" class="anchor" href="#cli" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CLI</h2>
-
-<p>There's also a small CLI tool that you can call from your npm scripts as <code>ssim &lt;img1&gt; &lt;img2&gt;</code>. Run <code>ssim --help</code> to see additional options.</p>
+  .<span class="pl-en">then</span>(({ mssim, <span class="pl-c1">performance</span> }) <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">`</span>SSIM: <span class="pl-s1"><span class="pl-pse">${</span>mssim<span class="pl-pse">}</span></span> (<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-c1">performance</span><span class="pl-pse">}</span></span>ms)<span class="pl-pds">`</span></span>))
+  .<span class="pl-en">catch</span>(<span class="pl-smi">err</span> <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-s"><span class="pl-pds">'</span>Error generating SSIM<span class="pl-pds">'</span></span>, err));</pre></div>
 
 <h3>
-<a id="output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output</h3>
+<a id="browser-example" class="anchor" href="#browser-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser Example</h3>
 
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mssim</td>
-<td>Mean SSIM, the average of all <code>ssim_map</code> values</td>
-</tr>
-<tr>
-<td>ssim_map</td>
-<td>An array of arrays containing the ssim value at each window</td>
-</tr>
-<tr>
-<td>performance</td>
-<td>The total time to compute SSIM (in milliseconds)</td>
-</tr>
-</tbody>
-</table>
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://unpkg.com/ssim.js@^2.0.0<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-en">ssim</span>(<span class="pl-s"><span class="pl-pds">'</span>/img1.jpg<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>/img2.jpg<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">      .<span class="pl-en">then</span>(<span class="pl-k">function</span>(<span class="pl-smi">out</span>) {</span>
+<span class="pl-s1">        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>SSIM:<span class="pl-pds">'</span></span>, <span class="pl-smi">out</span>.<span class="pl-smi">mssim</span>, <span class="pl-s"><span class="pl-pds">'</span>(generated in:<span class="pl-pds">'</span></span>, <span class="pl-smi">out</span>.<span class="pl-smi">performance</span>, <span class="pl-s"><span class="pl-pds">'</span>ms)<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">      })</span>
+<span class="pl-s1">      .<span class="pl-en">catch</span>(<span class="pl-k">function</span>(<span class="pl-smi">err</span>) {</span>
+<span class="pl-s1">        <span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-s"><span class="pl-pds">'</span>Error generating SSIM<span class="pl-pds">'</span></span>, err);</span>
+<span class="pl-s1">      });</span>
+<span class="pl-s1">  &lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
 
-<p>To view the steps taken to validate the results, check the wiki <a href="https://github.com/obartra/ssim/wiki/Results-Validation">here</a>.</p>
+<h3>
+<a id="cli-example" class="anchor" href="#cli-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CLI Example</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ ./node_modules/.bin/ssim ./img1.jpg ./img2.jpg --quiet
+0.9853</pre></div>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>The code is fully documented but a prettier version hosted by doclets.io is available <a href="https://doclets.io/obartra/ssim/master">here</a>.</p>
+
+<h2>
+<a id="supported-environments" class="anchor" href="#supported-environments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported Environments</h2>
+
+<p>CI tests ensure the SSIM package works both on Node and on the browser.</p>
+
+<p>The Node build is tested against Node 0.12 and above. Browser builds are tested on recent versions of browsers and IE9+. Check the <a href="https://github.com/obartra/ssim/wiki/Old-Node-and-Browsers">wiki</a> for more details.</p>
+
+<p><a href="https://saucelabs.com/u/saucessim-master"><img src="https://saucelabs.com/browser-matrix/saucessim-master.svg" alt="Sauce Browser Matrix"></a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/obartra/ssim">SSIM.js</a> is maintained by <a href="https://github.com/obartra">obartra</a>.</span>
