@@ -67,7 +67,7 @@
     "@bubltechnology/customizable-commit-analyzer": "^1.0.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
-    "babel-istanbul": "^0.11.0",
+    "babel-istanbul": "^0.12.0",
     "babel-loader": "^6.2.9",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-es2016": "^6.16.0",
