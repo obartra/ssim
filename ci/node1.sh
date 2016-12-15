@@ -9,4 +9,5 @@ npm run lint                          # Ensure all code adheres to the styleguid
 npm run docs:check                    # Validate documentation using inchjs
 npm run test:perf                     # Run performance tests
 npm run test:web                      # Run cross browser web-based tests
-npm run e2e                           # Run node end to end tests
+npm run e2e:live                      # Run node end to end LIVE dataset tests
+npm run e2e:ivc                       # Run node end to end IVC dataset tests

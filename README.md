@@ -64,7 +64,7 @@ For more usage information, check the [wiki](https://github.com/obartra/ssim/wik
 import ssim from 'ssim.js';
 
 ssim('./img1.jpg', './img2.jpg')
-  .then(({ mssim, performance }) => console.log(`SSIM: ${mssim} (generated in: ${performance}ms)`))
+  .then(({ mssim, performance }) => console.log(`SSIM: ${mssim} (${performance}ms)`))
   .catch(err => console.error('Error generating SSIM', err));
 ```
 
@@ -75,7 +75,7 @@ ssim('./img1.jpg', './img2.jpg')
   <script>
     ssim('/img1.jpg', '/img2.jpg')
       .then(function(out) {
-        console.log('SSIM:', out.mssim, '(generated in:', out.performance, 'ms)');
+        console.log('SSIM:', out.mssim, '(', out.performance, 'ms)');
       })
       .catch(function(err) {
         console.error('Error generating SSIM', err);
