@@ -72,7 +72,7 @@ Object.keys(sampleCsv).forEach((key) => {
 		t.end();
 	});
 
-	test('should also return one when k1 and k2 are 0', (t) => {
+	test('should return 1 when k1 and k2 are 0', (t) => {
 		const A = samples['24x18'].gray;
 		const ssimMap = ssim(A, A, k0Options);
 

@@ -4,7 +4,7 @@ coverage/
 docs/
 npm-debug.log
 dist/
-spec/web/live.build.js
+spec/web/web.build.js
 spec/web/*.map
 spec/helpers_dist/
 spec/e2e_dist/

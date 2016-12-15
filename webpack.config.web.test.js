@@ -1,10 +1,10 @@
 const common = require('./webpack.config.web');
 
 module.exports = Object.assign({}, common, {
-	entry: './spec/web/live.spec.js',
+	entry: './spec/web/web.spec.js',
 	output: {
 		path: __dirname,
-		filename: 'spec/web/live.build.js',
+		filename: 'spec/web/web.build.js',
 		library: 'ssimTest',
 		libraryTarget: 'var'
 	},

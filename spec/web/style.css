@@ -1,10 +1,21 @@
 #tests {
-	position: absolute;
 	top: 50px;
 	left: 0; right: 0; bottom: 0;
 	overflow: auto;
 	margin-bottom: 0 !important;
 }
+
+.img-container {
+	display: block;
+	overflow: auto;
+}
+
+img {
+	float: left;
+	padding: 4px 4px 4px 0;
+	max-width: 100px;
+}
+
 #tests .test {
 	border-top: none;
 	font-weight: normal;
