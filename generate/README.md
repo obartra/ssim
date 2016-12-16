@@ -11,7 +11,7 @@ This folder contains scripts related to the manipulation of the Matlab results p
 
 The `compareLIVESSIM.m` script generates multiple csv files containing the reference image, the compared image, generated MSSIM results and reported MSSIM results.
 
-Reported results and generated ones do not match exactly although they are fairly similar, diverging, on average, by 0.0024 (`mean(abs(computed_ssim - LIVE_ssim_all))`). These are differences between the published results and the results of running the published Matlab scripts and likely due to the different aggregation methods of MOS between "Release 1" and "Release 2".
+Reported results and generated ones do not match exactly although they are fairly similar, diverging, on average, by 0.0024 (`mean(abs(computed_ssim - LIVE_ssim_all))`). These are differences between the published results and the results of running the published Matlab scripts. They are likely due to the different aggregation methods of MOS between "Release 1" and "Release 2".
 
 The generated csv files can then be processed by `LIVEresults.js` to generate the JSON file at `spec/samples/LIVE.json`. The main reason for commiting the file (vs. generating it on the fly) is that it takes a couple minutes to create and it would require additional dependencies (Octave or Matlab) to run the integration tests.
 
@@ -35,7 +35,7 @@ This will create a new JSON file with the results and replace `spec/samples/LIVE
 node spec/e2e/live.spec.js
 ```
 
-It will run the integration tests for the LIVE database. Make sure you have `npm install`'ed your dependencies, that you have generated a build (`npm run build`) and that you are running a recent version of node.
+The integration tests for the LIVE database will run. Make sure you have `npm install`'ed your dependencies and have generated a build (`npm run build`)
 
 ### Plot
 
@@ -51,7 +51,7 @@ This will create 2 graphs:
 
 Note that in order to be able to generate `computed_results.png` you'll need to have run `compareLIVESSIM` first so that the computed results are available.
 
-Also note that graphs are generated includinng all distorsions. The paper only includes the JPEG and JPEG2000 ones because those where the only ones available for "Release 1" at publication time. Another difference is that these graphs do not exclude any outliers.
+Also note that graphs are generated including all distorsions. The paper only includes the JPEG and JPEG2000 ones because those where the only ones available for "Release 1" at publication time. Another difference is that these graphs do not exclude any outliers.
 
 ### Numerical comparison
 
@@ -104,16 +104,4 @@ ans =  68.752
 
 #### Discussion
 
-These results include outiers and use a larger dataset so they differ from the ones originally reported but the direction of the effect remains.
-
-They also suggest a stronger correlation when detecting JPEG artifacts than other kinds of distorsions.
-
-## Running scripts on old versions of Node
-
-If you are on an old version of node you could use [babel](https://babeljs.io) and run the tests with something like:
-
-```shell
-./node_modules/.bin/babel-node spec/e2e/live.spec.js
-```
-
-If that's the case, you will probably also need to run the `LIVEresults.js` script with [babel-node](https://babeljs.io/docs/usage/cli/#babel-node).
+These results include outliers and use a larger dataset so they differ from the ones originally reported. They also suggest a stronger correlation when detecting JPEG artifacts than other kinds of distorsions.
