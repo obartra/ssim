@@ -1,8 +1,8 @@
-SSIM.JS is a JavaScript library that generates a `0` to `1` score on how similar two images are. It's sensitive to compression artifacts which make it useful to assess quality degradation.
+# SSIM.JS
 
-The closer SSIM is to `1` the higher the similarity. The advantage of SSIM over other measures like [PSNR](https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio) and [MSE](https://en.wikipedia.org/wiki/Mean_squared_error) is that it correlates better with subjective ratings on image quality.
+> Get a `0` to `1` score on how similar two images are
 
-For instance, the following images have a similar MSE rating:
+The closer [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) is to `1` the higher the similarity. It correlates better with subjective ratings than other measures like [PSNR](https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio) and [MSE](https://en.wikipedia.org/wiki/Mean_squared_error). For instance:
 
 |                                       |                                       |                                       |
 | ------------------------------------  | ------------------------------------- | ------------------------------------- |
@@ -13,11 +13,7 @@ For instance, the following images have a similar MSE rating:
 
 *Table extracted from http://www.cns.nyu.edu/~lcv/ssim/*
 
-This project is a direct port of algorithms published by [Wang, et al. 2004](/assets/ssim.pdf) on "Image Quality Assessment: From Error Visibility to Structural Similarity". The original Matlab scripts are available [here](https://ece.uwaterloo.ca/~z70wang/research/iwssim/) with their datasets. To view the steps taken to validate `ssim.js` results, check the [wiki](https://github.com/obartra/ssim/wiki/Results-Validation).
-
-For a general overview on SSIM check the Wikipedia [article](https://en.wikipedia.org/wiki/Structural_similarity).
-
-## Installation
+## 🖥 Install
 
 ```shell
 npm install ssim.js
@@ -25,35 +21,15 @@ npm install ssim.js
 
 This will install the node, web and CLI versions.
 
-Installing it globally (`npm install -g`) will make the `ssim` CLI tool available on your path.
+Install it globally (`npm install -g`) to make `ssim` available on your path.
 
-You can also use the web version directly from [unpkg](https://unpkg.com)'s CDN:
+You can also use the web version directly from [unpkg](https://unpkg.com)'s CDN: `https://unpkg.com/ssim.js@{{semver}}`.
 
-`https://unpkg.com/ssim.js@{{semver}}`.
+## 📝 Usage
 
-For instance, if you wanted to use the latest `2.x` version, you would require:
+[Playground](https://ssim-comparison.gomix.me/) for Node and Web versions.
 
-```html
-<script src="https://unpkg.com/ssim.js@^2.0.0"></script>
-```
-
-For any issues during installation, check the [FAQ](https://github.com/obartra/ssim/wiki/FAQ).
-
-## Usage
-
-The API is the same on Node and on the browser:
-
-```javascript
-ssim(img1, img2, options)
-  .then({ mssim, ssim_map, performance })
-  .catch(error);
-```
-
-There's a playground for the Node and Web versions [here](https://ssim-comparison.gomix.me/).
-
-For more usage information, check the [wiki](https://github.com/obartra/ssim/wiki/Usage).
-
-### Node Example
+Node:
 
 ```javascript
 
@@ -64,14 +40,14 @@ ssim('./img1.jpg', './img2.jpg')
   .catch(err => console.error('Error generating SSIM', err));
 ```
 
-### Browser Example
+Browser:
 
 ```html
   <script src="https://unpkg.com/ssim.js@^2.0.0"></script>
   <script>
     ssim('/img1.jpg', '/img2.jpg')
       .then(function(out) {
-        console.log('SSIM:', out.mssim, '(generated in:', out.performance, 'ms)');
+        console.log('SSIM:', out.mssim, '(', out.performance, 'ms)');
       })
       .catch(function(err) {
         console.error('Error generating SSIM', err);
@@ -79,21 +55,18 @@ ssim('./img1.jpg', './img2.jpg')
   </script>
 ```
 
-### CLI Example
+CLI:
 
 ```shell
-$ ./node_modules/.bin/ssim ./img1.jpg ./img2.jpg --quiet
-0.9853
+$ ./node_modules/.bin/ssim ./img1.jpg ./img2.jpg
 ```
 
-## Documentation
+## 📖 Documentation
 
-The code is fully documented but a prettier version hosted by doclets.io is available [here](https://doclets.io/obartra/ssim/master).
+If you run into any issues or want a more info, check the [wiki](https://github.com/obartra/ssim/wiki).
 
-## Supported Environments
+The code is fully documented and a hosted version is available [here](https://doclets.io/obartra/ssim/master).
 
-CI tests ensure the SSIM package works both on Node and on the browser.
+## 💡 Rationale
 
-The Node build is tested against Node 0.12 and above. Browser builds are tested on recent versions of browsers and IE9+. Check the [wiki](https://github.com/obartra/ssim/wiki/Old-Node-and-Browsers) for more details.
-
-[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/saucessim-master.svg)](https://saucelabs.com/u/saucessim-master)
+This project is a direct port of algorithms published by [Wang, et al. 2004](/assets/ssim.pdf) on "Image Quality Assessment: From Error Visibility to Structural Similarity". The original Matlab scripts are available [here](https://ece.uwaterloo.ca/~z70wang/research/iwssim/) with their datasets. To view the steps taken to validate `ssim.js` results, check the [wiki](https://github.com/obartra/ssim/wiki/Results-Validation).
