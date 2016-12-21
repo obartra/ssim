@@ -6,18 +6,19 @@ const { getLimitDimensions } = require('./util');
  *
  * @method readpixels
  * @param {string} url - The url to use to load the image data
+ * @param {function} P - The Promise definition, must be a valid Promises/A+ implementation
  * @param {number} [limit=0] - A limit that, if set and both dimensions (width / height) surpass it,
  * will downsize the image to that size on the smallest dimension.
  * @returns {Promise} promise - A promise that resolves with the image 3D matrix
  * @public
  * @memberOf readpixelsWeb
  */
-function readpixels(url, limit = 0) {
+function readpixels(url, P, limit = 0) {
 	const img = new Image();
 	const canvas = document.createElement('canvas');
 	const ctx = canvas.getContext('2d');
 
-	return new Promise((resolve, reject) => {
+	return new P((resolve, reject) => {
 		img.onload = () => {
 			const { width, height } = getLimitDimensions(img.width, img.height, limit);
 

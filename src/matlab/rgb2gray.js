@@ -10,13 +10,15 @@
  * SSIM. Based on some sample data changes were of the order of 10^-3.
  *
  * @method luma
- * @param {Number[]} subpixels - The different pixels to use in the following order: r, g, b
+ * @param {Number} r - The red pixel value
+ * @param {Number} g - The green pixel value
+ * @param {Number} b - The blue pixel value
  * @returns {Number} lumaValue - The value of the luminance for the [r,g,b] pixel
  * @private
  * @memberOf matlab
  * @since 0.0.2
  */
-function luma([r, g, b]) {
+function luma(r, g, b) {
 	return Math.round(0.29894 * r + 0.58704 * g + 0.11402 * b);
 }
 
@@ -41,7 +43,7 @@ function rgb2gray({ data: d, width, height }) {
 			const grayIndex = i + j * width;
 			const imgIndex = grayIndex * 4;
 
-			data[grayIndex] = luma([d[imgIndex], d[imgIndex + 1], d[imgIndex + 2], d[imgIndex + 3]]);
+			data[grayIndex] = luma(d[imgIndex], d[imgIndex + 1], d[imgIndex + 2], d[imgIndex + 3]);
 		}
 	}
 	return {

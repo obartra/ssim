@@ -6,6 +6,7 @@ const { originalSsim } = require('./src/originalSsim');
 const { force } = require('./src/util');
 const defaults = require('./src/defaults.json');
 const { version } = require('./version.js');
+const promiz = require('promiz');
 
 function validateOptions(options) {
 	Object.keys(options).forEach((option) => {
@@ -26,26 +27,23 @@ function getOptions(options) {
 	return Object.assign({}, defaults, options);
 }
 
-function validateDimensions([pixels1, pixels2]) {
-	if (pixels1.width !== pixels2.width || pixels1.height !== pixels2.height) {
+function validateDimensions(pixels) {
+	if (pixels[0].width !== pixels[1].width || pixels[0].height !== pixels[1].height) {
 		throw new Error('Image dimensions do not match');
 	}
 
-	return [pixels1, pixels2];
+	return pixels;
 }
 
-function toGrayScale([pixels1, pixels2]) {
-	pixels1 = rgb2gray(pixels1);
-	pixels2 = rgb2gray(pixels2);
-
-	return [pixels1, pixels2];
+function toGrayScale(pixels) {
+	return [rgb2gray(pixels[0]), rgb2gray(pixels[1])];
 }
 
 function readImage(image, options) {
 	if (options.downsample === 'fast') {
-		return readpixels(image, options.maxSize);
+		return readpixels(image, singleSSIM.Promise, options.maxSize);
 	}
-	return readpixels(image);
+	return readpixels(image, singleSSIM.Promise);
 }
 
 function singleSSIM(image1 = force('image1'), image2 = force('image2'), options = {}) {
@@ -55,10 +53,10 @@ function singleSSIM(image1 = force('image1'), image2 = force('image2'), options 
 
 	const ssimImpl = options.ssim === 'fast' ? ssim : originalSsim;
 
-	return Promise.all([readImage(image1, options), readImage(image2, options)])
+	return singleSSIM.Promise.all([readImage(image1, options), readImage(image2, options)])
 		.then(validateDimensions)
 		.then(toGrayScale)
-		.then(([pixels1, pixels2]) => ssimImpl(pixels1, pixels2, options))
+		.then(pixels => ssimImpl(pixels[0], pixels[1], options))
 		.then(ssimMap => ({
 			ssim_map: ssimMap,
 			mssim: mean2d(ssimMap),
@@ -66,7 +64,30 @@ function singleSSIM(image1 = force('image1'), image2 = force('image2'), options 
 		}));
 }
 
+/**
+ * @method Promise - The Promise definition to use. It defaults to the native ES6 implementation
+ * and falls back to `promiz` when not available. Alternatively, it can be replaced by any
+ * Promises/A+ compliant implementation.
+ * @public
+ */
+singleSSIM.Promise = this.Promise || promiz;
+/**
+ * @method ssim - The ssim method. You can call the package directly or through the `ssim` property.
+ * @public
+ * @example const mod = require('ssim.js');
+ * mod('/img1.jpg', '/img2.jpg');
+ * mod.ssim('/img1.jpg', '/img2.jpg');
+ */
 singleSSIM.ssim = ssim;
+/**
+ * @property {String} version - The SSIM package version
+ * @public
+ */
 singleSSIM.version = version;
 
+/**
+ * SSIM External API
+ *
+ * @module main
+ */
 module.exports = singleSSIM;
