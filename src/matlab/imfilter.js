@@ -1,6 +1,5 @@
 const { mod } = require('./mod');
 const { padarray } = require('./padarray');
-const { floor } = require('../math');
 const { filter2 } = require('./filter2');
 
 /**
@@ -16,40 +15,28 @@ const { filter2 } = require('./filter2');
  * @memberOf matlab
  */
 function padMatrix(A, frows, fcols, pad) {
-	A = padarray(A, floor([frows / 2, fcols / 2]), pad);
+	const padHeight = Math.floor(frows / 2);
+	const padWidth = Math.floor(fcols / 2);
+
+	A = padarray(A, padHeight, padWidth, pad);
 	if (mod(frows, 2) === 0) { // remove the last row
 		A.data = A.data.slice(0, -A.width);
 		A.height--;
 	}
 	if (mod(fcols, 2) === 0) { // remove the last column
-		const data = [];
+		const data = new Array(A.width * A.height);
+		let length = 0;
 
 		for (let x = 0; x < A.data.length; x++) {
 			if ((x + 1) % A.width !== 0) {
-				data.push(A.data[x]);
+				data[length++] = A.data[x];
 			}
 		}
+		data.length = length;
 		A.data = data;
 		A.width--;
 	}
 	return A;
-}
-
-/**
- * Gets the `shape` parameter for `conv2` based on the `resSize` parameter for `imfilter`. In most
- * cases they are equivalent except for when `resSize` equals "same" which is converted to "valid".
- *
- * @method getConv2Size
- * @param {String} resSize - The format to use for the `imfilter` call
- * @returns {String} shape - The shape value to use for `conv2`
- * @private
- * @memberOf matlab
- */
-function getConv2Size(resSize) {
-	if (resSize === 'same') {
-		resSize = 'valid';
-	}
-	return resSize;
 }
 
 /**
@@ -73,10 +60,10 @@ function getConv2Size(resSize) {
  * @memberOf matlab
  * @since 0.0.2
  */
-function imfilter(A, f, pad = 'symmetric', resSize = 'same') {
-	A = padMatrix(A, f.width, f.height, pad);
-	resSize = getConv2Size(resSize);
-	return filter2(f, A, resSize);
+function imfilter(A, f, pad = 'symmetric', resSize = 'valid') {
+	const B = padMatrix(A, f.width, f.height, pad);
+
+	return filter2(f, B, resSize === 'same' ? 'valid' : resSize);
 }
 
 module.exports = {

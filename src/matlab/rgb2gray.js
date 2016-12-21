@@ -29,27 +29,32 @@ function luma(r, g, b) {
  * This method mimics Matlab's `rgb2gray` method
  *
  * @method rgb2gray
- * @param {ImageData} imageData - The input imageData
+ * @param {ImageData} A - The input imageData
  * @returns {Object} grayscale - A grayscale representation of the input image
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function rgb2gray({ data: d, width, height }) {
-	const data = new Array(width * height);
+function rgb2gray(A) {
+	const data = new Array(A.width * A.height);
 
-	for (let j = 0; j < height; j++) {
-		for (let i = 0; i < width; i++) {
-			const grayIndex = i + j * width;
+	for (let j = 0; j < A.height; j++) {
+		for (let i = 0; i < A.width; i++) {
+			const grayIndex = i + j * A.width;
 			const imgIndex = grayIndex * 4;
 
-			data[grayIndex] = luma(d[imgIndex], d[imgIndex + 1], d[imgIndex + 2], d[imgIndex + 3]);
+			data[grayIndex] = luma(
+				A.data[imgIndex],
+				A.data[imgIndex + 1],
+				A.data[imgIndex + 2],
+				A.data[imgIndex + 3]
+			);
 		}
 	}
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 

@@ -7,7 +7,7 @@ test('should be able to add padding greater than the matrix dimensions', (t) => 
 		width: 2,
 		height: 2
 	};
-	const out = padarray(A, [3, 3]);
+	const out = padarray(A, 3, 3);
 	const expected = {
 		data: [
 			4, 4, 3, 3, 4, 4, 3, 3,
@@ -36,7 +36,7 @@ test('should mirror a matrix multiple times if needed', (t) => {
 		width: 3,
 		height: 2
 	};
-	const out = padarray(A, [0, 5]);
+	const out = padarray(A, 0, 5);
 	const expected = {
 		data: [
 			2, 3, 3, 2, 1, 1, 2, 3, 3, 2, 1, 1, 2,
@@ -59,7 +59,7 @@ test('should mirror fractions of a full matrix', (t) => {
 		width: 3,
 		height: 2
 	};
-	const out = padarray(A, [1, 0]);
+	const out = padarray(A, 1, 0);
 	const expected = {
 		data: [
 			1, 2, 3,
@@ -86,7 +86,7 @@ test('should add 1 value padding', (t) => {
 		width: 4,
 		height: 4
 	};
-	const out = padarray(A, [1, 1]);
+	const out = padarray(A, 1, 1);
 	const expected = {
 		data: [
 			1, 1, 2, 3, 4, 4,

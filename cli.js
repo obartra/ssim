@@ -72,6 +72,7 @@ function onComplete({ mssim, performance }) {
 function onError(error) {
 	log('Oops something went wrong 😓');
 	log(error.stack);
+	return error;
 }
 
 if (validate()) {

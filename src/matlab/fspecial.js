@@ -1,4 +1,7 @@
-const { sum2d, divide2d } = require('../math');
+const {
+	divide2d,
+	sum2d
+} = require('../math');
 
 /**
  * Creates a matrix of lenght `2 * length + 1` with values being the sum of the square of the
@@ -42,17 +45,17 @@ function rangeSquare2d(length) {
  * @memberOf matlab
  * @since 0.0.2
  */
-function gaussianFilter2d({ data: ref, width, height }, σ) {
-	const data = new Array(ref.length);
+function gaussianFilter2d(A, σ) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = Math.exp(-ref[x] / (2 * (σ ** 2)));
+	for (let x = 0; x < A.data.length; x++) {
+		data[x] = Math.exp(-A.data[x] / (2 * (σ ** 2)));
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 /**

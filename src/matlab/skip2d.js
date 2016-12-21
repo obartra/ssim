@@ -15,7 +15,7 @@
  * becomes:
  *
  * ```
- * skip2d(img1, [0, f, img1.length], [0, f, img1[0].length])
+ * skip2d(img1, 0, f, img1.length, 0, f, img1[0].length)
  * ```
  *
  * Note that the start index is 0 since, unlike Matlab's, arrays start at 0. Also, unlike in Matlab,
@@ -23,12 +23,18 @@
  *
  * @method skip2d
  * @param {Object} A - The input matrix
+ * @param {Number} startRow - The first sub row selected
+ * @param {Number} everyRow - The number of rows to skip
+ * @param {Number} endRow - The last sub row selected
+ * @param {Number} startCol - The first sub column selected
+ * @param {Number} everyCol - The number of columns to skip
+ * @param {Number} endCol - The last sub column selected
  * @returns {Object} B - The downsized matrix
  * @public
  * @memberOf matlab
  * @since 0.0.2
  */
-function skip2d(A, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) {
+function skip2d(A, startRow, everyRow, endRow, startCol, everyCol, endCol) {
 	const width = Math.ceil((endCol - startCol) / everyCol);
 	const height = Math.ceil((endRow - startRow) / everyRow);
 	const data = new Array(width * height);

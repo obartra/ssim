@@ -59,8 +59,8 @@ function originalSsim(pixels1, pixels2, options) { // eslint-disable-line max-st
 			pixels1 = imfilter(pixels1, lpf, 'symmetric', 'same');
 			pixels2 = imfilter(pixels2, lpf, 'symmetric', 'same');
 
-			pixels1 = skip2d(pixels1, [0, f, pixels1.height], [0, f, pixels1.width]);
-			pixels2 = skip2d(pixels2, [0, f, pixels2.height], [0, f, pixels2.width]);
+			pixels1 = skip2d(pixels1, 0, f, pixels1.height, 0, f, pixels1.width);
+			pixels2 = skip2d(pixels2, 0, f, pixels2.height, 0, f, pixels2.width);
 		}
 	}
 

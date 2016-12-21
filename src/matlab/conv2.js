@@ -1,6 +1,5 @@
 const { sub } = require('./sub');
 const { zeros } = require('./zeros');
-const { ones } = require('./ones');
 const { multiply2d } = require('../math');
 
 /**
@@ -22,67 +21,137 @@ const { multiply2d } = require('../math');
  *   zero-padded edges. Using this option, `size(c) === max([ma-max(0,mb-1),na-max(0,nb-1)],0)`
  *
  * @method mxConv2
- * @param {Object} a - The first matrix
- * @param {Object} b - The second matrix
+ * @param {Object} A - The first matrix
+ * @param {Object} B - The second matrix
  * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
- * @returns {Object} c - Returns the convolution filtered by `shape`
+ * @returns {Object} C - Returns the convolution filtered by `shape`
  * @private
  * @memberOf matlab
  */
-function mxConv2({ data: ref, width: refWidth, height: refHeight }, b, shape = 'full') {
-	const cWidth = refWidth + b.width - 1;
-	const cHeight = refHeight + b.height - 1;
-	const { data } = zeros(cHeight, cWidth);
+function mxConv2(A, B, shape = 'full') {
+	const width = A.width + B.width - 1;
+	const height = A.height + B.height - 1;
+	const C = zeros(height, width);
 
-	/**
-	 * Computing the convolution is the most computentionally intensive task for SSIM and we do it
-	 * several times.
-	 *
-	 * This section has been optimized for performance and readability suffers.
-	 */
-	for (let r1 = 0; r1 < b.height; r1++) {
-		for (let c1 = 0; c1 < b.width; c1++) {
-			const br1c1 = b.data[r1 * b.width + c1];
+	for (let r1 = 0; r1 < B.height; r1++) {
+		for (let c1 = 0; c1 < B.width; c1++) {
+			const br1c1 = B.data[r1 * B.width + c1];
 
 			if (br1c1) {
-				for (let i = 0; i < refHeight; i++) {
-					for (let j = 0; j < refWidth; j++) {
-						data[(i + r1) * cWidth + j + c1] += ref[i * refWidth + j] * br1c1;
+				for (let i = 0; i < A.height; i++) {
+					for (let j = 0; j < A.width; j++) {
+						C.data[(i + r1) * C.width + j + c1] += A.data[i * A.width + j] * br1c1;
 					}
 				}
 			}
 		}
 	}
 
-	const c = {
-		data,
-		width: cWidth,
-		height: cHeight
-	};
-
-	return reshape(c, shape, refHeight, b.height, refWidth, b.width);
+	return reshape(C, shape, A.height, B.height, A.width, B.width);
 }
 
 /**
- * `C = boxConv(a,b)` computes the two-dimensional convolution of a matrix `a` and box kernel `b`.
+ * `C = boxConv(A, B)` computes the two-dimensional convolution of a matrix `A` and box kernel `B`.
  *
  * The `shape` parameter returns a subsection of the two-dimensional convolution as defined by
  * mxConv2.
  *
  * @method boxConv
- * @param {Object} a - The first matrix
- * @param {Object} b - The box kernel
+ * @param {Object} A - The first matrix
+ * @param {Object} B - The box kernel
  * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
- * @returns {Object} c - Returns the convolution filtered by `shape`
+ * @returns {Object} C - Returns the convolution filtered by `shape`
  * @private
  * @memberOf matlab
  */
-function boxConv(a, { data, width, height }, shape = 'full') {
-	const b1 = ones(height, 1);
-	const b2 = ones(1, width);
-	const out = convn(a, b1, b2, shape);
+function boxConv(A, B, shape = 'full') {
+	const temp1 = boxConvV(A, B.height);
+	const temp2 = boxConvH(temp1, B.width);
+	const out = reshape(temp2, shape, A.height, B.height, A.width, B.width);
 
-	return multiply2d(out, data[0]);
+	return multiply2d(out, B.data[0]);
+}
+
+/**
+ * `boxConvH(A,B,C)` computes the two-dimensional convolution of a matrix `A` with the one
+ * dimensional, horizontal, box kernel `B`.
+ *
+ * @method boxConvH
+ * @param {Object} A - The first matrix
+ * @param {Number} B - The horizontal box kernel width
+ * @returns {Object} C - The intermediate decomposed convolution
+ * @private
+ * @memberOf matlab
+ */
+function boxConvH(A, width) {
+	const cWidth = (A.width + width - 1);
+	const C = {
+		width: cWidth,
+		height: A.height,
+		data: new Array(cWidth * A.height)
+	};
+
+	for (let i = 0; i < C.height; i++) {
+		C.data[i * C.width] = A.data[i * A.width] || 0;
+
+		for (let j = 1; j < width; j++) {
+			const previous = C.data[i * C.width + j - 1] || 0;
+			const current = j >= A.width ? 0 : A.data[i * A.width + j] || 0;
+
+			C.data[i * C.width + j] = previous + current;
+		}
+
+		for (let j = width; j < C.width; j++) {
+			const old = A.data[i * A.width + j - width] || 0;
+			const previous = C.data[i * C.width + j - 1] || 0;
+			const current = j >= A.width ? 0 : A.data[i * A.width + j] || 0;
+
+			C.data[i * C.width + j] = previous + current - old;
+		}
+	}
+
+	return C;
+}
+
+/**
+ * `boxConvV(A,B,C)` computes the two-dimensional convolution of a matrix `A` with the one
+ * dimensional, vertical, box kernel `B`.
+ *
+ * @method boxConvH
+ * @param {Object} A - The first matrix
+ * @param {Number} B - The vertical box kernel height
+ * @returns {Object} C - The intermediate decomposed convolution
+ * @private
+ * @memberOf matlab
+ */
+function boxConvV(A, height) {
+	const cHeight = (A.height + height - 1);
+	const C = {
+		width: A.width,
+		height: cHeight,
+		data: new Array(A.width * cHeight)
+	};
+
+	for (let j = 0; j < C.width; j++) {
+		C.data[j] = A.data[j] || 0;
+
+		for (let i = 1; i < height; i++) {
+			const previous = C.data[(i - 1) * C.width + j] || 0;
+			const current = A.data[i * A.width + j] || 0;
+
+			C.data[i * C.width + j] = previous + current;
+		}
+
+		for (let i = height; i < C.height; i++) {
+			const old = A.data[(i - height) * A.width + j] || 0;
+			const previous = C.data[(i - 1) * C.width + j] || 0;
+			const current = A.data[i * A.width + j] || 0;
+
+			C.data[i * C.width + j] = previous + current - old;
+		}
+	}
+
+	return C;
 }
 
 /**
@@ -96,11 +165,11 @@ function boxConv(a, { data, width, height }, shape = 'full') {
  * @private
  * @memberOf matlab
  */
-function isBoxKernel({ data }) {
-	const expected = data[0];
+function isBoxKernel(A) {
+	const expected = A.data[0];
 
-	for (let i = 1; i < data.length; i++) {
-		if (data[i] !== expected) {
+	for (let i = 1; i < A.data.length; i++) {
+		if (A.data[i] !== expected) {
 			return false;
 		}
 	}
@@ -128,21 +197,21 @@ function isBoxKernel({ data }) {
  * This method mimics Matlab's `convn` method but limited to 2 1 dimensional kernels.
  *
  * @method convn
- * @param {Object} a - The first matrix
- * @param {Object} b1 - The first 1-D kernel
- * @param {Object} b2 - The second 1-D kernel
+ * @param {Object} A - The first matrix
+ * @param {Object} B1 - The first 1-D kernel
+ * @param {Object} B2 - The second 1-D kernel
  * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
  * @returns {Object} c - Returns the convolution filtered by `shape`
  * @private
  * @memberOf matlab
  */
-function convn(a, b1, b2, shape = 'full') {
-	const mb = Math.max(b1.height, b1.width);
-	const nb = Math.max(b2.height, b2.width);
-	const temp = mxConv2(a, b1, 'full');
-	const c = mxConv2(temp, b2, 'full');
+function convn(A, B1, B2, shape = 'full') {
+	const mb = Math.max(B1.height, B1.width);
+	const nb = Math.max(B2.height, B2.width);
+	const temp = mxConv2(A, B1, 'full');
+	const c = mxConv2(temp, B2, 'full');
 
-	return reshape(c, shape, a.height, mb, a.width, nb);
+	return reshape(c, shape, A.height, mb, A.width, nb);
 }
 
 /**
