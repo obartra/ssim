@@ -38,9 +38,7 @@ function parse(data, limit) {
 		imageData = ctx.getImageData(0, 0, width, height);
 	}
 
-	return new Promise((resolve) => {
-		resolve(imageData);
-	});
+	return imageData;
 }
 
 /**
@@ -48,13 +46,14 @@ function parse(data, limit) {
  *
  * @method loadUrl
  * @param {string} url - url to load image data from
+ * @param {function} P - The Promise definition, must be a valid Promises/A+ implementation
  * @returns {Promise} promise - A promise that resolves with the image 3D matrix
  * @private
  * @memberOf readpixels
  * @since 0.0.1
  */
-function loadUrl(url) {
-	return new Promise((resolve, reject) => {
+function loadUrl(url, P) {
+	return new P((resolve, reject) => {
 		http
 			.get(url)
 			.on('response', (res) => {
@@ -72,13 +71,14 @@ function loadUrl(url) {
  *
  * @method loadFs
  * @param {string} path - File path to load image data from
+ * @param {function} P - The Promise definition, must be a valid Promises/A+ implementation
  * @returns {Promise} promise - A promise that resolves with the image 3D matrix
  * @private
  * @memberOf readpixels
  * @since 0.0.1
  */
-function loadFs(path) {
-	return new Promise((resolve, reject) => {
+function loadFs(path, P) {
+	return new P((resolve, reject) => {
 		fs.readFile(path, (err, data) => {
 			if (err) {
 				reject(err);
@@ -95,6 +95,7 @@ function loadFs(path) {
  *
  * @method readpixels
  * @param {string|Buffer} url - A url, file path or buffer to use to load the image data
+ * @param {function} P - The Promise definition, must be a valid Promises/A+ implementation
  * @param {number} [limit=0] - A limit that, if set and both dimensions (width / height) surpass it,
  * will downsize the image to that size on the smallest dimension.
  * @returns {Promise} promise - A promise that resolves with the image 3D matrix
@@ -102,15 +103,15 @@ function loadFs(path) {
  * @memberOf readpixels
  * @since 0.0.1
  */
-function readpixels(url, limit = 0) {
+function readpixels(url, P, limit = 0) {
 	let bufferPromise;
 
 	if (Buffer.isBuffer(url)) {
-		bufferPromise = Promise.resolve(url);
+		bufferPromise = P.resolve(url);
 	} else if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
-		bufferPromise = loadUrl(url);
+		bufferPromise = loadUrl(url, P);
 	} else {
-		bufferPromise = loadFs(url);
+		bufferPromise = loadFs(url, P);
 	}
 	return bufferPromise
 		.then(bufferData => parse(bufferData, limit));

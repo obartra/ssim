@@ -20,7 +20,7 @@ function toMx(txt) {
 function loadImages(samples) {
 	const promises = Object.keys(samples)
 		.map(key =>
-			readpixels(join(testPath, samples[key]))
+			readpixels(join(testPath, samples[key]), Promise)
 				.then(pixels => ({ [key]: imageDataToMx(pixels) })
 			)
 		);

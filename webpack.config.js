@@ -2,7 +2,6 @@ const webpack = require('webpack');
 
 module.exports = {
 	entry: [
-		'core-js/es6/promise',
 		'core-js/modules/es6.object.keys',
 		'core-js/modules/es6.object.assign',
 		'./index.js'

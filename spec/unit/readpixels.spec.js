@@ -33,7 +33,7 @@ const paths = {
 const loaded = loadImages(paths);
 
 test('should read image dimensions correctly', t =>
-	readpixels('./spec/samples/lena/color.jpg')
+	readpixels('./spec/samples/lena/color.jpg', Promise)
 		.then((pixels) => {
 			t.equals(pixels.width, 512);
 			t.equals(pixels.height, 512);
@@ -41,15 +41,15 @@ test('should read image dimensions correctly', t =>
 );
 
 test('should downsize images when a limit parameter is specified', t =>
-	readpixels('./spec/samples/lena/color.jpg', 100)
+	readpixels('./spec/samples/lena/color.jpg', Promise, 100)
 		.then(pixels => t.equal(Math.min(pixels.width, pixels.height), 100))
 );
 
 test('should limit size to "limit" on the smallest axis', t =>
 	Promise.all([
-		readpixels('./spec/samples/aspectratio/8.jpg', 10) // wide
+		readpixels('./spec/samples/aspectratio/8.jpg', Promise, 10) // wide
 			.then(pixels => t.equal(pixels.height, 10)),
-		readpixels('./spec/samples/aspectratio/4.jpg', 10) // tall
+		readpixels('./spec/samples/aspectratio/4.jpg', Promise, 10) // tall
 			.then(pixels => t.equal(pixels.width, 10))
 	])
 );
@@ -57,7 +57,7 @@ test('should limit size to "limit" on the smallest axis', t =>
 test('should be able to read from a buffer', (t) => {
 	const buffer = fs.readFileSync(join(__dirname, '../samples/gradient.png'));
 
-	return readpixels(buffer)
+	return readpixels(buffer, Promise)
 		.then(imageDataToMx)
 		.then(img => t.deepEqual(img, gradientData));
 });
@@ -65,7 +65,7 @@ test('should be able to read from a buffer', (t) => {
 test('should be able to retrieve a JPG image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.jpg`;
 
-	return readpixels(url)
+	return readpixels(url, Promise)
 		.then(imageDataToMx)
 		.then(img => t.deepEqual(img, gradientData));
 });
@@ -73,7 +73,7 @@ test('should be able to retrieve a JPG image from a URL', (t) => {
 test('should be able to retrieve a PNG image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.png`;
 
-	return readpixels(url)
+	return readpixels(url, Promise)
 		.then(imageDataToMx)
 		.then(img => t.deepEqual(img, gradientData));
 });
@@ -81,7 +81,7 @@ test('should be able to retrieve a PNG image from a URL', (t) => {
 test('should be able to retrieve a GIF image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.gif`;
 
-	return readpixels(url)
+	return readpixels(url, Promise)
 		.then(imageDataToMx)
 		.then(img => t.deepEqual(img, gradientData));
 });
@@ -89,13 +89,13 @@ test('should be able to retrieve a GIF image from a URL', (t) => {
 test('should be able to retrieve a BMP image from a URL', (t) => {
 	const url = `${baseURL}/spec/samples/gradient.bmp`;
 
-	return readpixels(url)
+	return readpixels(url, Promise)
 		.then(imageDataToMx)
 		.then(img => t.deepEqual(img, gradientData));
 });
 
 test('should throw if trying to retrieve an invalid URL', t =>
-	readpixels('fakeurl.com/image1.png')
+	readpixels('fakeurl.com/image1.png', Promise)
 		.then(() => t.fail('Should have thrown an error'))
 		.catch(t.ok)
 );
