@@ -22,58 +22,54 @@ const { zeros } = require('./zeros');
  *   zero-padded edges. Using this option, `size(c) === max([ma-max(0,mb-1),na-max(0,nb-1)],0)`
  *
  * @method mxConv2
- * @param {Object} a - The first matrix
- * @param {Object} b - The second matrix
+ * @param {Object} A - The first matrix
+ * @param {Object} B - The second matrix
  * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
- * @returns {Object} c - Returns the convolution filtered by `shape`
+ * @returns {Object} C - Returns the convolution filtered by `shape`
  * @private
  * @memberOf matlab
  */
-function mxConv2({ data: ref, width: refWidth, height: refHeight }, b, shape = 'full') {
-	const cWidth = refWidth + b.width - 1;
-	const cHeight = refHeight + b.height - 1;
-	const { data } = zeros(cHeight, cWidth);
+function mxConv2(
+	{ data: aData, width: aWidth, height: aHeight },
+	{ data: bData, width: bWidth, height: bHeight }, shape = 'full'
+) {
+	const cWidth = aWidth + bWidth - 1;
+	const cHeight = aHeight + bHeight - 1;
+	const { data: cData } = zeros(cHeight, cWidth);
 
-	/**
-	 * Computing the convolution is the most computentionally intensive task for SSIM and we do it
-	 * several times.
-	 *
-	 * This section has been optimized for performance and readability suffers.
-	 */
-	for (let r1 = 0; r1 < b.height; r1++) {
-		for (let c1 = 0; c1 < b.width; c1++) {
-			const br1c1 = b.data[r1 * b.width + c1];
+	for (let r1 = 0; r1 < bHeight; r1++) {
+		for (let c1 = 0; c1 < bWidth; c1++) {
+			const br1c1 = bData[r1 * bWidth + c1];
 
 			if (br1c1) {
-				for (let i = 0; i < refHeight; i++) {
-					for (let j = 0; j < refWidth; j++) {
-						data[(i + r1) * cWidth + j + c1] += ref[i * refWidth + j] * br1c1;
+				for (let i = 0; i < aHeight; i++) {
+					for (let j = 0; j < aWidth; j++) {
+						cData[(i + r1) * cWidth + j + c1] += aData[i * aWidth + j] * br1c1;
 					}
 				}
 			}
 		}
 	}
-
-	const c = {
-		data,
+	const C = {
+		data: cData,
 		width: cWidth,
 		height: cHeight
 	};
 
-	return reshape(c, shape, refHeight, b.height, refWidth, b.width);
+	return reshape(C, shape, aHeight, bHeight, aWidth, bWidth);
 }
 
 /**
- * `C = boxConv(a,b)` computes the two-dimensional convolution of a matrix `a` and box kernel `b`.
+ * `C = boxConv(A, B)` computes the two-dimensional convolution of a matrix `A` and box kernel `B`.
  *
  * The `shape` parameter returns a subsection of the two-dimensional convolution as defined by
  * mxConv2.
  *
  * @method boxConv
- * @param {Object} a - The first matrix
- * @param {Object} b - The box kernel
+ * @param {Object} A - The first matrix
+ * @param {Object} B - The box kernel
  * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
- * @returns {Object} c - Returns the convolution filtered by `shape`
+ * @returns {Object} C - Returns the convolution filtered by `shape`
  * @private
  * @memberOf matlab
  */
@@ -90,21 +86,36 @@ function boxConv(a, { data, width, height }, shape = 'full') {
  * kernel
  *
  * @method isBoxKernel
- * @param {Object} a - The input matrix
+ * @param {Object} A - The input matrix
  * @returns {Boolean} boxKernel - Returns true if all values in the matrix are the same, false
  * otherwise
  * @private
  * @memberOf matlab
  */
-function isBoxKernel({ data }) {
-	const expected = data[0];
+function isBoxKernel(A) {
+	const expected = A.data[0];
 
-	for (let i = 1; i < data.length; i++) {
-		if (data[i] !== expected) {
+	for (let i = 1; i < A.data.length; i++) {
+		if (A.data[i] !== expected) {
 			return false;
 		}
 	}
 	return true;
+}
+
+/**
+ * Determines whether the current kernel is a small one or not.
+ *
+ * A direct convolution is faster for small kernels
+ *
+ * @method isSmallKernel
+ * @param {Object} A - The input matrix
+ * @returns {Boolean} smallKernel - Returns true if the kernel is small, false otherwise
+ * @private
+ * @memberOf matlab
+ */
+function isSmallKernel(A) {
+	return A.data.length <= 9;
 }
 
 /**
@@ -128,21 +139,21 @@ function isBoxKernel({ data }) {
  * This method mimics Matlab's `convn` method but limited to 2 1 dimensional kernels.
  *
  * @method convn
- * @param {Object} a - The first matrix
- * @param {Object} b1 - The first 1-D kernel
- * @param {Object} b2 - The second 1-D kernel
+ * @param {Object} A - The first matrix
+ * @param {Object} B1 - The first 1-D kernel
+ * @param {Object} B2 - The second 1-D kernel
  * @param {String} [shape='full'] - One of 'full' / 'same' / 'valid'
  * @returns {Object} c - Returns the convolution filtered by `shape`
  * @private
  * @memberOf matlab
  */
-function convn(a, b1, b2, shape = 'full') {
-	const mb = Math.max(b1.height, b1.width);
-	const nb = Math.max(b2.height, b2.width);
-	const temp = mxConv2(a, b1, 'full');
-	const c = mxConv2(temp, b2, 'full');
+function convn(A, B1, B2, shape = 'full') {
+	const mb = Math.max(B1.height, B1.width);
+	const nb = Math.max(B2.height, B2.width);
+	const temp = mxConv2(A, B1, 'full');
+	const c = mxConv2(temp, B2, 'full');
 
-	return reshape(c, shape, a.height, mb, a.width, nb);
+	return reshape(c, shape, A.height, mb, A.width, nb);
 }
 
 /**
@@ -242,7 +253,7 @@ function reshape(c, shape, ma, mb, na, nb) {
 function conv2(...args) {
 	if (args[2] && args[2].data) {
 		return convn(...args);
-	} else if (isBoxKernel(args[1])) {
+	} else if (!isSmallKernel(args[1]) && isBoxKernel(args[1])) {
 		return boxConv(...args);
 	}
 	return mxConv2(...args);
