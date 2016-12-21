@@ -73,6 +73,55 @@ test('should add 2 matrices of the same size (add2d)', (t) => {
 	t.end();
 });
 
+test('should subtract a constant value to each matrix element (subtract2d)', (t) => {
+	const sub = math.subtract2d({
+		data: [
+			1, 2,
+			3, 4
+		],
+		width: 2,
+		height: 2
+	}, 10);
+
+	t.deepEqual(sub, {
+		data: [
+			-9, -8,
+			-7, -6
+		],
+		width: 2,
+		height: 2
+	});
+	t.end();
+});
+
+test('should subtract 2 matrices of the same size (subtract2d)', (t) => {
+	const sub = math.subtract2d({
+		data: [
+			1, 2,
+			3, 4
+		],
+		width: 2,
+		height: 2
+	}, {
+		data: [
+			1, 2,
+			3, 4
+		],
+		width: 2,
+		height: 2
+	});
+
+	t.deepEqual(sub, {
+		data: [
+			0, 0,
+			0, 0
+		],
+		width: 2,
+		height: 2
+	});
+	t.end();
+});
+
 test('should divide by a constant value each matrix element (divide2d)', (t) => {
 	const divide = math.divide2d({
 		data: [
