@@ -147,6 +147,24 @@ function add2d(A, increase) {
 }
 
 /**
+ * Subtracts values of two matrices of the same size or a matrix and a constant
+ *
+ * @method subtract2d
+ * @param {Object} A - The first input matrix
+ * @param {Object|Number} decrease - The second input matrix or the constant value
+ * @returns {Object} B - A matrix with a cell-by-cell subtraction of the first parameter minus the
+ * second one
+ * @public
+ * @memberOf math
+ */
+function subtract2d(A, decrease) {
+	if (typeof decrease === 'number') {
+		return add2dScalar(A, -decrease);
+	}
+	return add2dMx(A, multiply2d(decrease, -1));
+}
+
+/**
  * Divides each matrix cell by a constant value
  *
  * @method divide2dScalar
@@ -328,6 +346,7 @@ module.exports = {
 	mean2d,
 	multiply2d,
 	square2d,
+	subtract2d,
 	sum,
 	sum2d
 };

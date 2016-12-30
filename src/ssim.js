@@ -1,5 +1,6 @@
 const {
 	add2d,
+	subtract2d,
 	divide2d,
 	multiply2d,
 	square2d,
@@ -26,43 +27,30 @@ const {
  * performance.
  *
  * @method ssim
- * @param {Array.<Array.<Array.<Number>>>} pixels1 - The reference rgb matrix
- * @param {Array.<Array.<Array.<Number>>>} pixels2 - The second rgb matrix to compare against
+ * @param {Array.<Array.<Array.<Number>>>} img1 - The reference rgb matrix
+ * @param {Array.<Array.<Array.<Number>>>} img2 - The second rgb matrix to compare against
  * @param {Object} options - The input options parameter
  * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
  * @public
  * @memberOf ssim
  */
-function ssim(pixels1, pixels2, options) {
+function ssim(img1, img2, options) {
 	let w = normpdf(getRange(options.windowSize), 0, 1.5);
 	const L = (2 ** options.bitDepth) - 1;
 	const c1 = (options.k1 * L) ** 2;
 	const c2 = (options.k2 * L) ** 2;
 
 	w = divide2d(w, sum2d(w));
+
 	const wt = transpose(w);
 
 	if (options.downsample === 'original') {
-		[pixels1, pixels2] = downsample(pixels1, pixels2, options.maxSize);
+		[img1, img2] = downsample(img1, img2, options.maxSize);
 	}
-	const μ1 = conv2(pixels1, w, wt, 'valid');
-	const μ2 = conv2(pixels2, w, wt, 'valid');
-	const μ1Sq = square2d(μ1);
-	const μ2Sq = square2d(μ2);
-	const μ12 = multiply2d(μ1, μ2);
-	const pixels1Sq = square2d(pixels1);
-	const pixels2Sq = square2d(pixels2);
-	const minusμ1Sq = multiply2d(μ1Sq, -1);
-	const minusμ2Sq = multiply2d(μ2Sq, -1);
-	const minusμ12 = multiply2d(μ12, -1);
-	const σ1Sq = add2d(conv2(pixels1Sq, w, wt, 'valid'), minusμ1Sq);
-	const σ2Sq = add2d(conv2(pixels2Sq, w, wt, 'valid'), minusμ2Sq);
-	const σ12 = add2d(conv2(multiply2d(pixels1, pixels2), w, wt, 'valid'), minusμ12);
-
 	if (c1 > 0 && c2 > 0) {
-		return genSSIM(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq, c1, c2);
+		return genSSIM(img1, img2, w, wt, c1, c2);
 	}
-	return genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq);
+	return genUQI(img1, img2, w, wt);
 }
 
 /**
@@ -91,55 +79,66 @@ function getRange(size) {
 }
 
 /**
- * Generates the ssim_map based on the intermediate values of the convolutions of the input with the
- * gaussian filter.
+ * Generates the ssim_map based on the based on the input images and the specified window
  *
  * These methods apply when K1 or K2 are not 0 (non UQI)
  *
  * @method genSSIM
- * @param {Array.<Array.<Number>>} μ12 - The cell-by cell multiplication of both images convolved
- * with the gaussian filter
- * @param {Array.<Array.<Number>>} σ12 - The convolution of cell-by cell multiplication of both
- * images minus μ12
- * @param {Array.<Array.<Number>>} μ1Sq - The convolution of image1 with the gaussian filter squared
- * @param {Array.<Array.<Number>>} μ2Sq - The convolution of image2 with the gaussian filter squared
- * @param {Array.<Array.<Number>>} σ1Sq - The convolution of image1^2, minus μ1Sq
- * @param {Array.<Array.<Number>>} σ2Sq - The convolution of image2^2, minus μ2Sq
+ * @param {Array.<Array.<Array.<Number>>>} img1 - The reference rgb matrix
+ * @param {Array.<Array.<Array.<Number>>>} img2 - The second rgb matrix to compare against
+ * @param {Array.<Array.<Number>>} w - The first component of the decomposed gaussian window
+ * @param {Array.<Array.<Number>>} wt - The transposed `w` window
  * @param {Number} c1 - The first stability constant
  * @param {Number} c2 - The second stability constant
  * @returns {Array.<Array.<Number>>} ssim_map - The generated map of SSIM values at each window
  * @private
  * @memberOf ssim
  */
-function genSSIM(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq, c1, c2) {
+function genSSIM(img1, img2, w, wt, c1, c2) {
+	const μ1 = conv2(img1, w, wt, 'valid');
+	const μ2 = conv2(img2, w, wt, 'valid');
+	const μ1Sq = square2d(μ1);
+	const μ2Sq = square2d(μ2);
+	const μ12 = multiply2d(μ1, μ2);
+	const σ1Sq = subtract2d(conv2(square2d(img1), w, wt, 'valid'), μ1Sq);
+	const σ2Sq = subtract2d(conv2(square2d(img2), w, wt, 'valid'), μ2Sq);
+	const σ12 = subtract2d(conv2(multiply2d(img1, img2), w, wt, 'valid'), μ12);
+
 	const num1 = add2d(multiply2d(μ12, 2), c1);
 	const num2 = add2d(multiply2d(σ12, 2), c2);
-	const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1);
-	const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2);
+	const den1 = add2d(add2d(μ1Sq, μ2Sq), c1);
+	const den2 = add2d(add2d(σ1Sq, σ2Sq), c2);
 
-	return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2));
+	return divide2d(multiply2d(num2, num1), multiply2d(den2, den1));
 }
 
 /**
- * Generates the Universal Quality Index (UQI) ssim_map based on the intermediate values of the
- * convolutions of the input with the gaussian filter.
+ * Generates the Universal Quality Index (UQI) ssim_map based on the input images and the specified
+ * window
  *
  * These methods apply when K1 or K2 are 0 (UQI)
  *
  * @method genUQI
- * @param {Array.<Array.<Number>>} μ12 - The cell-by cell multiplication of both images convolved
- * with the gaussian filter
- * @param {Array.<Array.<Number>>} σ12 - The convolution of cell-by cell multiplication of both
- * images minus μ12
- * @param {Array.<Array.<Number>>} μ1Sq - The convolution of image1 with the gaussian filter squared
- * @param {Array.<Array.<Number>>} μ2Sq - The convolution of image2 with the gaussian filter squared
- * @param {Array.<Array.<Number>>} σ1Sq - The convolution of image1^2, minus μ1Sq
- * @param {Array.<Array.<Number>>} σ2Sq - The convolution of image2^2, minus μ2Sq
+ * @param {Array.<Array.<Array.<Number>>>} img1 - The reference rgb matrix
+ * @param {Array.<Array.<Array.<Number>>>} img2 - The second rgb matrix to compare against
+ * @param {Array.<Array.<Number>>} w - The first component of the decomposed gaussian window
+ * @param {Array.<Array.<Number>>} wt - The transposed `w` window
  * @returns {Array.<Array.<Number>>} ssim_map - The generated map of SSIM values at each window
  * @private
  * @memberOf ssim
  */
-function genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq) {
+function genUQI(img1, img2, w, wt) {
+	const μ1 = conv2(img1, w, wt, 'valid');
+	const μ2 = conv2(img2, w, wt, 'valid');
+	const μ12 = multiply2d(μ1, μ2);
+	const img1Sq = square2d(img1);
+	const img2Sq = square2d(img2);
+	const μ1Sq = square2d(μ1);
+	const μ2Sq = square2d(μ2);
+	const σ1Sq = subtract2d(conv2(img1Sq, w, wt, 'valid'), μ1Sq);
+	const σ2Sq = subtract2d(conv2(img2Sq, w, wt, 'valid'), μ2Sq);
+	const σ12 = subtract2d(conv2(multiply2d(img1, img2), w, wt, 'valid'), μ12);
+
 	const numerator1 = multiply2d(μ12, 2);
 	const numerator2 = multiply2d(σ12, 2);
 	const denominator1 = add2d(μ1Sq, μ2Sq);
@@ -159,15 +158,15 @@ function genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq) {
  * approximation.
  *
  * @method downsample
- * @param {Array.<Array.<Number>>} pixels1 - The first matrix to downsample
- * @param {Array.<Array.<Number>>} pixels2 - The second matrix to downsample
+ * @param {Array.<Array.<Number>>} img1 - The first matrix to downsample
+ * @param {Array.<Array.<Number>>} img2 - The second matrix to downsample
  * @param {number} [maxSize=256] - The maximum size on the smallest dimension
  * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
  * @private
  * @memberOf ssim
  */
-function downsample(pixels1, pixels2, maxSize = 256) {
-	const factor = Math.min(pixels1.width, pixels2.height) / maxSize;
+function downsample(img1, img2, maxSize = 256) {
+	const factor = Math.min(img1.width, img2.height) / maxSize;
 	const f = Math.round(factor);
 
 	if (f > 1) {
@@ -175,26 +174,26 @@ function downsample(pixels1, pixels2, maxSize = 256) {
 
 		lpf = divide2d(lpf, sum2d(lpf));
 
-		pixels1 = imageDownsample(pixels1, lpf, f);
-		pixels2 = imageDownsample(pixels2, lpf, f);
+		img1 = imageDownsample(img1, lpf, f);
+		img2 = imageDownsample(img2, lpf, f);
 	}
 
-	return [pixels1, pixels2];
+	return [img1, img2];
 }
 
 /**
- * For a given 2D filter `filter`, downsize image `pixels` by a factor of `f`.
+ * For a given 2D filter `filter`, downsize image `img` by a factor of `f`.
  *
  * @method imageDownsample
- * @param {Array.<Array.<Number>>} pixels - The matrix to downsample
+ * @param {Array.<Array.<Number>>} img - The matrix to downsample
  * @param {Array.<Number>} filter - The filter to convolve the image with
  * @param {number} f - The downsampling factor (`image size / f`)
  * @returns {Array.<Array.<Number>>} imdown - The downsampled, filtered image
  * @private
  * @memberOf ssim
  */
-function imageDownsample(pixels, filter, f) {
-	const imdown = imfilter(pixels, filter, 'symmetric', 'same');
+function imageDownsample(img, filter, f) {
+	const imdown = imfilter(img, filter, 'symmetric', 'same');
 
 	return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width]);
 }
