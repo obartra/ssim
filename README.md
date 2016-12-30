@@ -84,3 +84,5 @@ The code is fully documented and a hosted version is available [here](https://do
 ## 💡 Credits
 
 This project is a direct port of algorithms published by [Wang, et al. 2004](/assets/ssim.pdf) on "Image Quality Assessment: From Error Visibility to Structural Similarity". The original Matlab scripts are available [here](https://ece.uwaterloo.ca/~z70wang/research/iwssim/) with their datasets. To view the steps taken to validate `ssim.js` results, check the [wiki](https://github.com/obartra/ssim/wiki/Results-Validation).
+
+The algorithm used by default is based on the Matlab [modifications](/assets/ssim/fast_ssim.m) made by [Adam Turcotte](http://ssim.rivetsforbreakfast.com/) to improve performance.
