@@ -47,7 +47,7 @@ function [mssim, ssim_map] = ssim(img1, img2, K, window, L)
 %        (5) L: dynamic range of the images. default: L = 255
 %
 %Output: (1) mssim: the mean SSIM index value between 2 images.
-%            If one of the images being compared is regarded as 
+%            If one of the images being compared is regarded as
 %            perfect quality, then mssim can be considered as the
 %            quality measure of the other image.
 %            If img1 = img2, then mssim = 1.
@@ -91,8 +91,8 @@ end
 
 if (nargin == 2)
    if ((M < 11) || (N < 11))
-	   mssim = -Inf;
-	   ssim_map = -Inf;
+       mssim = -Inf;
+       ssim_map = -Inf;
       return
    end
    window = fspecial('gaussian', 11, 1.5);	%
@@ -103,63 +103,63 @@ end
 
 if (nargin == 3)
    if ((M < 11) || (N < 11))
-	   mssim = -Inf;
-	   ssim_map = -Inf;
+       mssim = -Inf;
+       ssim_map = -Inf;
       return
    end
    window = fspecial('gaussian', 11, 1.5);
    L = 255;
    if (length(K) == 2)
       if (K(1) < 0 || K(2) < 0)
-		   mssim = -Inf;
-   		ssim_map = -Inf;
-	   	return;
+           mssim = -Inf;
+           ssim_map = -Inf;
+           return;
       end
    else
-	   mssim = -Inf;
-   	ssim_map = -Inf;
-	   return;
+       mssim = -Inf;
+       ssim_map = -Inf;
+       return;
    end
 end
 
 if (nargin == 4)
    [H W] = size(window);
    if ((H*W) < 4 || (H > M) || (W > N))
-	   mssim = -Inf;
-	   ssim_map = -Inf;
+       mssim = -Inf;
+       ssim_map = -Inf;
       return
    end
    L = 255;
    if (length(K) == 2)
       if (K(1) < 0 || K(2) < 0)
-		   mssim = -Inf;
-   		ssim_map = -Inf;
-	   	return;
+           mssim = -Inf;
+           ssim_map = -Inf;
+           return;
       end
    else
-	   mssim = -Inf;
-   	ssim_map = -Inf;
-	   return;
+       mssim = -Inf;
+       ssim_map = -Inf;
+       return;
    end
 end
 
 if (nargin == 5)
    [H W] = size(window);
    if ((H*W) < 4 || (H > M) || (W > N))
-	   mssim = -Inf;
-	   ssim_map = -Inf;
+       mssim = -Inf;
+       ssim_map = -Inf;
       return
    end
    if (length(K) == 2)
       if (K(1) < 0 || K(2) < 0)
-		   mssim = -Inf;
-   		ssim_map = -Inf;
-	   	return;
+           mssim = -Inf;
+           ssim_map = -Inf;
+           return;
       end
    else
-	   mssim = -Inf;
-   	ssim_map = -Inf;
-	   return;
+       mssim = -Inf;
+       ssim_map = -Inf;
+       return;
    end
 end
 
@@ -170,7 +170,7 @@ img2 = double(img2);
 % automatic downsampling
 f = max(1,round(min(M,N)/256));
 %downsampling by f
-%use a simple low-pass filter 
+%use a simple low-pass filter
 if(f>1)
     lpf = ones(f,f);
     lpf = lpf/sum(lpf(:));
@@ -199,7 +199,7 @@ if (C1 > 0 && C2 > 0)
 else
    numerator1 = 2*mu1_mu2 + C1;
    numerator2 = 2*sigma12 + C2;
-	denominator1 = mu1_sq + mu2_sq + C1;
+    denominator1 = mu1_sq + mu2_sq + C1;
    denominator2 = sigma1_sq + sigma2_sq + C2;
    ssim_map = ones(size(mu1));
    index = (denominator1.*denominator2 > 0);

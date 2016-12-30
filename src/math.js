@@ -64,11 +64,11 @@ function floor(xn) {
  * @memberOf math
  * @since 0.0.2
  */
-function sum2d({ data }) {
+function sum2d(A) {
 	let out = 0;
 
-	for (let x = 0; x < data.length; x++) {
-		out += data[x];
+	for (let x = 0; x < A.data.length; x++) {
+		out += A.data[x];
 	}
 
 	return out;
@@ -85,21 +85,21 @@ function sum2d({ data }) {
  * @memberOf math
  * @since 0.0.2
  */
-function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+function add2dMx(A, B) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < height; x++) {
-		const offset = x * width;
+	for (let x = 0; x < A.height; x++) {
+		const offset = x * A.width;
 
-		for (let y = 0; y < width; y++) {
-			data[offset + y] = ref1[offset + y] + ref2[offset + y];
+		for (let y = 0; y < A.width; y++) {
+			data[offset + y] = A.data[offset + y] + B.data[offset + y];
 		}
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -114,17 +114,17 @@ function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
  * @memberOf math
  * @since 0.0.2
  */
-function add2dScalar({ data: ref, width, height }, increase) {
-	const data = new Array(ref.length);
+function add2dScalar(A, increase) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = ref[x] + increase;
+	for (let x = 0; x < A.data.length; x++) {
+		data[x] = A.data[x] + increase;
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -147,6 +147,24 @@ function add2d(A, increase) {
 }
 
 /**
+ * Subtracts values of two matrices of the same size or a matrix and a constant
+ *
+ * @method subtract2d
+ * @param {Object} A - The first input matrix
+ * @param {Object|Number} decrease - The second input matrix or the constant value
+ * @returns {Object} B - A matrix with a cell-by-cell subtraction of the first parameter minus the
+ * second one
+ * @public
+ * @memberOf math
+ */
+function subtract2d(A, decrease) {
+	if (typeof decrease === 'number') {
+		return add2dScalar(A, -decrease);
+	}
+	return add2dMx(A, multiply2d(decrease, -1));
+}
+
+/**
  * Divides each matrix cell by a constant value
  *
  * @method divide2dScalar
@@ -157,17 +175,17 @@ function add2d(A, increase) {
  * @memberOf math
  * @since 0.0.2
  */
-function divide2dScalar({ data: ref, width, height }, divisor) {
-	const data = new Array(ref.length);
+function divide2dScalar(A, divisor) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = ref[x] / divisor;
+	for (let x = 0; x < A.data.length; x++) {
+		data[x] = A.data[x] / divisor;
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -182,17 +200,17 @@ function divide2dScalar({ data: ref, width, height }, divisor) {
  * @memberOf math
  * @since 0.0.2
  */
-function divide2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+function divide2dMx(A, B) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < ref1.length; x++) {
-		data[x] = ref1[x] / ref2[x];
+	for (let x = 0; x < A.data.length; x++) {
+		data[x] = A.data[x] / B.data[x];
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -225,17 +243,17 @@ function divide2d(A, divisor) {
  * @memberOf math
  * @since 0.0.2
  */
-function multiply2dScalar({ data: ref, width, height }, multiplier) {
-	const data = new Array(ref.length);
+function multiply2dScalar(A, multiplier) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = ref[x] * multiplier;
+	for (let x = 0; x < A.data.length; x++) {
+		data[x] = A.data[x] * multiplier;
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -250,17 +268,17 @@ function multiply2dScalar({ data: ref, width, height }, multiplier) {
  * @memberOf math
  * @since 0.0.2
  */
-function multiply2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+function multiply2dMx(A, B) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < ref1.length; x++) {
-		data[x] = ref1[x] * ref2[x];
+	for (let x = 0; x < A.data.length; x++) {
+		data[x] = A.data[x] * B.data[x];
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -322,6 +340,7 @@ function mean2d(A) {
  */
 module.exports = {
 	add2d,
+	subtract2d,
 	average,
 	divide2d,
 	floor,

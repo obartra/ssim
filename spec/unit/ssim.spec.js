@@ -21,7 +21,7 @@ const sampleCsv = loadCsv({
 });
 
 function areAllOne(data) {
-	return !data.some(datum => datum !== 1);
+	return !data.some(datum => parseFloat(datum.toFixed(14)) !== 1);
 }
 
 samples = JSON.parse(JSON.stringify(samples));

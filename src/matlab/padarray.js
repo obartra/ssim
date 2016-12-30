@@ -14,19 +14,19 @@ const { mod } = require('./mod');
  * @memberOf matlab
  * @since 0.0.2
  */
-function mirrorHorizonal({ data: ref, width, height }) {
-	const data = new Array(ref.length);
+function mirrorHorizonal(A) {
+	const data = new Array(A.data.length);
 
-	for (let x = 0; x < height; x++) {
-		for (let y = 0; y < width; y++) {
-			data[x * width + y] = ref[x * width + width - 1 - y];
+	for (let x = 0; x < A.height; x++) {
+		for (let y = 0; y < A.width; y++) {
+			data[x * A.width + y] = A.data[x * A.width + A.width - 1 - y];
 		}
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
@@ -252,7 +252,7 @@ function padVertical(A, pad) {
  * @memberOf matlab
  * @since 0.0.4
  */
-function fastPadding(A, [padHeight, padWidth]) {
+function fastPadding(A, padHeight, padWidth) {
 	const width = A.width + padWidth * 2;
 	const height = A.height + padHeight * 2;
 	const data = new Array(width * height);
@@ -260,81 +260,49 @@ function fastPadding(A, [padHeight, padWidth]) {
 	for (let x = -padHeight; x < 0; x++) {
 		// A
 		for (let y = -padWidth; y < 0; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(Math.abs(x) - 1) * A.width + Math.abs(y) - 1
-			];
+			data[(x + padHeight) * width + y + padWidth] = A.data[(-x - 1) * A.width - y - 1];
 		}
 		// B
 		for (let y = 0; y < A.width; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(Math.abs(x) - 1) * A.width + y
-			];
+			data[(x + padHeight) * width + y + padWidth] = A.data[(-x - 1) * A.width + y];
 		}
 		// C
 		for (let y = A.width; y < A.width + padWidth; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(Math.abs(x) - 1) * A.width + 2 * A.width - y - 1
-			];
+			data[(x + padHeight) * width + y + padWidth] =
+				A.data[(-x - 1) * A.width + 2 * A.width - y - 1];
 		}
 	}
 
 	for (let x = 0; x < A.height; x++) {
 		// D
 		for (let y = -padWidth; y < 0; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				x * A.width + Math.abs(y) - 1
-			];
+			data[(x + padHeight) * width + y + padWidth] = A.data[x * A.width - y - 1];
 		}
 		// E
 		for (let y = 0; y < A.width; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				x * A.width + y
-			];
+			data[(x + padHeight) * width + y + padWidth] = A.data[x * A.width + y];
 		}
 		// F
 		for (let y = A.width; y < A.width + padWidth; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				x * A.width + 2 * A.width - y - 1
-			];
+			data[(x + padHeight) * width + y + padWidth] = A.data[x * A.width + 2 * A.width - y - 1];
 		}
 	}
 
 	for (let x = A.height; x < A.height + padHeight; x++) {
 		// G
 		for (let y = -padWidth; y < 0; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(2 * A.height - x - 1) * A.width + Math.abs(y) - 1
-			];
+			data[(x + padHeight) * width + y + padWidth] =
+				A.data[(2 * A.height - x - 1) * A.width - y - 1];
 		}
 		// H
 		for (let y = 0; y < A.width; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(2 * A.height - x - 1) * A.width + y
-			];
+			data[(x + padHeight) * width + y + padWidth] =
+				A.data[(2 * A.height - x - 1) * A.width + y];
 		}
 		// I
 		for (let y = A.width; y < A.width + padWidth; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(2 * A.height - x - 1) * A.width + 2 * A.width - y - 1
-			];
+			data[(x + padHeight) * width + y + padWidth] =
+				A.data[(2 * A.height - x - 1) * A.width + 2 * A.width - y - 1];
 		}
 	}
 
@@ -346,31 +314,22 @@ function fastPadding(A, [padHeight, padWidth]) {
 }
 
 /**
- * `B = padarray(A,padsize)` pads array `A`. padsize is a vector of nonnegative integers that
- * specifies both, the amount of padding to add and the dimension along which to add it. The value
- * of an element in the vector specifies the amount of padding to add. The order of the element in
- * the vector specifies the dimension along which to add the padding.
+ * `B = padarray(A,padHeight,padWidth)` pads array `A`. padsize values are nonnegative integers that
+ * specify the amount of padding to add.
  *
- * For example, a padsize value of `[2 3]` means add 2 elements of padding along the first dimension
- * and 3 elements of padding along the second dimension.
+ * For example, a padHeight and a padWidth of `2` and `3` means add 2 elements of padding along the
+ * first dimension and 3 elements of padding along the second dimension.
  *
  * By default, paddarray adds padding before the first element and after the last element along the
  * specified dimension.
  *
- * `B = padarray(A,padsize,padval)` pads array `A` where `padval` specifies the value to use as the
- * pad value. `padval` can only be 'symmetric' for this implementation of `padarray` which will pad
- * the array with mirror reflections of itself.
- *
  * This method mimics Matlab's `padarray` method with `padval = 'symmetric'` and
  * `direction = 'both'`. No other options have been implemented and, if set, they will be ignored.
  *
- * This method has been unfolded for performance and switched to simple for loops. Readability
- * suffers.
- *
  * @method padarray
  * @param {Object} A - The target matrix
- * @param {Array} padding - An array where the first element is the padding to apply to each side on
- * each row and the second one is the vertical padding for each side of each column
+ * @param {Number} padHeight - The horizontal padding to apply to each side on each row
+ * @param {Number} padWidth - The vertical padding for each side of each column
  * @param {String} [padval='symmetric'] - The type of padding to apply (coerced to 'symmetric')
  * @param {String} [direction='both'] - The direction to which apply padding (coerced to 'both')
  * @returns {Object} c - An array with padding added on each side.
@@ -378,14 +337,13 @@ function fastPadding(A, [padHeight, padWidth]) {
  * @memberOf matlab
  * @since 0.0.2
  */
-function padarray(A, [padHeight, padWidth]) {
+function padarray(A, padHeight, padWidth) {
 	// If the padding to mirror is not greater than `A` dimensions, we can use `fastPadding`,
 	// otherwise we fall back to a slower implementation that mimics Matlab behavior for longer
 	// matrices
 	if (A.height >= padHeight && A.width >= padWidth) {
-		return fastPadding(A, [padHeight, padWidth]);
+		return fastPadding(A, padHeight, padWidth);
 	}
-
 	return padVertical(padHorizontal(A, padWidth), padHeight);
 }
 

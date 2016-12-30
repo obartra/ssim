@@ -13,12 +13,14 @@
  * @memberOf matlab
  * @since 0.0.2
  */
-function sub({ data: ref, width: refWidth }, x, height, y, width) {
+function sub(A, x, height, y, width) {
 	const data = new Array(width * height);
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			data[i * width + j] = ref[(y + i) * refWidth + x + j];
+	let counter = 0;
+
+	for (let i = y; i < y + height; i++) {
+		for (let j = x; j < x + width; j++) {
+			data[counter++] = A.data[i * A.width + j];
 		}
 	}
 

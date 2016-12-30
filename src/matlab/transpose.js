@@ -14,19 +14,19 @@
  * @public
  * @memberOf matlab
  */
-function transpose({ data: ref, width, height }) {
-	const data = new Array(width * height);
+function transpose(A) {
+	const data = new Array(A.width * A.height);
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			data[j * height + i] = ref[i * width + j];
+	for (let i = 0; i < A.height; i++) {
+		for (let j = 0; j < A.width; j++) {
+			data[j * A.height + i] = A.data[i * A.width + j];
 		}
 	}
 
 	return {
 		data,
-		height: width,
-		width: height
+		height: A.width,
+		width: A.height
 	};
 }
 

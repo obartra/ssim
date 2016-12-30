@@ -14,19 +14,19 @@ const { conv2 } = require('./conv2');
  * @memberOf matlab
  * @since 0.0.2
  */
-function rotate1802d({ data: ref, width, height }) {
-	const data = new Array(ref.length);
+function rotate1802d(A) {
+	const data = new Array(A.data.length);
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			data[i * width + j] = ref[(height - 1 - i) * width + width - 1 - j];
+	for (let i = 0; i < A.height; i++) {
+		for (let j = 0; j < A.width; j++) {
+			data[i * A.width + j] = A.data[(A.height - 1 - i) * A.width + A.width - 1 - j];
 		}
 	}
 
 	return {
 		data,
-		width,
-		height
+		width: A.width,
+		height: A.height
 	};
 }
 
