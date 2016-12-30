@@ -19,7 +19,7 @@ dependencies:
     - npm run build        # Create Node, web and test builds
 test:
   override:
-    - ci/node$CIRCLE_NODE_INDEX.sh:
+    - ci/tasks.sh:
         parallel: true
     - npm run cover:check                   # Fail if coverage drops below 100%
     - npm run codeclimate                   # Run tests and send coverage to code climate

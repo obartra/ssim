@@ -4,11 +4,6 @@
 	"platform": "OS X 10.11",
 	"name": "OSX - Chrome54"
 }, {
-	"browserName": "MicrosoftEdge",
-	"platform": "Windows 10",
-	"version": "14.14393",
-	"name": "Win10 - Edge14"
-}, {
 	"browserName": "firefox",
 	"platform": "OS X 10.11",
 	"version": "49.0",

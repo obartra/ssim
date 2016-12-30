@@ -16,7 +16,7 @@ test('should be a function', (t) => {
 
 test('should fail on threshold mode when output is below the threshold', (t) => {
 	exec(`./cli.js ${img1} ${img2} --threshold ${ssimValue + 0.1}`, (err) => {
-		t.equal(err.code, 1);
+		t.equal(err && err.code, 1);
 		t.end();
 	});
 });
