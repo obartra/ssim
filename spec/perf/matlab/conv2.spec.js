@@ -1,5 +1,5 @@
 const test = require('blue-tape');
-const Benchmark = require('benchmark');
+const measure = require('../../helpers/measure');
 const { conv2 } = require('../../../src/matlab/conv2');
 
 const A = {
@@ -53,28 +53,11 @@ const KERNEL = {
 };
 
 test('box kernels should perform better than non box kernels', (t) => {
-	function onComplete() {
-		const fastest = this.filter('fastest').map('name');
-		const slowest = this.filter('slowest').map('name');
-
-		if (fastest.includes(KERNEL.BOX) && slowest.includes(KERNEL.NONBOX)) {
-			t.ok(`${KERNEL.BOX} is significantly faster than ${KERNEL.NONBOX}`);
-		} else {
-			t.fail(`No statistical significance between ${KERNEL.BOX} and ${KERNEL.NONBOX}`);
-		}
-		t.end();
-	}
-
-	function onError() {
-		t.fail('Tests failed');
-	}
-
-	const suite = new Benchmark.Suite('Convolution kernel comparison', {
-		onError,
-		onComplete
+	measure(t, 'Convolution kernel comparison', false, {
+		name: KERNEL.BOX,
+		fn: () => conv2(A, box, 'full')
+	}, {
+		name: KERNEL.NONBOX,
+		fn: () => conv2(A, nonBox, 'full')
 	});
-
-	suite.add(KERNEL.BOX, () => conv2(A, box, 'full'));
-	suite.add(KERNEL.NONBOX, () => conv2(A, nonBox, 'full'));
-	suite.run();
 });
