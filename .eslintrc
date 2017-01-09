@@ -19,7 +19,7 @@
     "es6": true,
     "node": true
   },
-  "extends": "airbnb/base",
+  "extends": "airbnb",
   "rules": {
     "no-labels": 2,
     "no-tabs": 0,

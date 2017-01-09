@@ -3,6 +3,7 @@ const {
 	divide2d,
 	multiply2d,
 	square2d,
+	subtract2d,
 	sum2d
 } = require('./math');
 const {
@@ -71,12 +72,9 @@ function originalSsim(pixels1, pixels2, options) { // eslint-disable-line max-st
 	const μ12 = multiply2d(μ1, μ2);
 	const pixels1Sq = square2d(pixels1);
 	const pixels2Sq = square2d(pixels2);
-	const minusμ1Sq = multiply2d(μ1Sq, -1);
-	const minusμ2Sq = multiply2d(μ2Sq, -1);
-	const minusμ12 = multiply2d(μ12, -1);
-	const σ1Sq = add2d(filter2(w, pixels1Sq, 'valid'), minusμ1Sq);
-	const σ2Sq = add2d(filter2(w, pixels2Sq, 'valid'), minusμ2Sq);
-	const σ12 = add2d(filter2(w, multiply2d(pixels1, pixels2), 'valid'), minusμ12);
+	const σ1Sq = subtract2d(filter2(w, pixels1Sq, 'valid'), μ1Sq);
+	const σ2Sq = subtract2d(filter2(w, pixels2Sq, 'valid'), μ2Sq);
+	const σ12 = subtract2d(filter2(w, multiply2d(pixels1, pixels2), 'valid'), μ12);
 
 	if (c1 > 0 && c2 > 0) {
 		const num1 = add2d(multiply2d(μ12, 2), c1);

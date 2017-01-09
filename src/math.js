@@ -104,6 +104,36 @@ function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
 }
 
 /**
+ * Subtracts values of second matrix from the first one. It assumes both matrices are of the same
+ * size
+ *
+ * @method subtract2dMx
+ * @param {Object} A - The first input matrix
+ * @param {Object} B - The second input matrix
+ * @returns {Object} out - A matrix with a cell-by-cell subtraction of `A` minus `B`
+ * @private
+ * @memberOf math
+ * @since 0.0.2
+ */
+function subtract2dMx({ data: ref1, width, height }, { data: ref2 }) {
+	const data = new Array(ref1.length);
+
+	for (let x = 0; x < height; x++) {
+		const offset = x * width;
+
+		for (let y = 0; y < width; y++) {
+			data[offset + y] = ref1[offset + y] - ref2[offset + y];
+		}
+	}
+
+	return {
+		data,
+		width,
+		height
+	};
+}
+
+/**
  * Adds a constant value two each matrix cell
  *
  * @method add2dScalar
@@ -144,6 +174,24 @@ function add2d(A, increase) {
 		return add2dScalar(A, increase);
 	}
 	return add2dMx(A, increase);
+}
+
+/**
+ * Subtracts values of two matrices of the same size or a matrix and a constant
+ *
+ * @method subtract2d
+ * @param {Object} A - The first input matrix
+ * @param {Object|Number} decrease - The second input matrix or the constant value
+ * @returns {Object} B - A matrix with a cell-by-cell subtraction of the first parameter minus the
+ * second one
+ * @public
+ * @memberOf math
+ */
+function subtract2d(A, decrease) {
+	if (typeof decrease === 'number') {
+		return add2dScalar(A, -decrease);
+	}
+	return subtract2dMx(A, decrease);
 }
 
 /**
@@ -328,6 +376,7 @@ module.exports = {
 	mean2d,
 	multiply2d,
 	square2d,
+	subtract2d,
 	sum,
 	sum2d
 };

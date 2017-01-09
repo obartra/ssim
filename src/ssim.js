@@ -3,6 +3,7 @@ const {
 	divide2d,
 	multiply2d,
 	square2d,
+	subtract2d,
 	sum2d
 } = require('./math');
 const {
@@ -52,12 +53,9 @@ function ssim(pixels1, pixels2, options) {
 	const μ12 = multiply2d(μ1, μ2);
 	const pixels1Sq = square2d(pixels1);
 	const pixels2Sq = square2d(pixels2);
-	const minusμ1Sq = multiply2d(μ1Sq, -1);
-	const minusμ2Sq = multiply2d(μ2Sq, -1);
-	const minusμ12 = multiply2d(μ12, -1);
-	const σ1Sq = add2d(conv2(pixels1Sq, w, wt, 'valid'), minusμ1Sq);
-	const σ2Sq = add2d(conv2(pixels2Sq, w, wt, 'valid'), minusμ2Sq);
-	const σ12 = add2d(conv2(multiply2d(pixels1, pixels2), w, wt, 'valid'), minusμ12);
+	const σ1Sq = subtract2d(conv2(pixels1Sq, w, wt, 'valid'), μ1Sq);
+	const σ2Sq = subtract2d(conv2(pixels2Sq, w, wt, 'valid'), μ2Sq);
+	const σ12 = subtract2d(conv2(multiply2d(pixels1, pixels2), w, wt, 'valid'), μ12);
 
 	if (c1 > 0 && c2 > 0) {
 		return genSSIM(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq, c1, c2);

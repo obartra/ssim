@@ -63,7 +63,7 @@
     "canvas": "^1.6.2",
     "image-type": "^2.1.0",
     "promiz": "^1.0.5",
-    "yargs": "^6.5.0"
+    "yargs": "^6.6.0"
   },
   "devDependencies": {
     "@bubltechnology/customizable-commit-analyzer": "^1.0.0",
@@ -80,14 +80,11 @@
     "condition-circle": "^1.5.0",
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^1.2.0",
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-react": "^6.8.0",
-    "eslint-plugin-standard": "^2.0.1",
+    "eslint": "^3.13.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
     "http-server": "^0.9.0",
     "inchjs": "^0.4.1",
     "jsdoc": "^3.4.3",
@@ -111,10 +108,5 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
-  },
-  "greenkeeper": {
-    "ignore": [
-      "eslint-plugin-jsx-a11y"
-    ]
   }
 }
