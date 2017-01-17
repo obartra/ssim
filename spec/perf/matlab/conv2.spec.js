@@ -47,6 +47,7 @@ const nonBox = {
 	width: 9,
 	height: 9
 };
+
 const KERNEL = {
 	BOX: 'Box kernel',
 	NONBOX: 'Non box kernel'

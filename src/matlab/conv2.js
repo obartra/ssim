@@ -1,7 +1,7 @@
+const { multiply2d } = require('../math');
+const { ones } = require('./ones');
 const { sub } = require('./sub');
 const { zeros } = require('./zeros');
-const { ones } = require('./ones');
-const { multiply2d } = require('../math');
 
 /**
  * `C = conv2(a,b)` computes the two-dimensional convolution of matrices `a` and `b`. If one of

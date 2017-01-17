@@ -44,8 +44,10 @@ function measure(t, testName, defer, fast, slow) {
 
 		if (fastest.includes(fast.name) && slowest.includes(slow.name)) {
 			t.ok(`${fast.name} is significantly faster than ${slow.name}`);
+		} else if (fastest.includes(fast.name) && fastest.includes(slow.name)) {
+			t.ok(`${fast.name} is comparable to ${slow.name}`);
 		} else {
-			t.fail(`No statistical significance between ${fast.name} and ${slow.name}`);
+			t.fail(`${slow.name} is faster than ${fast.name}`);
 		}
 		t.end();
 	}
