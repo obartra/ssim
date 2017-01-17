@@ -360,6 +360,53 @@ function mean2d(A) {
 }
 
 /**
+ * Computes the variance for a given array
+ *
+ * @method variance
+ * @param {Array<Number>} values - The target array
+ * @param {Number} [avg=average(values)] - If specified, it will use this values as the average of
+ * the array values. If not, it will compute the actual average
+ * @returns {Number} varx - The resulting variance value
+ * @public
+ * @memberOf math
+ */
+function variance(values, avg = average(values)) {
+	let varx = 0;
+	let i = values.length;
+
+	while (i--) {
+		varx += (values[i] - avg) ** 2;
+	}
+
+	return varx / values.length;
+}
+
+/**
+ * Computes the covariance between 2 arrays
+ *
+ * @method covariance
+ * @param {Array<Number>} values1 - The first target array
+ * @param {Array<Number>} values2 - The second target array
+ * @param {Number} [average1=average(values)] - If specified, it will use this values as the average
+ * of the first array. If not, it will compute the actual average
+ * @param {Number} [average2=average(values)] - If specified, it will use this values as the average
+ * of the second array. If not, it will compute the actual average
+ * @returns {Number} cov - The resulting covariance
+ * @public
+ * @memberOf math
+ */
+function covariance(values1, values2, average1 = average(values1), average2 = average(values2)) {
+	let cov = 0;
+	let i = values1.length;
+
+	while (i--) {
+		cov += (values1[i] - average1) * (values2[i] - average2);
+	}
+
+	return cov / values1.length;
+}
+
+/**
  * Generates all basic arithmetic and matrix computations required
  *
  * Most of these methods use plain for loops and reduce nested calls. This results in about ~100x
@@ -371,6 +418,7 @@ function mean2d(A) {
 module.exports = {
 	add2d,
 	average,
+	covariance,
 	divide2d,
 	floor,
 	mean2d,
@@ -378,5 +426,6 @@ module.exports = {
 	square2d,
 	subtract2d,
 	sum,
-	sum2d
+	sum2d,
+	variance
 };

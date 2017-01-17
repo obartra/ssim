@@ -8,10 +8,7 @@ const {
 } = require('./math');
 const {
 	filter2,
-	fspecial,
-	imfilter,
-	ones,
-	skip2d
+	fspecial
 } = require('./matlab');
 
 /**
@@ -47,23 +44,6 @@ function originalSsim(pixels1, pixels2, options) { // eslint-disable-line max-st
 	const c2 = (options.k2 * L) ** 2;
 
 	w = divide2d(w, sum2d(w));
-
-	if (options.downsample === 'original') {
-		const factor = Math.min(pixels1.width, pixels1.height) / options.maxSize;
-		const rfactor = Math.round(factor);
-		const f = Math.max(1, rfactor);
-
-		if (f > 1) {
-			let lpf = ones(f);
-
-			lpf = divide2d(lpf, sum2d(lpf));
-			pixels1 = imfilter(pixels1, lpf, 'symmetric', 'same');
-			pixels2 = imfilter(pixels2, lpf, 'symmetric', 'same');
-
-			pixels1 = skip2d(pixels1, [0, f, pixels1.height], [0, f, pixels1.width]);
-			pixels2 = skip2d(pixels2, [0, f, pixels2.height], [0, f, pixels2.width]);
-		}
-	}
 
 	const μ1 = filter2(w, pixels1, 'valid');
 	const μ2 = filter2(w, pixels2, 'valid');

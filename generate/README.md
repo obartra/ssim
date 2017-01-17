@@ -20,6 +20,7 @@ The generated csv files can then be processed by `LIVEresults.js` to generate th
 Note that you don't have to regenerate this file to validate the results. If you want to though, you would run (in Matlab / Octave):
 
 ```Matlab
+>> pkg load image
 >> compareLIVESSIM
 ```
 

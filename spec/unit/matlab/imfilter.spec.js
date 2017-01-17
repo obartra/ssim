@@ -159,3 +159,50 @@ test('should produce different resSize is "same" from when it is "full"', (t) =>
 	t.notDeepEqual(imfilter(A, f, 'symmetric', 'full'), imfilter(A, f, 'symmetric', 'same'));
 	t.end();
 });
+
+test('should not remove the last row when the number of rows is odd', (t) => {
+	const A = {
+		data: [
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 0, 1, 2
+		],
+		width: 4,
+		height: 3
+	};
+	const f = {
+		data: [
+			0, 1,
+			1, 0
+		],
+		width: 2,
+		height: 2
+	};
+
+	t.equal(imfilter(A, f).height, 3);
+	t.end();
+});
+
+test('should not remove the last column when the number of columns is odd', (t) => {
+	const A = {
+		data: [
+			1, 2, 3,
+			5, 6, 7,
+			9, 0, 1,
+			12, 3, 5
+		],
+		width: 3,
+		height: 4
+	};
+	const f = {
+		data: [
+			0, 1,
+			1, 0
+		],
+		width: 2,
+		height: 2
+	};
+
+	t.equal(imfilter(A, f).width, 3);
+	t.end();
+});

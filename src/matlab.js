@@ -7,6 +7,7 @@ const { ones } = require('./matlab/ones');
 const { padarray } = require('./matlab/padarray');
 const { rgb2gray } = require('./matlab/rgb2gray');
 const { skip2d } = require('./matlab/skip2d');
+const { sub } = require('./matlab/sub');
 const { transpose } = require('./matlab/transpose');
 const { zeros } = require('./matlab/zeros');
 
@@ -31,6 +32,7 @@ module.exports = {
 	padarray,
 	rgb2gray,
 	skip2d,
+	sub,
 	transpose,
 	zeros
 };

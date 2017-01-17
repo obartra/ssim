@@ -8,10 +8,7 @@ const {
 } = require('./math');
 const {
 	conv2,
-	imfilter,
 	normpdf,
-	ones,
-	skip2d,
 	transpose
 } = require('./matlab');
 
@@ -27,10 +24,10 @@ const {
  * performance.
  *
  * @method ssim
- * @param {Array.<Array.<Array.<Number>>>} pixels1 - The reference rgb matrix
- * @param {Array.<Array.<Array.<Number>>>} pixels2 - The second rgb matrix to compare against
+ * @param {Object} pixels1 - The reference matrix
+ * @param {Object} pixels2 - The second matrix to compare against
  * @param {Object} options - The input options parameter
- * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
+ * @returns {Object} ssim_map - A matrix containing the map of computed SSIMs
  * @public
  * @memberOf ssim
  */
@@ -42,10 +39,6 @@ function ssim(pixels1, pixels2, options) {
 
 	w = divide2d(w, sum2d(w));
 	const wt = transpose(w);
-
-	if (options.downsample === 'original') {
-		[pixels1, pixels2] = downsample(pixels1, pixels2, options.maxSize);
-	}
 	const μ1 = conv2(pixels1, w, wt, 'valid');
 	const μ2 = conv2(pixels2, w, wt, 'valid');
 	const μ1Sq = square2d(μ1);
@@ -147,54 +140,6 @@ function genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq) {
 		multiply2d(numerator1, numerator2),
 		multiply2d(denominator1, denominator2)
 	);
-}
-
-/**
- * Downsamples images greater than `maxSize` pixels on the smallest direction. If neither image
- * exceeds these dimensions they are returned as they are.
- *
- * The resulting MSSIM value may differ (downsizing vs not downsizing) but it should be a good
- * approximation.
- *
- * @method downsample
- * @param {Array.<Array.<Number>>} pixels1 - The first matrix to downsample
- * @param {Array.<Array.<Number>>} pixels2 - The second matrix to downsample
- * @param {number} [maxSize=256] - The maximum size on the smallest dimension
- * @returns {Array.<Array.<Number>>} ssim_map - A matrix containing the map of computed SSIMs
- * @private
- * @memberOf ssim
- */
-function downsample(pixels1, pixels2, maxSize = 256) {
-	const factor = Math.min(pixels1.width, pixels2.height) / maxSize;
-	const f = Math.round(factor);
-
-	if (f > 1) {
-		let lpf = ones(f);
-
-		lpf = divide2d(lpf, sum2d(lpf));
-
-		pixels1 = imageDownsample(pixels1, lpf, f);
-		pixels2 = imageDownsample(pixels2, lpf, f);
-	}
-
-	return [pixels1, pixels2];
-}
-
-/**
- * For a given 2D filter `filter`, downsize image `pixels` by a factor of `f`.
- *
- * @method imageDownsample
- * @param {Array.<Array.<Number>>} pixels - The matrix to downsample
- * @param {Array.<Number>} filter - The filter to convolve the image with
- * @param {number} f - The downsampling factor (`image size / f`)
- * @returns {Array.<Array.<Number>>} imdown - The downsampled, filtered image
- * @private
- * @memberOf ssim
- */
-function imageDownsample(pixels, filter, f) {
-	const imdown = imfilter(pixels, filter, 'symmetric', 'same');
-
-	return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width]);
 }
 
 /**

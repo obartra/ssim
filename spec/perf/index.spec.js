@@ -14,9 +14,10 @@ const samples = {
 };
 
 const method = {
+	BEZKROVNY: 'Bezkrovny SSIM',
 	FAST: 'Fast SSIM',
-	SLOW: 'Original SSIM',
-	PRIOR: 'Last published SSIM version'
+	PRIOR: 'Last published SSIM version',
+	SLOW: 'Original SSIM'
 };
 
 test('ssim should be faster than originalSsim', (t) => {
@@ -31,6 +32,24 @@ test('ssim should be faster than originalSsim', (t) => {
 		name: method.SLOW,
 		fn(deferred) {
 			ssim(samples.avion, samples.avion_j2000_r1, { ssim: 'original' })
+				.then(() => deferred.resolve())
+				.catch(() => t.fail(`${method.SLOW} failed`));
+		}
+	});
+});
+
+test('bezkrovny ssim should be faster than ssim', (t) => {
+	measure(t, 'SSIM algorithm', true, {
+		name: method.BEZKROVNY,
+		fn(deferred) {
+			ssim(samples.avion, samples.avion_j2000_r1, { ssim: 'bezkrovny' })
+				.then(() => deferred.resolve())
+				.catch(() => t.fail(`${method.FAST} failed`));
+		}
+	}, {
+		name: method.FAST,
+		fn(deferred) {
+			ssim(samples.avion, samples.avion_j2000_r1, { ssim: 'fast' })
 				.then(() => deferred.resolve())
 				.catch(() => t.fail(`${method.SLOW} failed`));
 		}

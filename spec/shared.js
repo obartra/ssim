@@ -20,16 +20,28 @@ function runSharedTests(ssim, samples) {
 	});
 
 	test('Missing image parameters', (t) => {
-		t.throws(() => ssim(), 'Should throw if missing both image parameters');
-		t.throws(() => ssim('path1'), 'Should throw if missing first image parameters');
-		t.throws(() => ssim(undefined, 'path2'), 'Should throw if missing second image parameters');
+		ssim()
+			.then(() => t.fail('Should throw if missing both image parameters'))
+			.catch(t.ok);
+		ssim('path1')
+			.then(() => t.fail('Should throw if missing first image parameters'))
+			.catch(t.ok);
+		ssim(undefined, 'path2')
+			.then(() => t.fail('Should throw if missing second image parameters'))
+			.catch(t.ok);
 		t.end();
 	});
 
 	test('Invalid options', (t) => {
-		t.throws(() => ssim('1', '2', { apples: 3 }), 'Should throw if passing invalid parameter');
-		t.throws(() => ssim('1', '2', { k1: -4 }), 'Should throw if k1 is < 0');
-		t.throws(() => ssim('1', '2', { k2: -0.4 }), 'Should throw if k2 is < 0');
+		ssim('1', '2', { apples: 3 })
+			.then(() => t.fail('Should throw if passing invalid parameter'))
+			.catch(t.ok);
+		ssim('1', '2', { k1: -4 })
+			.then(() => t.fail('Should throw if k1 is < 0'))
+			.catch(t.ok);
+		ssim('1', '2', { k2: -0.4 })
+			.then(() => t.fail('Should throw if k2 is < 0'))
+			.catch(t.ok);
 		t.end();
 	});
 
