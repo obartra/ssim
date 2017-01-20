@@ -61,7 +61,7 @@
   "dependencies": {
     "bmp-js": "^0.0.3",
     "canvas": "^1.6.2",
-    "image-type": "^2.1.0",
+    "image-type": "^3.0.0",
     "promiz": "^1.0.5",
     "yargs": "^6.6.0"
   },
