@@ -3,10 +3,17 @@ const { rgb2gray } = require('./src/matlab');
 const { mean2d } = require('./src/math');
 const { ssim } = require('./src/ssim');
 const { originalSsim } = require('./src/originalSsim');
-const { force } = require('./src/util');
+const { bezkrovnySsim } = require('./src/bezkrovnySsim');
+const { downsample } = require('./src/downsample');
 const defaults = require('./src/defaults.json');
 const { version } = require('./version.js');
 const promiz = require('promiz');
+
+const ssimTargets = {
+	fast: ssim,
+	original: originalSsim,
+	bezkrovny: bezkrovnySsim
+};
 
 function validateOptions(options) {
 	Object.keys(options).forEach((option) => {
@@ -20,43 +27,68 @@ function validateOptions(options) {
 	if ('k2' in options && (typeof options.k2 !== 'number' || options.k2 < 0)) {
 		throw new Error(`Invalid k2 value. Default is ${defaults.k2}`);
 	}
+	if (!(options.ssim in ssimTargets)) {
+		throw new Error(`Invalid ssim option (use: ${Object.keys(ssimTargets).join(', ')})`);
+	}
 }
 
-function getOptions(options) {
-	validateOptions(options);
-	return Object.assign({}, defaults, options);
+function getOptions(userOptions) {
+	return new singleSSIM.Promise((resolve) => {
+		const options = Object.assign({}, defaults, userOptions);
+
+		validateOptions(options);
+
+		resolve(options);
+	});
 }
 
-function validateDimensions(pixels) {
-	if (pixels[0].width !== pixels[1].width || pixels[0].height !== pixels[1].height) {
+function validateDimensions([pixels1, pixels2, options]) {
+	if (pixels1.width !== pixels2.width || pixels1.height !== pixels2.height) {
 		throw new Error('Image dimensions do not match');
 	}
 
-	return pixels;
+	return [pixels1, pixels2, options];
 }
 
-function toGrayScale(pixels) {
-	return [rgb2gray(pixels[0]), rgb2gray(pixels[1])];
+function toGrayScale([pixels1, pixels2, options]) {
+	return [rgb2gray(pixels1), rgb2gray(pixels2), options];
+}
+
+function toResize([pixels1, pixels2, options]) {
+	const pixels = downsample([pixels1, pixels2], options);
+
+	return [pixels[0], pixels[1], options];
+}
+
+function comparison([pixels1, pixels2, options]) {
+	return ssimTargets[options.ssim](pixels1, pixels2, options);
 }
 
 function readImage(image, options) {
-	if (options.downsample === 'fast') {
+	if (!image) {
+		throw new Error('Missing image parameter');
+	} else if (options.downsample === 'fast') {
 		return readpixels(image, singleSSIM.Promise, options.maxSize);
 	}
 	return readpixels(image, singleSSIM.Promise);
 }
 
-function singleSSIM(image1 = force('image1'), image2 = force('image2'), options = {}) {
+function readImages(image1, image2, options) {
+	return singleSSIM.Promise.all([
+		readImage(image1, options),
+		readImage(image2, options)
+	]).then(images => [images[0], images[1], options]);
+}
+
+function singleSSIM(image1, image2, userOptions) {
 	const start = new Date().getTime();
 
-	options = getOptions(options);
-
-	const ssimImpl = options.ssim === 'fast' ? ssim : originalSsim;
-
-	return singleSSIM.Promise.all([readImage(image1, options), readImage(image2, options)])
+	return getOptions(userOptions)
+		.then(options => readImages(image1, image2, options))
 		.then(validateDimensions)
 		.then(toGrayScale)
-		.then(pixels => ssimImpl(pixels[0], pixels[1], options))
+		.then(toResize)
+		.then(comparison)
 		.then(ssimMap => ({
 			ssim_map: ssimMap,
 			mssim: mean2d(ssimMap),
@@ -78,7 +110,7 @@ singleSSIM.Promise = this.Promise || promiz;
  * mod('/img1.jpg', '/img2.jpg');
  * mod.ssim('/img1.jpg', '/img2.jpg');
  */
-singleSSIM.ssim = ssim;
+singleSSIM.ssim = singleSSIM;
 /**
  * @property {String} version - The SSIM package version
  * @public

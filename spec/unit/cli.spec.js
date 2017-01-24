@@ -35,7 +35,7 @@ test('should provide no output when using --threshold and --quiet', (t) => {
 	});
 });
 
-test('should only output sssim value when using --quiet', (t) => {
+test('should only output ssim value when using --quiet', (t) => {
 	exec(`./cli.js ${img1} ${img2} --quiet`, (err, stdout) => {
 		t.equal(`${ssimValue}`, stdout.trim());
 		t.end();

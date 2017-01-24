@@ -10,11 +10,16 @@ const argv = yargs
 	.example(`${name} img1.png img2.png`)
 	.example(`${name} img1.png img2.png --quiet`)
 	.example(`${name} img1.png img2.png --threshold 0.95`)
+	.example(`${name} img1.png img2.png --algorithm bezkrovny`)
 	.example(`${name} https://url.jpg https://url2.jpg`)
 	.nargs('threshold', 1)
 	.number('threshold')
 	.alias('t', 'threshold')
 	.describe('threshold', 'exit 0 if mssim >= threshold, exit 1 otherwise')
+	.nargs('algorithm', 1)
+	.alias('a', 'algorithm')
+	.describe('algorithm', 'SSIM algorithm to use: fast/original/bezkrovny')
+	.default('algorithm', 'fast')
 	.nargs('quiet', 0)
 	.alias('q', 'quiet')
 	.describe('quiet', 'Prints only the mean ssim value')
@@ -76,7 +81,7 @@ function onError(error) {
 }
 
 if (validate()) {
-	ssim(argv._[0], argv._[1])
+	ssim(argv._[0], argv._[1], { ssim: argv.algorithm })
 		.then(onComplete)
 		.catch(onError);
 } else {

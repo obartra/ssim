@@ -1,12 +1,12 @@
+const arScores = require('../samples/aspectratio.json');
+const getJSONScores = require('../helpers/getJSONScores');
+const index = require('../../index');
+const lenaScores = require('../samples/lena.json');
+const runSharedTests = require('../shared');
 const test = require('blue-tape');
 const { join, resolve } = require('path');
-const index = require('../../index');
-const { ssim } = require('../../index');
 const { roundTo } = require('../helpers/round');
-const runSharedTests = require('../shared');
-const getJSONScores = require('../helpers/getJSONScores');
-const arScores = require('../samples/aspectratio.json');
-const lenaScores = require('../samples/lena.json');
+const { ssim } = require('../../index');
 
 const samples = {
 	'3x3': join(__dirname, '../samples/3x3.jpg'),
@@ -47,6 +47,12 @@ test('ssim should produce the same output than originalSsim', t =>
 	})
 );
 
+test('should fail if an invalid ssim value is specified', t =>
+	index(samples.avion, samples.avion_j2000_r1, { ssim: 'invalid' })
+		.then(t.fail)
+		.catch(t.ok)
+);
+
 function compare({ file, mssim, reference }, t) {
 	return index(reference, file)
 		.then(({ mssim: computedMssim }) => {
@@ -65,4 +71,19 @@ const ar = getJSONScores(arScores, resolve(__dirname, '../samples/aspectratio'),
 
 Object.keys(ar).forEach((key) => {
 	test(`should get a mssim of ${ar[key].mssim} for ${key}`, t => compare(ar[key], t));
+});
+
+test('should downsample images and produce somewhat similar results', (t) => {
+	const ssimMap = index(samples.avion, samples.avion_j2000_r1);
+	const fullSsimMap = index(samples.avion, samples.avion_j2000_r1, {
+		downsample: false
+	});
+
+	Promise.all([ssimMap, fullSsimMap]).then(([ssimResults, fullSsimResults]) => {
+		const difference = Math.abs(ssimResults.mssim - fullSsimResults.mssim);
+
+		t.equal(difference < 0.1, true, 'Difference is greater than 10%');
+		t.end();
+	})
+	.catch(t.fail);
 });
