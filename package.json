@@ -60,7 +60,7 @@
   "homepage": "https://github.com/obartra/ssim#readme",
   "dependencies": {
     "bmp-js": "^0.0.3",
-    "canvas": "^1.6.3",
+    "canvas": "^1.6.4",
     "image-type": "^3.0.0",
     "promiz": "^1.0.5",
     "yargs": "^6.6.0"
@@ -79,8 +79,8 @@
     "commitizen": "^2.9.6",
     "condition-circle": "^1.5.0",
     "core-js": "^2.4.1",
-    "cz-conventional-changelog": "^1.2.0",
-    "eslint": "^3.15.0",
+    "cz-conventional-changelog": "^2.0.0",
+    "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
@@ -92,7 +92,7 @@
     "ngrok": "^2.2.6",
     "nodemon": "^1.11.0",
     "npm-install-version": "^6.0.1",
-    "npm-run-all": "^4.0.1",
+    "npm-run-all": "^4.0.2",
     "saucelabs": "^1.4.0",
     "semantic-release": "^6.3.2",
     "semantic-release-cli": "^3.0.3",
