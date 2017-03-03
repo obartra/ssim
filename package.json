@@ -63,7 +63,7 @@
     "canvas": "^1.6.4",
     "image-type": "^3.0.0",
     "promiz": "^1.0.5",
-    "yargs": "^6.6.0"
+    "yargs": "^7.0.1"
   },
   "devDependencies": {
     "@bubltechnology/customizable-commit-analyzer": "^1.0.1",
