@@ -67,12 +67,12 @@
   },
   "devDependencies": {
     "@bubltechnology/customizable-commit-analyzer": "^1.0.2-0",
-    "babel-cli": "^6.24.0",
-    "babel-core": "^6.24.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
     "babel-istanbul": "^0.12.2",
     "babel-loader": "^6.4.1",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-es2016": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
     "benchmark": "^2.1.4",
     "blue-tape": "^1.0.0",
     "codeclimate-test-reporter": "^0.4.1",
@@ -98,7 +98,7 @@
     "semantic-release-cli": "^3.0.3",
     "tap-dot": "^1.0.5",
     "webdriverio": "^4.6.2",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.3"
   },
   "release": {
     "verifyConditions": "condition-circle",
