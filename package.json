@@ -63,7 +63,7 @@
     "canvas": "^1.6.5",
     "image-type": "^3.0.0",
     "promiz": "^1.0.5",
-    "yargs": "^7.0.2"
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "@bubltechnology/customizable-commit-analyzer": "^1.0.2-0",
@@ -81,24 +81,24 @@
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
     "http-server": "^0.10.0",
     "inchjs": "^0.4.1",
     "jsdoc": "^3.4.3",
     "json-loader": "^0.5.4",
-    "ngrok": "^2.2.6",
+    "ngrok": "^2.2.9",
     "nodemon": "^1.11.0",
-    "npm-install-version": "^6.0.1",
+    "npm-install-version": "^6.0.2",
     "npm-run-all": "^4.0.2",
     "saucelabs": "^1.4.0",
-    "semantic-release": "^6.3.2",
+    "semantic-release": "^6.3.6",
     "semantic-release-cli": "^3.0.3",
     "tap-dot": "^1.0.5",
-    "webdriverio": "^4.6.2",
-    "webpack": "^2.3.3"
+    "webdriverio": "^4.8.0",
+    "webpack": "^2.5.1"
   },
   "release": {
     "verifyConditions": "condition-circle",
