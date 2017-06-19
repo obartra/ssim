@@ -98,7 +98,7 @@
     "semantic-release-cli": "^3.0.3",
     "tap-dot": "^1.0.5",
     "webdriverio": "^4.8.0",
-    "webpack": "^2.5.1"
+    "webpack": "^3.0.0"
   },
   "release": {
     "verifyConditions": "condition-circle",
