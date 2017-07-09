@@ -56,6 +56,7 @@
     "no-mixed-operators": [0],
     "no-prototype-builtins": [0],
     "max-statements": [2, 25],
+    "jsx-a11y/href-no-hash": [0],
     "newline-after-var": [
       2,
       "always"
