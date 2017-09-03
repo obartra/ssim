@@ -13,15 +13,15 @@
  * @since 0.0.4
  */
 function getLimitDimensions(width, height, limit) {
-	if (limit && width >= limit && height >= limit) {
-		const ratio = width / height;
+  if (limit && width >= limit && height >= limit) {
+    const ratio = width / height
 
-		if (ratio > 1) {
-			return { height: limit, width: Math.round(limit / ratio) };
-		}
-		return { height: Math.round(limit * ratio), width: limit };
-	}
-	return { width, height };
+    if (ratio > 1) {
+      return { height: limit, width: Math.round(limit / ratio) }
+    }
+    return { height: Math.round(limit * ratio), width: limit }
+  }
+  return { width, height }
 }
 
 /**
@@ -30,5 +30,5 @@ function getLimitDimensions(width, height, limit) {
  * @namespace util
  */
 module.exports = {
-	getLimitDimensions
-};
+  getLimitDimensions,
+}

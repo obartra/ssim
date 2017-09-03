@@ -1,4 +1,4 @@
-const { sum2d, divide2d } = require('../math');
+const { sum2d, divide2d } = require('../math')
 
 /**
  * Creates a matrix of lenght `2 * length + 1` with values being the sum of the square of the
@@ -15,20 +15,20 @@ const { sum2d, divide2d } = require('../math');
  * @since 0.0.2
  */
 function rangeSquare2d(length) {
-	const size = length * 2 + 1;
-	const data = new Array(size ** 2);
+  const size = length * 2 + 1
+  const data = new Array(size ** 2)
 
-	for (let x = 0; x < size; x++) {
-		for (let y = 0; y < size; y++) {
-			data[x * size + y] = ((x - length) ** 2) + ((y - length) ** 2);
-		}
-	}
+  for (let x = 0; x < size; x++) {
+    for (let y = 0; y < size; y++) {
+      data[x * size + y] = (x - length) ** 2 + (y - length) ** 2
+    }
+  }
 
-	return {
-		data,
-		width: size,
-		height: size
-	};
+  return {
+    data,
+    width: size,
+    height: size,
+  }
 }
 
 /**
@@ -43,17 +43,17 @@ function rangeSquare2d(length) {
  * @since 0.0.2
  */
 function gaussianFilter2d({ data: ref, width, height }, σ) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = Math.exp(-ref[x] / (2 * (σ ** 2)));
-	}
+  for (let x = 0; x < ref.length; x++) {
+    data[x] = Math.exp(-ref[x] / (2 * σ ** 2))
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 /**
  * Create predefined 2-D filter
@@ -92,16 +92,16 @@ function gaussianFilter2d({ data: ref, width, height }, σ) {
  * @memberOf matlab
  * @since 0.0.2
  */
-function fspecial(type = 'gaussian', hsize = 3, σ = 1.5) {
-	hsize = (hsize - 1) / 2;
+function fspecial(type, hsize = 3, σ = 1.5) {
+  hsize = (hsize - 1) / 2
 
-	const pos = rangeSquare2d(hsize);
-	const gauss = gaussianFilter2d(pos, σ);
-	const total = sum2d(gauss);
+  const pos = rangeSquare2d(hsize)
+  const gauss = gaussianFilter2d(pos, σ)
+  const total = sum2d(gauss)
 
-	return divide2d(gauss, total);
+  return divide2d(gauss, total)
 }
 
 module.exports = {
-	fspecial
-};
+  fspecial,
+}
