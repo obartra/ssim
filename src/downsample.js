@@ -1,12 +1,5 @@
-const {
-	divide2d,
-	sum2d
-} = require('./math');
-const {
-	imfilter,
-	ones,
-	skip2d
-} = require('./matlab');
+const { divide2d, sum2d } = require('./math')
+const { imfilter, ones, skip2d } = require('./matlab')
 
 /**
  * For a given 2D filter `filter`, downsize image `pixels` by a factor of `f`.
@@ -20,9 +13,9 @@ const {
  * @memberOf downsample
  */
 function imageDownsample(pixels, filter, f) {
-	const imdown = imfilter(pixels, filter, 'symmetric', 'same');
+  const imdown = imfilter(pixels, filter, 'symmetric', 'same')
 
-	return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width]);
+  return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width])
 }
 
 /**
@@ -40,19 +33,19 @@ function imageDownsample(pixels, filter, f) {
  * @memberOf downsample
  */
 function originalDownsample(pixels1, pixels2, maxSize = 256) {
-	const factor = Math.min(pixels1.width, pixels2.height) / maxSize;
-	const f = Math.round(factor);
+  const factor = Math.min(pixels1.width, pixels2.height) / maxSize
+  const f = Math.round(factor)
 
-	if (f > 1) {
-		let lpf = ones(f);
+  if (f > 1) {
+    let lpf = ones(f)
 
-		lpf = divide2d(lpf, sum2d(lpf));
+    lpf = divide2d(lpf, sum2d(lpf))
 
-		pixels1 = imageDownsample(pixels1, lpf, f);
-		pixels2 = imageDownsample(pixels2, lpf, f);
-	}
+    pixels1 = imageDownsample(pixels1, lpf, f)
+    pixels2 = imageDownsample(pixels2, lpf, f)
+  }
 
-	return [pixels1, pixels2];
+  return [pixels1, pixels2]
 }
 
 /**
@@ -67,12 +60,12 @@ function originalDownsample(pixels1, pixels2, maxSize = 256) {
  * @memberOf downsample
  */
 function downsample(pixels, options) {
-	if (options.downsample === 'original') {
-		return originalDownsample(pixels[0], pixels[1], options.maxSize);
-	}
-	// else if options.downsample === 'fast' -> the image is downsampled when read (readpixels.js)
-	// else do not downsample
-	return pixels;
+  if (options.downsample === 'original') {
+    return originalDownsample(pixels[0], pixels[1], options.maxSize)
+  }
+  // else if options.downsample === 'fast' -> the image is downsampled when read (readpixels.js)
+  // else do not downsample
+  return pixels
 }
 
 /**
@@ -81,5 +74,5 @@ function downsample(pixels, options) {
  * @namespace downsample
  */
 module.exports = {
-	downsample
-};
+  downsample,
+}

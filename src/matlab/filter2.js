@@ -1,4 +1,4 @@
-const { conv2 } = require('./conv2');
+const { conv2 } = require('./conv2')
 
 /**
  * Rotates a matrix 180deg.
@@ -15,19 +15,19 @@ const { conv2 } = require('./conv2');
  * @since 0.0.2
  */
 function rotate1802d({ data: ref, width, height }) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			data[i * width + j] = ref[(height - 1 - i) * width + width - 1 - j];
-		}
-	}
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      data[i * width + j] = ref[(height - 1 - i) * width + width - 1 - j]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -47,9 +47,9 @@ function rotate1802d({ data: ref, width, height }) {
  * @since 0.0.2
  */
 function filter2(h, X, shape = 'same') {
-	return conv2(X, rotate1802d(h), shape);
+  return conv2(X, rotate1802d(h), shape)
 }
 
 module.exports = {
-	filter2
-};
+  filter2,
+}

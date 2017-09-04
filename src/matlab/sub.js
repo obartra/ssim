@@ -14,21 +14,21 @@
  * @since 0.0.2
  */
 function sub({ data: ref, width: refWidth }, x, height, y, width) {
-	const data = new Array(width * height);
+  const data = new Array(width * height)
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			data[i * width + j] = ref[(y + i) * refWidth + x + j];
-		}
-	}
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      data[i * width + j] = ref[(y + i) * refWidth + x + j]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 module.exports = {
-	sub
-};
+  sub,
+}

@@ -29,26 +29,26 @@
  * @since 0.0.2
  */
 function skip2d(A, [startRow, everyRow, endRow], [startCol, everyCol, endCol]) {
-	const width = Math.ceil((endCol - startCol) / everyCol);
-	const height = Math.ceil((endRow - startRow) / everyRow);
-	const data = new Array(width * height);
+  const width = Math.ceil((endCol - startCol) / everyCol)
+  const height = Math.ceil((endRow - startRow) / everyRow)
+  const data = new Array(width * height)
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			const Ai = startRow + i * everyRow;
-			const Aj = startCol + j * everyCol;
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      const Ai = startRow + i * everyRow
+      const Aj = startCol + j * everyCol
 
-			data[i * width + j] = A.data[Ai * A.width + Aj];
-		}
-	}
+      data[i * width + j] = A.data[Ai * A.width + Aj]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 module.exports = {
-	skip2d
-};
+  skip2d,
+}

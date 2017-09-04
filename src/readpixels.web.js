@@ -1,5 +1,5 @@
 /* eslint-env browser */
-const { getLimitDimensions } = require('./util');
+const { getLimitDimensions } = require('./util')
 
 /**
  * Reads image data from the input and returns it
@@ -14,27 +14,27 @@ const { getLimitDimensions } = require('./util');
  * @memberOf readpixelsWeb
  */
 function readpixels(url, P, limit = 0) {
-	const img = new Image();
-	const canvas = document.createElement('canvas');
-	const ctx = canvas.getContext('2d');
+  const img = new Image()
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
 
-	return new P((resolve, reject) => {
-		img.onload = () => {
-			const { width, height } = getLimitDimensions(img.width, img.height, limit);
+  return new P((resolve, reject) => {
+    img.onload = () => {
+      const { width, height } = getLimitDimensions(img.width, img.height, limit)
 
-			if (width === 0 || height === 0) {
-				return reject('Failed to load image');
-			}
+      if (width === 0 || height === 0) {
+        return reject('Failed to load image')
+      }
 
-			canvas.width = width;
-			canvas.height = height;
+      canvas.width = width
+      canvas.height = height
 
-			ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
-			return resolve(ctx.getImageData(0, 0, width, height));
-		};
-		img.onerror = reject;
-		img.src = url;
-	});
+      ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height)
+      return resolve(ctx.getImageData(0, 0, width, height))
+    }
+    img.onerror = reject
+    img.src = url
+  })
 }
 
 /**
@@ -44,5 +44,5 @@ function readpixels(url, P, limit = 0) {
  * @namespace readpixelsWeb
  */
 module.exports = {
-	readpixels
-};
+  readpixels,
+}

@@ -15,21 +15,21 @@
  * @memberOf matlab
  */
 function transpose({ data: ref, width, height }) {
-	const data = new Array(width * height);
+  const data = new Array(width * height)
 
-	for (let i = 0; i < height; i++) {
-		for (let j = 0; j < width; j++) {
-			data[j * height + i] = ref[i * width + j];
-		}
-	}
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      data[j * height + i] = ref[i * width + j]
+    }
+  }
 
-	return {
-		data,
-		height: width,
-		width: height
-	};
+  return {
+    data,
+    height: width,
+    width: height,
+  }
 }
 
 module.exports = {
-	transpose
-};
+  transpose,
+}

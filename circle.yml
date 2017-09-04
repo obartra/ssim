@@ -1,8 +1,8 @@
 machine:
   node:
-    version: 7.10.0
+    version: 8.4.0
   environment:
-    NODE_CURRENT: 7.10.0
+    NODE_CURRENT: 8.4.0
     NODE_012: 0.12.9
 general:
   artifacts:

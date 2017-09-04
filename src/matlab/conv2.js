@@ -1,7 +1,7 @@
-const { multiply2d } = require('../math');
-const { ones } = require('./ones');
-const { sub } = require('./sub');
-const { zeros } = require('./zeros');
+const { multiply2d } = require('../math')
+const { ones } = require('./ones')
+const { sub } = require('./sub')
+const { zeros } = require('./zeros')
 
 /**
  * `C = conv2(a,b)` computes the two-dimensional convolution of matrices `a` and `b`. If one of
@@ -29,38 +29,42 @@ const { zeros } = require('./zeros');
  * @private
  * @memberOf matlab
  */
-function mxConv2({ data: ref, width: refWidth, height: refHeight }, b, shape = 'full') {
-	const cWidth = refWidth + b.width - 1;
-	const cHeight = refHeight + b.height - 1;
-	const { data } = zeros(cHeight, cWidth);
+function mxConv2(
+  { data: ref, width: refWidth, height: refHeight },
+  b,
+  shape = 'full'
+) {
+  const cWidth = refWidth + b.width - 1
+  const cHeight = refHeight + b.height - 1
+  const { data } = zeros(cHeight, cWidth)
 
-	/**
+  /**
 	 * Computing the convolution is the most computentionally intensive task for SSIM and we do it
 	 * several times.
 	 *
 	 * This section has been optimized for performance and readability suffers.
 	 */
-	for (let r1 = 0; r1 < b.height; r1++) {
-		for (let c1 = 0; c1 < b.width; c1++) {
-			const br1c1 = b.data[r1 * b.width + c1];
+  for (let r1 = 0; r1 < b.height; r1++) {
+    for (let c1 = 0; c1 < b.width; c1++) {
+      const br1c1 = b.data[r1 * b.width + c1]
 
-			if (br1c1) {
-				for (let i = 0; i < refHeight; i++) {
-					for (let j = 0; j < refWidth; j++) {
-						data[(i + r1) * cWidth + j + c1] += ref[i * refWidth + j] * br1c1;
-					}
-				}
-			}
-		}
-	}
+      if (br1c1) {
+        for (let i = 0; i < refHeight; i++) {
+          for (let j = 0; j < refWidth; j++) {
+            data[(i + r1) * cWidth + j + c1] += ref[i * refWidth + j] * br1c1
+          }
+        }
+      }
+    }
+  }
 
-	const c = {
-		data,
-		width: cWidth,
-		height: cHeight
-	};
+  const c = {
+    data,
+    width: cWidth,
+    height: cHeight,
+  }
 
-	return reshape(c, shape, refHeight, b.height, refWidth, b.width);
+  return reshape(c, shape, refHeight, b.height, refWidth, b.width)
 }
 
 /**
@@ -78,11 +82,11 @@ function mxConv2({ data: ref, width: refWidth, height: refHeight }, b, shape = '
  * @memberOf matlab
  */
 function boxConv(a, { data, width, height }, shape = 'full') {
-	const b1 = ones(height, 1);
-	const b2 = ones(1, width);
-	const out = convn(a, b1, b2, shape);
+  const b1 = ones(height, 1)
+  const b2 = ones(1, width)
+  const out = convn(a, b1, b2, shape)
 
-	return multiply2d(out, data[0]);
+  return multiply2d(out, data[0])
 }
 
 /**
@@ -97,14 +101,14 @@ function boxConv(a, { data, width, height }, shape = 'full') {
  * @memberOf matlab
  */
 function isBoxKernel({ data }) {
-	const expected = data[0];
+  const expected = data[0]
 
-	for (let i = 1; i < data.length; i++) {
-		if (data[i] !== expected) {
-			return false;
-		}
-	}
-	return true;
+  for (let i = 1; i < data.length; i++) {
+    if (data[i] !== expected) {
+      return false
+    }
+  }
+  return true
 }
 
 /**
@@ -137,12 +141,12 @@ function isBoxKernel({ data }) {
  * @memberOf matlab
  */
 function convn(a, b1, b2, shape = 'full') {
-	const mb = Math.max(b1.height, b1.width);
-	const nb = Math.max(b2.height, b2.width);
-	const temp = mxConv2(a, b1, 'full');
-	const c = mxConv2(temp, b2, 'full');
+  const mb = Math.max(b1.height, b1.width)
+  const nb = Math.max(b2.height, b2.width)
+  const temp = mxConv2(a, b1, 'full')
+  const c = mxConv2(temp, b2, 'full')
 
-	return reshape(c, shape, a.height, mb, a.width, nb);
+  return reshape(c, shape, a.height, mb, a.width, nb)
 }
 
 /**
@@ -165,16 +169,16 @@ function convn(a, b1, b2, shape = 'full') {
  * @memberOf matlab
  */
 function reshape(c, shape, ma, mb, na, nb) {
-	if (shape === 'full') {
-		return c;
-	} else if (shape === 'same') {
-		const rowStart = Math.ceil((c.height - ma) / 2);
-		const colStart = Math.ceil((c.width - na) / 2);
+  if (shape === 'full') {
+    return c
+  } else if (shape === 'same') {
+    const rowStart = Math.ceil((c.height - ma) / 2)
+    const colStart = Math.ceil((c.width - na) / 2)
 
-		return sub(c, rowStart, ma, colStart, na);
-	}
+    return sub(c, rowStart, ma, colStart, na)
+  }
 
-	return sub(c, mb - 1, ma - mb + 1, nb - 1, na - nb + 1);
+  return sub(c, mb - 1, ma - mb + 1, nb - 1, na - nb + 1)
 }
 
 /**
@@ -240,14 +244,14 @@ function reshape(c, shape, ma, mb, na, nb) {
  * @since 0.0.2
  */
 function conv2(...args) {
-	if (args[2] && args[2].data) {
-		return convn(...args);
-	} else if (isBoxKernel(args[1])) {
-		return boxConv(...args);
-	}
-	return mxConv2(...args);
+  if (args[2] && args[2].data) {
+    return convn(...args)
+  } else if (isBoxKernel(args[1])) {
+    return boxConv(...args)
+  }
+  return mxConv2(...args)
 }
 
 module.exports = {
-	conv2
-};
+  conv2,
+}

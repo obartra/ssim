@@ -10,7 +10,7 @@
  * @since 0.0.1
  */
 function average(xn) {
-	return sum(xn) / xn.length;
+  return sum(xn) / xn.length
 }
 
 /**
@@ -24,12 +24,12 @@ function average(xn) {
  * @since 0.0.1
  */
 function sum(xn) {
-	let out = 0;
+  let out = 0
 
-	for (let x = 0; x < xn.length; x++) {
-		out += xn[x];
-	}
-	return out;
+  for (let x = 0; x < xn.length; x++) {
+    out += xn[x]
+  }
+  return out
 }
 
 /**
@@ -45,13 +45,13 @@ function sum(xn) {
  * @since 0.0.1
  */
 function floor(xn) {
-	const out = new Array(xn.length);
+  const out = new Array(xn.length)
 
-	for (let x = 0; x < xn.length; x++) {
-		out[x] = Math.floor(xn[x]);
-	}
+  for (let x = 0; x < xn.length; x++) {
+    out[x] = Math.floor(xn[x])
+  }
 
-	return out;
+  return out
 }
 
 /**
@@ -65,13 +65,13 @@ function floor(xn) {
  * @since 0.0.2
  */
 function sum2d({ data }) {
-	let out = 0;
+  let out = 0
 
-	for (let x = 0; x < data.length; x++) {
-		out += data[x];
-	}
+  for (let x = 0; x < data.length; x++) {
+    out += data[x]
+  }
 
-	return out;
+  return out
 }
 
 /**
@@ -86,21 +86,21 @@ function sum2d({ data }) {
  * @since 0.0.2
  */
 function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
-	for (let x = 0; x < height; x++) {
-		const offset = x * width;
+  for (let x = 0; x < height; x++) {
+    const offset = x * width
 
-		for (let y = 0; y < width; y++) {
-			data[offset + y] = ref1[offset + y] + ref2[offset + y];
-		}
-	}
+    for (let y = 0; y < width; y++) {
+      data[offset + y] = ref1[offset + y] + ref2[offset + y]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -116,21 +116,21 @@ function add2dMx({ data: ref1, width, height }, { data: ref2 }) {
  * @since 0.0.2
  */
 function subtract2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
-	for (let x = 0; x < height; x++) {
-		const offset = x * width;
+  for (let x = 0; x < height; x++) {
+    const offset = x * width
 
-		for (let y = 0; y < width; y++) {
-			data[offset + y] = ref1[offset + y] - ref2[offset + y];
-		}
-	}
+    for (let y = 0; y < width; y++) {
+      data[offset + y] = ref1[offset + y] - ref2[offset + y]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -145,17 +145,17 @@ function subtract2dMx({ data: ref1, width, height }, { data: ref2 }) {
  * @since 0.0.2
  */
 function add2dScalar({ data: ref, width, height }, increase) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = ref[x] + increase;
-	}
+  for (let x = 0; x < ref.length; x++) {
+    data[x] = ref[x] + increase
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -170,10 +170,10 @@ function add2dScalar({ data: ref, width, height }, increase) {
  * @since 0.0.2
  */
 function add2d(A, increase) {
-	if (typeof increase === 'number') {
-		return add2dScalar(A, increase);
-	}
-	return add2dMx(A, increase);
+  if (typeof increase === 'number') {
+    return add2dScalar(A, increase)
+  }
+  return add2dMx(A, increase)
 }
 
 /**
@@ -188,10 +188,10 @@ function add2d(A, increase) {
  * @memberOf math
  */
 function subtract2d(A, decrease) {
-	if (typeof decrease === 'number') {
-		return add2dScalar(A, -decrease);
-	}
-	return subtract2dMx(A, decrease);
+  if (typeof decrease === 'number') {
+    return add2dScalar(A, -decrease)
+  }
+  return subtract2dMx(A, decrease)
 }
 
 /**
@@ -206,17 +206,17 @@ function subtract2d(A, decrease) {
  * @since 0.0.2
  */
 function divide2dScalar({ data: ref, width, height }, divisor) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = ref[x] / divisor;
-	}
+  for (let x = 0; x < ref.length; x++) {
+    data[x] = ref[x] / divisor
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -231,17 +231,17 @@ function divide2dScalar({ data: ref, width, height }, divisor) {
  * @since 0.0.2
  */
 function divide2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
-	for (let x = 0; x < ref1.length; x++) {
-		data[x] = ref1[x] / ref2[x];
-	}
+  for (let x = 0; x < ref1.length; x++) {
+    data[x] = ref1[x] / ref2[x]
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -256,10 +256,10 @@ function divide2dMx({ data: ref1, width, height }, { data: ref2 }) {
  * @since 0.0.2
  */
 function divide2d(A, divisor) {
-	if (typeof divisor === 'number') {
-		return divide2dScalar(A, divisor);
-	}
-	return divide2dMx(A, divisor);
+  if (typeof divisor === 'number') {
+    return divide2dScalar(A, divisor)
+  }
+  return divide2dMx(A, divisor)
 }
 
 /**
@@ -274,17 +274,17 @@ function divide2d(A, divisor) {
  * @since 0.0.2
  */
 function multiply2dScalar({ data: ref, width, height }, multiplier) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let x = 0; x < ref.length; x++) {
-		data[x] = ref[x] * multiplier;
-	}
+  for (let x = 0; x < ref.length; x++) {
+    data[x] = ref[x] * multiplier
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -299,17 +299,17 @@ function multiply2dScalar({ data: ref, width, height }, multiplier) {
  * @since 0.0.2
  */
 function multiply2dMx({ data: ref1, width, height }, { data: ref2 }) {
-	const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
-	for (let x = 0; x < ref1.length; x++) {
-		data[x] = ref1[x] * ref2[x];
-	}
+  for (let x = 0; x < ref1.length; x++) {
+    data[x] = ref1[x] * ref2[x]
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -325,10 +325,10 @@ function multiply2dMx({ data: ref1, width, height }, { data: ref2 }) {
  * @since 0.0.2
  */
 function multiply2d(A, multiplier) {
-	if (typeof multiplier === 'number') {
-		return multiply2dScalar(A, multiplier);
-	}
-	return multiply2dMx(A, multiplier);
+  if (typeof multiplier === 'number') {
+    return multiply2dScalar(A, multiplier)
+  }
+  return multiply2dMx(A, multiplier)
 }
 
 /**
@@ -342,7 +342,7 @@ function multiply2d(A, multiplier) {
  * @since 0.0.2
  */
 function square2d(A) {
-	return multiply2d(A, A);
+  return multiply2d(A, A)
 }
 
 /**
@@ -356,7 +356,7 @@ function square2d(A) {
  * @since 0.0.2
  */
 function mean2d(A) {
-	return sum2d(A) / A.data.length;
+  return sum2d(A) / A.data.length
 }
 
 /**
@@ -371,14 +371,14 @@ function mean2d(A) {
  * @memberOf math
  */
 function variance(values, avg = average(values)) {
-	let varx = 0;
-	let i = values.length;
+  let varx = 0
+  let i = values.length
 
-	while (i--) {
-		varx += (values[i] - avg) ** 2;
-	}
+  while (i--) {
+    varx += (values[i] - avg) ** 2
+  }
 
-	return varx / values.length;
+  return varx / values.length
 }
 
 /**
@@ -395,15 +395,20 @@ function variance(values, avg = average(values)) {
  * @public
  * @memberOf math
  */
-function covariance(values1, values2, average1 = average(values1), average2 = average(values2)) {
-	let cov = 0;
-	let i = values1.length;
+function covariance(
+  values1,
+  values2,
+  average1 = average(values1),
+  average2 = average(values2)
+) {
+  let cov = 0
+  let i = values1.length
 
-	while (i--) {
-		cov += (values1[i] - average1) * (values2[i] - average2);
-	}
+  while (i--) {
+    cov += (values1[i] - average1) * (values2[i] - average2)
+  }
 
-	return cov / values1.length;
+  return cov / values1.length
 }
 
 /**
@@ -416,16 +421,16 @@ function covariance(values1, values2, average1 = average(values1), average2 = av
  * @namespace math
  */
 module.exports = {
-	add2d,
-	average,
-	covariance,
-	divide2d,
-	floor,
-	mean2d,
-	multiply2d,
-	square2d,
-	subtract2d,
-	sum,
-	sum2d,
-	variance
-};
+  add2d,
+  average,
+  covariance,
+  divide2d,
+  floor,
+  mean2d,
+  multiply2d,
+  square2d,
+  subtract2d,
+  sum,
+  sum2d,
+  variance,
+}

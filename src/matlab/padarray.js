@@ -1,4 +1,4 @@
-const { mod } = require('./mod');
+const { mod } = require('./mod')
 
 /**
  * Mirrors a matrix horizontally.
@@ -15,19 +15,19 @@ const { mod } = require('./mod');
  * @since 0.0.2
  */
 function mirrorHorizonal({ data: ref, width, height }) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let x = 0; x < height; x++) {
-		for (let y = 0; y < width; y++) {
-			data[x * width + y] = ref[x * width + width - 1 - y];
-		}
-	}
+  for (let x = 0; x < height; x++) {
+    for (let y = 0; y < width; y++) {
+      data[x * width + y] = ref[x * width + width - 1 - y]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -46,19 +46,19 @@ function mirrorHorizonal({ data: ref, width, height }) {
  * @since 0.0.2
  */
 function mirrorVertical({ data: ref, width, height }) {
-	const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
-	for (let x = 0; x < height; x++) {
-		for (let y = 0; y < width; y++) {
-			data[x * width + y] = ref[(height - 1 - x) * width + y];
-		}
-	}
+  for (let x = 0; x < height; x++) {
+    for (let y = 0; y < width; y++) {
+      data[x * width + y] = ref[(height - 1 - x) * width + y]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -77,23 +77,23 @@ function mirrorVertical({ data: ref, width, height }) {
  * @since 0.0.2
  */
 function concatHorizontal(A, B) {
-	const width = A.width + B.width;
-	const data = new Array(A.height * width);
+  const width = A.width + B.width
+  const data = new Array(A.height * width)
 
-	for (let x = 0; x < A.height; x++) {
-		for (let y = 0; y < A.width; y++) {
-			data[x * width + y] = A.data[x * A.width + y];
-		}
-		for (let y = 0; y < B.width; y++) {
-			data[x * width + y + A.width] = B.data[x * B.width + y];
-		}
-	}
+  for (let x = 0; x < A.height; x++) {
+    for (let y = 0; y < A.width; y++) {
+      data[x * width + y] = A.data[x * A.width + y]
+    }
+    for (let y = 0; y < B.width; y++) {
+      data[x * width + y + A.width] = B.data[x * B.width + y]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height: A.height
-	};
+  return {
+    data,
+    width,
+    height: A.height,
+  }
 }
 
 /**
@@ -114,11 +114,11 @@ function concatHorizontal(A, B) {
  * @since 0.0.2
  */
 function concatVertical(A, B) {
-	return {
-		data: A.data.concat(B.data),
-		height: A.height + B.height,
-		width: A.width
-	};
+  return {
+    data: A.data.concat(B.data),
+    height: A.height + B.height,
+    width: A.width,
+  }
 }
 
 /**
@@ -143,21 +143,22 @@ function concatVertical(A, B) {
  * @since 0.0.2
  */
 function padHorizontal(A, pad) {
-	const width = A.width + 2 * pad;
-	const data = new Array(width * A.height);
-	const mirrored = concatHorizontal(A, mirrorHorizonal(A));
+  const width = A.width + 2 * pad
+  const data = new Array(width * A.height)
+  const mirrored = concatHorizontal(A, mirrorHorizonal(A))
 
-	for (let x = 0; x < A.height; x++) {
-		for (let y = -pad; y < A.width + pad; y++) {
-			data[x * width + y + pad] = mirrored.data[x * mirrored.width + mod(y, mirrored.width)];
-		}
-	}
+  for (let x = 0; x < A.height; x++) {
+    for (let y = -pad; y < A.width + pad; y++) {
+      data[x * width + y + pad] =
+        mirrored.data[x * mirrored.width + mod(y, mirrored.width)]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height: A.height
-	};
+  return {
+    data,
+    width,
+    height: A.height,
+  }
 }
 
 /**
@@ -187,21 +188,22 @@ function padHorizontal(A, pad) {
  * @since 0.0.2
  */
 function padVertical(A, pad) {
-	const mirrored = concatVertical(A, mirrorVertical(A));
-	const height = A.height + pad * 2;
-	const data = new Array(A.width * height);
+  const mirrored = concatVertical(A, mirrorVertical(A))
+  const height = A.height + pad * 2
+  const data = new Array(A.width * height)
 
-	for (let x = -pad; x < A.height + pad; x++) {
-		for (let y = 0; y < A.width; y++) {
-			data[(x + pad) * A.width + y] = mirrored.data[mod(x, mirrored.height) * A.width + y];
-		}
-	}
+  for (let x = -pad; x < A.height + pad; x++) {
+    for (let y = 0; y < A.width; y++) {
+      data[(x + pad) * A.width + y] =
+        mirrored.data[mod(x, mirrored.height) * A.width + y]
+    }
+  }
 
-	return {
-		data,
-		width: A.width,
-		height
-	};
+  return {
+    data,
+    width: A.width,
+    height,
+  }
 }
 
 /**
@@ -253,96 +255,68 @@ function padVertical(A, pad) {
  * @since 0.0.4
  */
 function fastPadding(A, [padHeight, padWidth]) {
-	const width = A.width + padWidth * 2;
-	const height = A.height + padHeight * 2;
-	const data = new Array(width * height);
+  const width = A.width + padWidth * 2
+  const height = A.height + padHeight * 2
+  const data = new Array(width * height)
 
-	for (let x = -padHeight; x < 0; x++) {
-		// A
-		for (let y = -padWidth; y < 0; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(Math.abs(x) - 1) * A.width + Math.abs(y) - 1
-			];
-		}
-		// B
-		for (let y = 0; y < A.width; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(Math.abs(x) - 1) * A.width + y
-			];
-		}
-		// C
-		for (let y = A.width; y < A.width + padWidth; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(Math.abs(x) - 1) * A.width + 2 * A.width - y - 1
-			];
-		}
-	}
+  for (let x = -padHeight; x < 0; x++) {
+    // A
+    for (let y = -padWidth; y < 0; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[(Math.abs(x) - 1) * A.width + Math.abs(y) - 1]
+    }
+    // B
+    for (let y = 0; y < A.width; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[(Math.abs(x) - 1) * A.width + y]
+    }
+    // C
+    for (let y = A.width; y < A.width + padWidth; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[(Math.abs(x) - 1) * A.width + 2 * A.width - y - 1]
+    }
+  }
 
-	for (let x = 0; x < A.height; x++) {
-		// D
-		for (let y = -padWidth; y < 0; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				x * A.width + Math.abs(y) - 1
-			];
-		}
-		// E
-		for (let y = 0; y < A.width; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				x * A.width + y
-			];
-		}
-		// F
-		for (let y = A.width; y < A.width + padWidth; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				x * A.width + 2 * A.width - y - 1
-			];
-		}
-	}
+  for (let x = 0; x < A.height; x++) {
+    // D
+    for (let y = -padWidth; y < 0; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[x * A.width + Math.abs(y) - 1]
+    }
+    // E
+    for (let y = 0; y < A.width; y++) {
+      data[(x + padHeight) * width + y + padWidth] = A.data[x * A.width + y]
+    }
+    // F
+    for (let y = A.width; y < A.width + padWidth; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[x * A.width + 2 * A.width - y - 1]
+    }
+  }
 
-	for (let x = A.height; x < A.height + padHeight; x++) {
-		// G
-		for (let y = -padWidth; y < 0; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(2 * A.height - x - 1) * A.width + Math.abs(y) - 1
-			];
-		}
-		// H
-		for (let y = 0; y < A.width; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(2 * A.height - x - 1) * A.width + y
-			];
-		}
-		// I
-		for (let y = A.width; y < A.width + padWidth; y++) {
-			data[
-				(x + padHeight) * width + y + padWidth
-			] = A.data[
-				(2 * A.height - x - 1) * A.width + 2 * A.width - y - 1
-			];
-		}
-	}
+  for (let x = A.height; x < A.height + padHeight; x++) {
+    // G
+    for (let y = -padWidth; y < 0; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[(2 * A.height - x - 1) * A.width + Math.abs(y) - 1]
+    }
+    // H
+    for (let y = 0; y < A.width; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[(2 * A.height - x - 1) * A.width + y]
+    }
+    // I
+    for (let y = A.width; y < A.width + padWidth; y++) {
+      data[(x + padHeight) * width + y + padWidth] =
+        A.data[(2 * A.height - x - 1) * A.width + 2 * A.width - y - 1]
+    }
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 /**
@@ -379,16 +353,16 @@ function fastPadding(A, [padHeight, padWidth]) {
  * @since 0.0.2
  */
 function padarray(A, [padHeight, padWidth]) {
-	// If the padding to mirror is not greater than `A` dimensions, we can use `fastPadding`,
-	// otherwise we fall back to a slower implementation that mimics Matlab behavior for longer
-	// matrices
-	if (A.height >= padHeight && A.width >= padWidth) {
-		return fastPadding(A, [padHeight, padWidth]);
-	}
+  // If the padding to mirror is not greater than `A` dimensions, we can use `fastPadding`,
+  // otherwise we fall back to a slower implementation that mimics Matlab behavior for longer
+  // matrices
+  if (A.height >= padHeight && A.width >= padWidth) {
+    return fastPadding(A, [padHeight, padWidth])
+  }
 
-	return padVertical(padHorizontal(A, padWidth), padHeight);
+  return padVertical(padHorizontal(A, padWidth), padHeight)
 }
 
 module.exports = {
-	padarray
-};
+  padarray,
+}

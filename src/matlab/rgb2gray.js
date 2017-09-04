@@ -19,7 +19,7 @@
  * @since 0.0.2
  */
 function luma(r, g, b) {
-	return Math.round(0.29894 * r + 0.58704 * g + 0.11402 * b);
+  return Math.round(0.29894 * r + 0.58704 * g + 0.11402 * b)
 }
 
 /**
@@ -36,23 +36,28 @@ function luma(r, g, b) {
  * @since 0.0.2
  */
 function rgb2gray({ data: d, width, height }) {
-	const data = new Array(width * height);
+  const data = new Array(width * height)
 
-	for (let j = 0; j < height; j++) {
-		for (let i = 0; i < width; i++) {
-			const grayIndex = i + j * width;
-			const imgIndex = grayIndex * 4;
+  for (let j = 0; j < height; j++) {
+    for (let i = 0; i < width; i++) {
+      const grayIndex = i + j * width
+      const imgIndex = grayIndex * 4
 
-			data[grayIndex] = luma(d[imgIndex], d[imgIndex + 1], d[imgIndex + 2], d[imgIndex + 3]);
-		}
-	}
-	return {
-		data,
-		width,
-		height
-	};
+      data[grayIndex] = luma(
+        d[imgIndex],
+        d[imgIndex + 1],
+        d[imgIndex + 2],
+        d[imgIndex + 3]
+      )
+    }
+  }
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 module.exports = {
-	rgb2gray
-};
+  rgb2gray,
+}

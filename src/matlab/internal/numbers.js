@@ -11,20 +11,20 @@
  * @since 0.0.2
  */
 function numbers(height, width, num) {
-	const size = width * height;
-	const data = new Array(size);
+  const size = width * height
+  const data = new Array(size)
 
-	for (let x = 0; x < size; x++) {
-		data[x] = num;
-	}
+  for (let x = 0; x < size; x++) {
+    data[x] = num
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 module.exports = {
-	numbers
-};
+  numbers,
+}

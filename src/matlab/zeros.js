@@ -1,4 +1,4 @@
-const { numbers } = require('./internal/numbers');
+const { numbers } = require('./internal/numbers')
 
 /**
  * Create a matrix of all zeros
@@ -14,9 +14,9 @@ const { numbers } = require('./internal/numbers');
  * @since 0.0.2
  */
 function zeros(height, width = height) {
-	return numbers(height, width, 0);
+  return numbers(height, width, 0)
 }
 
 module.exports = {
-	zeros
-};
+  zeros,
+}

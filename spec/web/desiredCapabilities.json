@@ -1,31 +1,38 @@
-[{
-	"browserName": "chrome",
-	"version": "54",
-	"platform": "OS X 10.11",
-	"name": "OSX - Chrome54"
-}, {
-	"browserName": "firefox",
-	"platform": "OS X 10.11",
-	"version": "49.0",
-	"name": "OSX - FF49"
-}, {
-	"browserName": "safari",
-	"platform": "OS X 10.11",
-	"version": "10.0",
-	"name": "OSX - Safari 10"
-}, {
-	"browserName": "internet explorer",
-	"platform": "Windows 8.1",
-	"version": "11.0",
-	"name": "Win8.1 - IE11"
-}, {
-	"browserName": "internet explorer",
-	"platform": "Windows 7",
-	"version": "9.0",
-	"name": "Win7 - IE9"
-}, {
-	"browserName": "internet explorer",
-	"platform": "Windows 7",
-	"version": "10.0",
-	"name": "Win7 - IE10"
-}]
+[
+  {
+    "browserName": "chrome",
+    "version": "54",
+    "platform": "OS X 10.11",
+    "name": "OSX - Chrome54"
+  },
+  {
+    "browserName": "firefox",
+    "platform": "OS X 10.11",
+    "version": "49.0",
+    "name": "OSX - FF49"
+  },
+  {
+    "browserName": "safari",
+    "platform": "OS X 10.11",
+    "version": "10.0",
+    "name": "OSX - Safari 10"
+  },
+  {
+    "browserName": "internet explorer",
+    "platform": "Windows 8.1",
+    "version": "11.0",
+    "name": "Win8.1 - IE11"
+  },
+  {
+    "browserName": "internet explorer",
+    "platform": "Windows 7",
+    "version": "9.0",
+    "name": "Win7 - IE9"
+  },
+  {
+    "browserName": "internet explorer",
+    "platform": "Windows 7",
+    "version": "10.0",
+    "name": "Win7 - IE10"
+  }
+]

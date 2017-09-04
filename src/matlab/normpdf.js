@@ -33,23 +33,23 @@
  * @since 0.0.2
  */
 function normpdf({ data: ref, width, height }, µ = 0, σ = 1) {
-	// data = ((2 * pi)^(-1 / 2)) * exp(-((x - µ) / σ)^2 / 2) / σ;
-	const SQ2PI = 2.5066282746310005024157652848110;
-	const data = new Array(ref.length);
+  // data = ((2 * pi)^(-1 / 2)) * exp(-((x - µ) / σ)^2 / 2) / σ;
+  const SQ2PI = 2.506628274631000502415765284811
+  const data = new Array(ref.length)
 
-	for (let i = 0; i < ref.length; i++) {
-		const z = (ref[i] - µ) / σ;
+  for (let i = 0; i < ref.length; i++) {
+    const z = (ref[i] - µ) / σ
 
-		data[i] = Math.exp(-(z ** 2) / 2) / (σ * SQ2PI);
-	}
+    data[i] = Math.exp(-(z ** 2) / 2) / (σ * SQ2PI)
+  }
 
-	return {
-		data,
-		width,
-		height
-	};
+  return {
+    data,
+    width,
+    height,
+  }
 }
 
 module.exports = {
-	normpdf
-};
+  normpdf,
+}

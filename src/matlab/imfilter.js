@@ -1,7 +1,7 @@
-const { mod } = require('./mod');
-const { padarray } = require('./padarray');
-const { floor } = require('../math');
-const { filter2 } = require('./filter2');
+const { mod } = require('./mod')
+const { padarray } = require('./padarray')
+const { floor } = require('../math')
+const { filter2 } = require('./filter2')
 
 /**
  * Adds padding to input matrix A
@@ -16,23 +16,25 @@ const { filter2 } = require('./filter2');
  * @memberOf matlab
  */
 function padMatrix(A, frows, fcols, pad) {
-	A = padarray(A, floor([frows / 2, fcols / 2]), pad);
-	if (mod(frows, 2) === 0) { // remove the last row
-		A.data = A.data.slice(0, -A.width);
-		A.height--;
-	}
-	if (mod(fcols, 2) === 0) { // remove the last column
-		const data = [];
+  A = padarray(A, floor([frows / 2, fcols / 2]), pad)
+  if (mod(frows, 2) === 0) {
+    // remove the last row
+    A.data = A.data.slice(0, -A.width)
+    A.height--
+  }
+  if (mod(fcols, 2) === 0) {
+    // remove the last column
+    const data = []
 
-		for (let x = 0; x < A.data.length; x++) {
-			if ((x + 1) % A.width !== 0) {
-				data.push(A.data[x]);
-			}
-		}
-		A.data = data;
-		A.width--;
-	}
-	return A;
+    for (let x = 0; x < A.data.length; x++) {
+      if ((x + 1) % A.width !== 0) {
+        data.push(A.data[x])
+      }
+    }
+    A.data = data
+    A.width--
+  }
+  return A
 }
 
 /**
@@ -46,10 +48,10 @@ function padMatrix(A, frows, fcols, pad) {
  * @memberOf matlab
  */
 function getConv2Size(resSize) {
-	if (resSize === 'same') {
-		resSize = 'valid';
-	}
-	return resSize;
+  if (resSize === 'same') {
+    resSize = 'valid'
+  }
+  return resSize
 }
 
 /**
@@ -74,11 +76,11 @@ function getConv2Size(resSize) {
  * @since 0.0.2
  */
 function imfilter(A, f, pad = 'symmetric', resSize = 'same') {
-	A = padMatrix(A, f.width, f.height, pad);
-	resSize = getConv2Size(resSize);
-	return filter2(f, A, resSize);
+  A = padMatrix(A, f.width, f.height, pad)
+  resSize = getConv2Size(resSize)
+  return filter2(f, A, resSize)
 }
 
 module.exports = {
-	imfilter
-};
+  imfilter,
+}
