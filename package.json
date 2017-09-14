@@ -99,7 +99,7 @@
     "nodemon": "^1.11.0",
     "npm-install-version": "^6.0.2",
     "npm-run-all": "^4.1.1",
-    "prettier": "1.6.1",
+    "prettier": "1.7.0",
     "request": "2.81.0",
     "saucelabs": "^1.4.0",
     "semantic-release": "^7.0.2",
