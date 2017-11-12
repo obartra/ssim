@@ -1,9 +1,9 @@
-const fs = require("fs");
-const http = require("https");
-const Canvas = require("canvas");
-const imageType = require("image-type");
-const bmp = require("bmp-js");
-const { getLimitDimensions } = require("./util");
+const fs = require('fs')
+const http = require('https')
+const Canvas = require('canvas')
+const imageType = require('image-type')
+const bmp = require('bmp-js')
+const { getLimitDimensions } = require('./util')
 
 /**
  * Parses the buffer data and returns it. If `limit` is set, it will make sure the smallest dimesion
@@ -19,34 +19,30 @@ const { getLimitDimensions } = require("./util");
  * @since 0.0.1
  */
 function parse(data, limit) {
-  const { ext } = imageType(data);
+  const { ext } = imageType(data)
 
   return new Promise((resolve, reject) => {
-    if (ext === "bmp") {
-      resolve(bmp.decode(data));
+    if (ext === 'bmp') {
+      resolve(bmp.decode(data))
     } else {
-      const img = new Canvas.Image();
+      Canvas.loadImage(data)
+        .then(img => {
+          const { width, height } = getLimitDimensions(
+            img.width,
+            img.height,
+            limit
+          )
+          const canvas = Canvas.createCanvas(width, height)
+          const ctx = canvas.getContext('2d')
 
-      img.onload = () => {
-        const { width, height } = getLimitDimensions(
-          img.width,
-          img.height,
-          limit
-        );
-        const canvas = new Canvas(width, height);
-        const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height)
 
-        ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
-
-        const imageData = ctx.getImageData(0, 0, width, height);
-
-        resolve(imageData);
-      };
-      img.onerror = reject;
-
-      img.src = data;
+          return ctx.getImageData(0, 0, width, height)
+        })
+        .then(resolve)
+        .catch(reject)
     }
-  });
+  })
 }
 
 /**
@@ -64,14 +60,16 @@ function loadUrl(url, P) {
   return new P((resolve, reject) => {
     http
       .get(url)
-      .on("response", res => {
-        const chunks = [];
+      .on('response', res => {
+        const chunks = []
 
-        res.on("data", data => chunks.push(data));
-        res.on("end", () => resolve(Buffer.concat(chunks)));
+        res.on('data', data => chunks.push(data))
+        res.on('end', () => {
+          resolve(Buffer.concat(chunks))
+        })
       })
-      .on("error", reject);
-  });
+      .on('error', reject)
+  })
 }
 
 /**
@@ -89,13 +87,13 @@ function loadFs(path, P) {
   return new P((resolve, reject) => {
     fs.readFile(path, (err, data) => {
       if (err) {
-        reject(err);
-        return;
+        reject(err)
+        return
       }
 
-      resolve(data);
-    });
-  });
+      resolve(data)
+    })
+  })
 }
 
 /**
@@ -112,16 +110,16 @@ function loadFs(path, P) {
  * @since 0.0.1
  */
 function readpixels(url, P, limit = 0) {
-  let bufferPromise;
+  let bufferPromise
 
   if (Buffer.isBuffer(url)) {
-    bufferPromise = P.resolve(url);
-  } else if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
-    bufferPromise = loadUrl(url, P);
+    bufferPromise = P.resolve(url)
+  } else if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
+    bufferPromise = loadUrl(url, P)
   } else {
-    bufferPromise = loadFs(url, P);
+    bufferPromise = loadFs(url, P)
   }
-  return bufferPromise.then(bufferData => parse(bufferData, limit));
+  return bufferPromise.then(bufferData => parse(bufferData, limit))
 }
 
 /**
@@ -130,5 +128,5 @@ function readpixels(url, P, limit = 0) {
  * @namespace readpixels
  */
 module.exports = {
-  readpixels
-};
+  readpixels,
+}

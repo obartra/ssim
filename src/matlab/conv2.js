@@ -39,11 +39,11 @@ function mxConv2(
   const { data } = zeros(cHeight, cWidth)
 
   /**
-	 * Computing the convolution is the most computentionally intensive task for SSIM and we do it
-	 * several times.
-	 *
-	 * This section has been optimized for performance and readability suffers.
-	 */
+   * Computing the convolution is the most computentionally intensive task for SSIM and we do it
+   * several times.
+   *
+   * This section has been optimized for performance and readability suffers.
+   */
   for (let r1 = 0; r1 < b.height; r1++) {
     for (let c1 = 0; c1 < b.width; c1++) {
       const br1c1 = b.data[r1 * b.width + c1]

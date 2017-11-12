@@ -60,7 +60,7 @@ function startSauceLabs(ops = {}) {
 }
 
 function runTests(ops, saucelabs, url, browser, retries = 0) {
-  const name = browser.name
+  const { name } = browser
 
   ops.desiredCapabilities = browser
   console.log('Starting tests for ', name)

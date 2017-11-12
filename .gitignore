@@ -11,3 +11,4 @@ spec/e2e_dist/
 generate/*.csv
 octave-workspace
 docs.json
+.DS_Store
