@@ -16,20 +16,17 @@
     "e2e": "npm-run-all --parallel e2e:*",
     "e2e:live": "blue-tape spec/e2e_dist/live.spec.js | tap-dot || exit 1",
     "e2e:ivc": "blue-tape spec/e2e_dist/ivc.spec.js | tap-dot || exit 1",
-    "test:watch":
-      "nodemon node_modules/.bin/blue-tape spec/unit/{*,**/*}.spec.js",
+    "test:watch": "nodemon node_modules/.bin/blue-tape spec/unit/{*,**/*}.spec.js",
     "docs": "jsdoc --pedantic -c .jsdoc . --readme README.md",
     "docs:check": "./ci/doc.sh",
     "lint": "eslint .",
     "build": "npm-run-all --parallel build:*",
     "build:node": "webpack",
     "build:web": "webpack --config webpack.config.web.js",
-    "build:test":
-      "babel spec/helpers --out-dir spec/helpers_dist/ && babel spec/e2e --out-dir spec/e2e_dist/ && webpack --config webpack.config.web.test.js",
+    "build:test": "babel spec/helpers --out-dir spec/helpers_dist/ && babel spec/e2e --out-dir spec/e2e_dist/ && webpack --config webpack.config.web.test.js",
     "watch": "webpack --watch",
     "codeclimate": "cat ./coverage/lcov.info | codeclimate-test-reporter",
-    "semantic-release":
-      "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "url": "https://github.com/obartra/ssim.git",
@@ -65,10 +62,10 @@
   "homepage": "https://github.com/obartra/ssim#readme",
   "dependencies": {
     "bmp-js": "^0.0.3",
-    "canvas": "^1.6.6",
+    "canvas": "^2.0.0-alpha.6",
     "image-type": "^3.0.0",
     "promiz": "^1.0.5",
-    "yargs": "^8.0.2"
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
     "@bubltechnology/customizable-commit-analyzer": "^1.0.2-0",
@@ -84,29 +81,28 @@
     "commitizen": "^2.9.6",
     "condition-circle": "^1.5.0",
     "core-js": "^2.5.1",
-    "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "2.4.0",
-    "eslint-plugin-import": "^2.7.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "2.7.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-react": "^7.4.0",
     "http-server": "^0.10.0",
     "inchjs": "^0.4.1",
-    "jsdoc": "^3.5.4",
+    "jsdoc": "^3.5.5",
     "json-loader": "^0.5.7",
-    "ngrok": "^2.2.21",
-    "nodemon": "^1.11.0",
-    "npm-install-version": "^6.0.2",
-    "npm-run-all": "^4.1.1",
-    "prettier": "1.6.1",
-    "request": "2.81.0",
+    "ngrok": "^2.2.23",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.2",
+    "prettier": "1.8.2",
+    "request": "2.83.0",
     "saucelabs": "^1.4.0",
-    "semantic-release": "^7.0.2",
-    "semantic-release-cli": "^3.0.3",
+    "semantic-release": "^8.2.0",
+    "semantic-release-cli": "^3.2.5",
     "tap-dot": "^1.0.5",
-    "webdriverio": "^4.8.0",
-    "webpack": "^3.5.5"
+    "webdriverio": "^4.9.6",
+    "webpack": "^3.8.1"
   },
   "release": {
     "verifyConditions": "condition-circle",

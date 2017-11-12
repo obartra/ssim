@@ -18,7 +18,7 @@ const { sub } = require('./matlab')
  * @memberOf bezkrovnySsim
  */
 function bezkrovnySsim(pixels1, pixels2, options) {
-  const windowSize = options.windowSize
+  const { windowSize } = options
   const width = Math.floor(pixels1.width / windowSize)
   const height = Math.floor(pixels1.height / windowSize)
   const data = new Array(width * height)

@@ -8,7 +8,9 @@ const tol = 10 ** -5 // 0.00001, to account for rounding differences on the 6th 
 const base = 'spec/samples/LIVE'
 
 function createTest({ file, reference, mssim, type }) {
-  test(`should get a mssim of ${mssim} for ${file}/${reference} (${type})`, t => {
+  test(`should get a mssim of ${mssim} for ${file}/${reference} (${
+    type
+  })`, t => {
     const refPath = resolve(base, 'refimgs', reference)
     const filePath = resolve(base, type, file)
 
