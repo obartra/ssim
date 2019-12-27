@@ -17,6 +17,8 @@ module.exports = {
   },
   output: {
     filename: "ssim.web.js",
+    library: "ssim",
+    libraryTarget: "umd",
     path: path.resolve(__dirname, "dist")
   }
 };
