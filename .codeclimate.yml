@@ -9,9 +9,9 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.js"
-  - "src/*"
-  - "src/**/*"
-  - "spec/*"
-  - "spec/**/*"
-  - "ci/*"
+    - "**.ts"
+    - "src/*"
+    - "src/**/*"
+    - "spec/*"
+    - "spec/**/*"
+    - "ci/*"

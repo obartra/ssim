@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/obartra/ssim
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+      - image: circleci/node:latest
+    steps:
+      # Build, Test and Deploy
+      - checkout
+      # Test
+      - run:
+          name: "Test"
+          command: ./ci/tasks.sh
+      # Deployment
+      - type: deploy
+        name: "Publish to npm"
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            echo "Publishing latest release"
+            yarn build
+            echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+            yarn semantic-release || exit 0
+          else
+            echo "Skipping publication in non-release branch"
+          fi

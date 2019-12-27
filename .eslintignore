@@ -1,9 +1,6 @@
 dist/
-spec/helpers_dist/
-spec/web/web.build.js
-spec/e2e_dist/
 coverage/
 node_modules/
 .git/
 docs/
-version.js
+version.ts

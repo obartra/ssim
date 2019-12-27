@@ -3,6874 +3,5892 @@
     "file": "img1.bmp",
     "mssim": "0.64778",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.64771",
     "type": "fastfading"
   },
   {
     "file": "img2.bmp",
     "mssim": "0.69144",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.69137",
     "type": "fastfading"
   },
   {
     "file": "img3.bmp",
     "mssim": "0.69204",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.69194",
     "type": "fastfading"
   },
   {
     "file": "img4.bmp",
     "mssim": "0.96786",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.96791",
     "type": "fastfading"
   },
   {
     "file": "img5.bmp",
     "mssim": "0.99414",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.99414",
     "type": "fastfading"
   },
   {
     "file": "img6.bmp",
     "mssim": "0.77758",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.7802",
     "type": "fastfading"
   },
   {
     "file": "img7.bmp",
     "mssim": "0.92064",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.92006",
     "type": "fastfading"
   },
   {
     "file": "img8.bmp",
     "mssim": "0.7096",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.71126",
     "type": "fastfading"
   },
   {
     "file": "img9.bmp",
     "mssim": "0.79007",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.79435",
     "type": "fastfading"
   },
   {
     "file": "img10.bmp",
     "mssim": "0.99357",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.99353",
     "type": "fastfading"
   },
   {
     "file": "img11.bmp",
     "mssim": "0.74531",
     "reference": "statue.bmp",
-    "reportedMssim": "0.74501",
     "type": "fastfading"
   },
   {
     "file": "img12.bmp",
     "mssim": "0.90206",
     "reference": "statue.bmp",
-    "reportedMssim": "0.90143",
     "type": "fastfading"
   },
   {
     "file": "img13.bmp",
     "mssim": "0.99268",
     "reference": "statue.bmp",
-    "reportedMssim": "0.99268",
     "type": "fastfading"
   },
   {
     "file": "img14.bmp",
     "mssim": "0.98523",
     "reference": "statue.bmp",
-    "reportedMssim": "0.98506",
     "type": "fastfading"
   },
   {
     "file": "img15.bmp",
     "mssim": "0.99578",
     "reference": "statue.bmp",
-    "reportedMssim": "0.99581",
     "type": "fastfading"
   },
   {
     "file": "img16.bmp",
     "mssim": "0.79369",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.79281",
     "type": "fastfading"
   },
   {
     "file": "img17.bmp",
     "mssim": "0.84775",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.84696",
     "type": "fastfading"
   },
   {
     "file": "img18.bmp",
     "mssim": "0.55505",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.55547",
     "type": "fastfading"
   },
   {
     "file": "img19.bmp",
     "mssim": "0.92816",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.9289",
     "type": "fastfading"
   },
   {
     "file": "img20.bmp",
     "mssim": "0.98165",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.98182",
     "type": "fastfading"
   },
   {
     "file": "img21.bmp",
     "mssim": "0.63589",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.63712",
     "type": "fastfading"
   },
   {
     "file": "img22.bmp",
     "mssim": "0.86838",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.86923",
     "type": "fastfading"
   },
   {
     "file": "img23.bmp",
     "mssim": "0.9331",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.93286",
     "type": "fastfading"
   },
   {
     "file": "img24.bmp",
     "mssim": "0.84571",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.84716",
     "type": "fastfading"
   },
   {
     "file": "img25.bmp",
     "mssim": "0.99212",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.99212",
     "type": "fastfading"
   },
   {
     "file": "img26.bmp",
     "mssim": "0.69322",
     "reference": "stream.bmp",
-    "reportedMssim": "0.69336",
     "type": "fastfading"
   },
   {
     "file": "img27.bmp",
     "mssim": "0.96337",
     "reference": "stream.bmp",
-    "reportedMssim": "0.96355",
     "type": "fastfading"
   },
   {
     "file": "img28.bmp",
     "mssim": "0.92836",
     "reference": "stream.bmp",
-    "reportedMssim": "0.92816",
     "type": "fastfading"
   },
   {
     "file": "img29.bmp",
     "mssim": "0.96304",
     "reference": "stream.bmp",
-    "reportedMssim": "0.96296",
     "type": "fastfading"
   },
   {
     "file": "img30.bmp",
     "mssim": "0.97997",
     "reference": "stream.bmp",
-    "reportedMssim": "0.98017",
     "type": "fastfading"
   },
   {
     "file": "img31.bmp",
     "mssim": "0.22748",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.22692",
     "type": "fastfading"
   },
   {
     "file": "img32.bmp",
     "mssim": "0.88948",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.88931",
     "type": "fastfading"
   },
   {
     "file": "img33.bmp",
     "mssim": "0.97632",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.97627",
     "type": "fastfading"
   },
   {
     "file": "img34.bmp",
     "mssim": "0.99123",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.99115",
     "type": "fastfading"
   },
   {
     "file": "img35.bmp",
     "mssim": "0.86166",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.8606",
     "type": "fastfading"
   },
   {
     "file": "img36.bmp",
     "mssim": "0.82994",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.82917",
     "type": "fastfading"
   },
   {
     "file": "img37.bmp",
     "mssim": "0.33833",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.33574",
     "type": "fastfading"
   },
   {
     "file": "img38.bmp",
     "mssim": "0.96301",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.96291",
     "type": "fastfading"
   },
   {
     "file": "img39.bmp",
     "mssim": "0.98882",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.98858",
     "type": "fastfading"
   },
   {
     "file": "img40.bmp",
     "mssim": "0.98825",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.98791",
     "type": "fastfading"
   },
   {
     "file": "img41.bmp",
     "mssim": "0.9462",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.94573",
     "type": "fastfading"
   },
   {
     "file": "img42.bmp",
     "mssim": "0.87417",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.8734",
     "type": "fastfading"
   },
   {
     "file": "img43.bmp",
     "mssim": "0.9929",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.9929",
     "type": "fastfading"
   },
   {
     "file": "img44.bmp",
     "mssim": "0.97772",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.97736",
     "type": "fastfading"
   },
   {
     "file": "img45.bmp",
     "mssim": "0.99251",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.99248",
     "type": "fastfading"
   },
   {
     "file": "img46.bmp",
     "mssim": "0.25131",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.25202",
     "type": "fastfading"
   },
   {
     "file": "img47.bmp",
     "mssim": "0.17748",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.17843",
     "type": "fastfading"
   },
   {
     "file": "img48.bmp",
     "mssim": "0.75855",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.76131",
     "type": "fastfading"
   },
   {
     "file": "img49.bmp",
     "mssim": "0.98379",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.98375",
     "type": "fastfading"
   },
   {
     "file": "img50.bmp",
     "mssim": "0.94772",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.94739",
     "type": "fastfading"
   },
   {
     "file": "img51.bmp",
     "mssim": "0.35562",
     "reference": "building2.bmp",
-    "reportedMssim": "0.35467",
     "type": "fastfading"
   },
   {
     "file": "img52.bmp",
     "mssim": "0.17784",
     "reference": "building2.bmp",
-    "reportedMssim": "0.17962",
     "type": "fastfading"
   },
   {
     "file": "img53.bmp",
     "mssim": "0.90083",
     "reference": "building2.bmp",
-    "reportedMssim": "0.90163",
     "type": "fastfading"
   },
   {
     "file": "img54.bmp",
     "mssim": "0.9843",
     "reference": "building2.bmp",
-    "reportedMssim": "0.98468",
     "type": "fastfading"
   },
   {
     "file": "img55.bmp",
     "mssim": "0.96879",
     "reference": "building2.bmp",
-    "reportedMssim": "0.96895",
     "type": "fastfading"
   },
   {
     "file": "img56.bmp",
     "mssim": "0.95883",
     "reference": "plane.bmp",
-    "reportedMssim": "0.95922",
     "type": "fastfading"
   },
   {
     "file": "img57.bmp",
     "mssim": "0.78864",
     "reference": "plane.bmp",
-    "reportedMssim": "0.78786",
     "type": "fastfading"
   },
   {
     "file": "img58.bmp",
     "mssim": "0.61464",
     "reference": "plane.bmp",
-    "reportedMssim": "0.61348",
     "type": "fastfading"
   },
   {
     "file": "img59.bmp",
     "mssim": "0.98953",
     "reference": "plane.bmp",
-    "reportedMssim": "0.98956",
     "type": "fastfading"
   },
   {
     "file": "img60.bmp",
     "mssim": "0.99738",
     "reference": "plane.bmp",
-    "reportedMssim": "0.99737",
     "type": "fastfading"
   },
   {
     "file": "img61.bmp",
     "mssim": "0.6144",
     "reference": "woman.bmp",
-    "reportedMssim": "0.61471",
     "type": "fastfading"
   },
   {
     "file": "img62.bmp",
     "mssim": "0.61296",
     "reference": "woman.bmp",
-    "reportedMssim": "0.61322",
     "type": "fastfading"
   },
   {
     "file": "img63.bmp",
     "mssim": "0.97795",
     "reference": "woman.bmp",
-    "reportedMssim": "0.97792",
     "type": "fastfading"
   },
   {
     "file": "img64.bmp",
     "mssim": "0.98497",
     "reference": "woman.bmp",
-    "reportedMssim": "0.98505",
     "type": "fastfading"
   },
   {
     "file": "img65.bmp",
     "mssim": "0.45632",
     "reference": "woman.bmp",
-    "reportedMssim": "0.45625",
     "type": "fastfading"
   },
   {
     "file": "img66.bmp",
     "mssim": "0.79777",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.79825",
     "type": "fastfading"
   },
   {
     "file": "img67.bmp",
     "mssim": "0.53641",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.53729",
     "type": "fastfading"
   },
   {
     "file": "img68.bmp",
     "mssim": "0.70431",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.70458",
     "type": "fastfading"
   },
   {
     "file": "img69.bmp",
     "mssim": "0.32841",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.32812",
     "type": "fastfading"
   },
   {
     "file": "img70.bmp",
     "mssim": "0.97307",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.97302",
     "type": "fastfading"
   },
   {
     "file": "img71.bmp",
     "mssim": "0.49935",
     "reference": "house.bmp",
-    "reportedMssim": "0.4975",
     "type": "fastfading"
   },
   {
     "file": "img72.bmp",
     "mssim": "0.96915",
     "reference": "house.bmp",
-    "reportedMssim": "0.96938",
     "type": "fastfading"
   },
   {
     "file": "img73.bmp",
     "mssim": "0.95111",
     "reference": "house.bmp",
-    "reportedMssim": "0.95121",
     "type": "fastfading"
   },
   {
     "file": "img74.bmp",
     "mssim": "0.98626",
     "reference": "house.bmp",
-    "reportedMssim": "0.98629",
     "type": "fastfading"
   },
   {
     "file": "img75.bmp",
     "mssim": "0.99017",
     "reference": "house.bmp",
-    "reportedMssim": "0.9902",
     "type": "fastfading"
   },
   {
     "file": "img76.bmp",
     "mssim": "0.36434",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.365",
     "type": "fastfading"
   },
   {
     "file": "img77.bmp",
     "mssim": "0.9292",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.92897",
     "type": "fastfading"
   },
   {
     "file": "img78.bmp",
     "mssim": "0.95191",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.952",
     "type": "fastfading"
   },
   {
     "file": "img79.bmp",
     "mssim": "0.89346",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.89327",
     "type": "fastfading"
   },
   {
     "file": "img80.bmp",
     "mssim": "0.99185",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.99168",
     "type": "fastfading"
   },
   {
     "file": "img81.bmp",
     "mssim": "0.91041",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.90967",
     "type": "fastfading"
   },
   {
     "file": "img82.bmp",
     "mssim": "0.95304",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.9529",
     "type": "fastfading"
   },
   {
     "file": "img83.bmp",
     "mssim": "0.97837",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.97858",
     "type": "fastfading"
   },
   {
     "file": "img84.bmp",
     "mssim": "0.98335",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.98336",
     "type": "fastfading"
   },
   {
     "file": "img85.bmp",
     "mssim": "0.88692",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.88583",
     "type": "fastfading"
   },
   {
     "file": "img86.bmp",
     "mssim": "0.72936",
     "reference": "caps.bmp",
-    "reportedMssim": "0.72974",
     "type": "fastfading"
   },
   {
     "file": "img87.bmp",
     "mssim": "0.7967",
     "reference": "caps.bmp",
-    "reportedMssim": "0.79693",
     "type": "fastfading"
   },
   {
     "file": "img88.bmp",
     "mssim": "0.91022",
     "reference": "caps.bmp",
-    "reportedMssim": "0.91011",
     "type": "fastfading"
   },
   {
     "file": "img89.bmp",
     "mssim": "0.98197",
     "reference": "caps.bmp",
-    "reportedMssim": "0.98202",
     "type": "fastfading"
   },
   {
     "file": "img90.bmp",
     "mssim": "0.96695",
     "reference": "caps.bmp",
-    "reportedMssim": "0.96702",
     "type": "fastfading"
   },
   {
     "file": "img91.bmp",
     "mssim": "0.80341",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.80618",
     "type": "fastfading"
   },
   {
     "file": "img92.bmp",
     "mssim": "0.58508",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.58693",
     "type": "fastfading"
   },
   {
     "file": "img93.bmp",
     "mssim": "0.93186",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.93132",
     "type": "fastfading"
   },
   {
     "file": "img94.bmp",
     "mssim": "0.93705",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.93529",
     "type": "fastfading"
   },
   {
     "file": "img95.bmp",
     "mssim": "0.82339",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.82597",
     "type": "fastfading"
   },
   {
     "file": "img96.bmp",
     "mssim": "0.42877",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.42798",
     "type": "fastfading"
   },
   {
     "file": "img97.bmp",
     "mssim": "0.69477",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.69256",
     "type": "fastfading"
   },
   {
     "file": "img98.bmp",
     "mssim": "0.96802",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.96819",
     "type": "fastfading"
   },
   {
     "file": "img99.bmp",
     "mssim": "0.86698",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.86643",
     "type": "fastfading"
   },
   {
     "file": "img100.bmp",
     "mssim": "0.78319",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.78139",
     "type": "fastfading"
   },
   {
     "file": "img101.bmp",
     "mssim": "0.87056",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.87052",
     "type": "fastfading"
   },
   {
     "file": "img102.bmp",
     "mssim": "0.96709",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.96641",
     "type": "fastfading"
   },
   {
     "file": "img103.bmp",
     "mssim": "0.77208",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.77147",
     "type": "fastfading"
   },
   {
     "file": "img104.bmp",
     "mssim": "0.99658",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.99628",
     "type": "fastfading"
   },
   {
     "file": "img105.bmp",
     "mssim": "0.99133",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.99108",
     "type": "fastfading"
   },
   {
     "file": "img106.bmp",
     "mssim": "0.77685",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.77663",
     "type": "fastfading"
   },
   {
     "file": "img107.bmp",
     "mssim": "0.86657",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.86673",
     "type": "fastfading"
   },
   {
     "file": "img108.bmp",
     "mssim": "0.87953",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.87995",
     "type": "fastfading"
   },
   {
     "file": "img109.bmp",
     "mssim": "0.96893",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.96846",
     "type": "fastfading"
   },
   {
     "file": "img110.bmp",
     "mssim": "0.99366",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.99369",
     "type": "fastfading"
   },
   {
     "file": "img111.bmp",
     "mssim": "0.90563",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.90608",
     "type": "fastfading"
   },
   {
     "file": "img112.bmp",
     "mssim": "0.76813",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.76867",
     "type": "fastfading"
   },
   {
     "file": "img113.bmp",
     "mssim": "0.88267",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.88242",
     "type": "fastfading"
   },
   {
     "file": "img114.bmp",
     "mssim": "0.9822",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.98218",
     "type": "fastfading"
   },
   {
     "file": "img115.bmp",
     "mssim": "0.98553",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.98551",
     "type": "fastfading"
   },
   {
     "file": "img116.bmp",
     "mssim": "0.27737",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.27671",
     "type": "fastfading"
   },
   {
     "file": "img117.bmp",
     "mssim": "0.49348",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.49227",
     "type": "fastfading"
   },
   {
     "file": "img118.bmp",
     "mssim": "0.84416",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.84251",
     "type": "fastfading"
   },
   {
     "file": "img119.bmp",
     "mssim": "0.98763",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.9876",
     "type": "fastfading"
   },
   {
     "file": "img120.bmp",
     "mssim": "0.34822",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.34727",
     "type": "fastfading"
   },
   {
     "file": "img121.bmp",
     "mssim": "0.83616",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.83335",
     "type": "fastfading"
   },
   {
     "file": "img122.bmp",
     "mssim": "0.80094",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.79546",
     "type": "fastfading"
   },
   {
     "file": "img123.bmp",
     "mssim": "0.9404",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.94105",
     "type": "fastfading"
   },
   {
     "file": "img124.bmp",
     "mssim": "0.91732",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.91819",
     "type": "fastfading"
   },
   {
     "file": "img125.bmp",
     "mssim": "0.99651",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.99653",
     "type": "fastfading"
   },
   {
     "file": "img126.bmp",
     "mssim": "0.75411",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.75512",
     "type": "fastfading"
   },
   {
     "file": "img127.bmp",
     "mssim": "0.95438",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.95454",
     "type": "fastfading"
   },
   {
     "file": "img128.bmp",
     "mssim": "0.98694",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.9868",
     "type": "fastfading"
   },
   {
     "file": "img129.bmp",
     "mssim": "0.99519",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.99514",
     "type": "fastfading"
   },
   {
     "file": "img130.bmp",
     "mssim": "0.99527",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.99523",
     "type": "fastfading"
   },
   {
     "file": "img131.bmp",
     "mssim": "0.40051",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.40016",
     "type": "fastfading"
   },
   {
     "file": "img132.bmp",
     "mssim": "0.4259",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.42598",
     "type": "fastfading"
   },
   {
     "file": "img133.bmp",
     "mssim": "0.97982",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.97957",
     "type": "fastfading"
   },
   {
     "file": "img134.bmp",
     "mssim": "0.99142",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.99138",
     "type": "fastfading"
   },
   {
     "file": "img135.bmp",
     "mssim": "0.97317",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.97291",
     "type": "fastfading"
   },
   {
     "file": "img136.bmp",
     "mssim": "0.80706",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.80724",
     "type": "fastfading"
   },
   {
     "file": "img137.bmp",
     "mssim": "0.95149",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.95154",
     "type": "fastfading"
   },
   {
     "file": "img138.bmp",
     "mssim": "0.98732",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.98729",
     "type": "fastfading"
   },
   {
     "file": "img139.bmp",
     "mssim": "0.99535",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.99536",
     "type": "fastfading"
   },
   {
     "file": "img140.bmp",
     "mssim": "0.99208",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.99207",
     "type": "fastfading"
   },
   {
     "file": "img141.bmp",
     "mssim": "0.74031",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.73902",
     "type": "fastfading"
   },
   {
     "file": "img142.bmp",
     "mssim": "0.94405",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.94373",
     "type": "fastfading"
   },
   {
     "file": "img143.bmp",
     "mssim": "0.96471",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.9647",
     "type": "fastfading"
   },
   {
     "file": "img144.bmp",
     "mssim": "0.92673",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.92619",
     "type": "fastfading"
   },
   {
     "file": "img145.bmp",
     "mssim": "0.96761",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.96763",
     "type": "fastfading"
   },
   {
     "file": "img146.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img147.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img148.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img149.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img150.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img151.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img152.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img153.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img154.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img155.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img156.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img157.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img158.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img159.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img160.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img161.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img162.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img163.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img164.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img165.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img166.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img167.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img168.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img169.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img170.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img171.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img172.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img173.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img174.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "fastfading"
   },
   {
     "file": "img1.bmp",
     "mssim": "0.95604",
     "reference": "caps.bmp",
-    "reportedMssim": "0.95595",
     "type": "gblur"
   },
   {
     "file": "img2.bmp",
     "mssim": "0.96172",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.96201",
     "type": "gblur"
   },
   {
     "file": "img3.bmp",
     "mssim": "0.93725",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.9375",
     "type": "gblur"
   },
   {
     "file": "img4.bmp",
     "mssim": "0.99737",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.99737",
     "type": "gblur"
   },
   {
     "file": "img5.bmp",
     "mssim": "0.77927",
     "reference": "plane.bmp",
-    "reportedMssim": "0.77931",
     "type": "gblur"
   },
   {
     "file": "img6.bmp",
     "mssim": "0.87798",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.87825",
     "type": "gblur"
   },
   {
     "file": "img7.bmp",
     "mssim": "0.94564",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.94561",
     "type": "gblur"
   },
   {
     "file": "img8.bmp",
     "mssim": "0.9636",
     "reference": "building2.bmp",
-    "reportedMssim": "0.96377",
     "type": "gblur"
   },
   {
     "file": "img9.bmp",
     "mssim": "0.98969",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.98969",
     "type": "gblur"
   },
   {
     "file": "img10.bmp",
     "mssim": "0.63777",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.63813",
     "type": "gblur"
   },
   {
     "file": "img11.bmp",
     "mssim": "0.55629",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.55713",
     "type": "gblur"
   },
   {
     "file": "img12.bmp",
     "mssim": "0.9898",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.98969",
     "type": "gblur"
   },
   {
     "file": "img13.bmp",
     "mssim": "0.98197",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.98198",
     "type": "gblur"
   },
   {
     "file": "img14.bmp",
     "mssim": "0.96668",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.96562",
     "type": "gblur"
   },
   {
     "file": "img15.bmp",
     "mssim": "0.91575",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.91715",
     "type": "gblur"
   },
   {
     "file": "img16.bmp",
     "mssim": "0.8193",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.81424",
     "type": "gblur"
   },
   {
     "file": "img17.bmp",
     "mssim": "0.44629",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.4476",
     "type": "gblur"
   },
   {
     "file": "img18.bmp",
     "mssim": "0.94422",
     "reference": "stream.bmp",
-    "reportedMssim": "0.94432",
     "type": "gblur"
   },
   {
     "file": "img19.bmp",
     "mssim": "0.87216",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.87174",
     "type": "gblur"
   },
   {
     "file": "img20.bmp",
     "mssim": "0.91003",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.91177",
     "type": "gblur"
   },
   {
     "file": "img21.bmp",
     "mssim": "0.94803",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.94795",
     "type": "gblur"
   },
   {
     "file": "img22.bmp",
     "mssim": "0.90325",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.90282",
     "type": "gblur"
   },
   {
     "file": "img23.bmp",
     "mssim": "0.98936",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.98948",
     "type": "gblur"
   },
   {
     "file": "img24.bmp",
     "mssim": "0.49729",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.49954",
     "type": "gblur"
   },
   {
     "file": "img25.bmp",
     "mssim": "0.67274",
     "reference": "building2.bmp",
-    "reportedMssim": "0.67261",
     "type": "gblur"
   },
   {
     "file": "img26.bmp",
     "mssim": "0.87827",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.87746",
     "type": "gblur"
   },
   {
     "file": "img27.bmp",
     "mssim": "0.97127",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.97167",
     "type": "gblur"
   },
   {
     "file": "img28.bmp",
     "mssim": "0.98812",
     "reference": "caps.bmp",
-    "reportedMssim": "0.98811",
     "type": "gblur"
   },
   {
     "file": "img29.bmp",
     "mssim": "0.9665",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.96656",
     "type": "gblur"
   },
   {
     "file": "img30.bmp",
     "mssim": "0.92058",
     "reference": "plane.bmp",
-    "reportedMssim": "0.92018",
     "type": "gblur"
   },
   {
     "file": "img31.bmp",
     "mssim": "0.92618",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.92576",
     "type": "gblur"
   },
   {
     "file": "img32.bmp",
     "mssim": "0.99245",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.99241",
     "type": "gblur"
   },
   {
     "file": "img33.bmp",
     "mssim": "0.9244",
     "reference": "building2.bmp",
-    "reportedMssim": "0.92457",
     "type": "gblur"
   },
   {
     "file": "img34.bmp",
     "mssim": "0.93599",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.93621",
     "type": "gblur"
   },
   {
     "file": "img35.bmp",
     "mssim": "0.96239",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.96227",
     "type": "gblur"
   },
   {
     "file": "img36.bmp",
     "mssim": "0.86535",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.86478",
     "type": "gblur"
   },
   {
     "file": "img37.bmp",
     "mssim": "0.86626",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.86653",
     "type": "gblur"
   },
   {
     "file": "img38.bmp",
     "mssim": "0.83126",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.83384",
     "type": "gblur"
   },
   {
     "file": "img39.bmp",
     "mssim": "0.94415",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.94493",
     "type": "gblur"
   },
   {
     "file": "img40.bmp",
     "mssim": "0.66001",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.65868",
     "type": "gblur"
   },
   {
     "file": "img41.bmp",
     "mssim": "0.74045",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.74068",
     "type": "gblur"
   },
   {
     "file": "img42.bmp",
     "mssim": "0.90758",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.90712",
     "type": "gblur"
   },
   {
     "file": "img43.bmp",
     "mssim": "0.96243",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.96255",
     "type": "gblur"
   },
   {
     "file": "img44.bmp",
     "mssim": "0.97189",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.97249",
     "type": "gblur"
   },
   {
     "file": "img45.bmp",
     "mssim": "0.98665",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.9866",
     "type": "gblur"
   },
   {
     "file": "img46.bmp",
     "mssim": "0.98235",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.9823",
     "type": "gblur"
   },
   {
     "file": "img47.bmp",
     "mssim": "0.92427",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.92161",
     "type": "gblur"
   },
   {
     "file": "img48.bmp",
     "mssim": "0.87569",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.87635",
     "type": "gblur"
   },
   {
     "file": "img49.bmp",
     "mssim": "0.94267",
     "reference": "house.bmp",
-    "reportedMssim": "0.94155",
     "type": "gblur"
   },
   {
     "file": "img50.bmp",
     "mssim": "0.8856",
     "reference": "stream.bmp",
-    "reportedMssim": "0.8859",
     "type": "gblur"
   },
   {
     "file": "img51.bmp",
     "mssim": "0.98911",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.98908",
     "type": "gblur"
   },
   {
     "file": "img52.bmp",
     "mssim": "0.7731",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.77314",
     "type": "gblur"
   },
   {
     "file": "img53.bmp",
     "mssim": "0.88669",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.88671",
     "type": "gblur"
   },
   {
     "file": "img54.bmp",
     "mssim": "0.86678",
     "reference": "statue.bmp",
-    "reportedMssim": "0.8661",
     "type": "gblur"
   },
   {
     "file": "img55.bmp",
     "mssim": "0.92238",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.92241",
     "type": "gblur"
   },
   {
     "file": "img56.bmp",
     "mssim": "0.96998",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.96968",
     "type": "gblur"
   },
   {
     "file": "img57.bmp",
     "mssim": "0.87343",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.8759",
     "type": "gblur"
   },
   {
     "file": "img58.bmp",
     "mssim": "0.51852",
     "reference": "stream.bmp",
-    "reportedMssim": "0.51844",
     "type": "gblur"
   },
   {
     "file": "img59.bmp",
     "mssim": "0.93116",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.93162",
     "type": "gblur"
   },
   {
     "file": "img60.bmp",
     "mssim": "0.98332",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.98321",
     "type": "gblur"
   },
   {
     "file": "img61.bmp",
     "mssim": "0.95386",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.95366",
     "type": "gblur"
   },
   {
     "file": "img62.bmp",
     "mssim": "0.93075",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.93072",
     "type": "gblur"
   },
   {
     "file": "img63.bmp",
     "mssim": "0.99439",
     "reference": "plane.bmp",
-    "reportedMssim": "0.99435",
     "type": "gblur"
   },
   {
     "file": "img64.bmp",
     "mssim": "0.94463",
     "reference": "woman.bmp",
-    "reportedMssim": "0.94469",
     "type": "gblur"
   },
   {
     "file": "img65.bmp",
     "mssim": "0.9388",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.93791",
     "type": "gblur"
   },
   {
     "file": "img66.bmp",
     "mssim": "0.88074",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.88116",
     "type": "gblur"
   },
   {
     "file": "img67.bmp",
     "mssim": "0.99448",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.99435",
     "type": "gblur"
   },
   {
     "file": "img68.bmp",
     "mssim": "0.76984",
     "reference": "woman.bmp",
-    "reportedMssim": "0.7702",
     "type": "gblur"
   },
   {
     "file": "img69.bmp",
     "mssim": "0.78481",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.78491",
     "type": "gblur"
   },
   {
     "file": "img70.bmp",
     "mssim": "0.76939",
     "reference": "caps.bmp",
-    "reportedMssim": "0.7697",
     "type": "gblur"
   },
   {
     "file": "img71.bmp",
     "mssim": "0.99756",
     "reference": "stream.bmp",
-    "reportedMssim": "0.99757",
     "type": "gblur"
   },
   {
     "file": "img72.bmp",
     "mssim": "0.93477",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.93509",
     "type": "gblur"
   },
   {
     "file": "img73.bmp",
     "mssim": "0.64817",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.6489",
     "type": "gblur"
   },
   {
     "file": "img74.bmp",
     "mssim": "0.90223",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.90173",
     "type": "gblur"
   },
   {
     "file": "img75.bmp",
     "mssim": "0.94512",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.9452",
     "type": "gblur"
   },
   {
     "file": "img76.bmp",
     "mssim": "0.93205",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.93133",
     "type": "gblur"
   },
   {
     "file": "img77.bmp",
     "mssim": "0.94271",
     "reference": "statue.bmp",
-    "reportedMssim": "0.94207",
     "type": "gblur"
   },
   {
     "file": "img78.bmp",
     "mssim": "0.7741",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.76877",
     "type": "gblur"
   },
   {
     "file": "img79.bmp",
     "mssim": "0.96669",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.96734",
     "type": "gblur"
   },
   {
     "file": "img80.bmp",
     "mssim": "0.87477",
     "reference": "building2.bmp",
-    "reportedMssim": "0.87484",
     "type": "gblur"
   },
   {
     "file": "img81.bmp",
     "mssim": "0.87256",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.87403",
     "type": "gblur"
   },
   {
     "file": "img82.bmp",
     "mssim": "0.98423",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.98421",
     "type": "gblur"
   },
   {
     "file": "img83.bmp",
     "mssim": "0.70842",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.70808",
     "type": "gblur"
   },
   {
     "file": "img84.bmp",
     "mssim": "0.98559",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.98566",
     "type": "gblur"
   },
   {
     "file": "img85.bmp",
     "mssim": "0.89211",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.89049",
     "type": "gblur"
   },
   {
     "file": "img86.bmp",
     "mssim": "0.96402",
     "reference": "plane.bmp",
-    "reportedMssim": "0.96379",
     "type": "gblur"
   },
   {
     "file": "img87.bmp",
     "mssim": "0.96028",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.95973",
     "type": "gblur"
   },
   {
     "file": "img88.bmp",
     "mssim": "0.85187",
     "reference": "caps.bmp",
-    "reportedMssim": "0.85219",
     "type": "gblur"
   },
   {
     "file": "img89.bmp",
     "mssim": "0.96559",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.96526",
     "type": "gblur"
   },
   {
     "file": "img90.bmp",
     "mssim": "0.99701",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.99697",
     "type": "gblur"
   },
   {
     "file": "img91.bmp",
     "mssim": "0.92113",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.92151",
     "type": "gblur"
   },
   {
     "file": "img92.bmp",
     "mssim": "0.98906",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.98922",
     "type": "gblur"
   },
   {
     "file": "img93.bmp",
     "mssim": "0.93954",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.93944",
     "type": "gblur"
   },
   {
     "file": "img94.bmp",
     "mssim": "0.99219",
     "reference": "house.bmp",
-    "reportedMssim": "0.99205",
     "type": "gblur"
   },
   {
     "file": "img95.bmp",
     "mssim": "0.99636",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.99643",
     "type": "gblur"
   },
   {
     "file": "img96.bmp",
     "mssim": "0.9876",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.98772",
     "type": "gblur"
   },
   {
     "file": "img97.bmp",
     "mssim": "0.86604",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.86812",
     "type": "gblur"
   },
   {
     "file": "img98.bmp",
     "mssim": "0.9787",
     "reference": "statue.bmp",
-    "reportedMssim": "0.97839",
     "type": "gblur"
   },
   {
     "file": "img99.bmp",
     "mssim": "0.82976",
     "reference": "woman.bmp",
-    "reportedMssim": "0.83016",
     "type": "gblur"
   },
   {
     "file": "img100.bmp",
     "mssim": "0.76389",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.76674",
     "type": "gblur"
   },
   {
     "file": "img101.bmp",
     "mssim": "0.97017",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.97",
     "type": "gblur"
   },
   {
     "file": "img102.bmp",
     "mssim": "0.96029",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.96084",
     "type": "gblur"
   },
   {
     "file": "img103.bmp",
     "mssim": "0.94662",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.94686",
     "type": "gblur"
   },
   {
     "file": "img104.bmp",
     "mssim": "0.47763",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.47799",
     "type": "gblur"
   },
   {
     "file": "img105.bmp",
     "mssim": "0.86131",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.86116",
     "type": "gblur"
   },
   {
     "file": "img106.bmp",
     "mssim": "0.9645",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.96519",
     "type": "gblur"
   },
   {
     "file": "img107.bmp",
     "mssim": "0.62174",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.6182",
     "type": "gblur"
   },
   {
     "file": "img108.bmp",
     "mssim": "0.98968",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.98989",
     "type": "gblur"
   },
   {
     "file": "img109.bmp",
     "mssim": "0.93222",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.93228",
     "type": "gblur"
   },
   {
     "file": "img110.bmp",
     "mssim": "0.89881",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.90005",
     "type": "gblur"
   },
   {
     "file": "img111.bmp",
     "mssim": "0.99364",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.99378",
     "type": "gblur"
   },
   {
     "file": "img112.bmp",
     "mssim": "0.94682",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.94648",
     "type": "gblur"
   },
   {
     "file": "img113.bmp",
     "mssim": "0.88675",
     "reference": "house.bmp",
-    "reportedMssim": "0.88503",
     "type": "gblur"
   },
   {
     "file": "img114.bmp",
     "mssim": "0.92301",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.92405",
     "type": "gblur"
   },
   {
     "file": "img115.bmp",
     "mssim": "0.91915",
     "reference": "caps.bmp",
-    "reportedMssim": "0.91917",
     "type": "gblur"
   },
   {
     "file": "img116.bmp",
     "mssim": "0.46195",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.46361",
     "type": "gblur"
   },
   {
     "file": "img117.bmp",
     "mssim": "0.64564",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.64794",
     "type": "gblur"
   },
   {
     "file": "img118.bmp",
     "mssim": "0.77877",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.77897",
     "type": "gblur"
   },
   {
     "file": "img119.bmp",
     "mssim": "0.92657",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.92803",
     "type": "gblur"
   },
   {
     "file": "img120.bmp",
     "mssim": "0.7347",
     "reference": "statue.bmp",
-    "reportedMssim": "0.73445",
     "type": "gblur"
   },
   {
     "file": "img121.bmp",
     "mssim": "0.65902",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.65744",
     "type": "gblur"
   },
   {
     "file": "img122.bmp",
     "mssim": "0.93501",
     "reference": "house.bmp",
-    "reportedMssim": "0.93377",
     "type": "gblur"
   },
   {
     "file": "img123.bmp",
     "mssim": "0.78157",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.78133",
     "type": "gblur"
   },
   {
     "file": "img124.bmp",
     "mssim": "0.83155",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.83263",
     "type": "gblur"
   },
   {
     "file": "img125.bmp",
     "mssim": "0.72762",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.72647",
     "type": "gblur"
   },
   {
     "file": "img126.bmp",
     "mssim": "0.92884",
     "reference": "stream.bmp",
-    "reportedMssim": "0.92897",
     "type": "gblur"
   },
   {
     "file": "img127.bmp",
     "mssim": "0.86883",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.86757",
     "type": "gblur"
   },
   {
     "file": "img128.bmp",
     "mssim": "0.85362",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.85358",
     "type": "gblur"
   },
   {
     "file": "img129.bmp",
     "mssim": "0.93795",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.93754",
     "type": "gblur"
   },
   {
     "file": "img130.bmp",
     "mssim": "0.86954",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.86886",
     "type": "gblur"
   },
   {
     "file": "img131.bmp",
     "mssim": "0.89698",
     "reference": "statue.bmp",
-    "reportedMssim": "0.8963",
     "type": "gblur"
   },
   {
     "file": "img132.bmp",
     "mssim": "0.76683",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.76649",
     "type": "gblur"
   },
   {
     "file": "img133.bmp",
     "mssim": "0.99",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.99005",
     "type": "gblur"
   },
   {
     "file": "img134.bmp",
     "mssim": "0.81733",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.81764",
     "type": "gblur"
   },
   {
     "file": "img135.bmp",
     "mssim": "0.87824",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.87832",
     "type": "gblur"
   },
   {
     "file": "img136.bmp",
     "mssim": "0.97823",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.97802",
     "type": "gblur"
   },
   {
     "file": "img137.bmp",
     "mssim": "0.98896",
     "reference": "building2.bmp",
-    "reportedMssim": "0.98904",
     "type": "gblur"
   },
   {
     "file": "img138.bmp",
     "mssim": "0.65301",
     "reference": "house.bmp",
-    "reportedMssim": "0.65222",
     "type": "gblur"
   },
   {
     "file": "img139.bmp",
     "mssim": "0.83588",
     "reference": "plane.bmp",
-    "reportedMssim": "0.83574",
     "type": "gblur"
   },
   {
     "file": "img140.bmp",
     "mssim": "0.93186",
     "reference": "woman.bmp",
-    "reportedMssim": "0.93196",
     "type": "gblur"
   },
   {
     "file": "img141.bmp",
     "mssim": "0.87516",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.87569",
     "type": "gblur"
   },
   {
     "file": "img142.bmp",
     "mssim": "0.97847",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.97865",
     "type": "gblur"
   },
   {
     "file": "img143.bmp",
     "mssim": "0.96404",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.96407",
     "type": "gblur"
   },
   {
     "file": "img144.bmp",
     "mssim": "0.76474",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.76579",
     "type": "gblur"
   },
   {
     "file": "img145.bmp",
     "mssim": "0.98052",
     "reference": "woman.bmp",
-    "reportedMssim": "0.98053",
     "type": "gblur"
   },
   {
     "file": "img146.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img147.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img148.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img149.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img150.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img151.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img152.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img153.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img154.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img155.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img156.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img157.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img158.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img159.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img160.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img161.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img162.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img163.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img164.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img165.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img166.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img167.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img168.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img169.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img170.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img171.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img172.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img173.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img174.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "gblur"
   },
   {
     "file": "img1.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img2.bmp",
     "mssim": "0.98161",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.98189",
     "type": "jp2k"
   },
   {
     "file": "img3.bmp",
     "mssim": "0.93985",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.93972",
     "type": "jp2k"
   },
   {
     "file": "img4.bmp",
     "mssim": "0.83933",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.8358",
     "type": "jp2k"
   },
   {
     "file": "img5.bmp",
     "mssim": "0.82682",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.82636",
     "type": "jp2k"
   },
   {
     "file": "img6.bmp",
     "mssim": "0.81562",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.81377",
     "type": "jp2k"
   },
   {
     "file": "img7.bmp",
     "mssim": "0.91953",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.92053",
     "type": "jp2k"
   },
   {
     "file": "img8.bmp",
     "mssim": "0.89209",
     "reference": "stream.bmp",
-    "reportedMssim": "0.89205",
     "type": "jp2k"
   },
   {
     "file": "img9.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img10.bmp",
     "mssim": "0.89229",
     "reference": "woman.bmp",
-    "reportedMssim": "0.89263",
     "type": "jp2k"
   },
   {
     "file": "img11.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img12.bmp",
     "mssim": "0.95248",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.95301",
     "type": "jp2k"
   },
   {
     "file": "img13.bmp",
     "mssim": "0.89119",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.8915",
     "type": "jp2k"
   },
   {
     "file": "img14.bmp",
     "mssim": "0.90219",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.90143",
     "type": "jp2k"
   },
   {
     "file": "img15.bmp",
     "mssim": "0.98591",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.98596",
     "type": "jp2k"
   },
   {
     "file": "img16.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img17.bmp",
     "mssim": "0.81659",
     "reference": "stream.bmp",
-    "reportedMssim": "0.81599",
     "type": "jp2k"
   },
   {
     "file": "img18.bmp",
     "mssim": "0.97186",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.97183",
     "type": "jp2k"
   },
   {
     "file": "img19.bmp",
     "mssim": "0.99569",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.99564",
     "type": "jp2k"
   },
   {
     "file": "img20.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img21.bmp",
     "mssim": "0.95298",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.95321",
     "type": "jp2k"
   },
   {
     "file": "img22.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img23.bmp",
     "mssim": "0.92921",
     "reference": "woman.bmp",
-    "reportedMssim": "0.92982",
     "type": "jp2k"
   },
   {
     "file": "img24.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img25.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img26.bmp",
     "mssim": "0.99572",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.99571",
     "type": "jp2k"
   },
   {
     "file": "img27.bmp",
     "mssim": "0.86232",
     "reference": "house.bmp",
-    "reportedMssim": "0.86166",
     "type": "jp2k"
   },
   {
     "file": "img28.bmp",
     "mssim": "0.76191",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.76182",
     "type": "jp2k"
   },
   {
     "file": "img29.bmp",
     "mssim": "0.80926",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.80898",
     "type": "jp2k"
   },
   {
     "file": "img30.bmp",
     "mssim": "0.66675",
     "reference": "building2.bmp",
-    "reportedMssim": "0.66801",
     "type": "jp2k"
   },
   {
     "file": "img31.bmp",
     "mssim": "0.96068",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.9603",
     "type": "jp2k"
   },
   {
     "file": "img32.bmp",
     "mssim": "0.74418",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.74409",
     "type": "jp2k"
   },
   {
     "file": "img33.bmp",
     "mssim": "0.87695",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.87732",
     "type": "jp2k"
   },
   {
     "file": "img34.bmp",
     "mssim": "0.99302",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.99321",
     "type": "jp2k"
   },
   {
     "file": "img35.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img36.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img37.bmp",
     "mssim": "0.94101",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.9406",
     "type": "jp2k"
   },
   {
     "file": "img38.bmp",
     "mssim": "0.86178",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.8625",
     "type": "jp2k"
   },
   {
     "file": "img39.bmp",
     "mssim": "0.94031",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.94016",
     "type": "jp2k"
   },
   {
     "file": "img40.bmp",
     "mssim": "0.80553",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.80438",
     "type": "jp2k"
   },
   {
     "file": "img41.bmp",
     "mssim": "0.92156",
     "reference": "building2.bmp",
-    "reportedMssim": "0.92178",
     "type": "jp2k"
   },
   {
     "file": "img42.bmp",
     "mssim": "0.89062",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.89017",
     "type": "jp2k"
   },
   {
     "file": "img43.bmp",
     "mssim": "0.76486",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.76365",
     "type": "jp2k"
   },
   {
     "file": "img44.bmp",
     "mssim": "0.8095",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.80722",
     "type": "jp2k"
   },
   {
     "file": "img45.bmp",
     "mssim": "0.8018",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.80126",
     "type": "jp2k"
   },
   {
     "file": "img46.bmp",
     "mssim": "0.69162",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.69126",
     "type": "jp2k"
   },
   {
     "file": "img47.bmp",
     "mssim": "0.85859",
     "reference": "house.bmp",
-    "reportedMssim": "0.85829",
     "type": "jp2k"
   },
   {
     "file": "img48.bmp",
     "mssim": "0.67685",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.67655",
     "type": "jp2k"
   },
   {
     "file": "img49.bmp",
     "mssim": "0.97755",
     "reference": "caps.bmp",
-    "reportedMssim": "0.97764",
     "type": "jp2k"
   },
   {
     "file": "img50.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img51.bmp",
     "mssim": "0.95833",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.95748",
     "type": "jp2k"
   },
   {
     "file": "img52.bmp",
     "mssim": "0.87478",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.87349",
     "type": "jp2k"
   },
   {
     "file": "img53.bmp",
     "mssim": "0.90541",
     "reference": "plane.bmp",
-    "reportedMssim": "0.90446",
     "type": "jp2k"
   },
   {
     "file": "img54.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img55.bmp",
     "mssim": "0.94147",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.94125",
     "type": "jp2k"
   },
   {
     "file": "img56.bmp",
     "mssim": "0.95394",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.95397",
     "type": "jp2k"
   },
   {
     "file": "img57.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img58.bmp",
     "mssim": "0.998",
     "reference": "plane.bmp",
-    "reportedMssim": "0.99799",
     "type": "jp2k"
   },
   {
     "file": "img59.bmp",
     "mssim": "0.99637",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.99636",
     "type": "jp2k"
   },
   {
     "file": "img60.bmp",
     "mssim": "0.77806",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.77874",
     "type": "jp2k"
   },
   {
     "file": "img61.bmp",
     "mssim": "0.97891",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.97895",
     "type": "jp2k"
   },
   {
     "file": "img62.bmp",
     "mssim": "0.99273",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.99275",
     "type": "jp2k"
   },
   {
     "file": "img63.bmp",
     "mssim": "0.96004",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.96046",
     "type": "jp2k"
   },
   {
     "file": "img64.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img65.bmp",
     "mssim": "0.71202",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.70951",
     "type": "jp2k"
   },
   {
     "file": "img66.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img67.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img68.bmp",
     "mssim": "0.96424",
     "reference": "caps.bmp",
-    "reportedMssim": "0.96449",
     "type": "jp2k"
   },
   {
     "file": "img69.bmp",
     "mssim": "0.99689",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.99688",
     "type": "jp2k"
   },
   {
     "file": "img70.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img71.bmp",
     "mssim": "0.71483",
     "reference": "stream.bmp",
-    "reportedMssim": "0.71472",
     "type": "jp2k"
   },
   {
     "file": "img72.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img73.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img74.bmp",
     "mssim": "0.91335",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.91393",
     "type": "jp2k"
   },
   {
     "file": "img75.bmp",
     "mssim": "0.98986",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.98989",
     "type": "jp2k"
   },
   {
     "file": "img76.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img77.bmp",
     "mssim": "0.9962",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.99622",
     "type": "jp2k"
   },
   {
     "file": "img78.bmp",
     "mssim": "0.94156",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.94148",
     "type": "jp2k"
   },
   {
     "file": "img79.bmp",
     "mssim": "0.82336",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.82316",
     "type": "jp2k"
   },
   {
     "file": "img80.bmp",
     "mssim": "0.95112",
     "reference": "house.bmp",
-    "reportedMssim": "0.95098",
     "type": "jp2k"
   },
   {
     "file": "img81.bmp",
     "mssim": "0.89226",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.89166",
     "type": "jp2k"
   },
   {
     "file": "img82.bmp",
     "mssim": "0.99436",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.99442",
     "type": "jp2k"
   },
   {
     "file": "img83.bmp",
     "mssim": "0.929",
     "reference": "caps.bmp",
-    "reportedMssim": "0.9299",
     "type": "jp2k"
   },
   {
     "file": "img84.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img85.bmp",
     "mssim": "0.97489",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.97498",
     "type": "jp2k"
   },
   {
     "file": "img86.bmp",
     "mssim": "0.72817",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.72552",
     "type": "jp2k"
   },
   {
     "file": "img87.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img88.bmp",
     "mssim": "0.77085",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.77014",
     "type": "jp2k"
   },
   {
     "file": "img89.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img90.bmp",
     "mssim": "0.99242",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.99244",
     "type": "jp2k"
   },
   {
     "file": "img91.bmp",
     "mssim": "0.88557",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.8861",
     "type": "jp2k"
   },
   {
     "file": "img92.bmp",
     "mssim": "0.94838",
     "reference": "statue.bmp",
-    "reportedMssim": "0.94846",
     "type": "jp2k"
   },
   {
     "file": "img93.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img94.bmp",
     "mssim": "0.95952",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.95997",
     "type": "jp2k"
   },
   {
     "file": "img95.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img96.bmp",
     "mssim": "0.95899",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.95893",
     "type": "jp2k"
   },
   {
     "file": "img97.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img98.bmp",
     "mssim": "0.91869",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.91942",
     "type": "jp2k"
   },
   {
     "file": "img99.bmp",
     "mssim": "0.89936",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.89924",
     "type": "jp2k"
   },
   {
     "file": "img100.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img101.bmp",
     "mssim": "0.98673",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.98677",
     "type": "jp2k"
   },
   {
     "file": "img102.bmp",
     "mssim": "0.9966",
     "reference": "statue.bmp",
-    "reportedMssim": "0.99659",
     "type": "jp2k"
   },
   {
     "file": "img103.bmp",
     "mssim": "0.9956",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.99559",
     "type": "jp2k"
   },
   {
     "file": "img104.bmp",
     "mssim": "0.88624",
     "reference": "woman.bmp",
-    "reportedMssim": "0.88645",
     "type": "jp2k"
   },
   {
     "file": "img105.bmp",
     "mssim": "0.99765",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.99764",
     "type": "jp2k"
   },
   {
     "file": "img106.bmp",
     "mssim": "0.88423",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.88469",
     "type": "jp2k"
   },
   {
     "file": "img107.bmp",
     "mssim": "0.61083",
     "reference": "building2.bmp",
-    "reportedMssim": "0.61173",
     "type": "jp2k"
   },
   {
     "file": "img108.bmp",
     "mssim": "0.9427",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.94242",
     "type": "jp2k"
   },
   {
     "file": "img109.bmp",
     "mssim": "0.95206",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.95258",
     "type": "jp2k"
   },
   {
     "file": "img110.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img111.bmp",
     "mssim": "0.98559",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.98527",
     "type": "jp2k"
   },
   {
     "file": "img112.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img113.bmp",
     "mssim": "0.98591",
     "reference": "plane.bmp",
-    "reportedMssim": "0.98594",
     "type": "jp2k"
   },
   {
     "file": "img114.bmp",
     "mssim": "0.9934",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.99337",
     "type": "jp2k"
   },
   {
     "file": "img115.bmp",
     "mssim": "0.72988",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.72928",
     "type": "jp2k"
   },
   {
     "file": "img116.bmp",
     "mssim": "0.91548",
     "reference": "statue.bmp",
-    "reportedMssim": "0.91593",
     "type": "jp2k"
   },
   {
     "file": "img117.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img118.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img119.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img120.bmp",
     "mssim": "0.88388",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.88393",
     "type": "jp2k"
   },
   {
     "file": "img121.bmp",
     "mssim": "0.56545",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.56186",
     "type": "jp2k"
   },
   {
     "file": "img122.bmp",
     "mssim": "0.88837",
     "reference": "caps.bmp",
-    "reportedMssim": "0.8892",
     "type": "jp2k"
   },
   {
     "file": "img123.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img124.bmp",
     "mssim": "0.90386",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.90288",
     "type": "jp2k"
   },
   {
     "file": "img125.bmp",
     "mssim": "0.95304",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.95304",
     "type": "jp2k"
   },
   {
     "file": "img126.bmp",
     "mssim": "0.98208",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.98186",
     "type": "jp2k"
   },
   {
     "file": "img127.bmp",
     "mssim": "0.8487",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.84763",
     "type": "jp2k"
   },
   {
     "file": "img128.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img129.bmp",
     "mssim": "0.97209",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.9722",
     "type": "jp2k"
   },
   {
     "file": "img130.bmp",
     "mssim": "0.92283",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.9239",
     "type": "jp2k"
   },
   {
     "file": "img131.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img132.bmp",
     "mssim": "0.9551",
     "reference": "building2.bmp",
-    "reportedMssim": "0.95557",
     "type": "jp2k"
   },
   {
     "file": "img133.bmp",
     "mssim": "0.86021",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.86049",
     "type": "jp2k"
   },
   {
     "file": "img134.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img135.bmp",
     "mssim": "0.61656",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.61669",
     "type": "jp2k"
   },
   {
     "file": "img136.bmp",
     "mssim": "0.91913",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.91887",
     "type": "jp2k"
   },
   {
     "file": "img137.bmp",
     "mssim": "0.85259",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.85265",
     "type": "jp2k"
   },
   {
     "file": "img138.bmp",
     "mssim": "0.87082",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.87138",
     "type": "jp2k"
   },
   {
     "file": "img139.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img140.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img141.bmp",
     "mssim": "0.98777",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.98784",
     "type": "jp2k"
   },
   {
     "file": "img142.bmp",
     "mssim": "0.89306",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.89288",
     "type": "jp2k"
   },
   {
     "file": "img143.bmp",
     "mssim": "0.92428",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.92471",
     "type": "jp2k"
   },
   {
     "file": "img144.bmp",
     "mssim": "0.74422",
     "reference": "house.bmp",
-    "reportedMssim": "0.74419",
     "type": "jp2k"
   },
   {
     "file": "img145.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img146.bmp",
     "mssim": "0.8191",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.81863",
     "type": "jp2k"
   },
   {
     "file": "img147.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img148.bmp",
     "mssim": "0.99207",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.99186",
     "type": "jp2k"
   },
   {
     "file": "img149.bmp",
     "mssim": "0.9142",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.91443",
     "type": "jp2k"
   },
   {
     "file": "img150.bmp",
     "mssim": "0.97983",
     "reference": "woman.bmp",
-    "reportedMssim": "0.97998",
     "type": "jp2k"
   },
   {
     "file": "img151.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img152.bmp",
     "mssim": "0.75802",
     "reference": "woman.bmp",
-    "reportedMssim": "0.75919",
     "type": "jp2k"
   },
   {
     "file": "img153.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img154.bmp",
     "mssim": "0.79269",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.7941",
     "type": "jp2k"
   },
   {
     "file": "img155.bmp",
     "mssim": "0.56955",
     "reference": "woman.bmp",
-    "reportedMssim": "0.56954",
     "type": "jp2k"
   },
   {
     "file": "img156.bmp",
     "mssim": "0.74229",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.74096",
     "type": "jp2k"
   },
   {
     "file": "img157.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img158.bmp",
     "mssim": "0.87223",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.87128",
     "type": "jp2k"
   },
   {
     "file": "img159.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img160.bmp",
     "mssim": "0.81405",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.81434",
     "type": "jp2k"
   },
   {
     "file": "img161.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img162.bmp",
     "mssim": "0.97844",
     "reference": "statue.bmp",
-    "reportedMssim": "0.97839",
     "type": "jp2k"
   },
   {
     "file": "img163.bmp",
     "mssim": "0.83612",
     "reference": "building2.bmp",
-    "reportedMssim": "0.83653",
     "type": "jp2k"
   },
   {
     "file": "img164.bmp",
     "mssim": "0.96043",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.96077",
     "type": "jp2k"
   },
   {
     "file": "img165.bmp",
     "mssim": "0.96",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.95935",
     "type": "jp2k"
   },
   {
     "file": "img166.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img167.bmp",
     "mssim": "0.91164",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.91121",
     "type": "jp2k"
   },
   {
     "file": "img168.bmp",
     "mssim": "0.83022",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.82997",
     "type": "jp2k"
   },
   {
     "file": "img169.bmp",
     "mssim": "0.79779",
     "reference": "statue.bmp",
-    "reportedMssim": "0.79747",
     "type": "jp2k"
   },
   {
     "file": "img170.bmp",
     "mssim": "0.91754",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.91523",
     "type": "jp2k"
   },
   {
     "file": "img171.bmp",
     "mssim": "0.96105",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.9607",
     "type": "jp2k"
   },
   {
     "file": "img172.bmp",
     "mssim": "0.65414",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.65216",
     "type": "jp2k"
   },
   {
     "file": "img173.bmp",
     "mssim": "0.9735",
     "reference": "plane.bmp",
-    "reportedMssim": "0.9733",
     "type": "jp2k"
   },
   {
     "file": "img174.bmp",
     "mssim": "0.98764",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.98757",
     "type": "jp2k"
   },
   {
     "file": "img175.bmp",
     "mssim": "0.51092",
     "reference": "stream.bmp",
-    "reportedMssim": "0.51021",
     "type": "jp2k"
   },
   {
     "file": "img176.bmp",
     "mssim": "0.96253",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.96254",
     "type": "jp2k"
   },
   {
     "file": "img177.bmp",
     "mssim": "0.61715",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.61728",
     "type": "jp2k"
   },
   {
     "file": "img178.bmp",
     "mssim": "0.83209",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.83201",
     "type": "jp2k"
   },
   {
     "file": "img179.bmp",
     "mssim": "0.6364",
     "reference": "house.bmp",
-    "reportedMssim": "0.63444",
     "type": "jp2k"
   },
   {
     "file": "img180.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img181.bmp",
     "mssim": "0.69896",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.69853",
     "type": "jp2k"
   },
   {
     "file": "img182.bmp",
     "mssim": "0.89089",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.89035",
     "type": "jp2k"
   },
   {
     "file": "img183.bmp",
     "mssim": "0.98996",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.99005",
     "type": "jp2k"
   },
   {
     "file": "img184.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img185.bmp",
     "mssim": "0.97723",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.97725",
     "type": "jp2k"
   },
   {
     "file": "img186.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img187.bmp",
     "mssim": "0.91722",
     "reference": "house.bmp",
-    "reportedMssim": "0.91707",
     "type": "jp2k"
   },
   {
     "file": "img188.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img189.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img190.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img191.bmp",
     "mssim": "0.71944",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.7191",
     "type": "jp2k"
   },
   {
     "file": "img192.bmp",
     "mssim": "0.95964",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.95946",
     "type": "jp2k"
   },
   {
     "file": "img193.bmp",
     "mssim": "0.83162",
     "reference": "caps.bmp",
-    "reportedMssim": "0.83189",
     "type": "jp2k"
   },
   {
     "file": "img194.bmp",
     "mssim": "0.76983",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.76895",
     "type": "jp2k"
   },
   {
     "file": "img195.bmp",
     "mssim": "0.97684",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.97717",
     "type": "jp2k"
   },
   {
     "file": "img196.bmp",
     "mssim": "0.84207",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.84158",
     "type": "jp2k"
   },
   {
     "file": "img197.bmp",
     "mssim": "0.93372",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.93297",
     "type": "jp2k"
   },
   {
     "file": "img198.bmp",
     "mssim": "0.99221",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.99216",
     "type": "jp2k"
   },
   {
     "file": "img199.bmp",
     "mssim": "0.98636",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.98624",
     "type": "jp2k"
   },
   {
     "file": "img200.bmp",
     "mssim": "0.75282",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.74931",
     "type": "jp2k"
   },
   {
     "file": "img201.bmp",
     "mssim": "0.48606",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.48282",
     "type": "jp2k"
   },
   {
     "file": "img202.bmp",
     "mssim": "0.71592",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.71534",
     "type": "jp2k"
   },
   {
     "file": "img203.bmp",
     "mssim": "0.94163",
     "reference": "plane.bmp",
-    "reportedMssim": "0.94117",
     "type": "jp2k"
   },
   {
     "file": "img204.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img205.bmp",
     "mssim": "0.986",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.98588",
     "type": "jp2k"
   },
   {
     "file": "img206.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img207.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img208.bmp",
     "mssim": "0.90434",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.90448",
     "type": "jp2k"
   },
   {
     "file": "img209.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img210.bmp",
     "mssim": "0.95056",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.95025",
     "type": "jp2k"
   },
   {
     "file": "img211.bmp",
     "mssim": "0.98771",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.98769",
     "type": "jp2k"
   },
   {
     "file": "img212.bmp",
     "mssim": "0.98917",
     "reference": "house.bmp",
-    "reportedMssim": "0.98923",
     "type": "jp2k"
   },
   {
     "file": "img213.bmp",
     "mssim": "0.68377",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.68165",
     "type": "jp2k"
   },
   {
     "file": "img214.bmp",
     "mssim": "0.97619",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.97589",
     "type": "jp2k"
   },
   {
     "file": "img215.bmp",
     "mssim": "0.7185",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.71919",
     "type": "jp2k"
   },
   {
     "file": "img216.bmp",
     "mssim": "0.98015",
     "reference": "building2.bmp",
-    "reportedMssim": "0.98043",
     "type": "jp2k"
   },
   {
     "file": "img217.bmp",
     "mssim": "0.96522",
     "reference": "stream.bmp",
-    "reportedMssim": "0.96554",
     "type": "jp2k"
   },
   {
     "file": "img218.bmp",
     "mssim": "0.62063",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.62167",
     "type": "jp2k"
   },
   {
     "file": "img219.bmp",
     "mssim": "0.77368",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.77509",
     "type": "jp2k"
   },
   {
     "file": "img220.bmp",
     "mssim": "0.86361",
     "reference": "plane.bmp",
-    "reportedMssim": "0.86212",
     "type": "jp2k"
   },
   {
     "file": "img221.bmp",
     "mssim": "0.79283",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.79199",
     "type": "jp2k"
   },
   {
     "file": "img222.bmp",
     "mssim": "0.95139",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.95075",
     "type": "jp2k"
   },
   {
     "file": "img223.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img224.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "jp2k"
   },
   {
     "file": "img225.bmp",
     "mssim": "0.50004",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.49872",
     "type": "jp2k"
   },
   {
     "file": "img226.bmp",
     "mssim": "0.83156",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.83026",
     "type": "jp2k"
   },
   {
     "file": "img227.bmp",
     "mssim": "0.77119",
     "reference": "statue.bmp",
-    "reportedMssim": "0.77081",
     "type": "jp2k"
   },
   {
     "file": "img1.bmp",
     "mssim": "0.89925",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.89292",
     "type": "jpeg"
   },
   {
     "file": "img2.bmp",
     "mssim": "0.97276",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.97419",
     "type": "jpeg"
   },
   {
     "file": "img3.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img4.bmp",
     "mssim": "0.82926",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.81189",
     "type": "jpeg"
   },
   {
     "file": "img5.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img6.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img7.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img8.bmp",
     "mssim": "0.97833",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.98142",
     "type": "jpeg"
   },
   {
     "file": "img9.bmp",
     "mssim": "0.8881",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.88704",
     "type": "jpeg"
   },
   {
     "file": "img10.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img11.bmp",
     "mssim": "0.89241",
     "reference": "statue.bmp",
-    "reportedMssim": "0.876",
     "type": "jpeg"
   },
   {
     "file": "img12.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img13.bmp",
     "mssim": "0.99786",
     "reference": "statue.bmp",
-    "reportedMssim": "0.99846",
     "type": "jpeg"
   },
   {
     "file": "img14.bmp",
     "mssim": "0.99823",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.99854",
     "type": "jpeg"
   },
   {
     "file": "img15.bmp",
     "mssim": "0.93936",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.9437",
     "type": "jpeg"
   },
   {
     "file": "img16.bmp",
     "mssim": "0.86933",
     "reference": "stream.bmp",
-    "reportedMssim": "0.88538",
     "type": "jpeg"
   },
   {
     "file": "img17.bmp",
     "mssim": "0.99813",
     "reference": "plane.bmp",
-    "reportedMssim": "0.99846",
     "type": "jpeg"
   },
   {
     "file": "img18.bmp",
     "mssim": "0.9439",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.9273",
     "type": "jpeg"
   },
   {
     "file": "img19.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img20.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img21.bmp",
     "mssim": "0.94764",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.94533",
     "type": "jpeg"
   },
   {
     "file": "img22.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img23.bmp",
     "mssim": "0.83183",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.82294",
     "type": "jpeg"
   },
   {
     "file": "img24.bmp",
     "mssim": "0.98807",
     "reference": "caps.bmp",
-    "reportedMssim": "0.98924",
     "type": "jpeg"
   },
   {
     "file": "img25.bmp",
     "mssim": "0.96894",
     "reference": "plane.bmp",
-    "reportedMssim": "0.97211",
     "type": "jpeg"
   },
   {
     "file": "img26.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img27.bmp",
     "mssim": "0.9622",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.96681",
     "type": "jpeg"
   },
   {
     "file": "img28.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img29.bmp",
     "mssim": "0.79975",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.78741",
     "type": "jpeg"
   },
   {
     "file": "img30.bmp",
     "mssim": "0.99871",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.99902",
     "type": "jpeg"
   },
   {
     "file": "img31.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img32.bmp",
     "mssim": "0.95961",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.95205",
     "type": "jpeg"
   },
   {
     "file": "img33.bmp",
     "mssim": "0.9457",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.94424",
     "type": "jpeg"
   },
   {
     "file": "img34.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img35.bmp",
     "mssim": "0.81574",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.8032",
     "type": "jpeg"
   },
   {
     "file": "img36.bmp",
     "mssim": "0.81822",
     "reference": "building2.bmp",
-    "reportedMssim": "0.82473",
     "type": "jpeg"
   },
   {
     "file": "img37.bmp",
     "mssim": "0.86397",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.86312",
     "type": "jpeg"
   },
   {
     "file": "img38.bmp",
     "mssim": "0.98425",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.9861",
     "type": "jpeg"
   },
   {
     "file": "img39.bmp",
     "mssim": "0.93385",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.93666",
     "type": "jpeg"
   },
   {
     "file": "img40.bmp",
     "mssim": "0.99085",
     "reference": "plane.bmp",
-    "reportedMssim": "0.99275",
     "type": "jpeg"
   },
   {
     "file": "img41.bmp",
     "mssim": "0.88647",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.88607",
     "type": "jpeg"
   },
   {
     "file": "img42.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img43.bmp",
     "mssim": "0.92698",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.92828",
     "type": "jpeg"
   },
   {
     "file": "img44.bmp",
     "mssim": "0.91802",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.91501",
     "type": "jpeg"
   },
   {
     "file": "img45.bmp",
     "mssim": "0.9435",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.95363",
     "type": "jpeg"
   },
   {
     "file": "img46.bmp",
     "mssim": "0.76584",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.76057",
     "type": "jpeg"
   },
   {
     "file": "img47.bmp",
     "mssim": "0.91287",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.91531",
     "type": "jpeg"
   },
   {
     "file": "img48.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img49.bmp",
     "mssim": "0.93776",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.9409",
     "type": "jpeg"
   },
   {
     "file": "img50.bmp",
     "mssim": "0.85412",
     "reference": "house.bmp",
-    "reportedMssim": "0.8487",
     "type": "jpeg"
   },
   {
     "file": "img51.bmp",
     "mssim": "0.94025",
     "reference": "house.bmp",
-    "reportedMssim": "0.94718",
     "type": "jpeg"
   },
   {
     "file": "img52.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img53.bmp",
     "mssim": "0.99303",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.99496",
     "type": "jpeg"
   },
   {
     "file": "img54.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img55.bmp",
     "mssim": "0.94992",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.95689",
     "type": "jpeg"
   },
   {
     "file": "img56.bmp",
     "mssim": "0.94248",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.94808",
     "type": "jpeg"
   },
   {
     "file": "img57.bmp",
     "mssim": "0.99653",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.99751",
     "type": "jpeg"
   },
   {
     "file": "img58.bmp",
     "mssim": "0.99518",
     "reference": "woman.bmp",
-    "reportedMssim": "0.99662",
     "type": "jpeg"
   },
   {
     "file": "img59.bmp",
     "mssim": "0.94994",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.95949",
     "type": "jpeg"
   },
   {
     "file": "img60.bmp",
     "mssim": "0.90668",
     "reference": "building2.bmp",
-    "reportedMssim": "0.91946",
     "type": "jpeg"
   },
   {
     "file": "img61.bmp",
     "mssim": "0.99698",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.99769",
     "type": "jpeg"
   },
   {
     "file": "img62.bmp",
     "mssim": "0.81822",
     "reference": "building2.bmp",
-    "reportedMssim": "0.82473",
     "type": "jpeg"
   },
   {
     "file": "img63.bmp",
     "mssim": "0.95805",
     "reference": "caps.bmp",
-    "reportedMssim": "0.95684",
     "type": "jpeg"
   },
   {
     "file": "img64.bmp",
     "mssim": "0.99473",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.99621",
     "type": "jpeg"
   },
   {
     "file": "img65.bmp",
     "mssim": "0.87091",
     "reference": "woman.bmp",
-    "reportedMssim": "0.87007",
     "type": "jpeg"
   },
   {
     "file": "img66.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img67.bmp",
     "mssim": "0.97565",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.97536",
     "type": "jpeg"
   },
   {
     "file": "img68.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img69.bmp",
     "mssim": "0.93606",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.93556",
     "type": "jpeg"
   },
   {
     "file": "img70.bmp",
     "mssim": "0.99655",
     "reference": "statue.bmp",
-    "reportedMssim": "0.99755",
     "type": "jpeg"
   },
   {
     "file": "img71.bmp",
     "mssim": "0.96686",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.97171",
     "type": "jpeg"
   },
   {
     "file": "img72.bmp",
     "mssim": "0.99109",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.99244",
     "type": "jpeg"
   },
   {
     "file": "img73.bmp",
     "mssim": "0.91199",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.90987",
     "type": "jpeg"
   },
   {
     "file": "img74.bmp",
     "mssim": "0.99766",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.998",
     "type": "jpeg"
   },
   {
     "file": "img75.bmp",
     "mssim": "0.87682",
     "reference": "house.bmp",
-    "reportedMssim": "0.87367",
     "type": "jpeg"
   },
   {
     "file": "img76.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img77.bmp",
     "mssim": "0.87168",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.87077",
     "type": "jpeg"
   },
   {
     "file": "img78.bmp",
     "mssim": "0.76584",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.76057",
     "type": "jpeg"
   },
   {
     "file": "img79.bmp",
     "mssim": "0.7316",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.72196",
     "type": "jpeg"
   },
   {
     "file": "img80.bmp",
     "mssim": "0.88294",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.87486",
     "type": "jpeg"
   },
   {
     "file": "img81.bmp",
     "mssim": "0.91563",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.92004",
     "type": "jpeg"
   },
   {
     "file": "img82.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img83.bmp",
     "mssim": "0.97001",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.97125",
     "type": "jpeg"
   },
   {
     "file": "img84.bmp",
     "mssim": "0.92698",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.92828",
     "type": "jpeg"
   },
   {
     "file": "img85.bmp",
     "mssim": "0.81085",
     "reference": "stream.bmp",
-    "reportedMssim": "0.82111",
     "type": "jpeg"
   },
   {
     "file": "img86.bmp",
     "mssim": "0.90576",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.90046",
     "type": "jpeg"
   },
   {
     "file": "img87.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img88.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img89.bmp",
     "mssim": "0.93573",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.93722",
     "type": "jpeg"
   },
   {
     "file": "img90.bmp",
     "mssim": "0.92698",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.92828",
     "type": "jpeg"
   },
   {
     "file": "img91.bmp",
     "mssim": "0.83183",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.82294",
     "type": "jpeg"
   },
   {
     "file": "img92.bmp",
     "mssim": "0.90849",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.90259",
     "type": "jpeg"
   },
   {
     "file": "img93.bmp",
     "mssim": "0.86401",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.85524",
     "type": "jpeg"
   },
   {
     "file": "img94.bmp",
     "mssim": "0.98837",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.98799",
     "type": "jpeg"
   },
   {
     "file": "img95.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img96.bmp",
     "mssim": "0.99788",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.9985",
     "type": "jpeg"
   },
   {
     "file": "img97.bmp",
     "mssim": "0.99618",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.99727",
     "type": "jpeg"
   },
   {
     "file": "img98.bmp",
     "mssim": "0.97558",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.97853",
     "type": "jpeg"
   },
   {
     "file": "img99.bmp",
     "mssim": "0.94101",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.93417",
     "type": "jpeg"
   },
   {
     "file": "img100.bmp",
     "mssim": "0.71925",
     "reference": "stream.bmp",
-    "reportedMssim": "0.71602",
     "type": "jpeg"
   },
   {
     "file": "img101.bmp",
     "mssim": "0.99133",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.99365",
     "type": "jpeg"
   },
   {
     "file": "img102.bmp",
     "mssim": "0.96751",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.97239",
     "type": "jpeg"
   },
   {
     "file": "img103.bmp",
     "mssim": "0.95531",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.94593",
     "type": "jpeg"
   },
   {
     "file": "img104.bmp",
     "mssim": "0.88294",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.87486",
     "type": "jpeg"
   },
   {
     "file": "img105.bmp",
     "mssim": "0.96134",
     "reference": "caps.bmp",
-    "reportedMssim": "0.96083",
     "type": "jpeg"
   },
   {
     "file": "img106.bmp",
     "mssim": "0.99805",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.99857",
     "type": "jpeg"
   },
   {
     "file": "img107.bmp",
     "mssim": "0.9561",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.96058",
     "type": "jpeg"
   },
   {
     "file": "img108.bmp",
     "mssim": "0.92622",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.92084",
     "type": "jpeg"
   },
   {
     "file": "img109.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img110.bmp",
     "mssim": "0.95771",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.96411",
     "type": "jpeg"
   },
   {
     "file": "img111.bmp",
     "mssim": "0.95897",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.95516",
     "type": "jpeg"
   },
   {
     "file": "img112.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img113.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img114.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img115.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img116.bmp",
     "mssim": "0.99685",
     "reference": "woman.bmp",
-    "reportedMssim": "0.99779",
     "type": "jpeg"
   },
   {
     "file": "img117.bmp",
     "mssim": "0.98354",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.98782",
     "type": "jpeg"
   },
   {
     "file": "img118.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img119.bmp",
     "mssim": "0.98222",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.98535",
     "type": "jpeg"
   },
   {
     "file": "img120.bmp",
     "mssim": "0.98575",
     "reference": "house.bmp",
-    "reportedMssim": "0.9894",
     "type": "jpeg"
   },
   {
     "file": "img121.bmp",
     "mssim": "0.92769",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.92996",
     "type": "jpeg"
   },
   {
     "file": "img122.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img123.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img124.bmp",
     "mssim": "0.77135",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.74757",
     "type": "jpeg"
   },
   {
     "file": "img125.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img126.bmp",
     "mssim": "0.77836",
     "reference": "caps.bmp",
-    "reportedMssim": "0.75055",
     "type": "jpeg"
   },
   {
     "file": "img127.bmp",
     "mssim": "0.63091",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.61079",
     "type": "jpeg"
   },
   {
     "file": "img128.bmp",
     "mssim": "0.89666",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.90103",
     "type": "jpeg"
   },
   {
     "file": "img129.bmp",
     "mssim": "0.79975",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.77365",
     "type": "jpeg"
   },
   {
     "file": "img130.bmp",
     "mssim": "0.98793",
     "reference": "statue.bmp",
-    "reportedMssim": "0.99018",
     "type": "jpeg"
   },
   {
     "file": "img131.bmp",
     "mssim": "0.69605",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.66519",
     "type": "jpeg"
   },
   {
     "file": "img132.bmp",
     "mssim": "0.9928",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.99408",
     "type": "jpeg"
   },
   {
     "file": "img133.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img134.bmp",
     "mssim": "0.87791",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.88237",
     "type": "jpeg"
   },
   {
     "file": "img135.bmp",
     "mssim": "0.99325",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.99461",
     "type": "jpeg"
   },
   {
     "file": "img136.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img137.bmp",
     "mssim": "0.97456",
     "reference": "stream.bmp",
-    "reportedMssim": "0.98285",
     "type": "jpeg"
   },
   {
     "file": "img138.bmp",
     "mssim": "0.67271",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.63454",
     "type": "jpeg"
   },
   {
     "file": "img139.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img140.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img141.bmp",
     "mssim": "0.98733",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.98921",
     "type": "jpeg"
   },
   {
     "file": "img142.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img143.bmp",
     "mssim": "0.99104",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.99305",
     "type": "jpeg"
   },
   {
     "file": "img144.bmp",
     "mssim": "0.9917",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.99361",
     "type": "jpeg"
   },
   {
     "file": "img145.bmp",
     "mssim": "0.70388",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.67155",
     "type": "jpeg"
   },
   {
     "file": "img146.bmp",
     "mssim": "0.98288",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.98767",
     "type": "jpeg"
   },
   {
     "file": "img147.bmp",
     "mssim": "0.62285",
     "reference": "house.bmp",
-    "reportedMssim": "0.59395",
     "type": "jpeg"
   },
   {
     "file": "img148.bmp",
     "mssim": "0.66794",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.64048",
     "type": "jpeg"
   },
   {
     "file": "img149.bmp",
     "mssim": "0.89441",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.86686",
     "type": "jpeg"
   },
   {
     "file": "img150.bmp",
     "mssim": "0.97231",
     "reference": "woman.bmp",
-    "reportedMssim": "0.97853",
     "type": "jpeg"
   },
   {
     "file": "img151.bmp",
     "mssim": "0.99192",
     "reference": "house.bmp",
-    "reportedMssim": "0.99416",
     "type": "jpeg"
   },
   {
     "file": "img152.bmp",
     "mssim": "0.89919",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.90047",
     "type": "jpeg"
   },
   {
     "file": "img153.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img154.bmp",
     "mssim": "0.68498",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.64911",
     "type": "jpeg"
   },
   {
     "file": "img155.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img156.bmp",
     "mssim": "0.88245",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.873",
     "type": "jpeg"
   },
   {
     "file": "img157.bmp",
     "mssim": "0.98878",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.99139",
     "type": "jpeg"
   },
   {
     "file": "img158.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img159.bmp",
     "mssim": "0.77836",
     "reference": "caps.bmp",
-    "reportedMssim": "0.75055",
     "type": "jpeg"
   },
   {
     "file": "img160.bmp",
     "mssim": "0.62285",
     "reference": "house.bmp",
-    "reportedMssim": "0.59395",
     "type": "jpeg"
   },
   {
     "file": "img161.bmp",
     "mssim": "0.70452",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.67744",
     "type": "jpeg"
   },
   {
     "file": "img162.bmp",
     "mssim": "0.77095",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.75649",
     "type": "jpeg"
   },
   {
     "file": "img163.bmp",
     "mssim": "0.97048",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.97378",
     "type": "jpeg"
   },
   {
     "file": "img164.bmp",
     "mssim": "0.62585",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.60004",
     "type": "jpeg"
   },
   {
     "file": "img165.bmp",
     "mssim": "0.93803",
     "reference": "plane.bmp",
-    "reportedMssim": "0.93691",
     "type": "jpeg"
   },
   {
     "file": "img166.bmp",
     "mssim": "0.65217",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.62484",
     "type": "jpeg"
   },
   {
     "file": "img167.bmp",
     "mssim": "0.75364",
     "reference": "woman.bmp",
-    "reportedMssim": "0.7363",
     "type": "jpeg"
   },
   {
     "file": "img168.bmp",
     "mssim": "0.98885",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.99184",
     "type": "jpeg"
   },
   {
     "file": "img169.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img170.bmp",
     "mssim": "0.8087",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.76867",
     "type": "jpeg"
   },
   {
     "file": "img171.bmp",
     "mssim": "0.98914",
     "reference": "building2.bmp",
-    "reportedMssim": "0.9925",
     "type": "jpeg"
   },
   {
     "file": "img172.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img173.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img174.bmp",
     "mssim": "0.9799",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.98119",
     "type": "jpeg"
   },
   {
     "file": "img175.bmp",
     "mssim": "0.80725",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.80148",
     "type": "jpeg"
   },
   {
     "file": "img176.bmp",
     "mssim": "0.74583",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.7188",
     "type": "jpeg"
   },
   {
     "file": "img177.bmp",
     "mssim": "0.78668",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.76313",
     "type": "jpeg"
   },
   {
     "file": "img178.bmp",
     "mssim": "0.98252",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.98052",
     "type": "jpeg"
   },
   {
     "file": "img179.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img180.bmp",
     "mssim": "0.63091",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.61079",
     "type": "jpeg"
   },
   {
     "file": "img181.bmp",
     "mssim": "0.84562",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.83511",
     "type": "jpeg"
   },
   {
     "file": "img182.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img183.bmp",
     "mssim": "0.65717",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.62362",
     "type": "jpeg"
   },
   {
     "file": "img184.bmp",
     "mssim": "0.66378",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.6211",
     "type": "jpeg"
   },
   {
     "file": "img185.bmp",
     "mssim": "0.93752",
     "reference": "stream.bmp",
-    "reportedMssim": "0.95449",
     "type": "jpeg"
   },
   {
     "file": "img186.bmp",
     "mssim": "0.72504",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.70238",
     "type": "jpeg"
   },
   {
     "file": "img187.bmp",
     "mssim": "0.72504",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.70238",
     "type": "jpeg"
   },
   {
     "file": "img188.bmp",
     "mssim": "0.69698",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.66779",
     "type": "jpeg"
   },
   {
     "file": "img189.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img190.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img191.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img192.bmp",
     "mssim": "0.67829",
     "reference": "building2.bmp",
-    "reportedMssim": "0.66238",
     "type": "jpeg"
   },
   {
     "file": "img193.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img194.bmp",
     "mssim": "0.94263",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.94132",
     "type": "jpeg"
   },
   {
     "file": "img195.bmp",
     "mssim": "0.73817",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.71492",
     "type": "jpeg"
   },
   {
     "file": "img196.bmp",
     "mssim": "0.77373",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.73389",
     "type": "jpeg"
   },
   {
     "file": "img197.bmp",
     "mssim": "0.65217",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.62484",
     "type": "jpeg"
   },
   {
     "file": "img198.bmp",
     "mssim": "0.99014",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.99172",
     "type": "jpeg"
   },
   {
     "file": "img199.bmp",
     "mssim": "0.61454",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.57819",
     "type": "jpeg"
   },
   {
     "file": "img200.bmp",
     "mssim": "0.85477",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.86195",
     "type": "jpeg"
   },
   {
     "file": "img201.bmp",
     "mssim": "0.81539",
     "reference": "plane.bmp",
-    "reportedMssim": "0.79686",
     "type": "jpeg"
   },
   {
     "file": "img202.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img203.bmp",
     "mssim": "0.96855",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.97497",
     "type": "jpeg"
   },
   {
     "file": "img204.bmp",
     "mssim": "0.74623",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.72567",
     "type": "jpeg"
   },
   {
     "file": "img205.bmp",
     "mssim": "0.72135",
     "reference": "building2.bmp",
-    "reportedMssim": "0.71093",
     "type": "jpeg"
   },
   {
     "file": "img206.bmp",
     "mssim": "0.99443",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.99595",
     "type": "jpeg"
   },
   {
     "file": "img207.bmp",
     "mssim": "0.85937",
     "reference": "caps.bmp",
-    "reportedMssim": "0.83853",
     "type": "jpeg"
   },
   {
     "file": "img208.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img209.bmp",
     "mssim": "0.8087",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.76867",
     "type": "jpeg"
   },
   {
     "file": "img210.bmp",
     "mssim": "0.62394",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.60361",
     "type": "jpeg"
   },
   {
     "file": "img211.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img212.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img213.bmp",
     "mssim": "0.63329",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.6119",
     "type": "jpeg"
   },
   {
     "file": "img214.bmp",
     "mssim": "0.98483",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.98806",
     "type": "jpeg"
   },
   {
     "file": "img215.bmp",
     "mssim": "0.64223",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.61222",
     "type": "jpeg"
   },
   {
     "file": "img216.bmp",
     "mssim": "0.98525",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.98664",
     "type": "jpeg"
   },
   {
     "file": "img217.bmp",
     "mssim": "0.55298",
     "reference": "stream.bmp",
-    "reportedMssim": "0.53033",
     "type": "jpeg"
   },
   {
     "file": "img218.bmp",
     "mssim": "0.62128",
     "reference": "statue.bmp",
-    "reportedMssim": "0.57432",
     "type": "jpeg"
   },
   {
     "file": "img219.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img220.bmp",
     "mssim": "0.59083",
     "reference": "woman.bmp",
-    "reportedMssim": "0.56545",
     "type": "jpeg"
   },
   {
     "file": "img221.bmp",
     "mssim": "0.62128",
     "reference": "statue.bmp",
-    "reportedMssim": "0.57432",
     "type": "jpeg"
   },
   {
     "file": "img222.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img223.bmp",
     "mssim": "0.70388",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.67155",
     "type": "jpeg"
   },
   {
     "file": "img224.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img225.bmp",
     "mssim": "0.96095",
     "reference": "building2.bmp",
-    "reportedMssim": "0.9706",
     "type": "jpeg"
   },
   {
     "file": "img226.bmp",
     "mssim": "0.98462",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.98876",
     "type": "jpeg"
   },
   {
     "file": "img227.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "jpeg"
   },
   {
     "file": "img228.bmp",
     "mssim": "0.9866",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.98989",
     "type": "jpeg"
   },
   {
     "file": "img229.bmp",
     "mssim": "0.89112",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.89804",
     "type": "jpeg"
   },
   {
     "file": "img230.bmp",
     "mssim": "0.66378",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.6211",
     "type": "jpeg"
   },
   {
     "file": "img231.bmp",
     "mssim": "0.98508",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.98828",
     "type": "jpeg"
   },
   {
     "file": "img232.bmp",
     "mssim": "0.754",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.73115",
     "type": "jpeg"
   },
   {
     "file": "img233.bmp",
     "mssim": "0.77373",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.73389",
     "type": "jpeg"
   },
   {
     "file": "img1.bmp",
     "mssim": "0.94139",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.94148",
     "type": "wn"
   },
   {
     "file": "img2.bmp",
     "mssim": "0.71249",
     "reference": "stream.bmp",
-    "reportedMssim": "0.71431",
     "type": "wn"
   },
   {
     "file": "img3.bmp",
     "mssim": "0.92902",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.92895",
     "type": "wn"
   },
   {
     "file": "img4.bmp",
     "mssim": "0.14221",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.14301",
     "type": "wn"
   },
   {
     "file": "img5.bmp",
     "mssim": "0.97928",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.97928",
     "type": "wn"
   },
   {
     "file": "img6.bmp",
     "mssim": "0.94049",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.9411",
     "type": "wn"
   },
   {
     "file": "img7.bmp",
     "mssim": "0.54331",
     "reference": "woman.bmp",
-    "reportedMssim": "0.54345",
     "type": "wn"
   },
   {
     "file": "img8.bmp",
     "mssim": "0.97768",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.97785",
     "type": "wn"
   },
   {
     "file": "img9.bmp",
     "mssim": "0.69522",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.69581",
     "type": "wn"
   },
   {
     "file": "img10.bmp",
     "mssim": "0.93275",
     "reference": "plane.bmp",
-    "reportedMssim": "0.93282",
     "type": "wn"
   },
   {
     "file": "img11.bmp",
     "mssim": "0.98036",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.98047",
     "type": "wn"
   },
   {
     "file": "img12.bmp",
     "mssim": "0.81102",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.81193",
     "type": "wn"
   },
   {
     "file": "img13.bmp",
     "mssim": "0.98591",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.98576",
     "type": "wn"
   },
   {
     "file": "img14.bmp",
     "mssim": "0.98351",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.98353",
     "type": "wn"
   },
   {
     "file": "img15.bmp",
     "mssim": "0.35465",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.35172",
     "type": "wn"
   },
   {
     "file": "img16.bmp",
     "mssim": "0.94553",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.94519",
     "type": "wn"
   },
   {
     "file": "img17.bmp",
     "mssim": "0.67343",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.67353",
     "type": "wn"
   },
   {
     "file": "img18.bmp",
     "mssim": "0.95792",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.95757",
     "type": "wn"
   },
   {
     "file": "img19.bmp",
     "mssim": "0.99419",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.99418",
     "type": "wn"
   },
   {
     "file": "img20.bmp",
     "mssim": "0.10861",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.1063",
     "type": "wn"
   },
   {
     "file": "img21.bmp",
     "mssim": "0.66517",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.66409",
     "type": "wn"
   },
   {
     "file": "img22.bmp",
     "mssim": "0.93881",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.93907",
     "type": "wn"
   },
   {
     "file": "img23.bmp",
     "mssim": "0.10773",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.10902",
     "type": "wn"
   },
   {
     "file": "img24.bmp",
     "mssim": "0.16196",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.16055",
     "type": "wn"
   },
   {
     "file": "img25.bmp",
     "mssim": "0.72064",
     "reference": "statue.bmp",
-    "reportedMssim": "0.72298",
     "type": "wn"
   },
   {
     "file": "img26.bmp",
     "mssim": "0.73805",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.73865",
     "type": "wn"
   },
   {
     "file": "img27.bmp",
     "mssim": "0.90143",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.90262",
     "type": "wn"
   },
   {
     "file": "img28.bmp",
     "mssim": "0.72515",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.72595",
     "type": "wn"
   },
   {
     "file": "img29.bmp",
     "mssim": "0.5624",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.56263",
     "type": "wn"
   },
   {
     "file": "img30.bmp",
     "mssim": "0.96832",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.96861",
     "type": "wn"
   },
   {
     "file": "img31.bmp",
     "mssim": "0.94601",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.94624",
     "type": "wn"
   },
   {
     "file": "img32.bmp",
     "mssim": "0.5584",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.5591",
     "type": "wn"
   },
   {
     "file": "img33.bmp",
     "mssim": "0.078009",
     "reference": "woman.bmp",
-    "reportedMssim": "0.074662",
     "type": "wn"
   },
   {
     "file": "img34.bmp",
     "mssim": "0.16037",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.16",
     "type": "wn"
   },
   {
     "file": "img35.bmp",
     "mssim": "0.938",
     "reference": "woman.bmp",
-    "reportedMssim": "0.93806",
     "type": "wn"
   },
   {
     "file": "img36.bmp",
     "mssim": "0.68522",
     "reference": "building2.bmp",
-    "reportedMssim": "0.68656",
     "type": "wn"
   },
   {
     "file": "img37.bmp",
     "mssim": "0.96059",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.96055",
     "type": "wn"
   },
   {
     "file": "img38.bmp",
     "mssim": "0.5318",
     "reference": "house.bmp",
-    "reportedMssim": "0.53461",
     "type": "wn"
   },
   {
     "file": "img39.bmp",
     "mssim": "0.49978",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.49759",
     "type": "wn"
   },
   {
     "file": "img40.bmp",
     "mssim": "0.86017",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.86095",
     "type": "wn"
   },
   {
     "file": "img41.bmp",
     "mssim": "0.097053",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.093355",
     "type": "wn"
   },
   {
     "file": "img42.bmp",
     "mssim": "0.05827",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.056295",
     "type": "wn"
   },
   {
     "file": "img43.bmp",
     "mssim": "0.98255",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.98253",
     "type": "wn"
   },
   {
     "file": "img44.bmp",
     "mssim": "0.49837",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.49568",
     "type": "wn"
   },
   {
     "file": "img45.bmp",
     "mssim": "0.97174",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.97163",
     "type": "wn"
   },
   {
     "file": "img46.bmp",
     "mssim": "0.9508",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.95033",
     "type": "wn"
   },
   {
     "file": "img47.bmp",
     "mssim": "0.092485",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.089445",
     "type": "wn"
   },
   {
     "file": "img48.bmp",
     "mssim": "0.97261",
     "reference": "building2.bmp",
-    "reportedMssim": "0.97275",
     "type": "wn"
   },
   {
     "file": "img49.bmp",
     "mssim": "0.59544",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.60033",
     "type": "wn"
   },
   {
     "file": "img50.bmp",
     "mssim": "0.50462",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.50278",
     "type": "wn"
   },
   {
     "file": "img51.bmp",
     "mssim": "0.65155",
     "reference": "dancers.bmp",
-    "reportedMssim": "0.65105",
     "type": "wn"
   },
   {
     "file": "img52.bmp",
     "mssim": "0.078323",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.077181",
     "type": "wn"
   },
   {
     "file": "img53.bmp",
     "mssim": "0.31747",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.31599",
     "type": "wn"
   },
   {
     "file": "img54.bmp",
     "mssim": "0.98359",
     "reference": "house.bmp",
-    "reportedMssim": "0.98343",
     "type": "wn"
   },
   {
     "file": "img55.bmp",
     "mssim": "0.91833",
     "reference": "statue.bmp",
-    "reportedMssim": "0.91826",
     "type": "wn"
   },
   {
     "file": "img56.bmp",
     "mssim": "0.92946",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.92855",
     "type": "wn"
   },
   {
     "file": "img57.bmp",
     "mssim": "0.1272",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.12412",
     "type": "wn"
   },
   {
     "file": "img58.bmp",
     "mssim": "0.067392",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.066901",
     "type": "wn"
   },
   {
     "file": "img59.bmp",
     "mssim": "0.99372",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.99379",
     "type": "wn"
   },
   {
     "file": "img60.bmp",
     "mssim": "0.096055",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.097217",
     "type": "wn"
   },
   {
     "file": "img61.bmp",
     "mssim": "0.52505",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.52355",
     "type": "wn"
   },
   {
     "file": "img62.bmp",
     "mssim": "0.69869",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.69979",
     "type": "wn"
   },
   {
     "file": "img63.bmp",
     "mssim": "0.933",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.93269",
     "type": "wn"
   },
   {
     "file": "img64.bmp",
     "mssim": "0.98287",
     "reference": "caps.bmp",
-    "reportedMssim": "0.98288",
     "type": "wn"
   },
   {
     "file": "img65.bmp",
     "mssim": "0.58381",
     "reference": "cemetry.bmp",
-    "reportedMssim": "0.58619",
     "type": "wn"
   },
   {
     "file": "img66.bmp",
     "mssim": "0.13791",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.13729",
     "type": "wn"
   },
   {
     "file": "img67.bmp",
     "mssim": "0.80497",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.80622",
     "type": "wn"
   },
   {
     "file": "img68.bmp",
     "mssim": "0.90562",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.90569",
     "type": "wn"
   },
   {
     "file": "img69.bmp",
     "mssim": "0.53999",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.54077",
     "type": "wn"
   },
   {
     "file": "img70.bmp",
     "mssim": "0.91706",
     "reference": "house.bmp",
-    "reportedMssim": "0.91729",
     "type": "wn"
   },
   {
     "file": "img71.bmp",
     "mssim": "0.67762",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.67715",
     "type": "wn"
   },
   {
     "file": "img72.bmp",
     "mssim": "0.91253",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.91321",
     "type": "wn"
   },
   {
     "file": "img73.bmp",
     "mssim": "0.57525",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.57815",
     "type": "wn"
   },
   {
     "file": "img74.bmp",
     "mssim": "0.75929",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.7596",
     "type": "wn"
   },
   {
     "file": "img75.bmp",
     "mssim": "0.99024",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.99033",
     "type": "wn"
   },
   {
     "file": "img76.bmp",
     "mssim": "0.97969",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.97989",
     "type": "wn"
   },
   {
     "file": "img77.bmp",
     "mssim": "0.14829",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.14907",
     "type": "wn"
   },
   {
     "file": "img78.bmp",
     "mssim": "0.9841",
     "reference": "plane.bmp",
-    "reportedMssim": "0.98414",
     "type": "wn"
   },
   {
     "file": "img79.bmp",
     "mssim": "0.69293",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.69323",
     "type": "wn"
   },
   {
     "file": "img80.bmp",
     "mssim": "0.087368",
     "reference": "caps.bmp",
-    "reportedMssim": "0.086885",
     "type": "wn"
   },
   {
     "file": "img81.bmp",
     "mssim": "0.98352",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.98354",
     "type": "wn"
   },
   {
     "file": "img82.bmp",
     "mssim": "0.96304",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.96297",
     "type": "wn"
   },
   {
     "file": "img83.bmp",
     "mssim": "0.39434",
     "reference": "house.bmp",
-    "reportedMssim": "0.39438",
     "type": "wn"
   },
   {
     "file": "img84.bmp",
     "mssim": "0.95002",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.9497",
     "type": "wn"
   },
   {
     "file": "img85.bmp",
     "mssim": "0.98866",
     "reference": "statue.bmp",
-    "reportedMssim": "0.98869",
     "type": "wn"
   },
   {
     "file": "img86.bmp",
     "mssim": "0.67222",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.67461",
     "type": "wn"
   },
   {
     "file": "img87.bmp",
     "mssim": "0.10989",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.10832",
     "type": "wn"
   },
   {
     "file": "img88.bmp",
     "mssim": "0.94601",
     "reference": "stream.bmp",
-    "reportedMssim": "0.94684",
     "type": "wn"
   },
   {
     "file": "img89.bmp",
     "mssim": "0.66245",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.66329",
     "type": "wn"
   },
   {
     "file": "img90.bmp",
     "mssim": "0.92721",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.92751",
     "type": "wn"
   },
   {
     "file": "img91.bmp",
     "mssim": "0.49087",
     "reference": "statue.bmp",
-    "reportedMssim": "0.48995",
     "type": "wn"
   },
   {
     "file": "img92.bmp",
     "mssim": "0.55941",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.55974",
     "type": "wn"
   },
   {
     "file": "img93.bmp",
     "mssim": "0.55748",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "0.55657",
     "type": "wn"
   },
   {
     "file": "img94.bmp",
     "mssim": "0.085179",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.083379",
     "type": "wn"
   },
   {
     "file": "img95.bmp",
     "mssim": "0.98167",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.9817",
     "type": "wn"
   },
   {
     "file": "img96.bmp",
     "mssim": "0.54286",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.54147",
     "type": "wn"
   },
   {
     "file": "img97.bmp",
     "mssim": "0.63867",
     "reference": "bikes.bmp",
-    "reportedMssim": "0.64098",
     "type": "wn"
   },
   {
     "file": "img98.bmp",
     "mssim": "0.99195",
     "reference": "woman.bmp",
-    "reportedMssim": "0.99198",
     "type": "wn"
   },
   {
     "file": "img99.bmp",
     "mssim": "0.99249",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.99249",
     "type": "wn"
   },
   {
     "file": "img100.bmp",
     "mssim": "0.91819",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.91821",
     "type": "wn"
   },
   {
     "file": "img101.bmp",
     "mssim": "0.98974",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.98977",
     "type": "wn"
   },
   {
     "file": "img102.bmp",
     "mssim": "0.91922",
     "reference": "building2.bmp",
-    "reportedMssim": "0.91972",
     "type": "wn"
   },
   {
     "file": "img103.bmp",
     "mssim": "0.98398",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.98397",
     "type": "wn"
   },
   {
     "file": "img104.bmp",
     "mssim": "0.089032",
     "reference": "parrots.bmp",
-    "reportedMssim": "0.089137",
     "type": "wn"
   },
   {
     "file": "img105.bmp",
     "mssim": "0.10266",
     "reference": "plane.bmp",
-    "reportedMssim": "0.10403",
     "type": "wn"
   },
   {
     "file": "img106.bmp",
     "mssim": "0.534",
     "reference": "stream.bmp",
-    "reportedMssim": "0.53187",
     "type": "wn"
   },
   {
     "file": "img107.bmp",
     "mssim": "0.94705",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.94702",
     "type": "wn"
   },
   {
     "file": "img108.bmp",
     "mssim": "0.66062",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.6585",
     "type": "wn"
   },
   {
     "file": "img109.bmp",
     "mssim": "0.65352",
     "reference": "house.bmp",
-    "reportedMssim": "0.65639",
     "type": "wn"
   },
   {
     "file": "img110.bmp",
     "mssim": "0.8021",
     "reference": "caps.bmp",
-    "reportedMssim": "0.80186",
     "type": "wn"
   },
   {
     "file": "img111.bmp",
     "mssim": "0.91359",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.91287",
     "type": "wn"
   },
   {
     "file": "img112.bmp",
     "mssim": "0.72637",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "0.7249",
     "type": "wn"
   },
   {
     "file": "img113.bmp",
     "mssim": "0.11264",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.1127",
     "type": "wn"
   },
   {
     "file": "img114.bmp",
     "mssim": "0.93713",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "0.93581",
     "type": "wn"
   },
   {
     "file": "img115.bmp",
     "mssim": "0.66292",
     "reference": "woman.bmp",
-    "reportedMssim": "0.66397",
     "type": "wn"
   },
   {
     "file": "img116.bmp",
     "mssim": "0.51679",
     "reference": "rapids.bmp",
-    "reportedMssim": "0.51463",
     "type": "wn"
   },
   {
     "file": "img117.bmp",
     "mssim": "0.95281",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.95283",
     "type": "wn"
   },
   {
     "file": "img118.bmp",
     "mssim": "0.94108",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.94121",
     "type": "wn"
   },
   {
     "file": "img119.bmp",
     "mssim": "0.58427",
     "reference": "womanhat.bmp",
-    "reportedMssim": "0.58557",
     "type": "wn"
   },
   {
     "file": "img120.bmp",
     "mssim": "0.46695",
     "reference": "ocean.bmp",
-    "reportedMssim": "0.46639",
     "type": "wn"
   },
   {
     "file": "img121.bmp",
     "mssim": "0.57454",
     "reference": "building2.bmp",
-    "reportedMssim": "0.57437",
     "type": "wn"
   },
   {
     "file": "img122.bmp",
     "mssim": "0.64878",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.65148",
     "type": "wn"
   },
   {
     "file": "img123.bmp",
     "mssim": "0.50852",
     "reference": "sailing3.bmp",
-    "reportedMssim": "0.51074",
     "type": "wn"
   },
   {
     "file": "img124.bmp",
     "mssim": "0.68847",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "0.68972",
     "type": "wn"
   },
   {
     "file": "img125.bmp",
     "mssim": "0.97989",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.9797",
     "type": "wn"
   },
   {
     "file": "img126.bmp",
     "mssim": "0.59073",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.58963",
     "type": "wn"
   },
   {
     "file": "img127.bmp",
     "mssim": "0.98908",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.98926",
     "type": "wn"
   },
   {
     "file": "img128.bmp",
     "mssim": "0.55506",
     "reference": "sailing2.bmp",
-    "reportedMssim": "0.55478",
     "type": "wn"
   },
   {
     "file": "img129.bmp",
     "mssim": "0.50613",
     "reference": "plane.bmp",
-    "reportedMssim": "0.50556",
     "type": "wn"
   },
   {
     "file": "img130.bmp",
     "mssim": "0.63472",
     "reference": "buildings.bmp",
-    "reportedMssim": "0.63206",
     "type": "wn"
   },
   {
     "file": "img131.bmp",
     "mssim": "0.36865",
     "reference": "stream.bmp",
-    "reportedMssim": "0.37042",
     "type": "wn"
   },
   {
     "file": "img132.bmp",
     "mssim": "0.9371",
     "reference": "caps.bmp",
-    "reportedMssim": "0.93701",
     "type": "wn"
   },
   {
     "file": "img133.bmp",
     "mssim": "0.98964",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "0.98966",
     "type": "wn"
   },
   {
     "file": "img134.bmp",
     "mssim": "0.3847",
     "reference": "sailing4.bmp",
-    "reportedMssim": "0.38567",
     "type": "wn"
   },
   {
     "file": "img135.bmp",
     "mssim": "0.58408",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "0.58712",
     "type": "wn"
   },
   {
     "file": "img136.bmp",
     "mssim": "0.19096",
     "reference": "building2.bmp",
-    "reportedMssim": "0.19318",
     "type": "wn"
   },
   {
     "file": "img137.bmp",
     "mssim": "0.08218",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "0.084044",
     "type": "wn"
   },
   {
     "file": "img138.bmp",
     "mssim": "0.98541",
     "reference": "stream.bmp",
-    "reportedMssim": "0.98546",
     "type": "wn"
   },
   {
     "file": "img139.bmp",
     "mssim": "0.71798",
     "reference": "plane.bmp",
-    "reportedMssim": "0.71828",
     "type": "wn"
   },
   {
     "file": "img140.bmp",
     "mssim": "0.53014",
     "reference": "monarch.bmp",
-    "reportedMssim": "0.52888",
     "type": "wn"
   },
   {
     "file": "img141.bmp",
     "mssim": "0.55916",
     "reference": "sailing1.bmp",
-    "reportedMssim": "0.55767",
     "type": "wn"
   },
   {
     "file": "img142.bmp",
     "mssim": "0.97205",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "0.97191",
     "type": "wn"
   },
   {
     "file": "img143.bmp",
     "mssim": "0.69334",
     "reference": "manfishing.bmp",
-    "reportedMssim": "0.69384",
     "type": "wn"
   },
   {
     "file": "img144.bmp",
     "mssim": "0.54691",
     "reference": "caps.bmp",
-    "reportedMssim": "0.54821",
     "type": "wn"
   },
   {
     "file": "img145.bmp",
     "mssim": "0.10822",
     "reference": "statue.bmp",
-    "reportedMssim": "0.10719",
     "type": "wn"
   },
   {
     "file": "img146.bmp",
     "mssim": "1",
     "reference": "coinsinfountain.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img147.bmp",
     "mssim": "1",
     "reference": "ocean.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img148.bmp",
     "mssim": "1",
     "reference": "statue.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img149.bmp",
     "mssim": "1",
     "reference": "dancers.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img150.bmp",
     "mssim": "1",
     "reference": "paintedhouse.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img151.bmp",
     "mssim": "1",
     "reference": "stream.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img152.bmp",
     "mssim": "1",
     "reference": "bikes.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img153.bmp",
     "mssim": "1",
     "reference": "flowersonih35.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img154.bmp",
     "mssim": "1",
     "reference": "parrots.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img155.bmp",
     "mssim": "1",
     "reference": "studentsculpture.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img156.bmp",
     "mssim": "1",
     "reference": "building2.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img157.bmp",
     "mssim": "1",
     "reference": "plane.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img158.bmp",
     "mssim": "1",
     "reference": "woman.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img159.bmp",
     "mssim": "1",
     "reference": "buildings.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img160.bmp",
     "mssim": "1",
     "reference": "house.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img161.bmp",
     "mssim": "1",
     "reference": "rapids.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img162.bmp",
     "mssim": "1",
     "reference": "womanhat.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img163.bmp",
     "mssim": "1",
     "reference": "caps.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img164.bmp",
     "mssim": "1",
     "reference": "lighthouse.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img165.bmp",
     "mssim": "1",
     "reference": "sailing1.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img166.bmp",
     "mssim": "1",
     "reference": "carnivaldolls.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img167.bmp",
     "mssim": "1",
     "reference": "lighthouse2.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img168.bmp",
     "mssim": "1",
     "reference": "sailing2.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img169.bmp",
     "mssim": "1",
     "reference": "cemetry.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img170.bmp",
     "mssim": "1",
     "reference": "manfishing.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img171.bmp",
     "mssim": "1",
     "reference": "sailing3.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img172.bmp",
     "mssim": "1",
     "reference": "churchandcapitol.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img173.bmp",
     "mssim": "1",
     "reference": "monarch.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   },
   {
     "file": "img174.bmp",
     "mssim": "1",
     "reference": "sailing4.bmp",
-    "reportedMssim": "1",
     "type": "wn"
   }
 ]
