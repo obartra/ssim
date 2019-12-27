@@ -12,3 +12,4 @@ generate/*.csv
 octave-workspace
 docs.json
 .DS_Store
+yarn-*.log
