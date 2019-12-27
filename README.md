@@ -21,7 +21,7 @@ _Table extracted from http://www.cns.nyu.edu/~lcv/ssim/_
 npm install ssim.js
 ```
 
-You can also use the web version directly from [unpkg](https://unpkg.com)'s CDN: `https://unpkg.com/ssim.js@{{semver}}`.
+You can also use the web version directly from [unpkg](https://unpkg.com)'s CDN: `https://unpkg.com/ssim.js@{{version}}/dist/ssim.web.js`.
 
 ## 📝 Usage
 
