@@ -1,5 +1,20 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["config:base", "group:all"],
+  "automerge": true,
+  "updateLockFiles": true,
+  "ignoreDeps": [],
+  "packageRules": [
+    {
+      "packagePatterns": ["*"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "depTypeList": ["devDependencies"],
+      "rangeStrategy": "pin"
+    },
+    {
+      "depTypeList": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    }
   ]
 }
