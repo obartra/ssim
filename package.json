@@ -12,7 +12,7 @@
     "test": "jest --testTimeout=500000",
     "lint": "eslint .",
     "build": "rm -rf dist && tsc && webpack --mode=production",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "url": "https://github.com/obartra/ssim.git",
