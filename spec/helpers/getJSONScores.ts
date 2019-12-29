@@ -1,5 +1,3 @@
-import "core-js/modules/es6.string.ends-with";
-
 import { resolve, sep } from "path";
 import { readdirSync } from "fs";
 import { readpixels } from "./readpixels";

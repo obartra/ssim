@@ -11,11 +11,7 @@ import { bezkrovnySsim } from "./bezkrovnySsim";
 import { downsample } from "./downsample";
 import { defaults } from "./defaults";
 import { Options, Images, Matrices, Matrix } from "./types";
-/**
- * @property {String} version - The SSIM package version
- * @public
- */
-export { version } from "./version";
+
 export { Options, Matrix };
 
 const ssimTargets = {

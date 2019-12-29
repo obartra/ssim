@@ -1,7 +1,6 @@
 import arScores from "../samples/aspectratio.json";
 import { getJSONScores } from "../helpers/getJSONScores";
 import * as lib from "../../src";
-import { version } from "../../src/version";
 import lenaScores from "../samples/lena.json";
 import { join, resolve } from "path";
 import { roundTo } from "../helpers/round";
@@ -38,10 +37,6 @@ describe("ssim", () => {
 
   test("should be a function", () => {
     expect(lib.ssim).toEqual(expect.any(Function));
-  });
-
-  test("should expose package version", () => {
-    expect(lib.version).toBe(version);
   });
 
   test("should expose additional ssim methods", () => {
