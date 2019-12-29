@@ -58,7 +58,7 @@
     "eslint-config-airbnb": "16.1.0",
     "eslint-config-prettier": "2.10.0",
     "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.4.0",
     "image-type": "4.1.0",
     "jest": "24.9.0",
