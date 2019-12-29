@@ -64,7 +64,7 @@
     "jest": "24.9.0",
     "nodemon": "1.12.1",
     "prettier": "1.8.2",
-    "request": "2.83.0",
+    "request": "2.88.0",
     "semantic-release": "8.2.0",
     "semantic-release-cli": "3.2.5",
     "ts-jest": "24.2.0",
