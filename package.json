@@ -63,7 +63,7 @@
     "image-type": "4.1.0",
     "jest": "24.9.0",
     "nodemon": "1.12.1",
-    "prettier": "1.8.2",
+    "prettier": "1.19.1",
     "request": "2.83.0",
     "semantic-release": "8.2.0",
     "semantic-release-cli": "3.2.5",
