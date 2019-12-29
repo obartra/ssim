@@ -1,20 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/obartra/ssim
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    working_directory: ~/repo
     docker:
       - image: circleci/node:latest
     steps:
-      # Build, Test and Deploy
       - checkout
-      # Test
-      - run:
-          name: "Test"
-          command: ./ci/tasks.sh
-      # Deployment
+      - run: ./scripts/ci.sh
       - type: deploy
         name: "Publish to npm"
         command: |
