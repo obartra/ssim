@@ -43,7 +43,7 @@
   "homepage": "https://github.com/obartra/ssim#readme",
   "devDependencies": {
     "@semantic-release/commit-analyzer": "7.0.0",
-    "@semantic-release/github": "6.0.0",
+    "@semantic-release/github": "6.0.1",
     "@semantic-release/npm": "6.0.0",
     "@types/jest": "24.0.25",
     "@types/node": "13.1.6",
@@ -65,7 +65,7 @@
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "request": "2.88.0",
-    "semantic-release": "16.0.0",
+    "semantic-release": "16.0.1",
     "semantic-release-cli": "5.2.3",
     "ts-jest": "24.3.0",
     "ts-loader": "6.2.1",
