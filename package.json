@@ -65,7 +65,7 @@
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "request": "2.88.0",
-    "semantic-release": "16.0.1",
+    "semantic-release": "16.0.2",
     "semantic-release-cli": "5.2.3",
     "ts-jest": "24.3.0",
     "ts-loader": "6.2.1",
