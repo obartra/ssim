@@ -46,7 +46,7 @@
     "@semantic-release/github": "6.0.1",
     "@semantic-release/npm": "6.0.0",
     "@types/jest": "24.9.0",
-    "@types/node": "13.1.7",
+    "@types/node": "13.1.8",
     "benchmark": "2.1.4",
     "bmp-js": "0.1.0",
     "canvas": "2.6.1",
