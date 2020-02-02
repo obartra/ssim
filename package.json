@@ -59,7 +59,7 @@
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-import": "2.20.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.18.1",
+    "eslint-plugin-react": "7.18.2",
     "image-type": "4.1.0",
     "jest": "25.1.0",
     "nodemon": "2.0.2",
