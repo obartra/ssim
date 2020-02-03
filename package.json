@@ -43,7 +43,7 @@
   "homepage": "https://github.com/obartra/ssim#readme",
   "devDependencies": {
     "@semantic-release/commit-analyzer": "8.0.1",
-    "@semantic-release/github": "7.0.1",
+    "@semantic-release/github": "7.0.2",
     "@semantic-release/npm": "7.0.2",
     "@types/jest": "25.1.1",
     "@types/node": "13.7.0",
