@@ -67,7 +67,7 @@
     "request": "2.88.0",
     "semantic-release": "17.0.2",
     "semantic-release-cli": "5.2.3",
-    "ts-jest": "25.1.0",
+    "ts-jest": "25.2.0",
     "ts-loader": "6.2.1",
     "typescript": "3.7.5",
     "webpack": "4.41.5",
