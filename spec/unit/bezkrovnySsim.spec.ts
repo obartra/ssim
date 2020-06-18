@@ -31,7 +31,17 @@ describe("bezkrovnySsim", () => {
 
   test("UQI should match Bezkrovny's implementation results", () => {
     const uqiMap = ssim(sampleCsv.lena, sampleCsv.lena02876, k0Options);
-
     expect(roundTo(mean2d(uqiMap), 5)).toBe(0.35528);
   });
+
+  test("should calculate width and height properly according to window size", () => {
+    const primeWindowSize = 13;
+    expect(sampleCsv.lena.width % primeWindowSize ).toBeGreaterThan(0);
+    expect(sampleCsv.lena.height % primeWindowSize).toBeGreaterThan(0);
+    const properWidth = Math.ceil(sampleCsv.lena.width / primeWindowSize);
+    const properHeight = Math.ceil(sampleCsv.lena.height / primeWindowSize);
+    const uqiMap = ssim(sampleCsv.lena, sampleCsv.lena02876, {...k0Options, windowSize: primeWindowSize});
+    expect(uqiMap.data).toHaveLength(properWidth*properHeight);
+  });
+
 });
