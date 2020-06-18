@@ -37,8 +37,8 @@ export function bezkrovnySsim(
   options: Options
 ) {
   const { windowSize } = options;
-  const width = Math.floor(pixels1.width / windowSize);
-  const height = Math.floor(pixels1.height / windowSize);
+  const width = Math.ceil(pixels1.width / windowSize);
+  const height = Math.ceil(pixels1.height / windowSize);
   const data = new Array(width * height);
   let counter = 0;
 
