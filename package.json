@@ -60,7 +60,7 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.20.5",
     "image-type": "4.1.0",
-    "jest": "26.1.0",
+    "jest": "26.2.1",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "request": "2.88.2",
@@ -69,7 +69,7 @@
     "ts-jest": "26.1.4",
     "ts-loader": "8.0.1",
     "typescript": "3.9.7",
-    "webpack": "4.44.0",
+    "webpack": "4.44.1",
     "webpack-cli": "3.3.12"
   },
   "config": {
