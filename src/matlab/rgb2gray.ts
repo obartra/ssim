@@ -20,9 +20,9 @@ import { Matrix } from "../types";
  * @memberOf matlab
  * @since 0.0.2
  */
-function luma(r: number, g: number, b: number): number {
-  return Math.round(0.29894 * r + 0.58704 * g + 0.11402 * b);
-}
+// function luma(r: number, g: number, b: number): number {
+//   return 0.29894 * r + 0.58704 * g + 0.11402 * b;
+// }
 
 /**
  * Converts an imageData object of { width, height, data } into a 2d matrix [row, column]
@@ -42,23 +42,15 @@ export function rgb2gray({
   width,
   height
 }: Matrix | ImageData): Matrix {
-  const data = new Array(width * height);
-
-  for (let j = 0; j < height; j++) {
-    for (let i = 0; i < width; i++) {
-      const grayIndex = i + j * width;
-      const imgIndex = grayIndex * 4;
-
-      data[grayIndex] = luma(
-        d[imgIndex],
-        d[imgIndex + 1],
-        d[imgIndex + 2]
-        // d[imgIndex + 3] // ignore alpha channel
-      );
-    }
+  const uint8Array = new Uint8Array(width * height);
+  for (let i = 0; i < d.length;  i +=4) {
+    const grayIndex = i/4;
+    // See above sections commented out for the luma function to see background
+    // information about these constants.
+    uint8Array[grayIndex] = (0.29894 * d[i] + 0.58704 * d[i+1] + 0.11402 * d[i+2]) + 0.5;
   }
   return {
-    data,
+    data: Array.from(uint8Array),
     width,
     height
   };
