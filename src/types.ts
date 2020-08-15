@@ -14,7 +14,11 @@ export type Matrix = {
   data: number[];
 };
 
-export type ImageMatrix = Matrix | ImageData;
+export type ImageMatrix = Matrix | ImageData | {
+  width: number;
+  height: number;
+  data: Uint8Array | Int8Array | Uint32Array | Int32Array | Uint16Array;
+};
 export type MSSIMMatrix = Matrix & {
   mssim: number;
 };

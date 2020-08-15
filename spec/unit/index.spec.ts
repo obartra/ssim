@@ -119,29 +119,6 @@ describe("ssim", () => {
     expect(roundTo(fast, 5)).toEqual(roundTo(original, 5));
   });
 
-  test("weber ssim output should be about the same ssim as fast and closer than bezkrovny", () => {
-    const { mssim: fast, ssim_map: fastMap } = lib.ssim(samples.avion, samples.avion_j2000_r1, {
-      ssim: "fast",
-    });
-
-
-
-    let { mssim: bezkrovny } = lib.ssim(samples.avion, samples.avion_j2000_r1, {
-      ssim: "bezkrovny",
-    });
-    let { mssim: weber,  ssim_map: weberMap } = lib.ssim(samples.avion, samples.avion_j2000_r1, {
-      ssim: "weber",
-    });
-
-
-    // console.log(`Performance: fast: ${fastPerformance} bezkrovny: ${bezkrovnyPerformance} weber: ${weberPerformance}`);
-    // console.log(`Weber MSSIM: ${weber} Fast MSSIM: ${fast} Bezkrovny MSSIM: ${bezkrovny}`);
-    // console.log(`Weber Map Size: ${weberMap.data.length} Fast Map Size: ${fastMap.data.length} Bezkrovny Map Size: ${bezkrovnyMap.data.length}`);
-    expect(roundTo(weber, 4)).toEqual(roundTo(fast, 4));
-    expect(roundTo(Math.abs(fast-weber), 5)).toBeLessThan(roundTo(Math.abs(fast-bezkrovny),5));
-    expect(weberMap.data.length).toEqual(fastMap.data.length);
-  });
-
 
   test("should fail if an invalid ssim value is specified", () => {
     expect(() => {
