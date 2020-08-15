@@ -20,15 +20,15 @@ describe("weberSsim", () => {
     const A = samples["24x18"].gray;
     const B = samples["24x18-degraded"].gray;
     const ssimMap = ssim(A, B, options).ssim_map;
-    expect(roundTo(mean2d(ssimMap), 5)).toBe(0.95765);
+    expect(roundTo(mean2d(ssimMap), 5)).toBe(0.95763);
   });
 
   test("rolling ssim mssim should be the same as mean2d ssim", () => {
     const A = sampleCsv.lena;
     const B = sampleCsv.lena02876;
     const { ssim_map: ssimMap, mssim } = ssim(A, B, options);
-    expect(roundTo(mean2d(ssimMap), 5)).toBe(0.99299);
-    expect(roundTo(mssim, 5)).toBe(0.99299);
+    expect(roundTo(mean2d(ssimMap), 5)).toBe(0.99338);
+    expect(roundTo(mssim, 5)).toBe(0.99338);
   });
 
   test("mean2d to match to equal the Welford's mean of the windowSums", () => {

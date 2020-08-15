@@ -49,7 +49,7 @@ export function partialSumMatrix1(pixels: ImageMatrix, f: (v: number, x: number,
       const { rightEdge, bottomEdge, bottomRightEdge } = edgeHandler(w, width, h, height, sumArray, matrixWidth);
 
       sumArray[h*matrixWidth+w] = f(data[h*width+w], w,h) + rightEdge
-         + bottomEdge - bottomRightEdge + 0.5;
+         + bottomEdge - bottomRightEdge;
     }
   }
   // console.timeEnd("partialSumMatrix1");
@@ -72,7 +72,7 @@ export function partialSumMatrix2(pixels1: ImageMatrix, pixels2: ImageMatrix, f:
       const { rightEdge, bottomEdge, bottomRightEdge } = edgeHandler(w, width, h, height, sumArray, matrixWidth);
       const offset = h*width+w;
       sumArray[h*matrixWidth+w] = f(data1[offset],data2[offset],w,h) + rightEdge
-        + bottomEdge - bottomRightEdge + 0.5;
+        + bottomEdge - bottomRightEdge;
     }
   }
   // console.timeEnd("partialSumMatrix2");
@@ -120,7 +120,7 @@ export function windowVariance(pixels: ImageMatrix, sums: any, windowSize: numbe
     const sumSquares = varX.data[i]/windowSquared;
 
     const squareMeans = mean*mean;
-    varX.data[i] = /*windowSquared/(windowSquared-1)**/(sumSquares - squareMeans) + 0.5;
+    varX.data[i] = /*windowSquared/(windowSquared-1)**/1024*(sumSquares - squareMeans);
   }
   return varX;
 }
@@ -130,7 +130,7 @@ export function windowCovariance(pixels1: ImageMatrix, pixels2: ImageMatrix, sum
   const windowSquared = windowSize * windowSize;
   const covXY = windowMatrix(partialSumMatrix2(pixels1, pixels2, covarianceCalculation), windowSize,1);
   for (let i = 0; i < sums1.data.length; ++i) {
-    covXY.data[i] = /*windowSquared/(windowSquared-1)**/(covXY.data[i]/windowSquared -  (sums1.data[i]/windowSquared)*(sums2.data[i]/windowSquared)) +0.5;
+    covXY.data[i] = /*windowSquared/(windowSquared-1)**/1024*(covXY.data[i]/windowSquared -  (sums1.data[i]/windowSquared)*(sums2.data[i]/windowSquared));
   }
   return covXY;
 }
@@ -164,12 +164,14 @@ export function weberSsim(
   const c1 = (k1 * L) * (k1 * L);
   const c2 = (k2 * L) * (k2 * L);
   const windowSquared = windowSize*windowSize;
-  const sums1 = windowSums(pixels1, windowSize);
-  const variance1 = windowVariance(pixels1, sums1, windowSize);
+  const pixels1Rounded = { ...pixels1, data: Uint8Array.from(pixels1.data, (v => v + 0.5))};
+  const pixels2Rounded = { ...pixels2, data: Uint8Array.from(pixels2.data, (v => v + 0.5))};
+  const sums1 = windowSums(pixels1Rounded, windowSize);
+  const variance1 = windowVariance(pixels1Rounded, sums1, windowSize);
 
-  const sums2 = windowSums(pixels2, windowSize);
-  const variance2 = windowVariance(pixels2, sums2,  windowSize);
-  const covariance = windowCovariance(pixels1, pixels2, sums1, sums2, windowSize);
+  const sums2 = windowSums(pixels2Rounded, windowSize);
+  const variance2 = windowVariance(pixels2Rounded, sums2,  windowSize);
+  const covariance = windowCovariance(pixels1Rounded, pixels2Rounded, sums1, sums2, windowSize);
   const size = sums1.data.length;
 
   let mssim = 0;
@@ -177,9 +179,9 @@ export function weberSsim(
   for (let i = 0; i < size; ++i) {
     const meanx = sums1.data[i] / windowSquared;
     const meany = sums2.data[i] / windowSquared;
-    const varx = variance1.data[i];
-    const vary = variance2.data[i];
-    const cov = covariance.data[i];
+    const varx = variance1.data[i] / 1024;
+    const vary = variance2.data[i] / 1024;
+    const cov = covariance.data[i] / 1024;
     const na = 2*meanx*meany+c1;
     const nb = 2*cov + c2;
     const da = meanx*meanx + meany*meany + c1;
