@@ -164,8 +164,8 @@ export function weberSsim(
   const c1 = (k1 * L) * (k1 * L);
   const c2 = (k2 * L) * (k2 * L);
   const windowSquared = windowSize*windowSize;
-  const pixels1Rounded = { ...pixels1, data: Uint8Array.from(pixels1.data, (v => v + 0.5))};
-  const pixels2Rounded = { ...pixels2, data: Uint8Array.from(pixels2.data, (v => v + 0.5))};
+  const pixels1Rounded = { ...pixels1, data: Uint32Array.from(pixels1.data, (v => v + 0.5))};
+  const pixels2Rounded = { ...pixels2, data: Uint32Array.from(pixels2.data, (v => v + 0.5))};
   const sums1 = windowSums(pixels1Rounded, windowSize);
   const variance1 = windowVariance(pixels1Rounded, sums1, windowSize);
 
