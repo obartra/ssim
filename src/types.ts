@@ -1,7 +1,7 @@
 export type Options = {
   k1: number;
   k2: number;
-  ssim: "fast" | "original" | "bezkrovny" | "weber";
+  ssim: "fast" | "original" | "bezkrovny" | "weber" | "weberForward";
   windowSize: number;
   bitDepth: number;
   downsample: "original" | "fast" | false;
@@ -14,7 +14,11 @@ export type Matrix = {
   data: number[];
 };
 
-export type ImageMatrix = Matrix | ImageData;
+export type ImageMatrix = Matrix | ImageData | {
+  width: number;
+  height: number;
+  data: Uint8Array | Int8Array | Uint32Array | Int32Array | Uint16Array;
+};
 export type MSSIMMatrix = Matrix & {
   mssim: number;
 };
