@@ -38,18 +38,18 @@ function edgeHandler(w: number, width: number, h: number, height: number, sumArr
 
 export function partialSumMatrix1(pixels: ImageMatrix, f: (v: number, x: number, y: number) => number) {
   // console.time("partialSumMatrix1");
-  const {width, height, data} = pixels;
-  const matrixWidth = width+1;
-  const matrixHeight = height+1;
+  const { width, height, data } = pixels;
+  const matrixWidth = width + 1;
+  const matrixHeight = height + 1;
   // Javascript defaults to zeroing the array
   // testing should be done to determine if a benefit is acheived by using a uint32array
-  const sumArray = new Int32Array(matrixWidth*matrixHeight);
-  for (let h = height-1; h >= 0; --h) {
-    for (let w = width-1; w >= 0; --w) {
+  const sumArray = new Int32Array(matrixWidth * matrixHeight);
+  for (let h = height - 1; h >= 0; --h) {
+    for (let w = width - 1; w >= 0; --w) {
       const { rightEdge, bottomEdge, bottomRightEdge } = edgeHandler(w, width, h, height, sumArray, matrixWidth);
 
-      sumArray[h*matrixWidth+w] = f(data[h*width+w], w,h) + rightEdge
-         + bottomEdge - bottomRightEdge;
+      sumArray[h * matrixWidth + w] = f(data[h * width + w], w, h) + rightEdge
+        + bottomEdge - bottomRightEdge;
     }
   }
   // console.timeEnd("partialSumMatrix1");
@@ -57,21 +57,20 @@ export function partialSumMatrix1(pixels: ImageMatrix, f: (v: number, x: number,
 }
 
 
-
 export function partialSumMatrix2(pixels1: ImageMatrix, pixels2: ImageMatrix, f: (a: number, b: number, x: number, y: number) => number) {
   // console.time("partialSumMatrix2");
-  const {width, height, data: data1} = pixels1;
-  const {data: data2} = pixels2;
-  const matrixWidth = width+1;
-  const matrixHeight = height+1;
+  const { width, height, data: data1 } = pixels1;
+  const { data: data2 } = pixels2;
+  const matrixWidth = width + 1;
+  const matrixHeight = height + 1;
   // Javascript defaults to zeroing the array
   // testing should be done to determine if a benefit is acheived by using a uint32array
-  const sumArray = new Int32Array(matrixWidth*matrixHeight);
-  for (let h = height-1; h >= 0; --h) {
-    for (let w = width-1; w >= 0; --w) {
+  const sumArray = new Int32Array(matrixWidth * matrixHeight);
+  for (let h = height - 1; h >= 0; --h) {
+    for (let w = width - 1; w >= 0; --w) {
       const { rightEdge, bottomEdge, bottomRightEdge } = edgeHandler(w, width, h, height, sumArray, matrixWidth);
-      const offset = h*width+w;
-      sumArray[h*matrixWidth+w] = f(data1[offset],data2[offset],w,h) + rightEdge
+      const offset = h * width + w;
+      sumArray[h * matrixWidth + w] = f(data1[offset], data2[offset], w, h) + rightEdge
         + bottomEdge - bottomRightEdge;
     }
   }
@@ -79,62 +78,129 @@ export function partialSumMatrix2(pixels1: ImageMatrix, pixels2: ImageMatrix, f:
   return { data: sumArray, height: matrixHeight, width: matrixWidth };
 }
 
+export function partialSumMatrix1Forward(pixels: ImageMatrix, f: (v: number, x: number, y: number) => number) {
+  // console.time("partialSumMatrix1Forward");
+  const { width, height, data } = pixels;
+  const matrixWidth = width + 1;
+  const matrixHeight = height + 1;
+  // Javascript defaults to zeroing the array
+  // testing should be done to determine if a benefit is acheived by using a uint32array
+  const sumArray = new Int32Array(matrixWidth * matrixHeight);
+  for (let h = 1; h < matrixHeight; ++h) {
+    for (let w = 1; w < matrixWidth; ++w) {
+      const topOffset = (h - 1) * matrixWidth;
+      const leftOffset = w - 1;
+      const topLeftEdge = sumArray[topOffset + leftOffset];
+      const topRightEdge = sumArray[topOffset + w];
+      const bottomLeftEdge = sumArray[(h) * matrixWidth + leftOffset];
+      const offset = (h - 1) * width + (w - 1);
+      sumArray[h * matrixWidth + w] = f(data[offset], w - 1, h - 1) + topRightEdge
+        + bottomLeftEdge - topLeftEdge;
+    }
+  }
+  // console.timeEnd("partialSumMatrix1Forward");
 
+  return { data: sumArray, height: matrixHeight, width: matrixWidth };
+}
 
+export function partialSumMatrix2Forward(pixels1: ImageMatrix, pixels2: ImageMatrix, f: (a: number, b: number, x: number, y: number) => number) {
+  const { width, height, data: data1 } = pixels1;
+  const { data: data2 } = pixels2;
+  const matrixWidth = width + 1;
+  const matrixHeight = height + 1;
+  // Javascript defaults to zeroing the array
+  // testing should be done to determine if a benefit is acheived by using a uint32array
+  const sumArray = new Int32Array(matrixWidth * matrixHeight);
+  for (let h = 1; h < matrixHeight; ++h) {
+    for (let w = 1; w < matrixWidth; ++w) {
+      const topOffset = (h - 1) * matrixWidth;
+      const leftOffset = w - 1;
+      const topLeftEdge = sumArray[topOffset + leftOffset];
+      const topRightEdge = sumArray[topOffset + w];
+      const bottomLeftEdge = sumArray[(h) * matrixWidth + leftOffset];
+      const offset = (h - 1) * width + (w - 1);
+      sumArray[h * matrixWidth + w] = f(data1[offset], data2[offset], w - 1, h - 1) + topRightEdge
+        + bottomLeftEdge - topLeftEdge;
+    }
+  }
+  return { data: sumArray, height: matrixHeight, width: matrixWidth };
+}
 
-
-export function windowMatrix(sumMatrix : any, windowSize: number, divisor: number )  {
-  const {width: matrixWidth, height: matrixHeight, data: sumArray} = sumMatrix;
-  const imageWidth = matrixWidth-1;
-  const imageHeight = matrixHeight-1;
-  const windowWidth = (imageWidth-windowSize+1);
-  const windowHeight = (imageHeight-windowSize+1);
-  const windows = new Int32Array(windowWidth*windowHeight);
+export function windowMatrixForward(sumMatrix: any, windowSize: number, divisor: number) {
+  // console.time("windowMatrixForward");
+  const { width: matrixWidth, height: matrixHeight, data: sumArray } = sumMatrix;
+  const imageWidth = matrixWidth - 1;
+  const imageHeight = matrixHeight - 1;
+  const windowWidth = (imageWidth - windowSize + 1);
+  const windowHeight = (imageHeight - windowSize + 1);
+  const windows = new Int32Array(windowWidth * windowHeight);
   for (let h = 0; h < imageHeight; ++h) {
     for (let w = 0; w < imageWidth; ++w) {
       if (w < windowWidth && h < windowHeight) {
-        const sum = sumArray[matrixWidth*h+w] // value at (w,h)
-        - sumArray[matrixWidth*h+w+windowSize] // value at (w+windowSize,h) == right side
-        - sumArray[matrixWidth*(h+windowSize)+w] // value at (w,h+windowSize) == bottom side
-        + sumArray[matrixWidth*(h+windowSize)+w+windowSize]; // value at (w+windowSize, h+windowSize) == bottomRight corner
-        windows[h*windowWidth + w] = sum / divisor;
+        const sum = sumArray[matrixWidth * h + w] // value at (w-1,h-1) topleft
+          - sumArray[matrixWidth * h + w + windowSize] // value at (w+windowSize,h) == topright side
+          - sumArray[matrixWidth * (h + windowSize) + w] // value at (w,h+windowSize) == bottomleft side
+          + sumArray[matrixWidth * (h + windowSize) + w + windowSize]; // value at (w+windowSize, h+windowSize) == bottomRight corner
+        windows[h * windowWidth + w] = sum / divisor;
       }
     }
   }
+  // console.timeEnd("windowMatrixForward");
   return { height: windowHeight, width: windowWidth, data: windows };
 }
 
 
+export function windowMatrix(sumMatrix: any, windowSize: number, divisor: number) {
+  // console.time("windowMatrix");
+  const { width: matrixWidth, height: matrixHeight, data: sumArray } = sumMatrix;
+  const imageWidth = matrixWidth - 1;
+  const imageHeight = matrixHeight - 1;
+  const windowWidth = (imageWidth - windowSize + 1);
+  const windowHeight = (imageHeight - windowSize + 1);
+  const windows = new Int32Array(windowWidth * windowHeight);
+  for (let h = 0; h < imageHeight; ++h) {
+    for (let w = 0; w < imageWidth; ++w) {
+      if (w < windowWidth && h < windowHeight) {
+        const sum = sumArray[matrixWidth * h + w] // value at (w,h)
+          - sumArray[matrixWidth * h + w + windowSize] // value at (w+windowSize,h) == right side
+          - sumArray[matrixWidth * (h + windowSize) + w] // value at (w,h+windowSize) == bottom side
+          + sumArray[matrixWidth * (h + windowSize) + w + windowSize]; // value at (w+windowSize, h+windowSize) == bottomRight corner
+        windows[h * windowWidth + w] = sum / divisor;
+      }
+    }
+  }
+  // console.timeEnd("windowMatrix");
+  return { height: windowHeight, width: windowWidth, data: windows };
+}
 
 
-export function windowSums(pixels: ImageMatrix, windowSize: number)  {
+export function windowSums(pixels: ImageMatrix, windowSize: number) {
   return windowMatrix(partialSumMatrix1(pixels, a => a), windowSize, 1);
 }
 
-export function windowVariance(pixels: ImageMatrix, sums: any, windowSize: number)  {
-  const varianceCalculation=(v: number) => v*v;
+export function windowVariance(pixels: ImageMatrix, sums: any, windowSize: number) {
+  const varianceCalculation = (v: number) => v * v;
   const windowSquared = windowSize * windowSize;
-  const varX = windowMatrix(partialSumMatrix1(pixels, varianceCalculation), windowSize, 1)
+  const varX = windowMatrix(partialSumMatrix1(pixels, varianceCalculation), windowSize, 1);
   for (let i = 0; i < sums.data.length; ++i) {
-    const mean = (sums.data[i]/windowSquared);
-    const sumSquares = varX.data[i]/windowSquared;
+    const mean = (sums.data[i] / windowSquared);
+    const sumSquares = varX.data[i] / windowSquared;
 
-    const squareMeans = mean*mean;
-    varX.data[i] = /*windowSquared/(windowSquared-1)**/1024*(sumSquares - squareMeans);
+    const squareMeans = mean * mean;
+    varX.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (sumSquares - squareMeans);
   }
   return varX;
 }
 
 export function windowCovariance(pixels1: ImageMatrix, pixels2: ImageMatrix, sums1: any, sums2: any, windowSize: number) {
-  const covarianceCalculation = (a:number,b:number) => a*b;
+  const covarianceCalculation = (a: number, b: number) => a * b;
   const windowSquared = windowSize * windowSize;
-  const covXY = windowMatrix(partialSumMatrix2(pixels1, pixels2, covarianceCalculation), windowSize,1);
+  const covXY = windowMatrix(partialSumMatrix2(pixels1, pixels2, covarianceCalculation), windowSize, 1);
   for (let i = 0; i < sums1.data.length; ++i) {
-    covXY.data[i] = /*windowSquared/(windowSquared-1)**/1024*(covXY.data[i]/windowSquared -  (sums1.data[i]/windowSquared)*(sums2.data[i]/windowSquared));
+    covXY.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (covXY.data[i] / windowSquared - (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared));
   }
   return covXY;
 }
-
 
 
 /**
@@ -158,19 +224,20 @@ export function weberSsim(
   pixels1: ImageMatrix,
   pixels2: ImageMatrix,
   options: Options
-) : MSSIMMatrix {
+): MSSIMMatrix {
+  // console.time("weberSsim");
   const { bitDepth, k1, k2, windowSize } = options;
   const L = 2 ** bitDepth - 1;
   const c1 = (k1 * L) * (k1 * L);
   const c2 = (k2 * L) * (k2 * L);
-  const windowSquared = windowSize*windowSize;
-  const pixels1Rounded = { ...pixels1, data: Uint32Array.from(pixels1.data, (v => v + 0.5))};
-  const pixels2Rounded = { ...pixels2, data: Uint32Array.from(pixels2.data, (v => v + 0.5))};
+  const windowSquared = windowSize * windowSize;
+  const pixels1Rounded = { ...pixels1, data: Int32Array.from(pixels1.data, (v => v + 0.5)) };
+  const pixels2Rounded = { ...pixels2, data: Int32Array.from(pixels2.data, (v => v + 0.5)) };
   const sums1 = windowSums(pixels1Rounded, windowSize);
   const variance1 = windowVariance(pixels1Rounded, sums1, windowSize);
 
   const sums2 = windowSums(pixels2Rounded, windowSize);
-  const variance2 = windowVariance(pixels2Rounded, sums2,  windowSize);
+  const variance2 = windowVariance(pixels2Rounded, sums2, windowSize);
   const covariance = windowCovariance(pixels1Rounded, pixels2Rounded, sums1, sums2, windowSize);
   const size = sums1.data.length;
 
@@ -182,20 +249,96 @@ export function weberSsim(
     const varx = variance1.data[i] / 1024;
     const vary = variance2.data[i] / 1024;
     const cov = covariance.data[i] / 1024;
-    const na = 2*meanx*meany+c1;
-    const nb = 2*cov + c2;
-    const da = meanx*meanx + meany*meany + c1;
+    const na = 2 * meanx * meany + c1;
+    const nb = 2 * cov + c2;
+    const da = meanx * meanx + meany * meany + c1;
     const db = varx + vary + c2;
     // rs.Push(ssim);
-    const ssim = na *nb / da / db;
+    const ssim = na * nb / da / db;
     ssims[i] = ssim;
     if (i == 0) {
       mssim = ssim;
     } else {
-      mssim = mssim + (ssim - mssim)/(i+1);
+      mssim = mssim + (ssim - mssim) / (i + 1);
     }
   }
 
+  // console.timeEnd("weberSsim");
   return { data: ssims, width: sums1.width, height: sums1.height, mssim };
 }
 
+export function windowSumsForward(pixels: ImageMatrix, windowSize: number) {
+  return windowMatrixForward(partialSumMatrix1Forward(pixels, a => a), windowSize, 1);
+}
+
+export function windowVarianceForward(pixels: ImageMatrix, sums: any, windowSize: number) {
+  const varianceCalculation = (v: number) => v * v;
+  const windowSquared = windowSize * windowSize;
+  const varX = windowMatrixForward(partialSumMatrix1Forward(pixels, varianceCalculation), windowSize, 1);
+  for (let i = 0; i < sums.data.length; ++i) {
+    const mean = (sums.data[i] / windowSquared);
+    const sumSquares = varX.data[i] / windowSquared;
+
+    const squareMeans = mean * mean;
+    varX.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (sumSquares - squareMeans);
+  }
+  return varX;
+}
+
+export function windowCovarianceForward(pixels1: ImageMatrix, pixels2: ImageMatrix, sums1: any, sums2: any, windowSize: number) {
+  const covarianceCalculation = (a: number, b: number) => a * b;
+  const windowSquared = windowSize * windowSize;
+  const covXY = windowMatrixForward(partialSumMatrix2Forward(pixels1, pixels2, covarianceCalculation), windowSize, 1);
+  for (let i = 0; i < sums1.data.length; ++i) {
+    covXY.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (covXY.data[i] / windowSquared - (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared));
+  }
+  return covXY;
+}
+
+
+export function weberSsimForward(
+  pixels1: ImageMatrix,
+  pixels2: ImageMatrix,
+  options: Options
+): MSSIMMatrix {
+  // console.time("weberSsimForward");
+  const { bitDepth, k1, k2, windowSize } = options;
+  const L = 2 ** bitDepth - 1;
+  const c1 = (k1 * L) * (k1 * L);
+  const c2 = (k2 * L) * (k2 * L);
+  const windowSquared = windowSize * windowSize;
+  const pixels1Rounded = { ...pixels1, data: Int32Array.from(pixels1.data, (v => v + 0.5)) };
+  const pixels2Rounded = { ...pixels2, data: Int32Array.from(pixels2.data, (v => v + 0.5)) };
+  const sums1 = windowSumsForward(pixels1Rounded, windowSize);
+  const variance1 = windowVarianceForward(pixels1Rounded, sums1, windowSize);
+
+  const sums2 = windowSumsForward(pixels2Rounded, windowSize);
+  const variance2 = windowVarianceForward(pixels2Rounded, sums2, windowSize);
+  const covariance = windowCovarianceForward(pixels1Rounded, pixels2Rounded, sums1, sums2, windowSize);
+  const size = sums1.data.length;
+
+  let mssim = 0;
+  const ssims = new Array(size);
+  for (let i = 0; i < size; ++i) {
+    const meanx = sums1.data[i] / windowSquared;
+    const meany = sums2.data[i] / windowSquared;
+    const varx = variance1.data[i] / 1024;
+    const vary = variance2.data[i] / 1024;
+    const cov = covariance.data[i] / 1024;
+    const na = 2 * meanx * meany + c1;
+    const nb = 2 * cov + c2;
+    const da = meanx * meanx + meany * meany + c1;
+    const db = varx + vary + c2;
+    // rs.Push(ssim);
+    const ssim = na * nb / da / db;
+    ssims[i] = ssim;
+    if (i == 0) {
+      mssim = ssim;
+    } else {
+      mssim = mssim + (ssim - mssim) / (i + 1);
+    }
+  }
+  // console.timeEnd("weberSsimForward");
+
+  return { data: ssims, width: sums1.width, height: sums1.height, mssim };
+}

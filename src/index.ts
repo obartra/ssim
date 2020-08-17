@@ -10,8 +10,8 @@ import { originalSsim } from "./originalSsim";
 import { bezkrovnySsim } from "./bezkrovnySsim";
 import { downsample } from "./downsample";
 import { defaults } from "./defaults";
-import { Options, Images, Matrices, Matrix } from "./types";
-import { weberSsim } from "./weberSsim";
+import { Options, Images, Matrices, Matrix, MSSIMMatrix } from "./types";
+import { weberSsim, weberSsimForward } from "./weberSsim";
 
 export { Options, Matrix };
 
@@ -20,6 +20,7 @@ const ssimTargets = {
   original: originalSsim,
   bezkrovny: bezkrovnySsim,
   weber: weberSsim,
+  weberForward: weberSsimForward,
 };
 
 function validateOptions(options: Options) {
@@ -89,26 +90,15 @@ export function ssim(
 } {
   const start = new Date().getTime();
   const options = getOptions(userOptions);
-
-  if (options.ssim === "weber") {
-    const [pixels1, pixels2, finalOptions] = toResize(toGrayScale(validateDimensions([image1, image2, options])));
-    const ssimMap = weberSsim(pixels1, pixels2, finalOptions);
-    return {
-      ssim_map: ssimMap,
-      mssim: ssimMap.mssim,
-      performance: new Date().getTime() - start
-    }
-  } else {
-    const ssimMap = comparison(
-      toResize(toGrayScale(validateDimensions([image1, image2, options])))
-    );
-    const mssim = mean2d(ssimMap);
-    return {
-      mssim,
-      ssim_map: ssimMap,
-      performance: new Date().getTime() - start
-    };
-  }
+  const ssimMap = comparison(
+    toResize(toGrayScale(validateDimensions([image1, image2, options])))
+  );
+  const mssim = (ssimMap as MSSIMMatrix).mssim !== undefined ? (ssimMap as MSSIMMatrix).mssim  : mean2d(ssimMap);
+  return {
+    mssim,
+    ssim_map: ssimMap,
+    performance: new Date().getTime() - start
+  };
 }
 
 export default ssim;
