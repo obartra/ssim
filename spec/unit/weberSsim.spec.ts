@@ -1,11 +1,30 @@
 import { Options } from "../../src/types";
-import { average, mean2d, variance } from "../../src/math";
+import { average, covariance, mean2d, variance } from "../../src/math";
 import { defaults } from "../../src/defaults";
 import { ssim } from "../../src/index";
 import { roundTo } from "../helpers/round";
 import { samples, sampleCsv } from "../helpers/matrices";
-import { windowSums, windowVariance } from "../../src/weberSsim";
+import { windowCovariance, windowSums, windowVariance } from "../../src/weberSsim";
 import { sub } from "../../src/matlab";
+
+
+const testDataImg = {
+  width: 4, height: 4, data: [
+    0x10, 0x20, 0x30, 0x40,
+    0x50, 0x60, 0x70, 0x80,
+    0x90, 0xa0, 0xb0, 0xc0,
+    0xd0, 0xe0, 0xf0, 0xff
+  ]
+};
+const testDataImg2 = {
+  width: 4, height: 4, data: [
+    0x0c, 0x1c, 0x2c, 0x3c,
+    0x4c, 0x5c, 0x6c, 0x7c,
+    0x8c, 0x9c, 0xac, 0xbc,
+    0xcc, 0xdc, 0xec, 0xfc
+  ]
+};
+
 
 describe("weberSsim", () => {
   let options: Options;
@@ -42,30 +61,54 @@ describe("weberSsim", () => {
     expect(roundTo(welfordMean, 5)).toBe(roundTo(meanAcross, 5));
   });
 
-  test("Check means against matlab average with respect to integers", () => {
-    const A = sampleCsv.lena;
-    const windowSize = 16;
+
+  test("matlab averages, variances, covariances should be the same as weber's", () => {
+    const A = testDataImg;
+    const B = testDataImg2;
+    const windowSize = 2;
     const windowWidth = A.width - windowSize + 1;
     const windowHeight = A.height - windowSize + 1;
-    const bezkrovnyAverages = [];
-    const start = new Date().getTime();
+    const matlabXAverages = [];
+    const matlabYAverages = [];
+    const matlabXVariances = [];
+    const matlabYVariances = [];
+    const matlabCovariances = [];
     for (let y = 0; y < windowHeight; ++y) {
       for (let x = 0; x < windowWidth; ++x) {
         const values1 = sub(A, x, windowSize, y, windowSize);
-        bezkrovnyAverages.push(average(values1.data));
+        const values2 = sub(B, x, windowSize, y, windowSize);
+        const avgX = average(values1.data);
+        const avgY = average(values2.data);
+        const varX = variance(values1.data, avgX);
+        const varY = variance(values2.data, avgY);
+        const covX = covariance(values1.data, values2.data,avgX, avgY);
+        matlabXAverages.push(avgX);
+        matlabYAverages.push(avgY);
+        matlabXVariances.push(varX);
+        matlabYVariances.push(varY);
+        matlabCovariances.push(covX);
       }
     }
-    const finishedSlowAvgs = new Date().getTime();
-    const windowMeans = windowSums(A, 16).data.map((v: number) => v / (windowSize * windowSize));
-    const finishedFastAvgs = new Date().getTime();
-    expect(windowMeans.length).toBe(bezkrovnyAverages.length);
-    for (let i = 0; i < windowMeans.length; ++i) {
-      expect(Math.floor(windowMeans[i])).toBe(Math.floor(bezkrovnyAverages[i]));
+    const sumsX = windowSums(A, windowSize);
+    const meansX = Array.from(sumsX.data,(v: number) => v / (windowSize * windowSize));
+    const variancesX = windowVariance(A,sumsX,windowSize);
+    const sumsY = windowSums(B, windowSize);
+    const meansY = Array.from(sumsY.data,(v: number) => v / (windowSize * windowSize));
+    const variancesY = windowVariance(B,sumsY,windowSize);
+    const covariances = windowCovariance(A,B,sumsX,sumsY,windowSize);
+    expect(meansX.length).toBe(matlabXAverages.length);
+    expect(meansX.length).toBe(matlabYAverages.length);
+    expect(meansX.length).toBe(matlabXVariances.length);
+    expect(meansX.length).toBe(matlabYVariances.length);
+    expect(meansX.length).toBe(matlabCovariances.length);
+    for (let i = 0; i < meansX.length; ++i) {
+      expect(meansX[i]).toBe(matlabXAverages[i]);
+      expect(meansY[i]).toBe(matlabYAverages[i]);
+      expect(variancesX.data[i]/1024).toBe(matlabXVariances[i]);
+      expect(variancesY.data[i]/1024).toBe(matlabYVariances[i]);
+      expect(covariances.data[i]/1024).toBe(matlabCovariances[i]);
     }
-
-    expect(finishedFastAvgs - finishedSlowAvgs).toBeLessThan(finishedSlowAvgs - start);
   });
-
 
   test("should return NaN with Weber's implementation when k1 / k2 are 0", () => {
     const A = samples["24x18"].gray;
