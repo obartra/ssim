@@ -11,7 +11,7 @@ import { bezkrovnySsim } from "./bezkrovnySsim";
 import { downsample } from "./downsample";
 import { defaults } from "./defaults";
 import { Options, Images, Matrices, Matrix, MSSIMMatrix } from "./types";
-import { weberSsim, weberSsimForward } from "./weberSsim";
+import { weberSsim } from "./weberSsim";
 
 export { Options, Matrix };
 
@@ -20,7 +20,6 @@ const ssimTargets = {
   original: originalSsim,
   bezkrovny: bezkrovnySsim,
   weber: weberSsim,
-  weberForward: weberSsimForward,
 };
 
 function validateOptions(options: Options) {

@@ -1,7 +1,7 @@
 export type Options = {
   k1: number;
   k2: number;
-  ssim: "fast" | "original" | "bezkrovny" | "weber" | "weberForward";
+  ssim: "fast" | "original" | "bezkrovny" | "weber";
   windowSize: number;
   bitDepth: number;
   downsample: "original" | "fast" | false;
