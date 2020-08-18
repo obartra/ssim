@@ -36,7 +36,6 @@ function edgeHandler(w: number, width: number, h: number, height: number, sumArr
 }
 
 export function partialSumMatrix1(pixels: ImageMatrix, f: (v: number, x: number, y: number) => number) {
-  // console.time("partialSumMatrix1");
   const { width, height, data } = pixels;
   const matrixWidth = width + 1;
   const matrixHeight = height + 1;
@@ -51,13 +50,11 @@ export function partialSumMatrix1(pixels: ImageMatrix, f: (v: number, x: number,
         + bottomEdge - bottomRightEdge;
     }
   }
-  // console.timeEnd("partialSumMatrix1");
   return { data: sumArray, height: matrixHeight, width: matrixWidth };
 }
 
 
 export function partialSumMatrix2(pixels1: ImageMatrix, pixels2: ImageMatrix, f: (a: number, b: number, x: number, y: number) => number) {
-  // console.time("partialSumMatrix2");
   const { width, height, data: data1 } = pixels1;
   const { data: data2 } = pixels2;
   const matrixWidth = width + 1;
@@ -73,12 +70,10 @@ export function partialSumMatrix2(pixels1: ImageMatrix, pixels2: ImageMatrix, f:
         + bottomEdge - bottomRightEdge;
     }
   }
-  // console.timeEnd("partialSumMatrix2");
   return { data: sumArray, height: matrixHeight, width: matrixWidth };
 }
 
 export function partialSumMatrix1Forward(pixels: ImageMatrix, f: (v: number, x: number, y: number) => number) {
-  // console.time("partialSumMatrix1Forward");
   const { width, height, data } = pixels;
   const matrixWidth = width + 1;
   const matrixHeight = height + 1;
@@ -97,7 +92,6 @@ export function partialSumMatrix1Forward(pixels: ImageMatrix, f: (v: number, x: 
         + bottomLeftEdge - topLeftEdge;
     }
   }
-  // console.timeEnd("partialSumMatrix1Forward");
 
   return { data: sumArray, height: matrixHeight, width: matrixWidth };
 }
@@ -126,7 +120,6 @@ export function partialSumMatrix2Forward(pixels1: ImageMatrix, pixels2: ImageMat
 }
 
 export function windowMatrixForward(sumMatrix: any, windowSize: number, divisor: number) {
-  // console.time("windowMatrixForward");
   const { width: matrixWidth, height: matrixHeight, data: sumArray } = sumMatrix;
   const imageWidth = matrixWidth - 1;
   const imageHeight = matrixHeight - 1;
@@ -144,13 +137,11 @@ export function windowMatrixForward(sumMatrix: any, windowSize: number, divisor:
       }
     }
   }
-  // console.timeEnd("windowMatrixForward");
   return { height: windowHeight, width: windowWidth, data: windows };
 }
 
 
 export function windowMatrix(sumMatrix: any, windowSize: number, divisor: number) {
-  // console.time("windowMatrix");
   const { width: matrixWidth, height: matrixHeight, data: sumArray } = sumMatrix;
   const imageWidth = matrixWidth - 1;
   const imageHeight = matrixHeight - 1;
@@ -168,7 +159,6 @@ export function windowMatrix(sumMatrix: any, windowSize: number, divisor: number
       }
     }
   }
-  // console.timeEnd("windowMatrix");
   return { height: windowHeight, width: windowWidth, data: windows };
 }
 
@@ -186,7 +176,7 @@ export function windowVariance(pixels: ImageMatrix, sums: any, windowSize: numbe
     const sumSquares = varX.data[i] / windowSquared;
 
     const squareMeans = mean * mean;
-    varX.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (sumSquares - squareMeans);
+    varX.data[i] = 1024 * (sumSquares - squareMeans);
   }
   return varX;
 }
@@ -196,7 +186,7 @@ export function windowCovariance(pixels1: ImageMatrix, pixels2: ImageMatrix, sum
   const windowSquared = windowSize * windowSize;
   const covXY = windowMatrix(partialSumMatrix2(pixels1, pixels2, covarianceCalculation), windowSize, 1);
   for (let i = 0; i < sums1.data.length; ++i) {
-    covXY.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (covXY.data[i] / windowSquared - (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared));
+    covXY.data[i] = 1024 * (covXY.data[i] / windowSquared - (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared));
   }
   return covXY;
 }
@@ -224,7 +214,6 @@ export function weberSsim(
   pixels2: ImageMatrix,
   options: Options
 ): MSSIMMatrix {
-  // console.time("weberSsim");
   const { bitDepth, k1, k2, windowSize } = options;
   const L = 2 ** bitDepth - 1;
   const c1 = (k1 * L) * (k1 * L);
@@ -252,7 +241,6 @@ export function weberSsim(
     const nb = 2 * cov + c2;
     const da = meanx * meanx + meany * meany + c1;
     const db = varx + vary + c2;
-    // rs.Push(ssim);
     const ssim = na * nb / da / db;
     ssims[i] = ssim;
     if (i == 0) {
@@ -262,7 +250,6 @@ export function weberSsim(
     }
   }
 
-  // console.timeEnd("weberSsim");
   return { data: ssims, width: sums1.width, height: sums1.height, mssim };
 }
 
@@ -279,7 +266,7 @@ export function windowVarianceForward(pixels: ImageMatrix, sums: any, windowSize
     const sumSquares = varX.data[i] / windowSquared;
 
     const squareMeans = mean * mean;
-    varX.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (sumSquares - squareMeans);
+    varX.data[i] = 1024 * (sumSquares - squareMeans);
   }
   return varX;
 }
@@ -289,7 +276,7 @@ export function windowCovarianceForward(pixels1: ImageMatrix, pixels2: ImageMatr
   const windowSquared = windowSize * windowSize;
   const covXY = windowMatrixForward(partialSumMatrix2Forward(pixels1, pixels2, covarianceCalculation), windowSize, 1);
   for (let i = 0; i < sums1.data.length; ++i) {
-    covXY.data[i] = /*windowSquared/(windowSquared-1)**/1024 * (covXY.data[i] / windowSquared - (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared));
+    covXY.data[i] = 1024 * (covXY.data[i] / windowSquared - (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared));
   }
   return covXY;
 }
@@ -300,7 +287,6 @@ export function weberSsimForward(
   pixels2: ImageMatrix,
   options: Options
 ): MSSIMMatrix {
-  // console.time("weberSsimForward");
   const { bitDepth, k1, k2, windowSize } = options;
   const L = 2 ** bitDepth - 1;
   const c1 = (k1 * L) * (k1 * L);
@@ -337,7 +323,6 @@ export function weberSsimForward(
       mssim = mssim + (ssim - mssim) / (i + 1);
     }
   }
-  // console.timeEnd("weberSsimForward");
 
   return { data: ssims, width: sums1.width, height: sums1.height, mssim };
 }
