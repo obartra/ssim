@@ -58,3 +58,5 @@ The code is fully documented but feel free to create an issue [here](https://git
 ## 💡 Credits
 
 This project is a direct port of algorithms published by [Wang, et al. 2004](/assets/ssim.pdf) on "Image Quality Assessment: From Error Visibility to Structural Similarity". The original Matlab scripts are available [here](https://ece.uwaterloo.ca/~z70wang/research/iwssim/) with their datasets. To view the steps taken to validate `ssim.js` results, check the [wiki](https://github.com/obartra/ssim/wiki/Results-Validation).
+
+The current (default) implementation uses the Weber algorithm, originally developed by Dan Weber, 2020 at [notatypical.agency](https://notatypical.agency/).
