@@ -1,6 +1,5 @@
 /**
  * Implements Dan Weber's ssim-specific logic.
- * Copyright (c) 2020 Dan Weber <dan@notatypical.agency>
  *
  * @namespace weberSsim
  */
