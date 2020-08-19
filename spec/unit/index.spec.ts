@@ -6,6 +6,7 @@ import { join, resolve } from "path";
 import { roundTo } from "../helpers/round";
 import { readpixels } from "../helpers/readpixels";
 import { Options } from "../../src/types";
+import { weberSsim } from "../../src/weberSsim";
 
 const promiseSamples = Object.entries({
   "3x3": join(__dirname, "../samples/3x3.jpg"),
@@ -78,8 +79,10 @@ describe("ssim", () => {
   });
 
   test("should produce the right SSIM for bmp images as well (avion)", () => {
-    const { mssim } = lib.ssim(samples.avion, samples.avion_j2000_r1);
+    let { mssim } = lib.ssim(samples.avion, samples.avion_j2000_r1, {ssim: "fast"});
     expect(roundTo(mssim, 5)).toEqual(0.98078);
+    mssim = lib.ssim(samples.avion, samples.avion_j2000_r1).mssim;
+    expect(roundTo(mssim, 4)).toEqual(roundTo(0.98078,4));
   });
 
   test('downsizing should produce comparable results between "fast" and "original"', () => {
@@ -115,6 +118,7 @@ describe("ssim", () => {
 
     expect(roundTo(fast, 5)).toEqual(roundTo(original, 5));
   });
+
 
   test("should fail if an invalid ssim value is specified", () => {
     expect(() => {
