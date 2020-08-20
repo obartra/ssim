@@ -1,5 +1,5 @@
-import { Matrix } from "../types";
-import { numbers } from "./internal/numbers";
+import { Matrix } from '../types'
+import { numbers } from './internal/numbers'
 
 /**
  * Create a matrix of all ones
@@ -15,5 +15,5 @@ import { numbers } from "./internal/numbers";
  * @since 0.0.2
  */
 export function ones(height: number, width: number = height): Matrix {
-  return numbers(height, width, 1);
+  return numbers(height, width, 1)
 }

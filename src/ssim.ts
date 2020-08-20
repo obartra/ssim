@@ -12,10 +12,10 @@ import {
   multiply2d,
   square2d,
   subtract2d,
-  sum2d
-} from "./math";
-import { conv2, normpdf, transpose } from "./matlab";
-import { Options, Matrix } from "./types";
+  sum2d,
+} from './math'
+import { conv2, normpdf, transpose } from './matlab'
+import { Options, Matrix } from './types'
 
 /**
  * Generates a SSIM map based on two input image matrices. For images greater than 512 pixels, it
@@ -41,31 +41,31 @@ export function ssim(
   pixels2: Matrix,
   options: Options
 ): Matrix {
-  let w = normpdf(getRange(options.windowSize), 0, 1.5);
-  const L = 2 ** options.bitDepth - 1;
-  const c1 = (options.k1 * L) ** 2;
-  const c2 = (options.k2 * L) ** 2;
+  let w = normpdf(getRange(options.windowSize), 0, 1.5)
+  const L = 2 ** options.bitDepth - 1
+  const c1 = (options.k1 * L) ** 2
+  const c2 = (options.k2 * L) ** 2
 
-  w = divide2d(w, sum2d(w));
-  const wt = transpose(w);
-  const μ1 = conv2(pixels1, w, wt, "valid");
-  const μ2 = conv2(pixels2, w, wt, "valid");
-  const μ1Sq = square2d(μ1);
-  const μ2Sq = square2d(μ2);
-  const μ12 = multiply2d(μ1, μ2);
-  const pixels1Sq = square2d(pixels1);
-  const pixels2Sq = square2d(pixels2);
-  const σ1Sq = subtract2d(conv2(pixels1Sq, w, wt, "valid"), μ1Sq);
-  const σ2Sq = subtract2d(conv2(pixels2Sq, w, wt, "valid"), μ2Sq);
+  w = divide2d(w, sum2d(w))
+  const wt = transpose(w)
+  const μ1 = conv2(pixels1, w, wt, 'valid')
+  const μ2 = conv2(pixels2, w, wt, 'valid')
+  const μ1Sq = square2d(μ1)
+  const μ2Sq = square2d(μ2)
+  const μ12 = multiply2d(μ1, μ2)
+  const pixels1Sq = square2d(pixels1)
+  const pixels2Sq = square2d(pixels2)
+  const σ1Sq = subtract2d(conv2(pixels1Sq, w, wt, 'valid'), μ1Sq)
+  const σ2Sq = subtract2d(conv2(pixels2Sq, w, wt, 'valid'), μ2Sq)
   const σ12 = subtract2d(
-    conv2(multiply2d(pixels1, pixels2), w, wt, "valid"),
+    conv2(multiply2d(pixels1, pixels2), w, wt, 'valid'),
     μ12
-  );
+  )
 
   if (c1 > 0 && c2 > 0) {
-    return genSSIM(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq, c1, c2);
+    return genSSIM(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq, c1, c2)
   }
-  return genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq);
+  return genUQI(μ12, σ12, μ1Sq, μ2Sq, σ1Sq, σ2Sq)
 }
 
 /**
@@ -79,18 +79,18 @@ export function ssim(
  * @memberOf ssim
  */
 function getRange(size: number): Matrix {
-  const offset = Math.floor(size / 2);
-  const data = new Array(offset * 2 + 1);
+  const offset = Math.floor(size / 2)
+  const data = new Array(offset * 2 + 1)
 
   for (let x = -offset; x <= offset; x++) {
-    data[x + offset] = Math.abs(x);
+    data[x + offset] = Math.abs(x)
   }
 
   return {
     data,
     width: data.length,
-    height: 1
-  };
+    height: 1,
+  }
 }
 
 /**
@@ -124,12 +124,12 @@ function genSSIM(
   c1: number,
   c2: number
 ): Matrix {
-  const num1 = add2d(multiply2d(μ12, 2), c1);
-  const num2 = add2d(multiply2d(σ12, 2), c2);
-  const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1);
-  const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2);
+  const num1 = add2d(multiply2d(μ12, 2), c1)
+  const num2 = add2d(multiply2d(σ12, 2), c2)
+  const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1)
+  const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2)
 
-  return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2));
+  return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2))
 }
 
 /**
@@ -159,13 +159,13 @@ function genUQI(
   σ1Sq: Matrix,
   σ2Sq: Matrix
 ): Matrix {
-  const numerator1 = multiply2d(μ12, 2);
-  const numerator2 = multiply2d(σ12, 2);
-  const denominator1 = add2d(μ1Sq, μ2Sq);
-  const denominator2 = add2d(σ1Sq, σ2Sq);
+  const numerator1 = multiply2d(μ12, 2)
+  const numerator2 = multiply2d(σ12, 2)
+  const denominator1 = add2d(μ1Sq, μ2Sq)
+  const denominator2 = add2d(σ1Sq, σ2Sq)
 
   return divide2d(
     multiply2d(numerator1, numerator2),
     multiply2d(denominator1, denominator2)
-  );
+  )
 }

@@ -1,15 +1,15 @@
-import { resolve, sep } from "path";
-import { readdirSync } from "fs";
-import { readpixels } from "./readpixels";
+import { resolve, sep } from 'path'
+import { readdirSync } from 'fs'
+import { readpixels } from './readpixels'
 
 export type LoadedData = {
-  file: ImageData;
-  mssim: number;
-  reference: ImageData;
-};
+  file: ImageData
+  mssim: number
+  reference: ImageData
+}
 
-function filterFiles(file = "", extension: string) {
-  return file.toLowerCase().endsWith(extension);
+function filterFiles(file = '', extension: string) {
+  return file.toLowerCase().endsWith(extension)
 }
 
 async function fileToObjectPath(
@@ -18,26 +18,26 @@ async function fileToObjectPath(
   fileName: string,
   extension: string
 ): Promise<{ [key: string]: LoadedData }> {
-  let referenceFile = (fileName.split(sep).pop() || "").split("_")[0] || "";
+  let referenceFile = (fileName.split(sep).pop() || '').split('_')[0] || ''
 
   if (!referenceFile.endsWith(`.${extension}`)) {
-    referenceFile += `.${extension}`;
+    referenceFile += `.${extension}`
   }
 
   if (scores[fileName] === 0) {
-    return {};
+    return {}
   }
 
-  const reference = resolve(path, referenceFile);
-  const file = resolve(path, fileName);
+  const reference = resolve(path, referenceFile)
+  const file = resolve(path, fileName)
 
   return {
     [fileName]: {
       reference: await readpixels(reference),
       file: await readpixels(file),
-      mssim: scores[fileName] || 0
-    }
-  };
+      mssim: scores[fileName] || 0,
+    },
+  }
 }
 
 export async function getJSONScores(
@@ -47,12 +47,12 @@ export async function getJSONScores(
 ) {
   const objects = await Promise.all(
     readdirSync(path)
-      .filter(file => filterFiles(file, extension))
-      .map(fileName => fileToObjectPath(scores, path, fileName, extension))
-  );
+      .filter((file) => filterFiles(file, extension))
+      .map((fileName) => fileToObjectPath(scores, path, fileName, extension))
+  )
 
   return objects.reduce(
     (acc, curr) => ({ ...acc, ...curr }),
     {} as { [key: string]: LoadedData }
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types'
 
 /**
  * Crops the matrix and returns a window at position `[x,y]` of size `[xlen, ylen]` from the input
@@ -22,17 +22,17 @@ export function sub(
   y: number,
   width: number
 ): Matrix {
-  const data = new Array(width * height);
+  const data = new Array(width * height)
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
-      data[i * width + j] = ref[(y + i) * refWidth + x + j];
+      data[i * width + j] = ref[(y + i) * refWidth + x + j]
     }
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }

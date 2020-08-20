@@ -15,11 +15,11 @@ const promiseSamples = Object.entries({
   avion_j2000_r1: join(
     __dirname,
     "../samples/IVC_SubQualityDB/color/avion_j2000_r1.bmp"
-  )
+  ),
 }).map(
   async ([key, skey]): Promise<[string, ImageData]> => [
     key,
-    await readpixels(skey)
+    await readpixels(skey),
   ]
 );
 
@@ -30,7 +30,7 @@ describe("ssim", () => {
     samples = (await Promise.all(promiseSamples)).reduce(
       (acc, [key, image]: [string, ImageData]) => ({
         ...acc,
-        [key]: image
+        [key]: image,
       }),
       {} as { [key: string]: ImageData }
     );
@@ -69,7 +69,7 @@ describe("ssim", () => {
 
   test("should produce a SSIM of 1 when compared with itself (3x3)", () => {
     const { mssim } = lib.ssim(samples["3x3"], samples["3x3"], {
-      windowSize: 3
+      windowSize: 3,
     });
     expect(mssim).toBe(1);
   });
@@ -78,57 +78,67 @@ describe("ssim", () => {
     expect(lib.ssim).toEqual(expect.any(Function));
   });
 
-  test("should produce the right SSIM for bmp images as well (avion)", () => {
-    let { mssim } = lib.ssim(samples.avion, samples.avion_j2000_r1, {ssim: "fast"});
-    expect(roundTo(mssim, 5)).toEqual(0.98078);
-    mssim = lib.ssim(samples.avion, samples.avion_j2000_r1).mssim;
-    expect(roundTo(mssim, 4)).toEqual(roundTo(0.98078,4));
+  test('should produce a comparable SSIM for bmp images as well (avion) between "original" and "weber"', () => {
+    const { mssim: mssimFast } = lib.ssim(
+      samples.avion,
+      samples.avion_j2000_r1,
+      {
+        ssim: "fast",
+      }
+    );
+    const { mssim: mssimWeber } = lib.ssim(
+      samples.avion,
+      samples.avion_j2000_r1,
+      { ssim: "weber" }
+    );
+
+    expect(Math.abs(mssimFast - mssimWeber) < 0.05).toBe(true);
   });
 
   test('downsizing should produce comparable results between "fast" and "original"', () => {
-    const { mssim: fastMssim } = lib.ssim(
+    const { mssim: mssimFast } = lib.ssim(
       samples.avion,
       samples.avion_j2000_r1,
       {
-        downsample: "fast"
+        downsample: "fast",
       }
     );
-    const { mssim: origMssim } = lib.ssim(
+    const { mssim: mssimOriginal } = lib.ssim(
       samples.avion,
       samples.avion_j2000_r1,
       {
-        downsample: "original"
+        downsample: "original",
       }
     );
 
-    expect(Math.abs(fastMssim - origMssim) < 0.05).toBe(true);
+    expect(Math.abs(mssimFast - mssimOriginal) < 0.05).toBe(true);
   });
 
   test("ssim should produce the same output than originalSsim", () => {
     const { mssim: fast } = lib.ssim(samples.avion, samples.avion_j2000_r1, {
-      ssim: "fast"
+      ssim: "fast",
     });
     const { mssim: original } = lib.ssim(
       samples.avion,
       samples.avion_j2000_r1,
       {
-        ssim: "original"
+        ssim: "original",
       }
     );
 
     expect(roundTo(fast, 5)).toEqual(roundTo(original, 5));
   });
 
-
   test("should fail if an invalid ssim value is specified", () => {
     expect(() => {
       lib.ssim(samples.avion, samples.avion_j2000_r1, ({
-        ssim: "invalid"
+        ssim: "invalid",
       } as unknown) as Options);
     }).toThrow();
   });
 
   type LoadedData = { file: ImageData; mssim: number; reference: ImageData };
+
   function compare(
     { file, mssim, reference }: LoadedData,
     expect: jest.Expect
@@ -155,7 +165,7 @@ describe("ssim", () => {
   test("should downsample images and produce somewhat similar results", () => {
     const ssimResults = lib.ssim(samples.avion, samples.avion_j2000_r1);
     const fullSsimResults = lib.ssim(samples.avion, samples.avion_j2000_r1, {
-      downsample: false
+      downsample: false,
     });
 
     const difference = Math.abs(ssimResults.mssim - fullSsimResults.mssim);

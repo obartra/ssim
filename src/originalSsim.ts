@@ -6,10 +6,10 @@ import {
   multiply2d,
   square2d,
   subtract2d,
-  sum2d
-} from "./math";
-import { filter2, fspecial } from "./matlab";
-import { Options, Matrix } from "./types";
+  sum2d,
+} from './math'
+import { filter2, fspecial } from './matlab'
+import { Options, Matrix } from './types'
 
 /**
  * Generates a SSIM map based on two input image matrices. For images greater than 512 pixels, it
@@ -40,43 +40,40 @@ export function originalSsim(
   pixels2: Matrix,
   options: Options
 ): Matrix {
-  let w = fspecial("gaussian", options.windowSize, 1.5);
-  const L = 2 ** options.bitDepth - 1;
-  const c1 = (options.k1 * L) ** 2;
-  const c2 = (options.k2 * L) ** 2;
+  let w = fspecial('gaussian', options.windowSize, 1.5)
+  const L = 2 ** options.bitDepth - 1
+  const c1 = (options.k1 * L) ** 2
+  const c2 = (options.k2 * L) ** 2
 
-  w = divide2d(w, sum2d(w));
+  w = divide2d(w, sum2d(w))
 
-  const μ1 = filter2(w, pixels1, "valid");
-  const μ2 = filter2(w, pixels2, "valid");
-  const μ1Sq = square2d(μ1);
-  const μ2Sq = square2d(μ2);
-  const μ12 = multiply2d(μ1, μ2);
-  const pixels1Sq = square2d(pixels1);
-  const pixels2Sq = square2d(pixels2);
-  const σ1Sq = subtract2d(filter2(w, pixels1Sq, "valid"), μ1Sq);
-  const σ2Sq = subtract2d(filter2(w, pixels2Sq, "valid"), μ2Sq);
-  const σ12 = subtract2d(
-    filter2(w, multiply2d(pixels1, pixels2), "valid"),
-    μ12
-  );
+  const μ1 = filter2(w, pixels1, 'valid')
+  const μ2 = filter2(w, pixels2, 'valid')
+  const μ1Sq = square2d(μ1)
+  const μ2Sq = square2d(μ2)
+  const μ12 = multiply2d(μ1, μ2)
+  const pixels1Sq = square2d(pixels1)
+  const pixels2Sq = square2d(pixels2)
+  const σ1Sq = subtract2d(filter2(w, pixels1Sq, 'valid'), μ1Sq)
+  const σ2Sq = subtract2d(filter2(w, pixels2Sq, 'valid'), μ2Sq)
+  const σ12 = subtract2d(filter2(w, multiply2d(pixels1, pixels2), 'valid'), μ12)
 
   if (c1 > 0 && c2 > 0) {
-    const num1 = add2d(multiply2d(μ12, 2), c1);
-    const num2 = add2d(multiply2d(σ12, 2), c2);
-    const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1);
-    const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2);
+    const num1 = add2d(multiply2d(μ12, 2), c1)
+    const num2 = add2d(multiply2d(σ12, 2), c2)
+    const denom1 = add2d(add2d(μ1Sq, μ2Sq), c1)
+    const denom2 = add2d(add2d(σ1Sq, σ2Sq), c2)
 
-    return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2));
+    return divide2d(multiply2d(num1, num2), multiply2d(denom1, denom2))
   }
 
-  const numerator1 = multiply2d(μ12, 2);
-  const numerator2 = multiply2d(σ12, 2);
-  const denominator1 = add2d(μ1Sq, μ2Sq);
-  const denominator2 = add2d(σ1Sq, σ2Sq);
+  const numerator1 = multiply2d(μ12, 2)
+  const numerator2 = multiply2d(σ12, 2)
+  const denominator1 = add2d(μ1Sq, μ2Sq)
+  const denominator2 = add2d(σ1Sq, σ2Sq)
 
   return divide2d(
     multiply2d(numerator1, numerator2),
     multiply2d(denominator1, denominator2)
-  );
+  )
 }

@@ -3,9 +3,9 @@
  *
  * @namespace downsample
  */
-import { divide2d, sum2d } from "./math";
-import { imfilter, ones, skip2d } from "./matlab";
-import { Matrix, Options } from "./types";
+import { divide2d, sum2d } from './math'
+import { imfilter, ones, skip2d } from './matlab'
+import { Matrix, Options } from './types'
 
 /**
  * For a given 2D filter `filter`, downsize image `pixels` by a factor of `f`.
@@ -19,9 +19,9 @@ import { Matrix, Options } from "./types";
  * @memberOf downsample
  */
 function imageDownsample(pixels: Matrix, filter: Matrix, f: number): Matrix {
-  const imdown = imfilter(pixels, filter, "symmetric", "same");
+  const imdown = imfilter(pixels, filter, 'symmetric', 'same')
 
-  return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width]);
+  return skip2d(imdown, [0, f, imdown.height], [0, f, imdown.width])
 }
 
 /**
@@ -43,19 +43,19 @@ function originalDownsample(
   pixels2: Matrix,
   maxSize = 256
 ): [Matrix, Matrix] {
-  const factor = Math.min(pixels1.width, pixels2.height) / maxSize;
-  const f = Math.round(factor);
+  const factor = Math.min(pixels1.width, pixels2.height) / maxSize
+  const f = Math.round(factor)
 
   if (f > 1) {
-    let lpf = ones(f);
+    let lpf = ones(f)
 
-    lpf = divide2d(lpf, sum2d(lpf));
+    lpf = divide2d(lpf, sum2d(lpf))
 
-    pixels1 = imageDownsample(pixels1, lpf, f);
-    pixels2 = imageDownsample(pixels2, lpf, f);
+    pixels1 = imageDownsample(pixels1, lpf, f)
+    pixels2 = imageDownsample(pixels2, lpf, f)
   }
 
-  return [pixels1, pixels2];
+  return [pixels1, pixels2]
 }
 
 /**
@@ -72,10 +72,10 @@ export function downsample(
   pixels: [Matrix, Matrix],
   options: Options
 ): [Matrix, Matrix] {
-  if (options.downsample === "original") {
-    return originalDownsample(pixels[0], pixels[1], options.maxSize);
+  if (options.downsample === 'original') {
+    return originalDownsample(pixels[0], pixels[1], options.maxSize)
   }
   // else if options.downsample === 'fast' -> the image is downsampled when read (readpixels.js)
   // else do not downsample
-  return pixels;
+  return pixels
 }

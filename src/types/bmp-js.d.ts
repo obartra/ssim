@@ -1,1 +1,1 @@
-declare module "bmp-js";
+declare module 'bmp-js'
