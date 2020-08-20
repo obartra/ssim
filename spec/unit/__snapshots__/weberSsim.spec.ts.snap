@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`weberSsim rolling ssim mssim should be the same as mean2d ssim 1`] = `0.99327`;
-
-exports[`weberSsim rolling ssim mssim should be the same as mean2d ssim 2`] = `0.99327`;
-
-exports[`weberSsim should return same results than Webers's implementation 1`] = `0.95763`;

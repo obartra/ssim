@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types'
 
 /**
  * Transposes a vector or a matrix
@@ -17,17 +17,17 @@ import { Matrix } from "../types";
  * @memberOf matlab
  */
 export function transpose({ data: ref, width, height }: Matrix): Matrix {
-  const data = new Array(width * height);
+  const data = new Array(width * height)
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
-      data[j * height + i] = ref[i * width + j];
+      data[j * height + i] = ref[i * width + j]
     }
   }
 
   return {
     data,
     height: width,
-    width: height
-  };
+    width: height,
+  }
 }

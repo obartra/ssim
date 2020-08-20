@@ -1,4 +1,4 @@
-import { Matrix } from "../../types";
+import { Matrix } from '../../types'
 
 /**
  * Create a matrix with each cell with the value of `num`
@@ -13,16 +13,16 @@ import { Matrix } from "../../types";
  * @since 0.0.2
  */
 export function numbers(height: number, width: number, num: number): Matrix {
-  const size = width * height;
-  const data = new Array(size);
+  const size = width * height
+  const data = new Array(size)
 
   for (let x = 0; x < size; x++) {
-    data[x] = num;
+    data[x] = num
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }

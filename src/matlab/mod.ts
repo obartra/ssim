@@ -19,5 +19,5 @@
  * @since 0.0.2
  */
 export function mod(x: number, y: number): number {
-  return x - y * Math.floor(x / y);
+  return x - y * Math.floor(x / y)
 }

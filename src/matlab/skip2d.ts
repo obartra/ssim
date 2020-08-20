@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types'
 
 /**
  * Generates a matrix based on input `mx` but excluding items based on their modulo and their
@@ -37,22 +37,22 @@ export function skip2d(
   [startRow, everyRow, endRow]: [number, number, number],
   [startCol, everyCol, endCol]: [number, number, number]
 ): Matrix {
-  const width = Math.ceil((endCol - startCol) / everyCol);
-  const height = Math.ceil((endRow - startRow) / everyRow);
-  const data = new Array(width * height);
+  const width = Math.ceil((endCol - startCol) / everyCol)
+  const height = Math.ceil((endRow - startRow) / everyRow)
+  const data = new Array(width * height)
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
-      const Ai = startRow + i * everyRow;
-      const Aj = startCol + j * everyCol;
+      const Ai = startRow + i * everyRow
+      const Aj = startCol + j * everyCol
 
-      data[i * width + j] = A.data[Ai * A.width + Aj];
+      data[i * width + j] = A.data[Ai * A.width + Aj]
     }
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }

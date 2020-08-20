@@ -6,7 +6,7 @@
   "browser": "dist/ssim.web",
   "version": "0.0.0-semantically-released",
   "scripts": {
-    "format-all": "git ls-files {src,spec}*.{js,json} | xargs yarn format",
+    "format-all": "git ls-files {src,spec}*.{ts,js,json} | xargs yarn format",
     "format": "prettier --write --single-quote --no-semi --trailing-comma es5",
     "commit": "git-cz",
     "test": "jest --testTimeout=500000",
@@ -60,7 +60,7 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.20.6",
     "image-type": "4.1.0",
-    "jest": "26.4.0",
+    "jest": "26.4.1",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "request": "2.88.2",

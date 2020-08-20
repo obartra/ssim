@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import Benchmark from "benchmark";
+import Benchmark from 'benchmark'
 
 export function measure(
   expect: jest.Expect,
@@ -8,67 +8,67 @@ export function measure(
   fast,
   slow
 ) {
-  const results = {};
+  const results = {}
   const suite = new Benchmark.Suite(testName, {
     defer,
     onError,
     async: defer,
     onComplete,
-    onCycle
-  });
+    onCycle,
+  })
 
   suite.add(fast.name, {
     defer,
-    fn: fast.fn
-  });
+    fn: fast.fn,
+  })
 
   suite.add(slow.name, {
     defer,
-    fn: slow.fn
-  });
+    fn: slow.fn,
+  })
 
   suite.run({
     defer,
-    async: defer
-  });
+    async: defer,
+  })
 
   function onComplete() {
-    const fastest = this.filter("fastest").map("name");
-    const slowest = this.filter("slowest").map("name");
+    const fastest = this.filter('fastest').map('name')
+    const slowest = this.filter('slowest').map('name')
 
-    Object.keys(results).forEach(name => {
-      const { rme, hz } = results[name];
-      let icon = "";
+    Object.keys(results).forEach((name) => {
+      const { rme, hz } = results[name]
+      let icon = ''
 
       if (fastest.includes(name)) {
-        icon = "🏍";
+        icon = '🏍'
       } else if (slowest.includes(name)) {
-        icon = "🐌";
+        icon = '🐌'
       }
-      console.log(`  - ${name}: ${hz} ops/sec ±${rme}% ${icon}`);
-    });
+      console.log(`  - ${name}: ${hz} ops/sec ±${rme}% ${icon}`)
+    })
 
-    let success;
+    let success
     if (fastest.includes(fast.name) && slowest.includes(slow.name)) {
-      success = true;
+      success = true
     } else if (fastest.includes(fast.name) && fastest.includes(slow.name)) {
-      success = true;
+      success = true
     } else {
-      success = false;
+      success = false
     }
-    expect(success).toBe(true);
+    expect(success).toBe(true)
   }
 
   function onCycle({ target }) {
     results[target.name] = {
       rme: Math.round(target.stats.rme),
       count: target.count,
-      hz: target.hz.toFixed(2)
-    };
+      hz: target.hz.toFixed(2),
+    }
   }
 
   function onError() {
-    const success = false;
-    expect(success).toBe(true);
+    const success = false
+    expect(success).toBe(true)
   }
 }

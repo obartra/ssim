@@ -1,5 +1,5 @@
-import { conv2 } from "./conv2";
-import { Matrix, Shape } from "../types";
+import { conv2 } from './conv2'
+import { Matrix, Shape } from '../types'
 
 /**
  * Rotates a matrix 180deg.
@@ -16,19 +16,19 @@ import { Matrix, Shape } from "../types";
  * @since 0.0.2
  */
 function rotate1802d({ data: ref, width, height }: Matrix): Matrix {
-  const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
-      data[i * width + j] = ref[(height - 1 - i) * width + width - 1 - j];
+      data[i * width + j] = ref[(height - 1 - i) * width + width - 1 - j]
     }
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -47,6 +47,6 @@ function rotate1802d({ data: ref, width, height }: Matrix): Matrix {
  * @memberOf matlab
  * @since 0.0.2
  */
-export function filter2(h: Matrix, X: Matrix, shape: Shape = "same"): Matrix {
-  return conv2(X, rotate1802d(h), shape);
+export function filter2(h: Matrix, X: Matrix, shape: Shape = 'same'): Matrix {
+  return conv2(X, rotate1802d(h), shape)
 }

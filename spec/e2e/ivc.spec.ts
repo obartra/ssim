@@ -15,14 +15,14 @@ describe("IVC", () => {
     const expected = await getJSONScores(scores, path, "bmp");
     const results = Object.entries(expected)
       .map(([key, { file, reference }]): [string, number] => {
-        const { mssim } = ssim(reference, file, {ssim: "fast"});
+        const { mssim } = ssim(reference, file, { ssim: "fast" });
 
         return [key, roundTo(mssim, 3)];
       })
       .reduce(
         (acc, [key, result]) => ({
           ...acc,
-          [key]: result
+          [key]: result,
         }),
         {} as MSSIMValues
       );
@@ -41,14 +41,12 @@ describe("IVC", () => {
       .reduce(
         (acc, [key, result]) => ({
           ...acc,
-          [key]: result
+          [key]: result,
         }),
         {} as MSSIMValues
       );
-    //
+
     const end = new Date().getTime();
-    // console.log(`Weber Total Time: ${end-start}`);
-    // console.log(`Weber Mean time: ${(end-start)/Object.keys(scores).length}`);
     const referenceScores = scores as MSSIMValues;
     const newV: any = {};
     let newMean = 0;
@@ -60,19 +58,18 @@ describe("IVC", () => {
       newV[score] = {
         mssim: weberNewVal,
         distance: distWeberNew,
-        ref: refVal
+        ref: refVal,
       };
-      const newMeanR = newMean + (distWeberNew - newMean) / Object.keys(newV).length;
+      const newMeanR =
+        newMean + (distWeberNew - newMean) / Object.keys(newV).length;
       newS = newS + (distWeberNew - newMean) * (distWeberNew - newMeanR);
       newMean = newMeanR;
     }
 
-
     const newVar = newS / (Object.keys(newV).length - 1);
-    // console.log(`mean: ${newMean} variance: ${newVar}`);
-    // These came from the the calculated variances from the above commented console log
-    expect(roundTo(newMean,4 )).toEqual(0.0202);
-    expect(roundTo(newVar, 6)).toEqual(0.000211);
+
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0202`);
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000211`);
     expect(results).toEqual(weberScores as MSSIMValues);
   }, 70000);
 
@@ -87,14 +84,11 @@ describe("IVC", () => {
       .reduce(
         (acc, [key, result]) => ({
           ...acc,
-          [key]: result
+          [key]: result,
         }),
         {} as MSSIMValues
       );
-    //
     const end = new Date().getTime();
-    // console.log(`Bezkrovny Total Time: ${end-start}`);
-    // console.log(`Bezkrovny Mean time: ${(end-start)/Object.keys(scores).length}`);
 
     const referenceScores = scores as MSSIMValues;
     const newV: any = {};
@@ -107,19 +101,15 @@ describe("IVC", () => {
       newV[score] = {
         mssim: newVal,
         distance: distNew,
-        ref: refVal
+        ref: refVal,
       };
       const meanR = newMean + (distNew - newMean) / Object.keys(newV).length;
       newS = newS + (distNew - newMean) * (distNew - meanR);
       newMean = meanR;
     }
     const newVar = newS / (Object.keys(newV).length - 1);
-    // console.log(`mean: ${newMean} variance: ${newVar}`);
-    // These came from the the calculated variances from the above commented console log
-    expect(roundTo(newMean, 4 )).toEqual(0.0155);
-    expect(roundTo(newVar, 6)).toEqual(0.000153);
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0155`);
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000153`);
     expect(results).toEqual(bezkrovnyScores as MSSIMValues);
   }, 70000);
-
-
 });

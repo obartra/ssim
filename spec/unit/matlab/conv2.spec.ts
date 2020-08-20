@@ -1,10 +1,10 @@
-import { transpose } from "../../../src/matlab/transpose";
-import { conv2 } from "../../../src/matlab/conv2";
-import { ones } from "../../../src/matlab/ones";
-import { roundTo, get } from "../../helpers/round";
+import { transpose } from '../../../src/matlab/transpose'
+import { conv2 } from '../../../src/matlab/conv2'
+import { ones } from '../../../src/matlab/ones'
+import { roundTo, get } from '../../helpers/round'
 
-describe("conv2", () => {
-  test("should generate the same matrix with a kernel of 1", () => {
+describe('conv2', () => {
+  test('should generate the same matrix with a kernel of 1', () => {
     const A = {
       data: [
         0.4366211,
@@ -15,22 +15,22 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const B = {
       data: [0, 0, 0, 0, 1, 0, 0, 0, 0],
       width: 3,
-      height: 3
-    };
-    const out = conv2(A, B, "same");
+      height: 3,
+    }
+    const out = conv2(A, B, 'same')
 
-    expect(out).toEqual(A);
-  });
+    expect(out).toEqual(A)
+  })
 
-  test("should offset and divide the matrix with a moved kernel of 0.5", () => {
+  test('should offset and divide the matrix with a moved kernel of 0.5', () => {
     const A = {
       data: [
         0.4366211,
@@ -41,16 +41,16 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const B = {
       data: [0, 0.5, 0, 0, 0, 0, 0, 0, 0],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const C = {
       data: [
         0.3185909,
@@ -61,15 +61,15 @@ describe("conv2", () => {
         0.33119005,
         0.0,
         0.0,
-        0.0
+        0.0,
       ],
       width: 3,
-      height: 3
-    };
-    const out = conv2(A, B, "same");
+      height: 3,
+    }
+    const out = conv2(A, B, 'same')
 
-    expect(out).toEqual(C);
-  });
+    expect(out).toEqual(C)
+  })
 
   test('should generate the convolution of "same" values like Matlab', () => {
     const A = {
@@ -82,11 +82,11 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const B = {
       data: [
         0.180854,
@@ -104,11 +104,11 @@ describe("conv2", () => {
         0.873018,
         0.264735,
         0.082795,
-        0.51667
+        0.51667,
       ],
       width: 4,
-      height: 4
-    };
+      height: 4,
+    }
     const C = {
       data: [
         1.9677205305226,
@@ -119,15 +119,15 @@ describe("conv2", () => {
         1.7007216437643,
         1.1623389165626001,
         0.9970991503065001,
-        0.9203489336432
+        0.9203489336432,
       ],
       width: 3,
-      height: 3
-    };
-    const out = conv2(A, B, "same");
+      height: 3,
+    }
+    const out = conv2(A, B, 'same')
 
-    expect(out).toEqual(C);
-  });
+    expect(out).toEqual(C)
+  })
 
   test('should generate "full" convolution by default', () => {
     const A = {
@@ -140,11 +140,11 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const B = {
       data: [
         0.180854,
@@ -162,11 +162,11 @@ describe("conv2", () => {
         0.873018,
         0.264735,
         0.082795,
-        0.51667
+        0.51667,
       ],
       width: 4,
-      height: 4
-    };
+      height: 4,
+    }
     const C = {
       data: [
         0.07896467241939999,
@@ -204,18 +204,18 @@ describe("conv2", () => {
         0.6569307463548001,
         0.20307249377349998,
         0.20733443086349998,
-        0.342231926267
+        0.342231926267,
       ],
       width: 6,
-      height: 6
-    };
+      height: 6,
+    }
 
-    const outSame = conv2(A, B, "full");
-    const out = conv2(A, B);
+    const outSame = conv2(A, B, 'full')
+    const out = conv2(A, B)
 
-    expect(out).toEqual(C);
-    expect(out).toEqual(outSame);
-  });
+    expect(out).toEqual(C)
+    expect(out).toEqual(outSame)
+  })
 
   test('should generate the convolution of "valid" values', () => {
     const A = {
@@ -228,11 +228,11 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const B = {
       data: [
         0.909911,
@@ -243,17 +243,17 @@ describe("conv2", () => {
         0.097273,
         0.075271,
         0.940705,
-        0.281154
+        0.281154,
       ],
       width: 3,
-      height: 3
-    };
-    const out = conv2(A, B, "valid");
+      height: 3,
+    }
+    const out = conv2(A, B, 'valid')
 
-    expect(roundTo(out.data[0], 4)).toEqual(2.6613);
-    expect(out.height).toEqual(1);
-    expect(out.width).toEqual(1);
-  });
+    expect(roundTo(out.data[0], 4)).toEqual(2.6613)
+    expect(out.height).toEqual(1)
+    expect(out.width).toEqual(1)
+  })
 
   test('should generate the decomposed convolution of "valid" values', () => {
     const A = {
@@ -266,27 +266,27 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const v = {
       data: [-0.3078, -0.3844, -0.3078],
       width: 1,
-      height: 3
-    };
+      height: 3,
+    }
     const h = {
       data: [-0.3078, -0.3844, -0.3078],
       width: 3,
-      height: 1
-    };
-    const { data } = conv2(A, v, h, "valid");
+      height: 1,
+    }
+    const { data } = conv2(A, v, h, 'valid')
 
-    expect(roundTo(data[0], 5)).toEqual(0.47232);
-  });
+    expect(roundTo(data[0], 5)).toEqual(0.47232)
+  })
 
-  test("decomposed convolutions should match the matching matrix if rank is one", () => {
+  test('decomposed convolutions should match the matching matrix if rank is one', () => {
     const A = {
       data: [
         0.4366211,
@@ -297,11 +297,11 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const B = {
       data: [
         0.094742,
@@ -312,11 +312,11 @@ describe("conv2", () => {
         0.118318,
         0.094742,
         0.118318,
-        0.094742
+        0.094742,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     // since:
     //   rank(B) === 1
     // then:
@@ -326,28 +326,28 @@ describe("conv2", () => {
     const v = {
       data: [-0.3078, -0.3844, -0.3078],
       width: 1,
-      height: 3
-    };
+      height: 3,
+    }
     const h = {
       data: [-0.3078, -0.3844, -0.3078],
       width: 3,
-      height: 1
-    };
+      height: 1,
+    }
 
-    const out = conv2(A, B, "valid");
-    const vhOut = conv2(A, v, h, "valid");
+    const out = conv2(A, B, 'valid')
+    const vhOut = conv2(A, v, h, 'valid')
 
-    expect(out.height).toEqual(vhOut.height);
-    expect(out.width).toEqual(vhOut.width);
+    expect(out.height).toEqual(vhOut.height)
+    expect(out.width).toEqual(vhOut.width)
 
     for (let i = 0; i < out.height; i++) {
       for (let j = 0; j < out.width; j++) {
-        expect(get(out, i, j)).toEqual(get(vhOut, i, j));
+        expect(get(out, i, j)).toEqual(get(vhOut, i, j))
       }
     }
-  });
+  })
 
-  test("should convolve 2 1-D kernels", () => {
+  test('should convolve 2 1-D kernels', () => {
     const A = {
       data: [
         0.4366211,
@@ -358,11 +358,11 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const K1 = {
       data: [
         0.0010284,
@@ -375,14 +375,14 @@ describe("conv2", () => {
         0.1093607,
         0.0360008,
         0.0075988,
-        0.0010284
+        0.0010284,
       ],
       width: 11,
-      height: 1
-    };
-    const K2 = transpose(K1);
+      height: 1,
+    }
+    const K2 = transpose(K1)
 
-    const out = conv2(A, K1, K2, "full");
+    const out = conv2(A, K1, K2, 'full')
     const expected = {
       data: [
         4.6176e-7,
@@ -553,26 +553,26 @@ describe("conv2", () => {
         8.5471e-5,
         2.6836e-5,
         5.4882e-6,
-        7.0051e-7
+        7.0051e-7,
       ],
       width: 13,
-      height: 13
-    };
+      height: 13,
+    }
 
-    expect(out.height).toEqual(expected.height);
-    expect(out.width).toEqual(expected.width);
+    expect(out.height).toEqual(expected.height)
+    expect(out.width).toEqual(expected.width)
 
-    let isMatch = true;
+    let isMatch = true
 
     for (let i = 0; i < out.height; i++) {
       for (let j = 0; j < out.width; j++) {
         if (get(out, i, j) !== get(expected, i, j)) {
-          isMatch = false;
+          isMatch = false
         }
       }
     }
-    expect(isMatch).toEqual(true);
-  });
+    expect(isMatch).toEqual(true)
+  })
 
   test('decomposed convolutions should default to "full"', () => {
     const A = {
@@ -585,27 +585,27 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
+      height: 3,
+    }
     const v = {
       data: [-0.3078, -0.3844, -0.3078],
       width: 1,
-      height: 3
-    };
+      height: 3,
+    }
     const h = {
       data: [-0.3078, -0.3844, -0.3078],
       width: 3,
-      height: 1
-    };
+      height: 1,
+    }
 
-    const { data: fullOut } = conv2(A, v, h, "full");
-    const { data: defaultOut } = conv2(A, v, h);
+    const { data: fullOut } = conv2(A, v, h, 'full')
+    const { data: defaultOut } = conv2(A, v, h)
 
-    expect(defaultOut).toEqual(fullOut);
-  });
+    expect(defaultOut).toEqual(fullOut)
+  })
 
   test('convolutions with box kernels should default to "full"', () => {
     const A = {
@@ -618,15 +618,15 @@ describe("conv2", () => {
         0.6470448,
         0.0063498,
         0.2951452,
-        0.6623801
+        0.6623801,
       ],
       width: 3,
-      height: 3
-    };
-    const B = ones(3);
-    const { data: fullOut } = conv2(A, B, "full");
-    const { data: defaultOut } = conv2(A, B);
+      height: 3,
+    }
+    const B = ones(3)
+    const { data: fullOut } = conv2(A, B, 'full')
+    const { data: defaultOut } = conv2(A, B)
 
-    expect(defaultOut).toEqual(fullOut);
-  });
-});
+    expect(defaultOut).toEqual(fullOut)
+  })
+})

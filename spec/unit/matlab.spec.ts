@@ -1,25 +1,25 @@
-import * as matlab from "../../src/matlab";
+import * as matlab from '../../src/matlab'
 
 const methods: Array<keyof typeof matlab> = [
-  "conv2",
-  "filter2",
-  "fspecial",
-  "imfilter",
-  "normpdf",
-  "ones",
-  "padarray",
-  "rgb2gray",
-  "skip2d",
-  "transpose",
-  "zeros"
-];
+  'conv2',
+  'filter2',
+  'fspecial',
+  'imfilter',
+  'normpdf',
+  'ones',
+  'padarray',
+  'rgb2gray',
+  'skip2d',
+  'transpose',
+  'zeros',
+]
 
-describe("matlab", () => {
-  test("should expose matlab related methods", () => {
-    expect(matlab).toEqual(expect.any(Object));
+describe('matlab', () => {
+  test('should expose matlab related methods', () => {
+    expect(matlab).toEqual(expect.any(Object))
 
-    methods.forEach(method =>
+    methods.forEach((method) =>
       expect(matlab[method]).toEqual(expect.any(Function))
-    );
-  });
-});
+    )
+  })
+})
