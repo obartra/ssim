@@ -6,7 +6,7 @@
   "browser": "dist/ssim.web",
   "version": "0.0.0-semantically-released",
   "scripts": {
-    "format-all": "git ls-files {src,spec}*.{js,json} | xargs yarn format",
+    "format-all": "git ls-files {src,spec}*.{ts,js,json} | xargs yarn format",
     "format": "prettier --write --single-quote --no-semi --trailing-comma es5",
     "commit": "git-cz",
     "test": "jest --testTimeout=500000",

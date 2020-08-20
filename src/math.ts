@@ -7,7 +7,7 @@
  *
  * @namespace math
  */
-import { Matrix } from "./types";
+import { Matrix } from './types'
 
 /**
  * Computes the mean value of a given array. It is the sum of a list of numbers divided by the
@@ -21,7 +21,7 @@ import { Matrix } from "./types";
  * @since 0.0.1
  */
 export function average(xn: number[]): number {
-  return sum(xn) / xn.length;
+  return sum(xn) / xn.length
 }
 
 /**
@@ -35,12 +35,12 @@ export function average(xn: number[]): number {
  * @since 0.0.1
  */
 export function sum(xn: number[]): number {
-  let out = 0;
+  let out = 0
 
   for (let x = 0; x < xn.length; x++) {
-    out += xn[x];
+    out += xn[x]
   }
-  return out;
+  return out
 }
 
 /**
@@ -56,13 +56,13 @@ export function sum(xn: number[]): number {
  * @since 0.0.1
  */
 export function floor(xn: number[]): number[] {
-  const out = new Array(xn.length);
+  const out = new Array(xn.length)
 
   for (let x = 0; x < xn.length; x++) {
-    out[x] = Math.floor(xn[x]);
+    out[x] = Math.floor(xn[x])
   }
 
-  return out;
+  return out
 }
 
 /**
@@ -76,13 +76,13 @@ export function floor(xn: number[]): number[] {
  * @since 0.0.2
  */
 export function sum2d({ data }: Matrix): number {
-  let out = 0;
+  let out = 0
 
   for (let x = 0; x < data.length; x++) {
-    out += data[x];
+    out += data[x]
   }
 
-  return out;
+  return out
 }
 
 /**
@@ -100,21 +100,21 @@ function add2dMx(
   { data: ref1, width, height }: Matrix,
   { data: ref2 }: Matrix
 ): Matrix {
-  const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
   for (let x = 0; x < height; x++) {
-    const offset = x * width;
+    const offset = x * width
 
     for (let y = 0; y < width; y++) {
-      data[offset + y] = ref1[offset + y] + ref2[offset + y];
+      data[offset + y] = ref1[offset + y] + ref2[offset + y]
     }
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -133,21 +133,21 @@ function subtract2dMx(
   { data: ref1, width, height }: Matrix,
   { data: ref2 }: Matrix
 ): Matrix {
-  const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
   for (let x = 0; x < height; x++) {
-    const offset = x * width;
+    const offset = x * width
 
     for (let y = 0; y < width; y++) {
-      data[offset + y] = ref1[offset + y] - ref2[offset + y];
+      data[offset + y] = ref1[offset + y] - ref2[offset + y]
     }
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -165,17 +165,17 @@ function add2dScalar(
   { data: ref, width, height }: Matrix,
   increase: number
 ): Matrix {
-  const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
   for (let x = 0; x < ref.length; x++) {
-    data[x] = ref[x] + increase;
+    data[x] = ref[x] + increase
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -190,10 +190,10 @@ function add2dScalar(
  * @since 0.0.2
  */
 export function add2d(A: Matrix, increase: Matrix | number): Matrix {
-  if (typeof increase === "number") {
-    return add2dScalar(A, increase);
+  if (typeof increase === 'number') {
+    return add2dScalar(A, increase)
   }
-  return add2dMx(A, increase);
+  return add2dMx(A, increase)
 }
 
 /**
@@ -208,10 +208,10 @@ export function add2d(A: Matrix, increase: Matrix | number): Matrix {
  * @memberOf math
  */
 export function subtract2d(A: Matrix, decrease: Matrix | number): Matrix {
-  if (typeof decrease === "number") {
-    return add2dScalar(A, -decrease);
+  if (typeof decrease === 'number') {
+    return add2dScalar(A, -decrease)
   }
-  return subtract2dMx(A, decrease);
+  return subtract2dMx(A, decrease)
 }
 
 /**
@@ -229,17 +229,17 @@ function divide2dScalar(
   { data: ref, width, height }: Matrix,
   divisor: number
 ): Matrix {
-  const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
   for (let x = 0; x < ref.length; x++) {
-    data[x] = ref[x] / divisor;
+    data[x] = ref[x] / divisor
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -257,17 +257,17 @@ function divide2dMx(
   { data: ref1, width, height }: Matrix,
   { data: ref2 }: Matrix
 ): Matrix {
-  const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
   for (let x = 0; x < ref1.length; x++) {
-    data[x] = ref1[x] / ref2[x];
+    data[x] = ref1[x] / ref2[x]
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -282,10 +282,10 @@ function divide2dMx(
  * @since 0.0.2
  */
 export function divide2d(A: Matrix, divisor: Matrix | number): Matrix {
-  if (typeof divisor === "number") {
-    return divide2dScalar(A, divisor);
+  if (typeof divisor === 'number') {
+    return divide2dScalar(A, divisor)
   }
-  return divide2dMx(A, divisor);
+  return divide2dMx(A, divisor)
 }
 
 /**
@@ -303,17 +303,17 @@ function multiply2dScalar(
   { data: ref, width, height }: Matrix,
   multiplier: number
 ): Matrix {
-  const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
   for (let x = 0; x < ref.length; x++) {
-    data[x] = ref[x] * multiplier;
+    data[x] = ref[x] * multiplier
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -331,17 +331,17 @@ function multiply2dMx(
   { data: ref1, width, height }: Matrix,
   { data: ref2 }: Matrix
 ): Matrix {
-  const data = new Array(ref1.length);
+  const data = new Array(ref1.length)
 
   for (let x = 0; x < ref1.length; x++) {
-    data[x] = ref1[x] * ref2[x];
+    data[x] = ref1[x] * ref2[x]
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 
 /**
@@ -357,10 +357,10 @@ function multiply2dMx(
  * @since 0.0.2
  */
 export function multiply2d(A: Matrix, multiplier: Matrix | number): Matrix {
-  if (typeof multiplier === "number") {
-    return multiply2dScalar(A, multiplier);
+  if (typeof multiplier === 'number') {
+    return multiply2dScalar(A, multiplier)
   }
-  return multiply2dMx(A, multiplier);
+  return multiply2dMx(A, multiplier)
 }
 
 /**
@@ -374,7 +374,7 @@ export function multiply2d(A: Matrix, multiplier: Matrix | number): Matrix {
  * @since 0.0.2
  */
 export function square2d(A: Matrix): Matrix {
-  return multiply2d(A, A);
+  return multiply2d(A, A)
 }
 
 /**
@@ -388,7 +388,7 @@ export function square2d(A: Matrix): Matrix {
  * @since 0.0.2
  */
 export function mean2d(A: Matrix): number {
-  return sum2d(A) / A.data.length;
+  return sum2d(A) / A.data.length
 }
 
 /**
@@ -406,14 +406,14 @@ export function variance(
   values: number[],
   avg: number = average(values)
 ): number {
-  let varx = 0;
-  let i = values.length;
+  let varx = 0
+  let i = values.length
 
   while (i--) {
-    varx += (values[i] - avg) ** 2;
+    varx += (values[i] - avg) ** 2
   }
 
-  return varx / values.length;
+  return varx / values.length
 }
 
 /**
@@ -436,12 +436,12 @@ export function covariance(
   average1: number = average(values1),
   average2: number = average(values2)
 ): number {
-  let cov = 0;
-  let i = values1.length;
+  let cov = 0
+  let i = values1.length
 
   while (i--) {
-    cov += (values1[i] - average1) * (values2[i] - average2);
+    cov += (values1[i] - average1) * (values2[i] - average2)
   }
 
-  return cov / values1.length;
+  return cov / values1.length
 }

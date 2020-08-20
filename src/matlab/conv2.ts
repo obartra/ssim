@@ -1,8 +1,8 @@
-import { multiply2d } from "../math";
-import { ones } from "./ones";
-import { sub } from "./sub";
-import { zeros } from "./zeros";
-import { Matrix, Shape } from "../types";
+import { multiply2d } from '../math'
+import { ones } from './ones'
+import { sub } from './sub'
+import { zeros } from './zeros'
+import { Matrix, Shape } from '../types'
 
 /**
  * `C = conv2(a,b)` computes the two-dimensional convolution of matrices `a` and `b`. If one of
@@ -33,11 +33,11 @@ import { Matrix, Shape } from "../types";
 function mxConv2(
   { data: ref, width: refWidth, height: refHeight }: Matrix,
   b: Matrix,
-  shape: Shape = "full"
+  shape: Shape = 'full'
 ): Matrix {
-  const cWidth = refWidth + b.width - 1;
-  const cHeight = refHeight + b.height - 1;
-  const { data } = zeros(cHeight, cWidth);
+  const cWidth = refWidth + b.width - 1
+  const cHeight = refHeight + b.height - 1
+  const { data } = zeros(cHeight, cWidth)
 
   /**
    * Computing the convolution is the most computentionally intensive task for SSIM and we do it
@@ -47,12 +47,12 @@ function mxConv2(
    */
   for (let r1 = 0; r1 < b.height; r1++) {
     for (let c1 = 0; c1 < b.width; c1++) {
-      const br1c1 = b.data[r1 * b.width + c1];
+      const br1c1 = b.data[r1 * b.width + c1]
 
       if (br1c1) {
         for (let i = 0; i < refHeight; i++) {
           for (let j = 0; j < refWidth; j++) {
-            data[(i + r1) * cWidth + j + c1] += ref[i * refWidth + j] * br1c1;
+            data[(i + r1) * cWidth + j + c1] += ref[i * refWidth + j] * br1c1
           }
         }
       }
@@ -62,10 +62,10 @@ function mxConv2(
   const c = {
     data,
     width: cWidth,
-    height: cHeight
-  };
+    height: cHeight,
+  }
 
-  return reshape(c, shape, refHeight, b.height, refWidth, b.width);
+  return reshape(c, shape, refHeight, b.height, refWidth, b.width)
 }
 
 /**
@@ -85,13 +85,13 @@ function mxConv2(
 function boxConv(
   a: Matrix,
   { data, width, height }: Matrix,
-  shape: Shape = "full"
+  shape: Shape = 'full'
 ): Matrix {
-  const b1 = ones(height, 1);
-  const b2 = ones(1, width);
-  const out = convn(a, b1, b2, shape);
+  const b1 = ones(height, 1)
+  const b2 = ones(1, width)
+  const out = convn(a, b1, b2, shape)
 
-  return multiply2d(out, data[0]);
+  return multiply2d(out, data[0])
 }
 
 /**
@@ -106,14 +106,14 @@ function boxConv(
  * @memberOf matlab
  */
 function isBoxKernel({ data }: Matrix): boolean {
-  const expected = data[0];
+  const expected = data[0]
 
   for (let i = 1; i < data.length; i++) {
     if (data[i] !== expected) {
-      return false;
+      return false
     }
   }
-  return true;
+  return true
 }
 
 /**
@@ -149,14 +149,14 @@ function convn(
   a: Matrix,
   b1: Matrix,
   b2: Matrix,
-  shape: Shape = "full"
+  shape: Shape = 'full'
 ): Matrix {
-  const mb = Math.max(b1.height, b1.width);
-  const nb = Math.max(b2.height, b2.width);
-  const temp = mxConv2(a, b1, "full");
-  const c = mxConv2(temp, b2, "full");
+  const mb = Math.max(b1.height, b1.width)
+  const nb = Math.max(b2.height, b2.width)
+  const temp = mxConv2(a, b1, 'full')
+  const c = mxConv2(temp, b2, 'full')
 
-  return reshape(c, shape, a.height, mb, a.width, nb);
+  return reshape(c, shape, a.height, mb, a.width, nb)
 }
 
 /**
@@ -186,16 +186,16 @@ function reshape(
   na: number,
   nb: number
 ): Matrix {
-  if (shape === "full") {
-    return c;
-  } else if (shape === "same") {
-    const rowStart = Math.ceil((c.height - ma) / 2);
-    const colStart = Math.ceil((c.width - na) / 2);
+  if (shape === 'full') {
+    return c
+  } else if (shape === 'same') {
+    const rowStart = Math.ceil((c.height - ma) / 2)
+    const colStart = Math.ceil((c.width - na) / 2)
 
-    return sub(c, rowStart, ma, colStart, na);
+    return sub(c, rowStart, ma, colStart, na)
   }
 
-  return sub(c, mb - 1, ma - mb + 1, nb - 1, na - nb + 1);
+  return sub(c, mb - 1, ma - mb + 1, nb - 1, na - nb + 1)
 }
 
 /**
@@ -264,9 +264,9 @@ export function conv2(
   ...args: Parameters<typeof boxConv | typeof convn | typeof mxConv2>
 ) {
   if (args[2] && (args[2] as Matrix).data) {
-    return convn(...(args as Parameters<typeof convn>));
+    return convn(...(args as Parameters<typeof convn>))
   } else if (isBoxKernel(args[1])) {
-    return boxConv(...(args as Parameters<typeof boxConv>));
+    return boxConv(...(args as Parameters<typeof boxConv>))
   }
-  return mxConv2(...(args as Parameters<typeof mxConv2>));
+  return mxConv2(...(args as Parameters<typeof mxConv2>))
 }

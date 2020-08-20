@@ -10,7 +10,6 @@
  *
  * @namespace bezkrovnySsim
  */
-
 import { average, variance, covariance } from "./math";
 import { sub } from "./matlab";
 import { Options, Matrix } from "./types";

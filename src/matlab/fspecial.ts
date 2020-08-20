@@ -1,5 +1,5 @@
-import { Matrix } from "../types";
-import { sum2d, divide2d } from "../math";
+import { Matrix } from '../types'
+import { sum2d, divide2d } from '../math'
 
 /**
  * Creates a matrix of lenght `2 * length + 1` with values being the sum of the square of the
@@ -16,20 +16,20 @@ import { sum2d, divide2d } from "../math";
  * @since 0.0.2
  */
 function rangeSquare2d(length: number): Matrix {
-  const size = length * 2 + 1;
-  const data = new Array(size ** 2);
+  const size = length * 2 + 1
+  const data = new Array(size ** 2)
 
   for (let x = 0; x < size; x++) {
     for (let y = 0; y < size; y++) {
-      data[x * size + y] = (x - length) ** 2 + (y - length) ** 2;
+      data[x * size + y] = (x - length) ** 2 + (y - length) ** 2
     }
   }
 
   return {
     data,
     width: size,
-    height: size
-  };
+    height: size,
+  }
 }
 
 /**
@@ -47,17 +47,17 @@ function gaussianFilter2d(
   { data: ref, width, height }: Matrix,
   σ: number
 ): Matrix {
-  const data = new Array(ref.length);
+  const data = new Array(ref.length)
 
   for (let x = 0; x < ref.length; x++) {
-    data[x] = Math.exp(-ref[x] / (2 * σ ** 2));
+    data[x] = Math.exp(-ref[x] / (2 * σ ** 2))
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }
 /**
  * Create predefined 2-D filter
@@ -96,12 +96,12 @@ function gaussianFilter2d(
  * @memberOf matlab
  * @since 0.0.2
  */
-export function fspecial(_type?: "gaussian", hsize = 3, σ = 1.5): Matrix {
-  hsize = (hsize - 1) / 2;
+export function fspecial(_type?: 'gaussian', hsize = 3, σ = 1.5): Matrix {
+  hsize = (hsize - 1) / 2
 
-  const pos = rangeSquare2d(hsize);
-  const gauss = gaussianFilter2d(pos, σ);
-  const total = sum2d(gauss);
+  const pos = rangeSquare2d(hsize)
+  const gauss = gaussianFilter2d(pos, σ)
+  const total = sum2d(gauss)
 
-  return divide2d(gauss, total);
+  return divide2d(gauss, total)
 }

@@ -1,8 +1,8 @@
-import { mod } from "./mod";
-import { padarray, PaddingValue } from "./padarray";
-import { floor } from "../math";
-import { filter2 } from "./filter2";
-import { Matrix, Shape } from "../types";
+import { mod } from './mod'
+import { padarray, PaddingValue } from './padarray'
+import { floor } from '../math'
+import { filter2 } from './filter2'
+import { Matrix, Shape } from '../types'
 
 /**
  * Adds padding to input matrix A
@@ -22,25 +22,25 @@ function padMatrix(
   fcols: number,
   pad: PaddingValue
 ): Matrix {
-  A = padarray(A, floor([frows / 2, fcols / 2]) as [number, number], pad);
+  A = padarray(A, floor([frows / 2, fcols / 2]) as [number, number], pad)
   if (mod(frows, 2) === 0) {
     // remove the last row
-    A.data = A.data.slice(0, -A.width);
-    A.height--;
+    A.data = A.data.slice(0, -A.width)
+    A.height--
   }
   if (mod(fcols, 2) === 0) {
     // remove the last column
-    const data = [];
+    const data = []
 
     for (let x = 0; x < A.data.length; x++) {
       if ((x + 1) % A.width !== 0) {
-        data.push(A.data[x]);
+        data.push(A.data[x])
       }
     }
-    A.data = data;
-    A.width--;
+    A.data = data
+    A.width--
   }
-  return A;
+  return A
 }
 
 /**
@@ -54,10 +54,10 @@ function padMatrix(
  * @memberOf matlab
  */
 function getConv2Size(resSize: Shape): Shape {
-  if (resSize === "same") {
-    resSize = "valid";
+  if (resSize === 'same') {
+    resSize = 'valid'
   }
-  return resSize;
+  return resSize
 }
 
 /**
@@ -84,10 +84,10 @@ function getConv2Size(resSize: Shape): Shape {
 export function imfilter(
   A: Matrix,
   f: Matrix,
-  pad: PaddingValue = "symmetric",
-  resSize: Shape = "same"
+  pad: PaddingValue = 'symmetric',
+  resSize: Shape = 'same'
 ) {
-  A = padMatrix(A, f.width, f.height, pad);
-  resSize = getConv2Size(resSize);
-  return filter2(f, A, resSize);
+  A = padMatrix(A, f.width, f.height, pad)
+  resSize = getConv2Size(resSize)
+  return filter2(f, A, resSize)
 }

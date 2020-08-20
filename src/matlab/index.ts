@@ -9,15 +9,15 @@
  *
  * @namespace matlab
  */
-export * from "./conv2";
-export * from "./filter2";
-export * from "./fspecial";
-export * from "./imfilter";
-export * from "./normpdf";
-export * from "./ones";
-export * from "./padarray";
-export * from "./rgb2gray";
-export * from "./skip2d";
-export * from "./sub";
-export * from "./transpose";
-export * from "./zeros";
+export * from './conv2'
+export * from './filter2'
+export * from './fspecial'
+export * from './imfilter'
+export * from './normpdf'
+export * from './ones'
+export * from './padarray'
+export * from './rgb2gray'
+export * from './skip2d'
+export * from './sub'
+export * from './transpose'
+export * from './zeros'

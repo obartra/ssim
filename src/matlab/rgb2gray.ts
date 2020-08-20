@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types'
 
 /**
  * Converts an imageData object of { width, height, data } into a 2d matrix [row, column]
@@ -18,9 +18,9 @@ export function rgb2gray({
   width,
   height,
 }: Matrix | ImageData): Matrix {
-  const uint8Array = new Uint8Array(width * height);
+  const uint8Array = new Uint8Array(width * height)
   for (let i = 0; i < d.length; i += 4) {
-    const grayIndex = i / 4;
+    const grayIndex = i / 4
     /**
      * These values are not derived from ITU's recommendation of: [0.2126,
      * 0.7152, 0.0722] for [r, g, b] but on Matlab's implementation of [0.2989,
@@ -36,11 +36,11 @@ export function rgb2gray({
      * the order of 10^-3.
      */
     uint8Array[grayIndex] =
-      0.29894 * d[i] + 0.58704 * d[i + 1] + 0.11402 * d[i + 2] + 0.5;
+      0.29894 * d[i] + 0.58704 * d[i + 1] + 0.11402 * d[i + 2] + 0.5
   }
   return {
     data: Array.from(uint8Array),
     width,
     height,
-  };
+  }
 }

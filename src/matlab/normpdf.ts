@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types'
 
 /**
  * `Y = normpdf(X,μ,σ)` computes the pdf at each of the values in `X` using the normal
@@ -40,18 +40,18 @@ export function normpdf(
   σ = 1
 ): Matrix {
   // data = ((2 * pi)^(-1 / 2)) * exp(-((x - µ) / σ)^2 / 2) / σ;
-  const SQ2PI = 2.506628274631000502415765284811;
-  const data = new Array(ref.length);
+  const SQ2PI = 2.506628274631000502415765284811
+  const data = new Array(ref.length)
 
   for (let i = 0; i < ref.length; i++) {
-    const z = (ref[i] - µ) / σ;
+    const z = (ref[i] - µ) / σ
 
-    data[i] = Math.exp(-(z ** 2) / 2) / (σ * SQ2PI);
+    data[i] = Math.exp(-(z ** 2) / 2) / (σ * SQ2PI)
   }
 
   return {
     data,
     width,
-    height
-  };
+    height,
+  }
 }

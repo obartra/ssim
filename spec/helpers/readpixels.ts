@@ -1,8 +1,8 @@
-import fs from "fs";
-import http from "https";
-import Canvas from "canvas";
-import imageType from "image-type";
-import bmp from "bmp-js";
+import fs from 'fs'
+import http from 'https'
+import Canvas from 'canvas'
+import imageType from 'image-type'
+import bmp from 'bmp-js'
 
 /**
  * If `limit` is set, it will return proportional dimensions to `width` and `height` with the
@@ -24,14 +24,14 @@ export function getLimitDimensions(
   limit?: number
 ) {
   if (limit && width >= limit && height >= limit) {
-    const ratio = width / height;
+    const ratio = width / height
 
     if (ratio > 1) {
-      return { height: limit, width: Math.round(limit / ratio) };
+      return { height: limit, width: Math.round(limit / ratio) }
     }
-    return { height: Math.round(limit * ratio), width: limit };
+    return { height: Math.round(limit * ratio), width: limit }
   }
-  return { width, height };
+  return { width, height }
 }
 
 /**
@@ -48,75 +48,75 @@ export function getLimitDimensions(
  * @since 0.0.1
  */
 function parse(data: Buffer, limit: number): Promise<ImageData> {
-  const { ext = "" } = imageType(data) || {};
+  const { ext = '' } = imageType(data) || {}
 
   return new Promise((resolve, reject) => {
-    if (ext === "bmp") {
-      resolve(bmp.decode(data));
+    if (ext === 'bmp') {
+      resolve(bmp.decode(data))
     } else {
       Canvas.loadImage(data)
-        .then(img => {
+        .then((img) => {
           const { width, height } = getLimitDimensions(
             img.width,
             img.height,
             limit
-          );
-          const canvas = Canvas.createCanvas(width, height);
-          const ctx = canvas.getContext("2d");
+          )
+          const canvas = Canvas.createCanvas(width, height)
+          const ctx = canvas.getContext('2d')
 
-          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
+          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height)
 
-          return ctx.getImageData(0, 0, width, height);
+          return ctx.getImageData(0, 0, width, height)
         })
         .then(resolve)
-        .catch(reject);
+        .catch(reject)
     }
-  });
+  })
 }
 
 function loadUrl(url: string): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     http
       .get(url)
-      .on("response", res => {
-        const chunks: Buffer[] = [];
+      .on('response', (res) => {
+        const chunks: Buffer[] = []
 
-        res.on("data", data => chunks.push(data));
-        res.on("end", () => {
-          resolve(Buffer.concat(chunks));
-        });
+        res.on('data', (data) => chunks.push(data))
+        res.on('end', () => {
+          resolve(Buffer.concat(chunks))
+        })
       })
-      .on("error", reject);
-  });
+      .on('error', reject)
+  })
 }
 
 function loadFs(path: string): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     fs.readFile(path, (err, data) => {
       if (err) {
-        reject(err);
-        return;
+        reject(err)
+        return
       }
 
-      resolve(data);
-    });
-  });
+      resolve(data)
+    })
+  })
 }
 
 export function readpixels(
   url: string | Buffer,
   limit = 0
 ): Promise<ImageData> {
-  let bufferPromise;
+  let bufferPromise
 
   if (Buffer.isBuffer(url)) {
-    bufferPromise = Promise.resolve(url);
-  } else if (typeof url === "string" && url.startsWith("http")) {
-    bufferPromise = loadUrl(url);
-  } else if (typeof url === "string") {
-    bufferPromise = loadFs(url);
+    bufferPromise = Promise.resolve(url)
+  } else if (typeof url === 'string' && url.startsWith('http')) {
+    bufferPromise = loadUrl(url)
+  } else if (typeof url === 'string') {
+    bufferPromise = loadFs(url)
   } else {
-    throw new Error("Invalid format used");
+    throw new Error('Invalid format used')
   }
-  return bufferPromise.then(bufferData => parse(bufferData, limit));
+  return bufferPromise.then((bufferData) => parse(bufferData, limit))
 }

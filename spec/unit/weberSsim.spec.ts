@@ -11,22 +11,49 @@ import {
 } from "../../src/weberSsim";
 import { sub } from "../../src/matlab";
 
-
 const testDataImg = {
-  width: 4, height: 4, data: [
-    0x10, 0x20, 0x30, 0x40,
-    0x50, 0x60, 0x70, 0x80,
-    0x90, 0xa0, 0xb0, 0xc0,
-    0xd0, 0xe0, 0xf0, 0xff
-  ]
+  width: 4,
+  height: 4,
+  data: [
+    0x10,
+    0x20,
+    0x30,
+    0x40,
+    0x50,
+    0x60,
+    0x70,
+    0x80,
+    0x90,
+    0xa0,
+    0xb0,
+    0xc0,
+    0xd0,
+    0xe0,
+    0xf0,
+    0xff,
+  ],
 };
 const testDataImg2 = {
-  width: 4, height: 4, data: [
-    0x0c, 0x1c, 0x2c, 0x3c,
-    0x4c, 0x5c, 0x6c, 0x7c,
-    0x8c, 0x9c, 0xac, 0xbc,
-    0xcc, 0xdc, 0xec, 0xfc
-  ]
+  width: 4,
+  height: 4,
+  data: [
+    0x0c,
+    0x1c,
+    0x2c,
+    0x3c,
+    0x4c,
+    0x5c,
+    0x6c,
+    0x7c,
+    0x8c,
+    0x9c,
+    0xac,
+    0xbc,
+    0xcc,
+    0xdc,
+    0xec,
+    0xfc,
+  ],
 };
 
 describe("weberSsim", () => {
@@ -42,15 +69,15 @@ describe("weberSsim", () => {
     const A = samples["24x18"].gray;
     const B = samples["24x18-degraded"].gray;
     const ssimMap = ssim(A, B, options).ssim_map;
-    expect(roundTo(mean2d(ssimMap), 5)).toMatchSnapshot();
+    expect(roundTo(mean2d(ssimMap), 5)).toMatchInlineSnapshot(`0.95763`);
   });
 
   test("rolling ssim mssim should be the same as mean2d ssim", () => {
     const A = sampleCsv.lena;
     const B = sampleCsv.lena02876;
     const { ssim_map: ssimMap, mssim } = ssim(A, B, options);
-    expect(roundTo(mean2d(ssimMap), 5)).toMatchSnapshot();
-    expect(roundTo(mssim, 5)).toMatchSnapshot();
+    expect(roundTo(mean2d(ssimMap), 5)).toMatchInlineSnapshot(`0.99327`);
+    expect(roundTo(mssim, 5)).toMatchInlineSnapshot(`0.99327`);
   });
 
   test("mean2d to match to equal the Welford's mean of the windowSums", () => {
@@ -63,7 +90,6 @@ describe("weberSsim", () => {
     }
     expect(roundTo(welfordMean, 5)).toBe(roundTo(meanAcross, 5));
   });
-
 
   test("matlab averages, variances, covariances should be the same as weber's", () => {
     const A = testDataImg;
@@ -93,10 +119,16 @@ describe("weberSsim", () => {
       }
     }
     const sumsX = windowSums(A, windowSize);
-    const meansX = Array.from(sumsX.data, (v: number) => v / (windowSize * windowSize));
+    const meansX = Array.from(
+      sumsX.data,
+      (v: number) => v / (windowSize * windowSize)
+    );
     const variancesX = windowVariance(A, sumsX, windowSize);
     const sumsY = windowSums(B, windowSize);
-    const meansY = Array.from(sumsY.data, (v: number) => v / (windowSize * windowSize));
+    const meansY = Array.from(
+      sumsY.data,
+      (v: number) => v / (windowSize * windowSize)
+    );
     const variancesY = windowVariance(B, sumsY, windowSize);
     const covariances = windowCovariance(A, B, sumsX, sumsY, windowSize);
     expect(meansX.length).toBe(matlabXAverages.length);
@@ -120,6 +152,4 @@ describe("weberSsim", () => {
     expect(mssim).toBeNaN();
     expect(mean2d(ssimMap)).toBeNaN();
   });
-
-
 });
