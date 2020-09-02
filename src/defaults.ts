@@ -6,6 +6,6 @@ export const defaults: Options = {
   k2: 0.03,
   bitDepth: 8,
   downsample: 'original',
-  ssim: 'fast',
+  ssim: 'weber',
   maxSize: 256,
 }
