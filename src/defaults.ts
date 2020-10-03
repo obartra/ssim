@@ -8,4 +8,5 @@ export const defaults: Options = {
   downsample: 'original',
   ssim: 'weber',
   maxSize: 256,
+  rgb2grayVersion: 'integer'
 }

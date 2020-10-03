@@ -44,3 +44,20 @@ export function rgb2gray({
     height,
   }
 }
+
+export function rgb2grayInteger({
+                                  data: d,
+                                  width,
+                                  height
+                                }: Matrix | ImageData): Matrix {
+  const array = new Array(width * height);
+  for (let i = 0; i < d.length; i += 4) {
+    const grayIndex = i / 4;
+    array[grayIndex] = (77 * d[i] + 150 * d[i + 1] + 29 * d[i + 2] + 128) >> 8;
+  }
+  return {
+    data: array,
+    width,
+    height
+  };
+}

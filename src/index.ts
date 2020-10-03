@@ -3,7 +3,7 @@
  *
  * @module main
  */
-import { rgb2gray } from './matlab'
+import { rgb2gray, rgb2grayInteger } from "./matlab";
 import { mean2d } from './math'
 import { ssim as fastSsim } from './ssim'
 import { originalSsim } from './originalSsim'
@@ -58,7 +58,12 @@ function validateDimensions([pixels1, pixels2, options]: Images): Images {
 }
 
 function toGrayScale([pixels1, pixels2, options]: Images): Matrices {
-  return [rgb2gray(pixels1), rgb2gray(pixels2), options]
+  if (options.rgb2grayVersion === 'original') {
+    return [rgb2gray(pixels1), rgb2gray(pixels2), options]
+  } else {
+    return [rgb2grayInteger(pixels1), rgb2grayInteger(pixels2), options]
+  }
+
 }
 
 function toResize([pixels1, pixels2, options]: Matrices): Matrices {

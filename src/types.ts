@@ -1,4 +1,5 @@
 export type Options = {
+  rgb2grayVersion: 'original' | 'integer'
   k1: number
   k2: number
   ssim: 'fast' | 'original' | 'bezkrovny' | 'weber'
