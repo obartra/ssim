@@ -74,8 +74,8 @@ describe("IVC", () => {
 
     const newVar = newS / (Object.keys(newV).length - 1);
 
-    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0202`);
-    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000211`);
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0208`);
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000208`);
     expect(results).toEqual(weberScores as MSSIMValues);
   }, 70000);
 
@@ -179,8 +179,8 @@ describe("IVC", () => {
 
     const newVar = newS / (Object.keys(newV).length - 1);
 
-    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0203`);
-    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000212`);
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0209`);
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.00021`);
     expect(results).toMatchSnapshot();
   }, 70000);
 

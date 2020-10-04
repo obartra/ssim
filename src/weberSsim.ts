@@ -5,149 +5,49 @@
  */
 import { ImageMatrix, MSSIMMatrix, Options } from './types'
 
-function edgeHandler(w: number, h: number, sumArray: any, matrixWidth: number) {
-  const rightEdge = sumArray[h * matrixWidth + w + 1]
-  const bottomEdge = sumArray[(h + 1) * matrixWidth + w]
-  const bottomRightEdge = sumArray[(h + 1) * matrixWidth + w + 1]
-  return { rightEdge, bottomEdge, bottomRightEdge }
-}
+export function weberSumMatrix(pImgData1: any, pImgData2: any, width: number, height: number) {
+  const pSumArray = new Array(5 * width * height);
+  for (let h = 0; h < height; ++h) {
+    let lastValX = 0;
+    let lastValY = 0;
+    let lastValXX = 0;
+    let lastValYY = 0;
+    let lastValXY = 0;
+    for (let w = 0; w < width; ++w) {
+      const imgValX = pImgData1[h * width + w];
+      const newValX = lastValX + imgValX;
+      const newValXX = lastValXX + imgValX * imgValX;
+      const imgValY = pImgData2[h * width + w];
+      const newValY = lastValY + imgValY;
+      const newValYY = lastValYY + imgValY * imgValY;
+      const newValXY = lastValXY + imgValX * imgValY;
+      pSumArray[h * width + w] = newValX;
+      pSumArray[width * height + h * width + w] = newValY;
+      pSumArray[2 * width * height + h * width + w] = newValXX;
 
-export function partialSumMatrix1(
-  pixels: ImageMatrix,
-  f: (v: number, x: number, y: number) => number
-) {
-  const { width, height, data } = pixels
-  const matrixWidth = width + 1
-  const matrixHeight = height + 1
-  const sumArray = new Int32Array(matrixWidth * matrixHeight)
-  for (let h = height - 1; h >= 0; --h) {
-    for (let w = width - 1; w >= 0; --w) {
-      const { rightEdge, bottomEdge, bottomRightEdge } = edgeHandler(
-        w,
-        h,
-        sumArray,
-        matrixWidth
-      )
-
-      sumArray[h * matrixWidth + w] =
-        f(data[h * width + w], w, h) + rightEdge + bottomEdge - bottomRightEdge
+      pSumArray[3 * width * height + h * width + w] = newValYY;
+      pSumArray[4 * width * height + h * width + w] = newValXY;
+      lastValX = newValX;
+      lastValXX = newValXX;
+      lastValY = newValY;
+      lastValYY = newValYY;
+      lastValXY = newValXY;
     }
   }
-  return { data: sumArray, height: matrixHeight, width: matrixWidth }
-}
 
-export function partialSumMatrix2(
-  pixels1: ImageMatrix,
-  pixels2: ImageMatrix,
-  f: (a: number, b: number, x: number, y: number) => number
-) {
-  const { width, height, data: data1 } = pixels1
-  const { data: data2 } = pixels2
-  const matrixWidth = width + 1
-  const matrixHeight = height + 1
-  const sumArray = new Int32Array(matrixWidth * matrixHeight)
-  for (let h = height - 1; h >= 0; --h) {
-    for (let w = width - 1; w >= 0; --w) {
-      const { rightEdge, bottomEdge, bottomRightEdge } = edgeHandler(
-        w,
-        h,
-        sumArray,
-        matrixWidth
-      )
-      const offset = h * width + w
-      sumArray[h * matrixWidth + w] =
-        f(data1[offset], data2[offset], w, h) +
-        rightEdge +
-        bottomEdge -
-        bottomRightEdge
-    }
-  }
-  return { data: sumArray, height: matrixHeight, width: matrixWidth }
-}
-
-export function windowMatrix(
-  sumMatrix: any,
-  windowSize: number,
-  divisor: number
-) {
-  const { width: matrixWidth, height: matrixHeight, data: sumArray } = sumMatrix
-  const imageWidth = matrixWidth - 1
-  const imageHeight = matrixHeight - 1
-  const windowWidth = imageWidth - windowSize + 1
-  const windowHeight = imageHeight - windowSize + 1
-  const windows = new Int32Array(windowWidth * windowHeight)
-  for (let h = 0; h < imageHeight; ++h) {
-    for (let w = 0; w < imageWidth; ++w) {
-      if (w < windowWidth && h < windowHeight) {
-        const sum =
-          // value at (w,h)
-          sumArray[matrixWidth * h + w] -
-          // value at (w+windowSize,h) == right side
-          sumArray[matrixWidth * h + w + windowSize] -
-          // value at (w,h+windowSize) == bottom side
-          sumArray[matrixWidth * (h + windowSize) + w] +
-          // value at (w+windowSize, h+windowSize) == bottomRight corner
-          sumArray[matrixWidth * (h + windowSize) + w + windowSize]
-
-        windows[h * windowWidth + w] = sum / divisor
+  for (let i = 0; i < 5; ++i) {
+    for (let h = 0; h + 1 < height; ++h) {
+      for (let w = 0; w < width; ++w) {
+        let above = pSumArray[i * width * height + h * width + w];
+        let current = pSumArray[i * width * height + (h + 1) * width + w];
+        pSumArray[i * width * height + (h + 1) * width + w] = above + current;
       }
     }
   }
-  return { height: windowHeight, width: windowWidth, data: windows }
+
+  return pSumArray;
 }
 
-export function windowSums(pixels: ImageMatrix, windowSize: number) {
-  return windowMatrix(
-    partialSumMatrix1(pixels, (a) => a),
-    windowSize,
-    1
-  )
-}
-
-export function windowVariance(
-  pixels: ImageMatrix,
-  sums: any,
-  windowSize: number
-) {
-  const varianceCalculation = (v: number) => v * v
-  const windowSquared = windowSize * windowSize
-  const varX = windowMatrix(
-    partialSumMatrix1(pixels, varianceCalculation),
-    windowSize,
-    1
-  )
-  for (let i = 0; i < sums.data.length; ++i) {
-    const mean = sums.data[i] / windowSquared
-    const sumSquares = varX.data[i] / windowSquared
-
-    const squareMeans = mean * mean
-    varX.data[i] = 1024 * (sumSquares - squareMeans)
-  }
-  return varX
-}
-
-export function windowCovariance(
-  pixels1: ImageMatrix,
-  pixels2: ImageMatrix,
-  sums1: any,
-  sums2: any,
-  windowSize: number
-) {
-  const covarianceCalculation = (a: number, b: number) => a * b
-  const windowSquared = windowSize * windowSize
-  const covXY = windowMatrix(
-    partialSumMatrix2(pixels1, pixels2, covarianceCalculation),
-    windowSize,
-    1
-  )
-  for (let i = 0; i < sums1.data.length; ++i) {
-    covXY.data[i] =
-      1024 *
-      (covXY.data[i] / windowSquared -
-        (sums1.data[i] / windowSquared) * (sums2.data[i] / windowSquared))
-  }
-  return covXY
-}
 
 /**
  * Generates a SSIM map based on two input image matrices.
@@ -172,53 +72,162 @@ export function weberSsim(
   pixels2: ImageMatrix,
   options: Options
 ): MSSIMMatrix {
-  const { bitDepth, k1, k2, windowSize } = options
-  const L = 2 ** bitDepth - 1
+  const { bitDepth, k1, k2, windowSize} = options
+  const L = (1 << bitDepth) - 1
   const c1 = k1 * L * (k1 * L)
   const c2 = k2 * L * (k2 * L)
   const windowSquared = windowSize * windowSize
-  const pixels1Rounded = {
-    ...pixels1,
-    data: Int32Array.from(pixels1.data, (v) => v + 0.5),
-  }
-  const pixels2Rounded = {
-    ...pixels2,
-    data: Int32Array.from(pixels2.data, (v) => v + 0.5),
-  }
-  const sums1 = windowSums(pixels1Rounded, windowSize)
-  const variance1 = windowVariance(pixels1Rounded, sums1, windowSize)
+  const pixels1Data = pixels1.data;
+  const pixels2Data = pixels2.data;
+  const width = pixels1.width;
+  const height = pixels1.height;
+  const sumMatrix = weberSumMatrix(pixels1Data, pixels2Data, width, height);
+  const windowHeight = height-windowSize+1;
+  const windowWidth = width-windowSize+1;
+  const imageSize = width*height;
+  // let mssim = 0
+  const ssims = new Array(windowHeight*windowWidth);
 
-  const sums2 = windowSums(pixels2Rounded, windowSize)
-  const variance2 = windowVariance(pixels2Rounded, sums2, windowSize)
-  const covariance = windowCovariance(
-    pixels1Rounded,
-    pixels2Rounded,
-    sums1,
-    sums2,
-    windowSize
-  )
-  const size = sums1.data.length
 
-  let mssim = 0
-  const ssims = new Array(size)
-  for (let i = 0; i < size; ++i) {
-    const meanx = sums1.data[i] / windowSquared
-    const meany = sums2.data[i] / windowSquared
-    const varx = variance1.data[i] / 1024
-    const vary = variance2.data[i] / 1024
-    const cov = covariance.data[i] / 1024
-    const na = 2 * meanx * meany + c1
-    const nb = 2 * cov + c2
-    const da = meanx * meanx + meany * meany + c1
-    const db = varx + vary + c2
-    const ssim = (na * nb) / da / db
-    ssims[i] = ssim
-    if (i == 0) {
-      mssim = ssim
-    } else {
-      mssim = mssim + (ssim - mssim) / (i + 1)
+  // lets handle w = 0 h = 0 first and initialize mssim
+
+  let cumulativeSsim;
+  const reciprocalWindowSquared =  1 / windowSquared;
+  {
+    const windowOffset = windowSize - 1;
+    let bottomOffset = windowOffset*width;
+    {
+      const meanx = (sumMatrix[bottomOffset+ windowOffset]) * reciprocalWindowSquared;
+      const meany = (
+        sumMatrix[imageSize + bottomOffset+ windowOffset]) * reciprocalWindowSquared;
+      const varx = (
+        sumMatrix[2*imageSize + bottomOffset+ windowOffset]) * reciprocalWindowSquared - meanx*meanx ;
+      const vary = (
+        sumMatrix[3*imageSize + bottomOffset+ windowOffset])  * reciprocalWindowSquared - meany*meany;
+      const cov = (
+        sumMatrix[4*imageSize + bottomOffset+ windowOffset])  * reciprocalWindowSquared - meanx*meany;
+      const na = 2 * meanx * meany + c1
+      const nb = 2 * cov + c2
+      const da = meanx * meanx + meany * meany + c1
+      const db = varx + vary + c2
+      const ssim = (na * nb) / (da * db)
+      ssims[0] = ssim
+      if (isNaN(ssim)) {
+        debugger;
+      }
+      // mssim = ssim
+      cumulativeSsim = ssim;
+    }
+
+
+
+    // next handle all of the h = 0, w > 0 cases first
+    for (let w = 1; w <  windowWidth; ++w) {
+      // in h =0 cases, there is no top left or top right
+      let leftOffset = w - 1;
+      const rightx = sumMatrix[bottomOffset+leftOffset];
+      const leftx = sumMatrix[bottomOffset+(windowOffset+w)];
+      const meanx = (leftx-rightx)* reciprocalWindowSquared;
+      const righty= sumMatrix[imageSize + bottomOffset+ leftOffset];
+      const lefty = sumMatrix[imageSize + bottomOffset+ (windowOffset+w)];
+      const meany = (lefty-righty) * reciprocalWindowSquared;
+      const rightxx = sumMatrix[2*imageSize + bottomOffset+leftOffset];
+      const leftxx = sumMatrix[2*imageSize + bottomOffset+ (windowOffset+w)];
+      const varx = (leftxx-rightxx) * reciprocalWindowSquared - meanx*meanx ;
+      const rightyy = sumMatrix[3*imageSize + bottomOffset+leftOffset];
+      const leftyy = sumMatrix[3*imageSize + bottomOffset+ (windowOffset+w)]
+      const vary = (leftyy - rightyy)  * reciprocalWindowSquared - meany*meany;
+      const rightxy = sumMatrix[4*imageSize + bottomOffset+leftOffset];
+      const leftxy = sumMatrix[4*imageSize + bottomOffset+ (windowOffset+w)];
+      const cov = (leftxy-rightxy)  * reciprocalWindowSquared - meanx*meany;
+      const na = 2 * meanx * meany + c1
+      const nb = 2 * cov + c2
+      const da = meanx * meanx + meany * meany + c1
+      const db = varx + vary + c2
+      const ssim = (na * nb) / (da *db)
+      if (isNaN(ssim)) {
+        debugger;
+      }
+      ssims[w] = ssim
+      cumulativeSsim += ssim;
     }
   }
 
-  return { data: ssims, width: sums1.width, height: sums1.height, mssim }
+  const windowOffset = windowSize - 1;
+  // There will be lots of branch misses if we don't split the w==0 and h==0 cases
+  for (let h = 1; h < windowHeight; ++h) {
+    // now the w=0 on each line
+    let bottomOffset = (h+windowSize-1)*width;
+    let topOffset = (h-1)*width;
+    {
+      // since there is no left side we can skip two operations
+      const topx = sumMatrix[topOffset+ windowOffset];
+      const bottomx = sumMatrix[bottomOffset+ windowOffset];
+      const meanx = (bottomx - topx) * reciprocalWindowSquared;
+      const topy = sumMatrix[imageSize + topOffset+ windowOffset];
+      const bottomy = sumMatrix[imageSize + bottomOffset+ windowOffset];
+      const meany = (bottomy - topy) * reciprocalWindowSquared;
+      const topxx = sumMatrix[2*imageSize + topOffset+ windowOffset];
+      const bottomxx = sumMatrix[2*imageSize + bottomOffset+ windowOffset];
+      const varx = (bottomxx-topxx)  * reciprocalWindowSquared - meanx*meanx ;
+      const topyy = sumMatrix[3*imageSize + topOffset+ windowOffset];
+      const bottomyy = sumMatrix[3*imageSize + bottomOffset+ windowOffset];
+      const vary = (bottomyy-topyy)  * reciprocalWindowSquared - meany*meany;
+      const topxy = sumMatrix[4*imageSize + topOffset+ windowOffset];
+      const bottomxy = sumMatrix[4*imageSize + bottomOffset+ windowOffset];
+      const cov = (bottomxy-topxy)  * reciprocalWindowSquared - meanx*meany;
+      const na = 2 * meanx * meany + c1
+      const nb = 2 * cov + c2
+      const da = meanx * meanx + meany * meany + c1
+      const db = varx + vary + c2
+      const ssim = (na * nb) / (da *db)
+      ssims[h*windowWidth] = ssim
+      if (isNaN(ssim)) {
+        debugger;
+      }
+      cumulativeSsim += ssim;
+    }
+
+
+    for (let w = 1; w < windowWidth; ++w) {
+      // add top left sub top right sub bottom left add bottom right
+      const rightOffset = w + windowSize - 1;
+      const leftOffset = w - 1;
+      const meanx = (sumMatrix[topOffset + leftOffset]
+        - sumMatrix[topOffset+ rightOffset]
+        - sumMatrix[bottomOffset+leftOffset]
+        + sumMatrix[bottomOffset+ rightOffset]) * reciprocalWindowSquared;
+      const meany = (sumMatrix[imageSize+ topOffset + leftOffset]
+        - sumMatrix[imageSize + topOffset+ rightOffset]
+        - sumMatrix[imageSize + bottomOffset+leftOffset]
+        + sumMatrix[imageSize + bottomOffset+ rightOffset]) * reciprocalWindowSquared;
+      const varx = (sumMatrix[2*imageSize+ topOffset + leftOffset]
+        - sumMatrix[2*imageSize + topOffset+ rightOffset]
+        - sumMatrix[2*imageSize + bottomOffset+leftOffset]
+        + sumMatrix[2*imageSize + bottomOffset+ rightOffset]) * reciprocalWindowSquared - meanx*meanx ;
+      const vary = (sumMatrix[3*imageSize+ topOffset + leftOffset]
+        - sumMatrix[3*imageSize + topOffset+ rightOffset]
+        - sumMatrix[3*imageSize + bottomOffset+leftOffset]
+        + sumMatrix[3*imageSize + bottomOffset+ rightOffset])  * reciprocalWindowSquared - meany*meany;
+      const cov = (sumMatrix[4*imageSize+ topOffset + leftOffset]
+        - sumMatrix[4*imageSize + topOffset+ rightOffset]
+        - sumMatrix[4*imageSize + bottomOffset+leftOffset]
+        + sumMatrix[4*imageSize + bottomOffset+ rightOffset])  * reciprocalWindowSquared - meanx*meany;
+      const na = 2 * meanx * meany + c1
+      const nb = 2 * cov + c2
+      const da = meanx * meanx + meany * meany + c1
+      const db = varx + vary + c2
+      const ssim = (na * nb) / (da * db)
+      ssims[h*windowWidth+w] = ssim
+      if (isNaN(ssim)) {
+        debugger;
+      }
+      cumulativeSsim += ssim;
+    }
+  }
+  const mssim = cumulativeSsim / (windowHeight*windowWidth);
+
+
+  // console.timeEnd("weber ssim");
+  return { data: ssims, width, height, mssim }
 }
