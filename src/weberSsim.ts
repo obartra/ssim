@@ -112,9 +112,6 @@ export function weberSsim(
       const db = varx + vary + c2
       const ssim = (na * nb) / (da * db)
       ssims[0] = ssim
-      if (isNaN(ssim)) {
-        debugger;
-      }
       // mssim = ssim
       cumulativeSsim = ssim;
     }
@@ -145,9 +142,6 @@ export function weberSsim(
       const da = meanx * meanx + meany * meany + c1
       const db = varx + vary + c2
       const ssim = (na * nb) / (da *db)
-      if (isNaN(ssim)) {
-        debugger;
-      }
       ssims[w] = ssim
       cumulativeSsim += ssim;
     }
@@ -182,9 +176,6 @@ export function weberSsim(
       const db = varx + vary + c2
       const ssim = (na * nb) / (da *db)
       ssims[h*windowWidth] = ssim
-      if (isNaN(ssim)) {
-        debugger;
-      }
       cumulativeSsim += ssim;
     }
 
@@ -219,9 +210,6 @@ export function weberSsim(
       const db = varx + vary + c2
       const ssim = (na * nb) / (da * db)
       ssims[h*windowWidth+w] = ssim
-      if (isNaN(ssim)) {
-        debugger;
-      }
       cumulativeSsim += ssim;
     }
   }

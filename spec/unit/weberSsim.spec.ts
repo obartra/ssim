@@ -88,6 +88,6 @@ describe("weberSsim", () => {
     const B = samples["24x18-degraded"].gray;
     const ssimMap = weberSsim(A, B, options);
     expect(ssimMap.mssim).toMatchInlineSnapshot(`0.561185528617847`);
-    expect(mean2d(ssimMap)).toMatchInlineSnapshot(`q0.561185528617847`);
+    expect(mean2d(ssimMap)).toMatchInlineSnapshot(`0.561185528617847`);
   });
 });
