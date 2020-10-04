@@ -70,7 +70,7 @@ describe("IVC", () => {
 
     expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0208`);
     expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000208`);
-    console.log(JSON.stringify(results));
+    expect(results).toEqual(weberScores as MSSIMValues);
   }, 70000);
 
   it("should match stored mssims (bezkrovny)", async () => {
