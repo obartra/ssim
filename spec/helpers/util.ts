@@ -1,4 +1,4 @@
-import { Matrix } from '../../src/types'
+import { Matrix, ImageData } from '../../src/types'
 
 type AnyMatrix =
   | Matrix

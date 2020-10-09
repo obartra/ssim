@@ -14,6 +14,12 @@ export type Matrix = {
   data: number[]
 }
 
+export type ImageData = {
+  readonly data: Uint8ClampedArray;
+  readonly height: number;
+  readonly width: number;
+}
+
 export type ImageMatrix =
   | Matrix
   | ImageData

@@ -10,7 +10,7 @@ import { originalSsim } from './originalSsim'
 import { bezkrovnySsim } from './bezkrovnySsim'
 import { downsample } from './downsample'
 import { defaults } from './defaults'
-import { Options, Images, Matrices, Matrix, MSSIMMatrix } from './types'
+import { Options, Images, Matrices, Matrix, MSSIMMatrix, ImageData } from './types'
 import { weberSsim } from './weberSsim'
 
 export { Options, Matrix }
