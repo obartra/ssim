@@ -1,4 +1,4 @@
-import { Matrix } from '../types'
+import { Matrix, ImageData } from '../types'
 
 /**
  * Converts an imageData object of { width, height, data } into a 2d matrix [row, column]
