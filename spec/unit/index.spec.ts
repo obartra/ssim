@@ -129,6 +129,23 @@ describe('ssim', () => {
     expect(roundTo(fast, 5)).toEqual(roundTo(original, 5))
   })
 
+  test('ssim should produce the same output than originalSsim using floating point rgb', () => {
+    const { mssim: fast } = lib.ssim(samples.avion, samples.avion_j2000_r1, {
+      ssim: 'fast',
+      rgb2grayVersion: 'original',
+    })
+    const { mssim: original } = lib.ssim(
+      samples.avion,
+      samples.avion_j2000_r1,
+      {
+        ssim: 'original',
+        rgb2grayVersion: 'original',
+      }
+    )
+
+    expect(roundTo(fast, 5)).toEqual(roundTo(original, 5))
+  })
+
   test('should fail if an invalid ssim value is specified', () => {
     expect(() => {
       lib.ssim(samples.avion, samples.avion_j2000_r1, ({

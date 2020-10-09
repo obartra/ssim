@@ -1,4 +1,5 @@
 export type Options = {
+  rgb2grayVersion: 'original' | 'integer'
   k1: number
   k2: number
   ssim: 'fast' | 'original' | 'bezkrovny' | 'weber'
@@ -15,9 +16,9 @@ export type Matrix = {
 }
 
 export type ImageData = {
-  readonly data: Uint8ClampedArray;
-  readonly height: number;
-  readonly width: number;
+  readonly data: Uint8ClampedArray
+  readonly height: number
+  readonly width: number
 }
 
 export type ImageMatrix =
