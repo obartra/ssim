@@ -2,7 +2,6 @@ import fs from 'fs'
 import http from 'https'
 import Canvas from 'canvas'
 import imageType from 'image-type'
-import bmp from 'bmp-js'
 
 /**
  * If `limit` is set, it will return proportional dimensions to `width` and `height` with the
@@ -51,9 +50,6 @@ function parse(data: Buffer, limit: number): Promise<ImageData> {
   const { ext = '' } = imageType(data) || {}
 
   return new Promise((resolve, reject) => {
-    if (ext === 'bmp') {
-      resolve(bmp.decode(data))
-    } else {
       Canvas.loadImage(data)
         .then((img) => {
           const { width, height } = getLimitDimensions(
@@ -70,7 +66,6 @@ function parse(data: Buffer, limit: number): Promise<ImageData> {
         })
         .then(resolve)
         .catch(reject)
-    }
   })
 }
 
