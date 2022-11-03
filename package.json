@@ -48,7 +48,6 @@
     "@types/jest": "26.0.14",
     "@types/node": "13.11.1",
     "benchmark": "2.1.4",
-    "bmp-js": "0.1.0",
     "canvas": "2.6.1",
     "commitizen": "4.2.1",
     "core-js": "3.6.5",

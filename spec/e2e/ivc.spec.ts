@@ -74,8 +74,8 @@ describe('IVC', () => {
 
     const newVar = newS / (Object.keys(newV).length - 1)
 
-    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0202`)
-    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000211`)
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0243`)
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000291`)
     expect(results).toEqual(weberScores as MSSIMValues)
   }, 70000)
 
@@ -111,14 +111,14 @@ describe('IVC', () => {
         mssim: newVal,
         distance: distNew,
         ref: refVal,
-      }
+    }
       const meanR = newMean + (distNew - newMean) / Object.keys(newV).length
       newS = newS + (distNew - newMean) * (distNew - meanR)
       newMean = meanR
     }
     const newVar = newS / (Object.keys(newV).length - 1)
-    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0155`)
-    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000153`)
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0186`)
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000175`)
     expect(results).toEqual(bezkrovnyScores as MSSIMValues)
   }, 70000)
 
@@ -179,8 +179,8 @@ describe('IVC', () => {
 
     const newVar = newS / (Object.keys(newV).length - 1)
 
-    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0203`)
-    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000212`)
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0243`)
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000292`)
     expect(results).toMatchSnapshot()
   }, 70000)
 
@@ -213,14 +213,14 @@ describe('IVC', () => {
         mssim: newVal,
         distance: distNew,
         ref: refVal,
-      }
+    }
       const meanR = newMean + (distNew - newMean) / Object.keys(newV).length
       newS = newS + (distNew - newMean) * (distNew - meanR)
       newMean = meanR
     }
     const newVar = newS / (Object.keys(newV).length - 1)
-    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0156`)
-    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000154`)
+    expect(roundTo(newMean, 4)).toMatchInlineSnapshot(`0.0186`)
+    expect(roundTo(newVar, 6)).toMatchInlineSnapshot(`0.000175`)
     expect(results).toMatchSnapshot()
   }, 70000)
 })
